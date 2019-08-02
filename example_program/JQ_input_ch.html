@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="kr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>인풋 플러그인</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="./js/extend.js"></script>
+  <link rel="stylesheet" href="./css/reset.css">
+
+	<script type="text/javascript">
+		$(function(){
+			$('#test_form').ch_vl();
+			$('#test_hv').hf_on();
+		});
+	</script>
+	
+	<style type="text/css">
+		#test_form{width:600px;margin:5% auto 10%}
+
+	</style>
+
+ </head>
+ <body>
+		<h2 class="T_ft_ct T_ft_xl" style="margin-top:10%">from type test js</h2>
+		<form action="" id="test_form" style="padding:40px 20px;border-radius:5%;box-shadow:2px 2px 0px 3px rgba(0,0,0,0.1)">
+			<div>
+				<label for="test1">test1</label>
+				<input type="text" id="test1" class="ch_rq"/>
+			</div>
+			<div>
+				<label for=""></label>
+				<input type="password" id=""/>
+			</div>
+			<div>
+				<label for=""></label>
+				<input type="mail" id=""/>
+			</div>
+			<div>
+				<label for=""></label>
+				<input type="" id=""/>
+			</div>
+			<div>
+				<label for=""></label>
+				<input type="" id=""/>
+			</div>
+			<div>
+				<input type="submit" />
+				<input type="reset" />
+			</div>
+		</form>
+		
+		<div id="test_hv" style="padding:20px;border:1px solid red;width:80%;margin:0 auto">
+			<div><a href="">테스트1</a></div>
+			<div><a href="">테스트2</a></div>
+			<div><a href="">테스트3</a></div>
+			<div><a href="">테스트4</a></div>
+			<div><a href="">테스트5</a></div>
+		</div>
+
+ </body>
+</html>

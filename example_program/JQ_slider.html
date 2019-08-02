@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="kr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>원페이지 템플렛</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="./js/extend.js"></script>
+  <link rel="stylesheet" href="./css/reset.css">
+
+	<script type="text/javascript">
+		
+		$(function(){
+			$('#cnt1').j_slider({
+				mode: 'slider', //mode = slider, fade, m3d,  
+				nav:true,
+				btn:true,
+				speed: 400,
+				loop:true,
+				auto:false,
+				view:2,
+				css:true,
+				Indc:true
+			});
+		});
+
+	</script>
+	
+	<style type="text/css">
+		body, html{width:100%;height:100%}
+		#header{top:0;left:0;width:100%;padding:10px 2%;background:#f9f9f9;z-index:90}
+		#header:after{content:"";display:block;clear:both}
+		#logo{float:left}
+		#gnb {float:right}
+		#gnb ul li{float:left}
+		#footer{}
+
+
+
+		/*j_slider*/
+		.j_content > img{width:100%;height:auto}
+	</style>
+
+ </head>
+ <body>
+	<header id="header">
+		<h1 id="logo">로고</h1>
+		<nav id="gnb">
+			<ul class="">
+				<li><a href="#cnt1">1번컨텐츠</a></li>
+				<li><a href="#cnt2">2번컨텐츠</a></li>
+				<li><a href="#cnt3">3번컨텐츠</a></li>
+				<li><a href="#cnt4">4번컨텐츠</a></li>
+			</ul>
+		</nav>
+	</header>
+	<section id="content" class="">
+		<h2 class="sound_only">사이트 메인 본문</h2>
+		<article id="cnt1" class="j_slider">
+			<ul class="j_container">
+				<li class="j_content" data-num="1"><img src="./img/test_img1.png" alt="" /></li>
+				<li class="j_content" data-num="2"><img src="./img/test_img2.png" alt="" /></li>
+				<li class="j_content" data-num="3"><img src="./img/test_img3.png" alt="" /></li>
+				<li class="j_content" data-num="4"><img src="./img/test_img4.png" alt="" /></li>
+				<li class="j_content" data-num="5"><img src="./img/test_img5.png" alt="" /></li>
+				<li class="j_content" data-num="6"><img src="./img/test_img6.png" alt="" /></li>
+				<li class="j_content" data-num="7"><img src="./img/test_img7.png" alt="" /></li>
+				<li class="j_content" data-num="8"><img src="./img/test_img8.png" alt="" /></li>
+			</ul>
+		</article>
+	</section>
+	<footer id="footer" class="">
+		footer 
+	</footer>
+ </body>
+</html>

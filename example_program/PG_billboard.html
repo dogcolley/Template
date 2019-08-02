@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="kr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>차트</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!--<script src="./js/extend.js"></script>-->
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./billboard/billboard.css">
+  <script src="./billboard/billboard.min.js"></script>
+
+ </head>
+ <body>
+	<div id="lineChartWithRegions"></div>
+	<script type="text/javascript">
+var chart = bb.generate({
+  data: {
+    columns: [
+	["data1", 30, 200, 100, 400, 150, 250],
+	["data2", 50, 20, 10, 40, 15, 25]
+    ],
+    regions: {
+      data1: [
+        {
+          start: 1,
+          end: 2,
+          style: {
+            dasharray: "6 2"
+          }
+        },
+        {
+          start: 3,
+          style: {
+            dasharray: "2 3"
+          }
+        }
+      ],
+      data2: [
+        {
+          end: 3
+        }
+      ]
+    }
+  },
+  bindto: "#lineChartWithRegions"
+});
+	</script>
+ </body>
+</html>
+
+
+
+

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="kr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>원페이지 템플렛</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="./js/extend.js"></script>
+  <link rel="stylesheet" href="./css/reset.css">
+
+	<script type="text/javascript">
+		
+		$(function(){
+			$('#content.one_page').onepage({
+				mode: 'mode1',
+				nav:true,
+				btn:true,
+				speed: 400,
+				foot:true
+			});
+		});
+
+	</script>
+	
+	<style type="text/css">
+		body, html{width:100%;height:100%;overflow:hidden}
+		#header{position:fixed;top:0;left:0;width:100%;padding:10px 2%;background:#f9f9f9;z-index:90}
+		#logo{float:left}
+		#gnb {float:right}
+		#gnb ul li{float:left}
+		#content.one_page{width:100%;height:100%;position:relative}
+		#content.one_page article{width:100%;height:100%;display:table}
+		#content.one_page article > div{display:table-cell;vertical-align:middle}
+		#footer{}
+		.side_nav{position:fixed;right:2%;top:50%}
+		.onpage_btn {position:fixed;bottom:2%;left:2%}
+		/*임시구분용*/
+		h3{font-size:30px;text-align:center;font-weight:500;color:#000}
+		#cnt1{background:#aaa}
+		#cnt2{background:#888}
+		#cnt3{background:#666}
+		#cnt4{background:#333}
+	</style>
+
+ </head>
+ <body>
+	<header id="header">
+		<h1 id="logo">로고</h1>
+		<nav id="gnb">
+			<ul class="onpage_nav ">
+				<li><a href="#cnt1">1번컨텐츠</a></li>
+				<li><a href="#cnt2">2번컨텐츠</a></li>
+				<li><a href="#cnt3">3번컨텐츠</a></li>
+				<li><a href="#cnt4">4번컨텐츠</a></li>
+			</ul>
+		</nav>
+	</header>
+	<section id="content" class="one_page">
+		<h2 class="sound_only">사이트 메인 본문</h2>
+		<article id="cnt1" class="paper">
+			<div>
+				<h3 class="paper_tit">1번컨텐츠</h3>
+			</div>
+		</article>
+		<article id="cnt2" class="paper">
+			<div>
+				<h3 class="paper_tit">2번컨텐츠</h3>
+			</div>
+		</article>
+		<article id="cnt3" class="paper">
+			<div>
+				<h3 class="paper_tit">3번컨텐츠</h3>
+			</div>
+		</article>
+		<article id="cnt4" class="paper">
+			<div>
+				<h3 class="paper_tit">4번컨텐츠</h3>
+			</div>
+		</article>
+	</section>
+	<footer id="footer" class="one_foot">
+		footer 
+	</footer>
+ </body>
+</html>

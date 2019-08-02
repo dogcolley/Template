@@ -1,0 +1,286 @@
+<?php
+$CateNme="견적문의";
+$CateNum="07";
+include_once("./_common.php");
+include_once("./_head.php");
+include_once(G5_CAPTCHA_PATH.'/captcha.lib.php');
+$action_url = G5_URL."/bbs/write_update.php";
+$bo_table = "estimate";
+
+$captcha_html = '';
+$captcha_js   = '';
+if ($is_guest) {
+    $captcha_html = captcha_html();
+    $captcha_js   = chk_captcha_js();
+}
+$is_file = true;
+$file_count = 2;
+$is_link = true;
+?>
+<div class="m_sub_area1">
+	<div class="m_sub_area2">
+		<form name="fwrite" id="fwrite" action="<?php echo $action_url ?>" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off" style="width:<?php echo $width; ?>">
+			<input type="hidden" name="uid" value="<?php echo get_uniqid(); ?>">
+			<input type="hidden" name="w" value="<?php echo $w ?>">
+			<input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
+			<input type="hidden" name="wr_id" value="<?php echo $wr_id ?>">
+			<input type="hidden" name="sca" value="<?php echo $sca ?>">
+			<input type="hidden" name="sfl" value="<?php echo $sfl ?>">
+			<input type="hidden" name="stx" value="<?php echo $stx ?>">
+			<input type="hidden" name="spt" value="<?php echo $spt ?>">
+			<input type="hidden" name="sst" value="<?php echo $sst ?>">
+			<input type="hidden" name="sod" value="<?php echo $sod ?>">
+			<input type="hidden" name="page" value="<?php echo $page ?>">
+			<input type="hidden"  value="모바일문의 <?php echo $name ?>" name="wr_name"  id="wr_name" class="mt_input" required/>
+			<textarea class="mt_textarea sound_only" style="width:0;height:0;position:absolute;overflow:hidden"  name="wr_content" id="wr_content" required>모바일 견적문의</textarea>
+			<div class="mt_bt_01">
+				<h2 class="sub_tit3">견적문의</h2>
+			</div>
+			<div class="mt_mb60 mt_mt50">
+				<div class="policy_box">
+					<?php include_once("./policy_txt.php");?>
+				</div>
+				<div class="policy_input">
+					<label for="">개인정보취급방침<span>동의합니다.</span></label><input type="checkbox" value="동의합니다." required id="chk_agree" name="chk_agree"/>
+				</div>
+			</div>
+
+			<h3 class="sub_tit4">고객정보</h3>
+			<ul class="mt_bt_04 mt_input_wrap mt_mb60">
+				<li>
+					<label for="wr_subject" class="mt_label">회사명</label>
+					<div class="rq_wrap">
+						<input type="text"  value="<?php echo $subject ?>" name="wr_subject" id="wr_subject" class="mt_input" required/>
+					</div>
+				</li>
+				<?/*
+				<li>
+					<label for="wr_name" class="mt_label">담당자 성명</label>
+					<div class="rq_wrap">
+						<input type="text"  value="<?php echo $name ?>" name="wr_name"  id="wr_name" class="mt_input" required/>
+					</div>
+				</li>
+				*/?>
+				<li>
+					<label for="wr_1" class="mt_label">핸드폰 번호</label>
+					<div class="rq_wrap">
+						<input type="text"  value="<?php echo $wr_1 ?>" name="wr_1" id="wr_1" class="mt_input" required/>
+					</div>
+				</li>
+				<?/*
+				<li>
+					<label for="wr_2" class="mt_label">전화번호</label>
+					<div class="rq_wrap">
+						<input type="text"  value="<?echo $wr_2?>" name="wr_2" id="wr_2" class="mt_input"/>
+					</div>
+				</li>
+				<li>
+					<label for="wr_3" class="mt_label">팩스번호</label>
+					<input type="text"  value="<?echo $wr_3 ?>" name="wr_3" id="wr_3" class="mt_input"/>
+				</li>
+				*/?>
+				<li>
+					<label for="" class="mt_label">이메일</label>
+					<div class="rq_wrap">
+						<input type=""  value="" name="" class="mt_input"/>
+					</div>
+				</li>
+				<?/*
+				<li>
+					<label for="" class="mt_label">첨부파일</label>
+					<?php for ($i=0; $is_file && $i<$file_count; $i++) { ?>
+						<div class="mt_file">
+							<div class="file_input">
+							<input type="file" name="bf_file[]" title="파일첨부 <?php echo $i+1 ?> : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="fileBtn<?php echo $i+1 ?> frm_file frm_input" id="bf_file<?php echo $i+1 ?>">
+							<label class="replace" for="bf_file<?php echo $i+1 ?>">파일선택</label>
+							<div class="fileName<?php echo $i+1 ?> file_name">선택한 파일이 없습니다.</div>
+							
+							<div class="clear"></div>
+							<?php if ($is_file_content) { ?>
+							<input type="text" name="bf_content[]" value="<?php echo ($w == 'u') ? $file[$i]['bf_content'] : ''; ?>" title="파일 설명을 입력해주세요." class="frm_file frm_input" size="50">
+							<?php } ?>
+							<?php if($w == 'u' && $file[$i]['file']) { ?>
+							<div class="file_del_box">
+								<input type="checkbox" id="bf_file_del<?php echo $i ?>" name="bf_file_del[<?php echo $i;  ?>]" value="1"> <label for="bf_file_del<?php echo $i ?>"><?php echo $file[$i]['source'].'('.$file[$i]['size'].')';  ?> 파일 삭제</label>
+							</div>
+							<?php } ?>
+							</div>
+						</div>
+					<?php } ?>
+				</li>
+				*/?>
+				<li>
+					<label for="" class="mt_label">자동등록방지</label>
+					<?php echo $captcha_html ?>
+				</li>
+			</ul>
+
+			<?/*
+			<h3 class="sub_tit4">의뢰정보</h3>
+			<ul class="mt_bt_04  mt_input_wrap">
+				<li>
+					<label for="wr_4" class="mt_label">제작구분</label>
+					<select name="wr_4" id="wr_4" class="mt_select">
+						<option value="">선택해주세요</option>
+						<option value="신규제작">신규제작</option>
+						<option value="리뉴얼">리뉴얼</option>
+						<option value="기타">기타</option>
+					</select>
+				</li>
+				<li>
+					<label for="" class="mt_label">제작유형</label>
+					<select name="wr_5" id="wr_5" class="mt_select">
+						<option value="">선택해주세요</option>
+						<option value="일반형">일반형</option>
+						<option value="맞춤형">맞춤형</option>
+						<option value="프리미엄">프리미엄</option>
+						<option value="제작형">제작형</option>
+						<option value="모바일템플릿">모바일템플릿</option>
+						<option value="모바일기획형">모바일기획형</option>
+						<option value="모바일맞춤형">모바일맞춤형</option>
+						<option value="쇼핑몰">쇼핑몰</option>
+					</select>
+				</li>
+				<li>
+					<label for="" class="mt_label">예상금액</label>
+					<select name="" id="" class="mt_select">
+						<option value="">선택해주세요</option>
+						<option value="120~200만원">120~200만원</option>
+						<option value="200~500만원">200~500만원</option>
+						<option value="500~1000만원">500~1000만원</option>
+						<option value="1,000만원 이상">1,000만원 이상</option>
+						<option value="미정">미정</option>
+					</select>
+				</li>
+				<?php for ($i=1; $is_link && $i<=3; $i++) { ?>
+				<li>
+					<label for="wr_link<?php echo $i ?>" class="mt_label">참고사이트 <?php echo $i ?></label>
+					<input type="text"  value="<?php if($w=="u"){echo$write['wr_link'.$i];} else { echo "http://"; }?>" id="wr_link<?php echo $i ?>" name="wr_link<?php echo $i ?>" class="mt_input"/>
+				</li>
+				<?php } ?>
+				<li>
+					<label for="" class="mt_label">문의사항</label>
+					<textarea class="mt_textarea" Placeholder="이 게시판은 최소 <?php echo $write_min; ?>글자 이상, 최대 <?php echo $write_max; ?>글자 이하까지 글을 쓰실 수 있습니다." name="wr_content" id="wr_content" required></textarea>
+				</li>
+			</ul>
+			*/?>
+			<div class="sub_tit7 mt_mt30">
+				<input type="submit"  value="문의하기"  id="btn_submit" accesskey="s" style="display:block;border:0;color:inherit;line-height:inherit;height:100%;width:100%;font-size:inherit;background:inherit"/>
+			</div>
+		</form>
+	</div>
+</div>
+
+    <script>
+    <?php if($write_min || $write_max) { ?>
+    // 글자수 제한
+    var char_min = parseInt(<?php echo $write_min; ?>); // 최소
+    var char_max = parseInt(<?php echo $write_max; ?>); // 최대
+    check_byte("wr_content", "char_count");
+
+    $(function() {
+        $("#wr_content").on("keyup", function() {
+            check_byte("wr_content", "char_count");
+        });
+    });
+
+    <?php } ?>
+    function html_auto_br(obj)
+    {
+        if (obj.checked) {
+            result = confirm("자동 줄바꿈을 하시겠습니까?\n\n자동 줄바꿈은 게시물 내용중 줄바뀐 곳을<br>태그로 변환하는 기능입니다.");
+            if (result)
+                obj.value = "html2";
+            else
+                obj.value = "html1";
+        }
+        else
+            obj.value = "";
+    }
+
+    function fwrite_submit(f)
+    {
+		
+		if ( ! $("#chk_agree").is(":checked")) {
+			alert("견적문의는 개인정보취급방침에 동의해야 합니다.");
+			$("#chk_agree").focus();
+			return false;
+		}
+
+        <?php echo $editor_js; // 에디터 사용시 자바스크립트에서 내용을 폼필드로 넣어주며 내용이 입력되었는지 검사함   ?>
+
+        var subject = "";
+        var content = "";
+        $.ajax({
+            url: g5_bbs_url+"/ajax.filter.php",
+            type: "POST",
+            data: {
+                "subject": f.wr_subject.value,
+                "content": f.wr_content.value
+            },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function(data, textStatus) {
+                subject = data.subject;
+                content = data.content;
+            }
+        });
+
+        if (subject) {
+            alert("제목에 금지단어('"+subject+"')가 포함되어있습니다");
+            f.wr_subject.focus();
+            return false;
+        }
+
+        if (content) {
+            alert("내용에 금지단어('"+content+"')가 포함되어있습니다");
+            if (typeof(ed_wr_content) != "undefined")
+                ed_wr_content.returnFalse();
+            else
+                f.wr_content.focus();
+            return false;
+        }
+
+        if (document.getElementById("char_count")) {
+            if (char_min > 0 || char_max > 0) {
+                var cnt = parseInt(check_byte("wr_content", "char_count"));
+                if (char_min > 0 && char_min > cnt) {
+                    alert("내용은 "+char_min+"글자 이상 쓰셔야 합니다.");
+                    return false;
+                }
+                else if (char_max > 0 && char_max < cnt) {
+                    alert("내용은 "+char_max+"글자 이하로 쓰셔야 합니다.");
+                    return false;
+                }
+            }
+        }
+
+        <?php echo $captcha_js; // 캡챠 사용시 자바스크립트에서 입력된 캡챠를 검사함  ?>
+
+        document.getElementById("btn_submit").disabled = "disabled";
+
+        return true;
+    }
+
+	$(function(){
+		var selectTarget = $('.select select');
+		selectTarget.change(function(){
+			var select_name = $(this).children('option:selected').text();
+			$(this).siblings('.selectbox').text(select_name); 
+		});
+
+		$(".frm_file").live("change",function(){
+			var name1 = $(this).attr("class");
+			var name2 = name1.substr(7,1);
+			val = $(this).val().split("\\");
+			f_name = val[val.length-1];
+			s_name = f_name.substring(f_name.length-4, f_name.length);
+			$(".fileName"+name2).html(f_name);
+		});
+	});
+    </script>
+
+<?
+include_once("./_tail.php");
+?>

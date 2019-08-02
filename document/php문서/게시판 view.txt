@@ -1,0 +1,73 @@
+<?php
+$CateNme="포트폴리오";
+$CateNum="06";
+include_once("./_common.php");
+include_once("./_head.php");
+
+if(!$wr_id){
+	alert("잘못된 접근입니다.");
+}
+
+$view = sql_fetch("select * from g5_write_portfolio where wr_id = '$wr_id'");
+$img[file] = get_file("portfolio", $view[wr_id]);
+?>
+
+<div class="m_sub_area1">
+	<div class="m_sub_area2">
+		<div class="mt_bt_01">
+			<h2 class="sub_tit3">포트폴리오</h2>
+		</div>
+		<strong class="sub_tit4 mt_mt60"><?=$view[wr_subject]?></strong>
+		<table class="mt_table01">
+			<tbody>
+				<tr>
+					<td class="mt_td01">클라이언트</td>
+					<td class="mt_td02"><?=$view['wr_subject']?></td>
+				</tr>
+				<tr>
+					<td class="mt_td01">제작기간</td>
+					<td class="mt_td02"><?=$view['wr_1']?></td>
+				</tr>
+				<tr>
+					<td class="mt_td01">구분</td>
+					<td class="mt_td02"><?=$view['wr_2']?></td>
+				</tr>
+				<tr>
+					<td class="mt_td01">적용기술</td>
+					<td class="mt_td02"><?=$view['wr_3']?></td>
+				</tr>
+				<tr>
+					<td class="mt_td01">디자인 컨셉</td>
+					<td class="mt_td02"><?=$view['wr_4']?></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="mt_bt_01 mt_mt60 mt_mb60 mt_pb60">
+			<? for($i=0;$i<count($img[file]);$i++){ ?>
+			<?if($i !== 0){?><img src="<?=G5_URL?>/data/file/portfolio/<?=$img[file][$i][file]?>" alt="" width="560" style="width:100%;height:auto"/><?}?>
+			<? } ?>
+		</div>
+		<div>
+			<a href="<?=G5_URL?>/m/sub06.php?gopage=<?=$gopage?>" class="sub_tit7 mt_mt30">목록보기</a>
+		</div>
+</div>
+
+<script type="text/javascript">
+
+history.pushState(null, null, location.href);
+var referrer =  document.referrer;
+//console.log(referrer ,'2',g5_url)
+//console.log(referrer == g5_url+'/m/sub06.php');
+
+if(referrer ==g5_url+'/m/sub06.php'){
+    window.onpopstate = function () {
+        //history.go(1);
+		location.href= g5_url+"/m/sub06.php?gopage=<?=$gopage?>";
+		return false;
+	};
+}
+
+</script>
+<?
+include_once("./_tail.php");
+?>

@@ -163,8 +163,10 @@ $.fn.extend({
 		set_ct_stack=0,
 		set_loop_mode = false,
 		set_show_wd = (set_lg+(opts.view*2)) / opts.view,
-		set_show_wd2 = 100  / (set_lg+(opts.view*2));
-		set_show_wd3 = 100  / (set_lg);
+		set_show_wd2 = 100  / (set_lg+(opts.view*2)),
+		set_show_wd3 = 100  / (set_lg),
+		nums_ctMax = Math.ceil(set_lg / opts.view),
+		nums_ct = 1;
 		
 		/*root check*/
 		if( set_lg <= opts.view ) opts.loop = false;
@@ -201,28 +203,41 @@ $.fn.extend({
 
 		/* setting btn */
 		if(set_action){
-			var make_btn = '<ul>';
+			var make_btn = '<ul class="j_btns">';
 			if(opts.btn)make_btn += '<li><button type="button" class="j_pv">이전</button></li>';
 			if(opts.btn)make_btn += '<li><button type="button" class="j_nt">다음</button></li>';
-			if(opts.auto)make_btn += '<li><button type="button" class="j_auto">자동재생</button></li>';
-			if(opts.auto)make_btn += '<li><button type="button" class="j_stop">자동재생정지</button></li>';
+			if(opts.auto)make_btn += '<li><button type="button" class="j_auto on"><span>자동재생</span></button></li>';
+			if(opts.auto)make_btn += '<li><button type="button" class="j_stop"><span>자동재생정지</span></button></li>';
 			make_btn += '</ul>';
 			set.append(make_btn);
 		}
 
 		set.find('.j_pv').on('click',function(){
 			j_pvcc(opts.speed);
+			if(opts.auto){
+				clearInterval(auto_fn);
+				set_loop_mode = false;
+				set.find('.j_auto').removeClass('on');
+				$('.j_stop').addClass('on');
+			}
 		});
 
 		set.find('.j_nt').on('click',function(){
 			j_nt_cc(opts.speed);
+			if(opts.auto){
+				clearInterval(auto_fn);
+				set_loop_mode = false;
+				set.find('.j_auto').removeClass('on');
+				$('.j_stop').addClass('on');
+			}
 		});
 			
 		/*setting indc*/
 		if(opts.Indc && set_action){
-			var make_Indc = '<ul>';
+			var make_Indc = '<ul class="j_indcs">';
 			for(var i=0; i < set_lg; i ++){
-				make_Indc += '<li><button type="button" class="indc_btn">'+(i+1)+'</button></li>';
+				if(i == 0 )make_Indc += '<li class="on"><button type="button" class="indc_btn">'+(i+1)+'</button></li>';
+				else make_Indc += '<li><button type="button" class="indc_btn">'+(i+1)+'</button></li>';
 			}
 			make_btn += '</ul>';
 			set.append(make_Indc);
@@ -245,6 +260,7 @@ $.fn.extend({
 		/* control CC */
 		function j_nt_cc(cc_speed){
 			set_move ='next';
+			in_num_ct('add');
 			if(set_ct < Math.ceil(set_lg/opts.view)-1 && set_stock <= 0){
 				set_ct++;
 				move(set_ct,cc_speed);
@@ -259,6 +275,7 @@ $.fn.extend({
 
 		function j_pvcc(cc_speed){
 			set_move ='prev';
+			in_num_ct('mis');
 			if( set_ct <=1){
 				apen_to(cc_speed);
 				set_stock ++;
@@ -271,6 +288,18 @@ $.fn.extend({
 				move(set_ct,cc_speed);
 			 }
 		};
+
+		function in_num_ct(in_mode){
+			if(in_mode == 'add'){
+				if(nums_ct<nums_ctMax)nums_ct++;
+				else nums_ct = 1;
+			}else if(in_mode=='mis'){
+				if(nums_ct > 1)nums_ct--;
+				else nums_ct = nums_ctMax;;
+			}
+			set.find('.j_indcs li').removeClass('on');
+			set.find('.j_indcs li').eq(nums_ct-1).addClass('on');
+		}
 
 		/*action function*/
 		function move(move_action,move_speed){
@@ -333,6 +362,7 @@ $.fn.extend({
 					});
 			}
 		}
+
 		/* Auto mode */
 		if(opts.auto){
 			set_loop_mode = true;
@@ -344,9 +374,13 @@ $.fn.extend({
 			set.find('.j_stop').on('click',function(){
 				clearInterval(auto_fn);
 				set_loop_mode = false;
+				set.find('.j_auto').removeClass('on');
+				$(this).addClass('on');
 			});
 
 			set.find('.j_auto').on('click',function(){
+				set.find('.j_stop').removeClass('on');
+				$(this).addClass('on');
 				if(!set_loop_mode){
 					auto_fn = setInterval(function(){
 						j_nt_cc(opts.autoS);
@@ -354,8 +388,14 @@ $.fn.extend({
 					set_loop_mode = true;
 				}
 			});
-
 		}
+
+		set.on('mouseleave',function(){
+			console.log('test');
+			if(opts.auto && !set.find('.j_auto').hasClass('on')){
+				set.find('.j_auto').trigger('click');
+			}
+		});
 		
 		/* test filed*/
 		set.find('button').click(function(){
@@ -369,6 +409,27 @@ $.fn.extend({
 	
 	}
 })
+
+$.fn.extend({
+	j_tab : function(options){
+		var defaults = {
+			// IC , CC
+		}
+		opts = $.extend(defaults,options)
+		
+		var set = $(this);
+
+		set.find('.tab_btn li a').on('click', function(){
+			$(this).parent().addClass('on').siblings().removeClass('on');
+			var num = $(this).parent().index();
+			set.find.siblings('.tab_con').find(' > li').eq(num).addClass('on').siblings().removeClass('on');
+			return false;
+		});
+		/* IC mode */
+
+		/* CC mode */
+	}
+});
 
 $.fn.extend({
 	hf_on : function(options){
@@ -474,5 +535,4 @@ $(function(){
 	*/
 
 });
-
 

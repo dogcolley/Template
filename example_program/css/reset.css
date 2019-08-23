@@ -135,6 +135,46 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .T_ft_xl{font-size:1.6em}
 
 .T_ft_wh100{font-weight:100}.T_ft_wh200{font-weight:200}.T_ft_wh300{font-weight:300}.T_ft_wh400{font-weight:400}.T_ft_wh500{font-weight:500}.T_ft_wh600{font-weight:600}.T_ft_wh700{font-weight:700}.T_ft_wh900{font-weight:900}
+    
+.T_pd_lt10{padding-left:10}
+.T_pd_lt20{padding-left:20}
+.T_pd_lt30{padding-left:30}
+.T_pd_lt40{padding-left:40}
+.T_pd_lt50{padding-left:50}
+.T_pd_lt60{padding-left:60}
+.T_pd_lt70{padding-left:70}
+.T_pd_lt80{padding-left:80}
+.T_pd_lt90{padding-left:90}
+    
+.T_pd_rt10{padding-right:10}
+.T_pd_rt20{padding-right:20}
+.T_pd_rt30{padding-right:30}
+.T_pd_rt40{padding-right:40}
+.T_pd_rt50{padding-right:50}
+.T_pd_rt60{padding-right:60}
+.T_pd_rt70{padding-right:70}
+.T_pd_rt80{padding-right:80}
+.T_pd_rt90{padding-right:90}
+    
+.T_pd_top10{padding-top:10}
+.T_pd_top20{padding-top:20}
+.T_pd_top30{padding-top:30}
+.T_pd_top40{padding-top:40}
+.T_pd_top50{padding-top:50}
+.T_pd_top60{padding-top:60}
+.T_pd_top70{padding-top:70}
+.T_pd_top80{padding-top:80}
+.T_pd_top90{padding-top:90}
+    
+.T_pd_btm10{padding-bottom:10}
+.T_pd_btm20{padding-bottom:20}
+.T_pd_btm30{padding-bottom:30}
+.T_pd_btm40{padding-bottom:40}
+.T_pd_btm50{padding-bottom:50}
+.T_pd_btm60{padding-bottom:60}
+.T_pd_btm70{padding-bottom:70}
+.T_pd_btm80{padding-bottom:80}
+.T_pd_btm90{padding-bottom:90}
 
 /*반응형 스타일*/
 /*.R_wd_area01{width:1200px;margin:0 auto}.R_mg_area01{width:1200px;margin:0 auto}.R_pd_area01{width:1200px;margin:0 auto}*/
@@ -145,6 +185,7 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 
 .R_pc_table{display:none}.R_pt_table{display:none}.R_t_table{display:none}.R_m_table{display:none}.R_tm_table{display:none}
 
+    
 
 /*Javacript 연통 클래스*/
 .J_N_C{}

@@ -494,6 +494,24 @@ $.fn.extend({
 	}
 });
 
+$.fn.extend({
+	mk_tem_tag : function(options){
+	var defaults = {
+		TH_Num : '01' //
+		TH_F : 'on';
+		TH_H : 'on';
+		TH_F_txt : 'TH_F_txt에 내용을 입력해주세요';
+		TH_H_txt : 'TH_F_txt에 내용을 입력해주세요';
+	}
+	opts = $.extend(defaults,options)
+	
+	var set = $(this);
+		
+	return false;
+	});
+});
+
+
 $(function(){
 	var shifton = false;
     var win_touch_start = 0;
@@ -509,7 +527,8 @@ $(function(){
 				if (e.keyCode == 16) shifton = true
 			}
 		});
-	} //win key cuntrol funtion
+	} 
+	//win key cuntrol funtion
     
 	/* use code scroll and keydow event
 	$(window).on('mousewheel DOMMouseScroll keydown', function (e) {
@@ -533,6 +552,7 @@ $(function(){
 		console.log('tocuh end',win_touch_sum);
     });
 	*/
+
 
 });
 

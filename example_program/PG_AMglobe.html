@@ -325,5 +325,15 @@ var data = {
 </head>
 <body>
 	<div id="chartdiv"></div>
+
+
+	<script type="text/javascript">
+		$(function(){
+			$('g').each(function(){
+				if($(this).attr('filter')=='url("#filter-id-79")')$(this).remove();
+			})
+		});
+	</script>
+
 </body>
 </html>

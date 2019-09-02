@@ -51,7 +51,7 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 /* search color */
 .sch_word {color:#00c4ac}
 
-/* page-view */
+/* page-view gd_bd*/
 .pg_wrap {clear:both;margin:30px 0 ;text-align:center}
 .pg_wrap:after {display:block;visibility:hidden;clear:both;content:""} 
 .pg {}
@@ -98,7 +98,6 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 		m = 모바일버전 (VER_MOBILE)
 		c = 공통 (common)
 		full = 100%
-
 */
 
 /*고정 공통 클래스*/
@@ -118,63 +117,27 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .T_ps_rl{position:relative}.T_ps_ab{position:absolute}.T_ps_st{position:static}.T_ps_fx{position:fixed}
 
 .T_fl_lt{float:left},.T_fl_rt{float:right}
-
+.T_fl_Clt > *{float:left}
+.T_fl_Crt > *{float:left}
 .T_ft_cfff{color:#fff}.T_ft_c000{color:#000}.T_ft_c333{color:#333}.T_ft_c555{color:#555}.T_ft_c777{color:#777}.T_ft_c999{color:#999}
 
 .T_ft_ct{text-align:center}.T_ft_lt{text-align:left}.T_ft_rt{text-align:right}
 
 .T_lh_10{line-height:1.0}.T_lh_11{line-height:1.1}.T_lh_12{line-height:1.2}.T_lh_13{line-height:1.3}.T_lh_14{line-height:1.4}.T_lh_15{line-height:1.5}.T_lh_16{line-height:1.6}.T_lh_17{line-height:1.7}.T_lh_18{line-height:1.8}.T_lh_19{line-height:1.9}.T_lh_20{line-height:2.0}
 
-.T_bg_c0fff{background:#fff}
-.T_bg_c0f9{background:#f9f9f9}
-.T_bg_c0d9{background:#d9d9d9}
+.T_bg_cfff{background:#fff}.T_bg_cf9{background:#f9f9f9}.T_bg_cd9{background:#d9d9d9}.T_bg_c333{background:#333}
 
-.T_ft_sm{font-size:0.8em}
-.T_ft_md{font-size:1.2em}
-.T_ft_bg{font-size:1.4em}
-.T_ft_xl{font-size:1.6em}
+.T_ft_sm{font-size:0.8em}.T_ft_md{font-size:1.2em}.T_ft_bg{font-size:1.4em}.T_ft_xl{font-size:1.6em}
 
 .T_ft_wh100{font-weight:100}.T_ft_wh200{font-weight:200}.T_ft_wh300{font-weight:300}.T_ft_wh400{font-weight:400}.T_ft_wh500{font-weight:500}.T_ft_wh600{font-weight:600}.T_ft_wh700{font-weight:700}.T_ft_wh900{font-weight:900}
     
-.T_pd_lt10{padding-left:10}
-.T_pd_lt20{padding-left:20}
-.T_pd_lt30{padding-left:30}
-.T_pd_lt40{padding-left:40}
-.T_pd_lt50{padding-left:50}
-.T_pd_lt60{padding-left:60}
-.T_pd_lt70{padding-left:70}
-.T_pd_lt80{padding-left:80}
-.T_pd_lt90{padding-left:90}
+.T_pd_lt10{padding-left:10px}.T_pd_lt20{padding-left:20px}.T_pd_lt30{padding-left:30px}.T_pd_lt40{padding-left:40px}.T_pd_lt50{padding-left:50px}.T_pd_lt60{padding-left:60px}.T_pd_lt70{padding-left:70px}.T_pd_lt80{padding-left:80px}.T_pd_lt90{padding-left:90px}
     
-.T_pd_rt10{padding-right:10}
-.T_pd_rt20{padding-right:20}
-.T_pd_rt30{padding-right:30}
-.T_pd_rt40{padding-right:40}
-.T_pd_rt50{padding-right:50}
-.T_pd_rt60{padding-right:60}
-.T_pd_rt70{padding-right:70}
-.T_pd_rt80{padding-right:80}
-.T_pd_rt90{padding-right:90}
+.T_pd_rt10{padding-right:10px}.T_pd_rt20{padding-right:20px}.T_pd_rt30{padding-right:30px}.T_pd_rt40{padding-right:40px}.T_pd_rt50{padding-right:50px}.T_pd_rt60{padding-right:60px}.T_pd_rt70{padding-right:70px}.T_pd_rt80{padding-right:80px}.T_pd_rt90{padding-right:90px}
     
-.T_pd_top10{padding-top:10}
-.T_pd_top20{padding-top:20}
-.T_pd_top30{padding-top:30}
-.T_pd_top40{padding-top:40}
-.T_pd_top50{padding-top:50}
-.T_pd_top60{padding-top:60}
-.T_pd_top70{padding-top:70}
-.T_pd_top80{padding-top:80}
-.T_pd_top90{padding-top:90}
+.T_pd_top10{padding-top:10px}.T_pd_top20{padding-top:20px}.T_pd_top30{padding-top:30px}.T_pd_top40{padding-top:40px}.T_pd_top50{padding-top:50px}.T_pd_top60{padding-top:60px}.T_pd_top70{padding-top:70px}.T_pd_top80{padding-top:80px}.T_pd_top90{padding-top:90px}
     
-.T_pd_btm10{padding-bottom:10}
-.T_pd_btm20{padding-bottom:20}
-.T_pd_btm30{padding-bottom:30}
-.T_pd_btm40{padding-bottom:40}
-.T_pd_btm50{padding-bottom:50}
-.T_pd_btm60{padding-bottom:60}
-.T_pd_btm70{padding-bottom:70}
-.T_pd_btm80{padding-bottom:80}
-.T_pd_btm90{padding-bottom:90}
+.T_pd_btm10{padding-bottom:10px}.T_pd_btm20{padding-bottom:20px}.T_pd_btm30{padding-bottom:30px}.T_pd_btm40{padding-bottom:40px}.T_pd_btm50{padding-bottom:50px}.T_pd_btm60{padding-bottom:60px}.T_pd_btm70{padding-bottom:70px}.T_pd_btm80{padding-bottom:80px}.T_pd_btm90{padding-bottom:90px}
 
 /*반응형 스타일*/
 /*.R_wd_area01{width:1200px;margin:0 auto}.R_mg_area01{width:1200px;margin:0 auto}.R_pd_area01{width:1200px;margin:0 auto}*/

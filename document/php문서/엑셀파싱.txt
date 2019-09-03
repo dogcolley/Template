@@ -1,0 +1,156 @@
+<?php
+include_once('./_common.php');
+
+$cateNum = '01';
+$subNum = '03';
+$subClass = 'sub01_03';
+$cateName = '회사소개';
+$subName = '원자재 및 생산능력';
+
+if (G5_IS_MOBILE) {
+    include_once(G5_MOBILE_PATH.'/index.php');
+    return;
+}
+include_once(G5_PATH.'/_head.php');
+
+require_once G5_LIB_PATH."/PHPExcel.php"; // PHPExcel.php을 불러와야 하며, 경로는 사용자의 설정에 맞게 수정해야 한다.
+$objPHPExcel = new PHPExcel();
+require_once G5_LIB_PATH."/PHPExcel/IOFactory.php"; // IOFactory.php을 불러와야 하며, 경로는 사용자의 설정에 맞게 수정해야 한다.
+
+$mt_file_url[0] = G5_PATH.'/html/xlsx/data1.xlsx'; // 읽어들일 엑셀 파일의 경로와 파일명을 지정한다.
+$mt_file_url[1] = G5_PATH.'/html/xlsx/data2.xlsx';
+$mt_file_url[2] = G5_PATH.'/html/xlsx/data3.xlsx';
+$mt_file_url[3] = G5_PATH.'/html/xlsx/data4.xlsx';
+$mt_file_url[4] = G5_PATH.'/html/xlsx/data5.xlsx';
+$mt_file_url[5] = G5_PATH.'/html/xlsx/data6.xlsx'; 
+
+$mt_file_tit[0] = 'Main materials-FR4/high-speed';
+$mt_file_tit[1] = 'Main materials-high-frequency';
+$mt_file_tit[2] = 'Main materials-high-frequency';
+$mt_file_tit[3] = 'Technical capability – multi-layer';
+$mt_file_tit[4] = 'Technical capability – high-frequency, high-speed';
+$mt_file_tit[5] = 'Technical capability-IMS';
+
+$mt_hd[0] = 2;
+$mt_hd[1] = 2;
+$mt_hd[2] = 2;
+$mt_hd[3] = 1;
+$mt_hd[4] = 1;
+$mt_hd[5] = 1;
+
+$mt_col_lg[0] = 16;
+$mt_col_lg[1] = 16;
+$mt_col_lg[2] = 15;
+$mt_col_lg[3] = 4;
+$mt_col_lg[4] = 5;
+$mt_col_lg[5] = 3;
+
+for($k =0; $k < count($mt_file_url); $k++){
+	echo '<div class="col'.$k.'">';
+	mt_data_parsing($mt_file_url[$k],$mt_file_tit[$k],$mt_hd[$k],$mt_col_lg[$k]);
+	echo '</div>';
+}
+
+function mt_data_parsing($filename,$caption_name,$hd_col,$col_lg){
+	try {
+		// 업로드 된 엑셀 형식에 맞는 Reader객체를 만든다.
+		$objReader = PHPExcel_IOFactory::createReaderForFile($filename);
+
+		// 읽기전용으로 설정
+		$objReader->setReadDataOnly(true);
+		// 엑셀파일을 읽는다
+		$objExcel = $objReader->load($filename);
+
+		// 첫번째 시트를 선택
+		$objExcel->setActiveSheetIndex(0);
+
+		$objWorksheet = $objExcel->getActiveSheet();
+
+		$rowIterator = $objWorksheet->getRowIterator();
+
+		foreach ($rowIterator as $row) { // 모든 행에 대해서
+				   $cellIterator = $row->getCellIterator();
+				   $cellIterator->setIterateOnlyExistingCells(false); 
+		}
+
+		$maxRow = $objWorksheet->getHighestRow();
+
+		//출력부분 이부분을 수정하면 태그의 형태를 바꿀수있음
+		echo '<table class="U_table01">';
+		echo '<caption><span><span>'.$caption_name.'</span></span></caption>';
+		for ($i = 1 ; $i <= $maxRow ; $i++) {
+
+					//데이터 세이브작업
+				   $data_tag[0] = $objWorksheet->getCell('A' . $i)->getValue(); // A열
+				   $data_tag[1] = $objWorksheet->getCell('B' . $i)->getValue(); // B열
+				   $data_tag[2] = $objWorksheet->getCell('C' . $i)->getValue(); // C열
+				   $data_tag[3] = $objWorksheet->getCell('D' . $i)->getValue(); // D열
+				   $data_tag[4] = $objWorksheet->getCell('E' . $i)->getValue(); // E열
+				   $data_tag[5] = $objWorksheet->getCell('F' . $i)->getValue(); // F열
+				   $data_tag[6] = $objWorksheet->getCell('G' . $i)->getValue(); // G열
+				   $data_tag[7] = $objWorksheet->getCell('H' . $i)->getValue(); // H열
+				   $data_tag[8] = $objWorksheet->getCell('I' . $i)->getValue(); // I열
+				   $data_tag[9] = $objWorksheet->getCell('J' . $i)->getValue(); // J열
+				   $data_tag[10]= $objWorksheet->getCell('K' . $i)->getValue(); // K열
+				   $data_tag[11]= $objWorksheet->getCell('L' . $i)->getValue(); // L열
+				   $data_tag[12]= $objWorksheet->getCell('M' . $i)->getValue(); // M열
+				   $data_tag[13]= $objWorksheet->getCell('N' . $i)->getValue(); // N열
+				   $data_tag[14]= $objWorksheet->getCell('O' . $i)->getValue(); // O열
+				   $data_tag[15]= $objWorksheet->getCell('P' . $i)->getValue(); // P열
+
+					if($i ==1 )echo '<thead>';
+					if($i == ($hd_col+1) )echo '<tbdoy>';
+					echo '<tr>';
+						for($k= 0; $k <$col_lg; $k++){
+							if($i < ($hd_col+1) && $data_tag[$k] !== NULL)echo '<th>'.$data_tag[$k].'</th>';
+							else if($data_tag[$k] !== NULL)echo '<td><span>'.$data_tag[$k].'</span></td>';
+						}
+					echo '</tr>';
+					if($i == $hd_col)echo '</thead>';
+					if($i == $maxRow)echo '</tbody>';
+		  }
+
+		echo '</table>';
+
+	} catch (exception $e) {
+		echo '엑셀파일을 읽는도중 오류가 발생하였습니다.';
+	}
+}
+​?>
+
+<script type="text/javascript">
+	$(function(){
+		$('.col0 thead tr').eq(0).find('th').eq(0).attr({rowspan:2});
+		$('.col0 thead tr').eq(0).find('th').eq(1).attr({rowspan:2});
+		$('.col0 thead tr').eq(0).find('th').eq(2).attr({rowspan:2});
+		$('.col0 tbody tr').eq(2).find('td').eq(1).attr({rowspan:4});
+		$('.col0 tbody tr').eq(2).find('td').eq(2).attr({rowspan:4});
+		$('.col0 tbody tr').eq(12).find('td').eq(3).attr({colspan:3});
+		$('.col0 tbody tr').eq(12).find('td').eq(4).attr({colspan:3});
+		$('.col0 tbody tr').eq(12).find('td').eq(5).attr({colspan:3});
+		$('.col0 tbody tr').eq(12).find('td').eq(6).attr({colspan:4});
+
+		$('.col1 thead tr').eq(0).find('th').eq(0).attr({rowspan:2});
+		$('.col1 thead tr').eq(0).find('th').eq(1).attr({rowspan:2});
+		$('.col1 thead tr').eq(0).find('th').eq(2).attr({rowspan:2});
+		$('.col1 tbody tr').eq(13).find('td').eq(3).attr({colspan:5});
+		$('.col1 tbody tr').eq(13).find('td').eq(4).attr({colspan:8});
+
+		$('.col2 thead tr').eq(0).find('th').eq(0).attr({rowspan:2});
+		$('.col2 thead tr').eq(0).find('th').eq(1).attr({rowspan:2});
+		$('.col2 thead tr').eq(0).find('th').eq(2).attr({rowspan:2});
+		$('.col2 tbody tr').eq(13).find('td').eq(3).attr({colspan:6});
+		$('.col2 tbody tr').eq(13).find('td').eq(4).attr({colspan:3});
+		$('.col2 tbody tr').eq(13).find('td').eq(5).attr({colspan:4});
+
+		$('.col4 tbody tr').eq(0).find('td').eq(2).attr({colspan:2});
+		$('.col4 tbody tr').eq(1).find('td').eq(0).attr({rowspan:2});
+		$('.col4 tbody tr').eq(8).find('td').eq(0).attr({rowspan:4});
+		$('.col4 tbody tr').eq(14).find('td').eq(0).attr({rowspan:2});
+		$('.col4 tbody tr').eq(19).find('td').eq(2).attr({colspan:2});
+	});
+</script>
+
+<?php
+include_once(G5_PATH.'/tail.php');
+?>

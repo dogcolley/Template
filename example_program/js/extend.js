@@ -422,7 +422,7 @@ $.fn.extend({
 		set.find('.tab_btn li a').on('click', function(){
 			$(this).parent().addClass('on').siblings().removeClass('on');
 			var num = $(this).parent().index();
-			set.find.siblings('.tab_con').find(' > li').eq(num).addClass('on').siblings().removeClass('on');
+			set.find('.tab_con').find(' > li').eq(num).addClass('on').siblings().removeClass('on');
 			return false;
 		});
 		/* IC mode */
@@ -494,14 +494,36 @@ $.fn.extend({
 	}
 });
 
+
+$.fn.extend({
+	ch_item : function(options){
+		var defaults = {
+			mode : 'null' // IC , CC
+		}
+		opts = $.extend(defaults,options)
+		
+		var set = $(this);
+
+        /* null mode */
+
+		/* phone mode */
+        
+        /* address mode */
+        
+        /* pw mode */
+        
+        
+	}
+});
+
 $.fn.extend({
 	mk_tem_tag : function(options){
 	var defaults = {
-		TH_Num : '01' //
-		TH_F : 'on';
-		TH_H : 'on';
-		TH_F_txt : 'TH_F_txt에 내용을 입력해주세요';
-		TH_H_txt : 'TH_F_txt에 내용을 입력해주세요';
+		TH_Num : '01', //
+		TH_F : 'on',
+		TH_H : 'on',
+		TH_F_txt : 'TH_F_txt에 내용을 입력해주세요',
+		TH_H_txt : 'TH_F_txt에 내용을 입력해주세요'
 	}
 	opts = $.extend(defaults,options)
 	

@@ -548,7 +548,7 @@ $.fn.extend({
 	var set = $(this);
 		
 	return false;
-	});
+    }
 });
 
 

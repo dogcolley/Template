@@ -19,6 +19,35 @@
                     $(this).remove();           
                 });
             });
+            	
+             var email = '안dd'
+             
+             var test_list = ['감자','고구마','양파','대파'];
+             var con_list = ['감자','고구마','양파'];
+            
+             var regex ='';
+             for(var i = 0 ; i < con_list.length; i++){
+                 regex += con_list[i]
+                 if(i !== con_list.length)regex+='|';
+                 
+             }
+            console.log('마라톤선수명단 : '+test_list)
+            console.log('완주자명단 : '+con_list)
+            regex = `/|${regex}/`;
+            console.log(regex);
+            
+            for(var i = 0 ; i < test_list.length; i++){
+                 if(!test_list[i].match(regex)){
+                     console.log(test_list[i]+'는 완주하지 못했습니다.')
+                 };
+             }
+            
+            /*
+             if(regex.test(email) === false){
+              alert('잘못된 이메일 형식입니다.');
+              return false;    
+             }
+             */
 		});
 	</script>
 	

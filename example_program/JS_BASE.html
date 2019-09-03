@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="kr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>수수한 자바스크립트 베이스 작업</title>
+  <link rel="stylesheet" href="./css/reset.css">
+
+	<script type="text/javascript">
+            	
+        
+        // DOM 찾기 ======================================================================================
+        document.getElementById('app')
+        document.querySelector('#app')
+ 
+        document.getElementsByClassName('title1')
+        document.querySelector('.title1')
+        document.querySelectorAll('.title1')
+        
+        document.getElementsByTagName('em')
+        document.querySelector('em')
+        document.querySelectorAll('em')
+
+        
+        console.log(document.getElementById('app'))
+        document.addEventListener('DOMContentLoaded', () => {
+          // start ...
+        })
+        
+        
+        document.write();
+        
+        /*
+        document.querySelector('a').addEventListener('click', evt => {
+          // 이벤트 처리 ...
+        })
+        */
+        
+        
+        //document.querySelector('a').click();
+        
+        
+        //const evt = new CustomEvent('@click')
+        //document.dispatchEvent(evt)
+        
+        //const evt = new CustomEvent('@click', {detail: 'some data'})
+        //document.dispatchEvent(evt)
+        
+        //const evt = document.createEvent('CustomEvent')
+        //evt.initCustomeEvent('@click', true, false, 'some data')
+        //document.dispatchEvent(evt)
+        
+        //document.querySelector('#app').classList.add('active');
+        //document.querySelector('div').getAttribute('data-product-id') 
+        
+        //document.querySelector('#foo').className += ' active';
+        
+        /*
+        const req = new XMLHttpRequest()
+        req.open('GET', '/resource', true);
+        req.onreadystatechange = () => {
+          if (req.readyState === 4) {
+            if (req.status === 200) success()
+            else faile()
+          }
+        }
+        req.send(null)
+        */
+        
+        //Array.from(document.querySelectorAll('li')).forEach(li => {})
+        
+        //const obj3 = Object.assign({}, obj1, obj2)
+        
+        
+        //========================================================================================================
+        
+        
+        //고급 명령어==============================================================================================
+        
+        //closure 함수
+        //arguments 객체 인스턴트
+        
+        
+        
+        //========================================================================================================
+        
+        
+        
+        
+        
+        //정규표현식과 객체를 이용한 매칭 
+             var test_list = ['감자','고구마','양파','대파'];
+             var con_list = ['감자','고구마','양파'];
+             var regex ='';
+             for(var i = 0 ; i < con_list.length; i++){
+                 regex += con_list[i]
+                 if(i !== con_list.length)regex+='|';
+                 
+             }
+            console.log('마라톤선수명단 : '+test_list)
+            console.log('완주자명단 : '+con_list)
+            regex = `/|${regex}/`;
+            console.log(regex);
+            
+            for(var i = 0 ; i < test_list.length; i++){
+                 if(!test_list[i].match(regex)){
+                     console.log(test_list[i]+'는 완주하지 못했습니다.')
+                 };
+             }
+            
+
+	</script>
+	
+	<style type="text/css">
+
+	</style>
+
+ </head>
+ <body>
+
+    <div id="app" data-product-id="G123">
+        <h1 class="title1">순수한 스크립트 프로그래밍</h1>
+        <em>서브타이을</em>
+        <div></div>
+        
+    </div>
+
+ </body>
+</html>

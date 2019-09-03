@@ -502,15 +502,33 @@ $.fn.extend({
 		}
 		opts = $.extend(defaults,options)
 		
-		var set = $(this);
-
+		var set = $(this),
+        set_val = $(this).val(),
+        setExp;
         /* null mode */
-
+        if(opts.mode == 'null'){
+            set_val =  /\s/g;
+            
+        }    
 		/* phone mode */
+        if(opts.mode == 'null'){
+            set_val =  /^\d{3}-\d{3,4}-\d{4}$/;;
+            
+        }   
         
         /* address mode */
+        if(opts.mode == 'null'){
+            set_val =  /\s/g;
+            
+        }        
         
         /* pw mode */
+        if(opts.mode == 'null'){
+            set_val =  /^[a-z0-9_]{4,20}$/;
+            
+        }      
+         
+        /* ajax ckeck mode mode */
         
         
 	}

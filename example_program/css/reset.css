@@ -59,6 +59,7 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .pg a:focus, .pg a:hover {text-decoration:none}
 .pg_page {color:#555;font-size:1.083em;height:30px;line-height:28px;padding:0 5px;min-width:30px;text-decoration:none;border-radius:3px;}
 .pg_page:hover{background-color:#ddd}
+/*이부분에 이미지는 추가로 삽입해줘야합니다.*/
 .pg_start {text-indent:-999px;overflow:hidden;background:url('../img/btn_first.gif') no-repeat 50% 50% #fff;padding:0;border:1px solid #bbb;}
 .pg_prev {text-indent:-999px;overflow:hidden;background:url('../img/btn_prev.gif') no-repeat 50% 50% #fff;padding:0;border:1px solid #bbb}
 .pg_end {text-indent:-999px;overflow:hidden;background:url('../img/btn_end.gif') no-repeat 50% 50% #fff;padding:0;border:1px solid #bbb}
@@ -72,7 +73,7 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 
 /*
 	guide : 가이드  해당스타일은 부트스트랩과같은 베이스css와 사용자 정의 css를 합친 스타일입니다.
-		T = 테마 (Theme style)
+		T = 테마 (Theme style) : 초기작성자가 수정하는 클레스로 버그왜 추가나 변경은 하지않는것을 추천드립니다.
 		R = 반응형 (사용하지 않을시에 주석처리 : Annotate when not in use)
 		U = 사용자 지정 (user style)
 		J = 자바스크립트용 (javascript class)
@@ -90,6 +91,7 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 		wd = 넓이 (width)
 		ht = 높이 (ht)
 		gd = 가이드 (guide) 
+		ly = 레이아웃(layout) 가로사이즈 제어
 
 		pc = 피시버전 (VER_PC)
 		t = 테블릿버전 (VER_TAB)
@@ -101,16 +103,6 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 */
 
 /*고정 공통 클래스*/
-.T_ft_c01{color:#0f2f4c}
-.T_ft_c02{color:#113e68}
-.T_ft_c03{color:#ec0000}
-
-.T_ft_fm01{font-family:""}
-.T_ft_fm02{font-family:""}
-.T_ft_fm03{font-family:""}
-
-.T_bg_c01{background:#0f2f4c}
-.T_bg_c02{background:#113e68}
 
 .T_wd_full {width:100%},.T_ht_full{height:100%}
 
@@ -120,6 +112,8 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .T_fl_Clt > *{float:left}
 .T_fl_Crt > *{float:left}
 .T_ft_cfff{color:#fff}.T_ft_c000{color:#000}.T_ft_c333{color:#333}.T_ft_c555{color:#555}.T_ft_c777{color:#777}.T_ft_c999{color:#999}
+
+.T_ft_sz10{font-size: 10px}.T_ft_sz12{font-size: 12px}.T_ft_sz14{font-size: 14px}.T_ft_sz16{font-size: 16px}.T_ft_sz18{font-size: 18px}.T_ft_sz20{font-size: 20px}
 
 .T_ft_ct{text-align:center}.T_ft_lt{text-align:left}.T_ft_rt{text-align:right}
 
@@ -139,6 +133,24 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
     
 .T_pd_btm10{padding-bottom:10px}.T_pd_btm20{padding-bottom:20px}.T_pd_btm30{padding-bottom:30px}.T_pd_btm40{padding-bottom:40px}.T_pd_btm50{padding-bottom:50px}.T_pd_btm60{padding-bottom:60px}.T_pd_btm70{padding-bottom:70px}.T_pd_btm80{padding-bottom:80px}.T_pd_btm90{padding-bottom:90px}
 
+.T_mg_top10{margin-top:10px}.T_mg_top20{margin-top:20px}.T_mg_top30{margin-top:30px}.T_mg_top40{margin-top:40px}.T_mg_top50{margin-top:50px}.T_mg_top60{margin-top:60px}.T_mg_top70{margin-top:70px}.T_mg_top80{margin-top:80px}.T_mg_top90{margin-top:90px}
+
+.T_mg_lt10{margin-left:10px}.T_mg_lt20{margin-left:20px}.T_mg_lt30{margin-left:30px}.T_mg_lt40{margin-left:40px}.T_mg_lt50{margin-left:50px}.T_mg_lt60{margin-left:60px}.T_mg_lt70{margin-left:70px}.T_mg_lt80{margin-left:80px}.T_mg_lt90{margin-left:90px}
+
+.T_mg_rt10{margin-right:10px}.T_mg_rt20{margin-right:20px}.T_mg_rt30{margin-right:30px}.T_mg_rt40{margin-right:40px}.T_mg_rt50{margin-right:50px}.T_mg_rt60{margin-right:60px}.T_mg_rt70{margin-right:70px}.T_mg_rt80{margin-right:80px}.T_mg_rt90{margin-right:90px}
+
+.T_mg_btm10{margin-bottom:10px}.T_mg_btm20{margin-bottom:20px}.T_mg_btm30{margin-bottom:30px}.T_mg_btm40{margin-bottom:40px}.T_mg_btm50{margin-bottom:50px}.T_mg_btm60{margin-bottom:60px}.T_mg_btm70{margin-bottom:70px}.T_mg_btm80{margin-bottom:80px}.T_mg_btm90{margin-bottom:90px}
+
+.T_ly_02:after,.T_ly_03:after,.T_ly_04:after,.T_ly_05:after,.T_ly_06:after,.T_ly_07:after,.T_ly_08:after,.T_ly_09:after{content:"";clear:both;display:block}
+.T_ly_02 > *{float: left;width:calc( 100% / 2)}
+.T_ly_03 > *{float: left;width:calc( 100% / 3)}
+.T_ly_04 > *{float: left;width:calc( 100% / 4)}
+.T_ly_05 > *{float: left;width:calc( 100% / 5)}
+.T_ly_06 > *{float: left;width:calc( 100% / 6)}
+.T_ly_07 > *{float: left;width:calc( 100% / 7)}
+.T_ly_08 > *{float: left;width:calc( 100% / 8)}
+.T_ly_09 > *{float: left;width:calc( 100% / 9)}
+
 /*반응형 스타일*/
 /*.R_wd_area01{width:1200px;margin:0 auto}.R_mg_area01{width:1200px;margin:0 auto}.R_pd_area01{width:1200px;margin:0 auto}*/
 
@@ -147,28 +159,30 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_pc_show01{display:none}.R_pt_show01{display:none}.R_t_show01{display:none}.R_m_show01{display:none}.R_tm_show01{display:none}
 
 .R_pc_table{display:none}.R_pt_table{display:none}.R_t_table{display:none}.R_m_table{display:none}.R_tm_table{display:none}
-
-    
-
+ 
 /*Javacript 연통 클래스*/
 .J_N_C{}
 .J_C{}
 
 /*사용자 지정 클래스*/
+.U_ft_c01{color:#0f2f4c}
+.U_ft_c02{color:#113e68}
+.U_ft_c03{color:#ec0000}
+
+.U_ft_fm01{font-family:""}
+.U_ft_fm02{font-family:""}
+.U_ft_fm03{font-family:""}
+
+.U_bg_c01{background:#0f2f4c}
+.U_bg_c02{background:#113e68}
+
+.U_bd_01{border:1px solid #d9d9d9}
+
+.U_area01{width:1200px;margin-left: auto;margin-right:auto}
+
 .U_btn01{}
 .U_btn02{}
 .U_btn03{}
-.U_btn04{}
-.U_input01{}
-.U_input02{}
-.U_input03{}
-.U_title1{}
-.U_title2{}
-.U_title3{}
-.U_txt1{}
-.U_txt2{}
-.U_txt3{}
-
 
 @media all and (max-width:1500px){/* add 1500 ver */
 }

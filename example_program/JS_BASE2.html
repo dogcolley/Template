@@ -31,7 +31,6 @@
         console.log(person.name);
         }
    }
-
    /* 유사 트루 / 유사 펄스 
     console.log(!undefined);
     console.log(!null);
@@ -40,6 +39,164 @@
     console.log(!NaN);
    */
 
+   //3. 단축 평가(short-circuit evaluation) 논리계산법
+    console.log(true && 'hello'); // hello
+    console.log(false && 'hello'); // false
+    console.log('hello' && 'bye'); // bye
+    console.log(null && 'hello'); // null
+    console.log(undefined && 'hello'); // undefined
+    console.log('' && 'hello'); // ''
+    console.log(0 && 'hello'); // 0
+    console.log(1 && 'hello'); // hello
+    console.log(1 && 1); // 1
+    function term3(){ //Truthy and Falsy  의 응용예제
+        const namelessDog = {
+            name: ''
+        };
+
+        function getName(animal) {
+            const name = animal && animal.name;
+            return name || '이름이 없는 동물입니다.';
+        }
+
+        const name = getName(namelessDog);
+        console.log(name); // 이름이 없는 동물입니다.
+    }
+
+    //4. 함수의 기본 파라미터
+    function term4(){
+        const calculateCircleArea = (r = 1) => Math.PI * r * r;
+        const area = calculateCircleArea();
+        console.log(area); // 3.141592653589793
+    }
+    term4();
+
+    //5. 조건문 더 스마트하게 쓰기 includes: 있니 없니?
+    function term5(){
+        function isAnimal(name) {
+            const animals = ['고양이', '개', '거북이', '너구리'];
+            return animals.includes(name);
+        }
+
+        console.log(isAnimal('개')); // true
+        console.log(isAnimal('노트북')); // false
+
+        function getSound(animal) {
+            const sounds = {
+                개: '멍멍!',
+                고양이: '야옹~',
+                참새: '짹짹',
+                비둘기: '구구 구 구'
+            };
+            return sounds[animal] || '...?';
+        }
+
+            console.log(getSound('개')); // 멍멍!
+            console.log(getSound('비둘기')); // 구구 구 구
+    }
+    term5();
+
+    //6. 비구조화 할당 (구조분해) 문법
+    function term6(){
+        const object = { a: 1, b: 2 };
+        const {a, b} = object;
+        console.log(a);
+        console.log(b);
+
+        const object2 = { c: 1 };
+        function print({ c, d = 2 }) {
+            console.log(c);
+            console.log(d);
+        }
+
+        print(object2);
+
+        const animal = {
+            name : '멍멍이',
+            type : '개새끼'
+        };
+        const { name: nickname } = animal;
+        console.log(nickname);
+           
+        const array = [1, 2];
+        const [one, two] = array;
+
+        console.log(one);
+        console.log(two);
+
+        const deepObject = {
+            state: {
+                information: {
+                    name: 'velopert',
+                    languages: ['korea', 'english', 'chinese']
+                    }
+                },
+            value : 5
+        };
+
+        const { name, languages } = deepObject.state.information;
+        const { value } = deepObject;
+
+        const extracted = {
+            name: name,
+            languages: languages,
+            value: value
+        }
+        /*
+        const {
+        state: {
+            information: { name, languages }
+        },
+        value
+        } = deepObject;
+        */
+        console.log(extracted); 
+    }
+    term6();
+
+    //7. spread 와 rest (spread:퍼트리다) /  (rest: 객체,배열, 함수에서 사용가능)
+    const term7 = () =>{
+        const slime = {
+            name: '슬라임'
+        };
+
+        const cuteSlime = {
+            ...slime,
+            attribute: 'cute'
+        };
+
+        const purpleCuteSlime = {
+            ...cuteSlime,
+            color: 'purple'
+        };
+
+        console.log(slime);
+        console.log(cuteSlime);
+        console.log(purpleCuteSlime);
+
+        const animals = ['개', '고양이', '참새'];
+        const anotherAnimals = [...animals, '비둘기'];
+        console.log(animals);
+        console.log(anotherAnimals);
+        
+        const purpleCuteSlime2 = {
+            name : '슬라잉',
+            attribute : 'cute',
+            color: 'purle'
+        };
+
+        const {color2, ...rest} = purpleCuteSlime2;
+        console.log(color2);
+        console.log(rest);
+
+        const numbers = [0, 1, 2, 3, 4, 5, 6];
+        const [one, ...rest2] = numbers;
+
+        console.log(one);
+        console.log(rest2);
+
+    }
+    term7();
 
   </script>
 

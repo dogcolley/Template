@@ -11,7 +11,268 @@
   <link rel="stylesheet" href="./css/reset.css">
 
   <script type="text/javascript">
+    // 하위브라우저에서 사용하지않는 도구들은 바벨을 이용해서 해결합니다.
+    
+    //1. console.log : 브라우저 base 
+    console.log('Hello Javascript');
 
+    //2. 변수모음
+    let test_b = 1; // 변화가능, 지역변수, 선언은 1회가능
+    const test_a = 2; // 변화 불가능, 지역변수, 선언은 1회가능 
+    //test_a = 'test'; // 이렇게 하면에러뜸
+    var test_c = 3; //모던스크립트에서 사용하지않음, 전역변수, 선언제약없음
+    /* var 쓰지 않는 이유
+      1.hoisting 현상이 일어나 해당 변수가 속한 범위(scope 최상단으로 올려버리는 현상)
+      2.for 이유: 지역변수 i의 값이 유지된다. settimeout으로 지연을시키면 지역변수 i의값을 출력시 마지막 함수만 고정으로 출력이 된다. (var i in userIds)기준
+    */
+
+    console.log('lef 변수: ',test_b, 'const 변수:',test_a);
+
+
+    //3. funciton 기초 펑션에서 화살표를 사용하는 응용 벙션
+    function hell(name){
+      console.log(`hello, ${name}`); // ``는 띄어쓰기와 변수삽입이 가능한 다음표다.
+    }
+    hell('CLY');
+
+    const add = (a, b) =>{
+      return a + b;
+    };
+    console.log(add(1,2))
+
+
+    const cly = {
+      name : '석환장',
+      years : '25',
+      jab : 'web developer'
+    }
+
+    function print(cly){
+      const text = `${cly.name}의 나이는 ${cly.years}입니다. 직업은 ${cly.jab}입니다.`
+      console.log(text);
+    }
+
+    print(cly);
+
+
+    const dogs = {
+      name : '메시',
+      years : '3살',
+      say : function(){
+        console.log(this.name+'실망했다. 날두에게')
+      }
+    }
+    dogs.say();
+    const numbers = {
+      _a: 1,
+      _b: 2,
+      sum: 3,
+      calculate() {
+        console.log('calculate');
+        this.sum = this._a + this._b;
+      },
+      get a() {
+        return this._a;
+      },
+      get b() {
+        return this._b;
+      },
+      set a(value) {
+        console.log('a가 바뀝니다.');
+        this._a = value;
+        this.calculate();
+      },
+      set b(value) {
+        console.log('b가 바뀝니다.');
+        this._b = value;
+        this.calculate();
+      }
+    };
+
+    console.log(numbers.sum);
+    numbers.a = 5;
+    numbers.b = 7;
+    numbers.a = 9;
+    console.log(numbers.sum);
+    console.log(numbers.sum);
+    console.log(numbers.sum);
+
+    //4. for 기본 모음
+    /*
+    for / while / for...of : 대상의 수만큼 반복 / for ... in 
+
+    Object.entries: [[키, 값], [키, 값]] 형태의 배열로 변환
+    Object.keys: [키, 키, 키] 형태의 배열로 변환
+    Object.values: [값, 값, 값] 형태의 배열로 변환
+
+    for (let key in doggy) {
+      console.log(`${key}: ${doggy[key]}`);
+    }
+
+    continue 통과
+    break 컷
+    return 반환
+    return false 강제종료
+
+    */
+    let numbers3 = [10, 20, 30, 40, 50];
+    for (let number of numbers3) {
+      console.log(number);
+    }
+
+    // 예제문제
+
+    function biggerThanThree(num){
+      let new_number = new Array;
+      for(let i of num){
+         if(num[i] > 3)new_number.push(num[i]);
+      }
+      return new_number;
+    }
+
+    const numbers2 = [1,2,3,4,5,6,7];
+    console.log(biggerThanThree(numbers2)); 
+
+    //5. 배열내장함수
+
+    const superheroes = ['아이언맨', '캡틴 아메리카', '토르', '닥터 스트레인지'];
+    superheroes.forEach(hero => { //foreach 구문
+      console.log(hero);
+    });
+
+    const array = [1,2,3,4,5,6,7,8];
+    const squared = [];
+
+    array.forEach(n => { //foreach 구문 응용
+      squared.push(n*n);      
+    });
+    console.log(squared);
+
+    //map 구문활용
+    const squared2 = array.map(n => n*n);
+    console.log(squared2)
+
+    //indexOf 몇번째인지 찾는 구문
+    //findIndex  
+    const todos = [
+      {
+        id: 1,
+        text: '자바스크립트 입문',
+        done: true
+      },
+      {
+        id: 2,
+        text: '함수 배우기',
+        done: true
+      },
+      {
+        id: 3,
+        text: '객체와 배열 배우기',
+        done: true
+      },
+      {
+        id: 4,
+        text: '배열 내장함수 배우기',
+        done: false
+      }
+    ];
+    const index = todos.findIndex(todo => todo.id === 3);
+    console.log(index);
+    //find  찾은 객체를 반환
+    //filter const tasksNotDone = todos.filter(todo => !todo.done); 값자체를 반환한다.
+    /*
+      splice 특정항목을 제거할때
+      const numbers = [10, 20, 30, 40];
+      const index = numbers.indexOf(30);
+      numbers.splice(index, 1);
+    */
+    //slice 기존배열은 안건들고 새로운 배열을 사용
+    //shift  : shift 는 첫번째 원소를 배열에서 추출해줍니다. (추출하는 과정에서 배열에서 해당 원소는 사라집니다.)
+    //pop : pop 은 push 의 반대로 생각하시면 됩니다. push 는 배열의 맨 마지막에 새 항목을 추가하고, pop 은 맨 마지막 항목을 추출합니다.
+    //concat : 여러배열을 합칠때 / 합칠때 합친재료배열엔 영향을 주지않음
+    //join : 배열값을 문자열로 합침
+    //reduce :
+    /*
+      const numbers = [1, 2, 3, 4, 5];
+      let sum = array.reduce((accumulator, current) => accumulator + current, 0);
+      console.log(sum);
+    */
+
+    //예제 문제
+      function countBiggerThanTen(numbers) {
+        /* 구현해보세요 */
+
+        /* //1번 forEach를 활용한 배열필터후 합계연산후 리턴
+        let counters = 0;
+        numbers.forEach(n=>{
+          if(n > 10)counters++;
+        })
+        return counters;
+        */
+        
+        //2번 fliter 함수를 이용한 조건 식에 맞는것을 찾고 랭스로 잡는법
+        //return numbers.filter(n => n>10).length
+
+        //3번 reduce를 활용한 함수
+        return numbers.reduce((acc,current)=>{
+           if(current > 10){
+            return acc+1;
+           }else{
+             return acc;
+           }
+        },0);
+
+      }
+
+      const count = countBiggerThanTen([1, 2, 3, 5, 10, 20, 30, 40, 50, 60]);
+      console.log('test문제: count갯수는 : ',count); // 5
+
+
+    //6.프로토타입과 클래스
+    
+    //객체생성자
+    function Animal(type,name,sound){
+      this.type = type;
+      this.name = name;
+      this.sound = sound;
+      this.say = function(){
+        console.log(this.sound);
+      };
+    }
+    Animal.prototype.sharedValue = 1;    //프로타입
+
+    const dog = new Animal('개', '멍멍이', '멍멍');
+    const cat = new Animal('고양이', '양양이', '양양');
+    
+    dog.say();
+    cat.say();
+
+    console.log(dog.sharedValue);
+    console.log(cat.sharedValue);
+
+    // class 기능 C++/Java/ PHP / C#등의 기능
+    class Animal2 {
+      constructor(type, name, sound){
+        this.type= type;
+        this.name= name;
+        this.sound = sound;
+      }
+      say(){
+        console.log(this.sound);
+      }
+    }
+    const jsh = new Animal2('석환이', '개밥', '밥밥!');
+    jsh.say();
+
+    //상속가능
+    class Jsh extends Animal2{
+      constructor(name, sound){ //extends 키워드
+        super('석환이',name,sound); //super : 함수가 상속받는 클래스 생성자
+      }
+    }
+    
+    const jsh2 = new Jsh('개밥이', '캣밥캣밥!')
+    jsh2.say();
 
     // DOM 찾기 ======================================================================================
     document.getElementById('app')
@@ -127,7 +388,6 @@
     <h1 class="title1">순수한 스크립트 프로그래밍</h1>
     <em>서브타이을</em>
     <div></div>
-
   </div>
 
 </body>

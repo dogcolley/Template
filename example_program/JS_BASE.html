@@ -367,89 +367,48 @@
       //  };
       // }   
     }
-    term7(); // 실행
+    //term7(); // 실행
 
-  
-
-    // DOM 찾기 ======================================================================================
-    document.getElementById('app')
-    document.querySelector('#app')
-
-    document.getElementsByClassName('title1')
-    document.querySelector('.title1')
-    document.querySelectorAll('.title1')
-
-    document.getElementsByTagName('em')
-    document.querySelector('em')
-    document.querySelectorAll('em')
-
-
-    console.log(document.getElementById('app'))
-    document.addEventListener('DOMContentLoaded', () => {
-      // start ...
-    })
-
-
-    document.write('test wrtie javascript ok?');
-
-    /*
-    document.querySelector('a').addEventListener('click', evt => {
-      // 이벤트 처리 ...
-    })
-    */
-
-
-    //document.querySelector('a').click();
-
-
-    //const evt = new CustomEvent('@click')
-    //document.dispatchEvent(evt)
-
-    //const evt = new CustomEvent('@click', {detail: 'some data'})
-    //document.dispatchEvent(evt)
-
-    //const evt = document.createEvent('CustomEvent')
-    //evt.initCustomeEvent('@click', true, false, 'some data')
-    //document.dispatchEvent(evt)
-
-    //document.querySelector('#app').classList.add('active');
-    //document.querySelector('div').getAttribute('data-product-id') 
-
-    //document.querySelector('#foo').className += ' active';
-
-    /*
-    const req = new XMLHttpRequest()
-    req.open('GET', '/resource', true);
-    req.onreadystatechange = () => {
-      if (req.readyState === 4) {
-        if (req.status === 200) success()
-        else faile()
+    //8. 코테 연습문제 : 마라톤선수의 미통과검출문제
+    const term8 = () => {
+      //정답: 한명만 있을경우다.
+      const solution = (participant,completion ) => {
+        participant = participant.sort();
+        completion = completion.sort();
+        for (let n in participant){
+             if(participant[n] !== completion[n])return participant[n];
+        }
       }
+
+      //틀린친구들...: 여러명이 있을경우 검출법
+      /*
+      function solution(participant, completion) {
+          var answer = '';
+          participant = participant.sort();
+          completion = completion.sort();
+          participant.forEach( n => {
+              if(completion.indexOf(n) > -1){
+                  completion.splice(completion.indexOf(n),1);
+              }
+              else {
+                  answer += n; 
+              }
+          });  
+          return answer;
+      }
+
+      function solution(participant, completion) {
+          participant = participant.sort();
+          completion = completion.sort();
+          completion.forEach(n =>{
+              const hm = participant.indexOf(n);
+              participant.splice(hm,1);
+          });
+          return participant;
+      }   
+      */
     }
-    req.send(null)
-    */
-
-    //Array.from(document.querySelectorAll('li')).forEach(li => {})
-
-    //const obj3 = Object.assign({}, obj1, obj2)
-
-
-    //========================================================================================================
-
-
-    //고급 명령어==============================================================================================
-    //closure 함수
-    //arguments 객체 인스턴트
-
-
-
-    //========================================================================================================
-
-
-
-
-
-
+    term8();
 
 
   </script>

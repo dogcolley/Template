@@ -7,13 +7,149 @@
   <meta name="Author" content="">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
-  <title>수수한 자바스크립트 베이스 작업2</title>
+  <title>수수한 자바스크립트 베이스 작업3</title>
   <link rel="stylesheet" href="./css/reset.css">
 
   <script type="text/javascript">
    //알고있으면 좋은 것들
 
    //1.동기적 비동기적
+   //-비동기적 상황에 쓰이는 경우 동기적
+   //[a]Ajax Web API 
+   //[b]파일 읽기
+   //[c]암호화/복호화
+   //[d]작업 예약
+
+
+   //01. Promise : 비동기 작업을 할수있는 도구 : 
+
+   //기존의 cellback 지옥의 순환
+   const term1 = () =>{
+    function increaseAndPrint(n, callback) {
+      setTimeout(() => {
+        const increased = n + 1;
+        console.log(increased);
+        if (callback) {
+          callback(increased);
+        }
+      }, 1000);
+    }
+
+
+    increaseAndPrint(0, n => {
+        increaseAndPrint(n, n => {
+          increaseAndPrint(n, n => {
+            increaseAndPrint(n, n => {
+              increaseAndPrint(n, n => {
+                console.log('끝!');
+              });
+            });
+          });
+        });
+      });
+    }
+    //term1(); 실행
+
+    //해결을 위한 Promise이용
+    const term2 = () =>{
+      function increaseAndPrint(n){
+        return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            //resolve  성공
+            //reject 실패 
+            const value = n + 1;
+            if(value === 5){
+              const error = new Error();
+              error.name = 'valueIsFiveErro';
+              reject(error);
+              return
+            }
+            console.log(value);
+            resolve(value);
+          }, 1000);
+        });
+      }
+
+      increaseAndPrint(0)
+        .then(n => {
+          return increaseAndPrint(n);
+        })
+        .then(increaseAndPrint)
+        .then(increaseAndPrint)
+        .then(increaseAndPrint)
+        .catch(e => {
+          console.error(e);
+        });
+      /* 호출확인법1
+      myPromise
+        .then(n => {
+          console.log(n);
+        })
+        .catch(error =>{
+           console.log(error);
+        });
+      */
+    }
+    //term2(); //실행
+
+    //02. async/await :ES8의 문법입니다. Promise를 더욱 쉽게 사용할수 있게 해줍니다.
+    const term3 = () =>{
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      async function makeError() {
+        await sleep(1000);
+        const error = new Error();
+        throw error;
+      }
+
+      async function process() {
+        try{
+          await makeError();
+        } catch(e){
+          console.log(e);
+        }
+      }
+      process();
+    }
+    //term3(); // 실행
+
+    //03. async 비동기 함수 다중생성 예제
+    const term4 = () => {
+      function sleep(ms){
+        return new Promise(resolve => setTimeout(resolve,ms));
+      }
+      const getDog = async () => {
+        await sleep(1000);
+        return '멍멍이';
+      };
+      const getRabbit = async () => {
+        await sleep(500);
+        return '토끼';
+      };
+      const getTurtle = async () => {
+        await sleep(3000);
+        return '거북이';
+      };
+      async function process() {
+        const dog = await getDog();
+        console.log(dog);
+        const rabbit = await getRabbit();
+        console.log(rabbit);
+        const turtle = await getTurtle();
+        console.log(turtle);
+      }
+
+      async function process2() {
+        const results = await Promise.all([getDog(), getRabbit(), getTurtle()]); //.all 사용시 하나라도 실패시 모든게 실패로 간주
+        console.log(results);
+      }
+      process2();
+      process();
+      
+    }
+    term4();
 
 
   </script>

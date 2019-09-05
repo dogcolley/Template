@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="kr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>수수한 자바스크립트 베이스 작업4</title>
+  <link rel="stylesheet" href="./css/reset.css">
+
+
+  <style type="text/css">
+
+  </style>
+
+</head>
+
+<body>
+    <div class="U_area01 T_mg_top80">
+        <h2 id="number">0</h2>
+        <div>
+            <button id="increase">+1</button>
+            <button id="decrease">-1</button>
+            <button id="addClass">타이틀에 클레스 추가버튼</button>
+            <button id="modal-btn">모달열기</button>
+        </div>
+        <div id="modal_conBox"></div>
+    </div>
+    <div class="U_area01 T_mg_top80">
+        <input type="text" id="ex_attr1" class="show_class">
+        <button id="rmat-btn">누르면 타이틀 속성이 사라집니다.</button>
+    </div>
+</body>
+
+
+
+<script type="text/javascript">
+    //드디어한다. HTML과 연동하는 모던 JS [USE WEB Method && Property]
+
+    //01. Dom Method && Property
+
+    // -- Location -- 
+    //location                  //url만 가져오기
+    //location.host             //http:/ or https:/ 부분을 빼고 출력
+    //location.hostname         //"
+    //location.href             //full 태그호출
+    //location.pathname         //도메인을 제외한 뒤에 서브 리엑토리만
+    //location.protocol         //http: ,https 터미널 정보만 가져온다.
+
+    // --Get and Set Documnet ---
+    //.getElementsByTagName()   //태그를 반환 해서 가져오는 태그
+    //.getElementById()         //해당아디를 가진 태그를 호출
+    //.writeln()                //pre 태그로 깜싸면 줄바꿈이됌
+    //.write()                  //문서에 문자,코드를 쓰는 메서드
+    //.URL                      //URL속성으로 문서의 URL을 가져옴
+    //.title                    //문서의 타이틀 태그의 제목을 가져옴 / 내용변경도 가능
+    //.querySelectorAll()       //css, class 등의 속성을 전부가져옴
+    //.querySelector()          //class요소의 첫번째만 가져옴
+    //.getElementsByTagName()   //태그의 모든 요소를 선택해서 가져옴
+    //.getElementsByTagName()[0]//몇번째 객체의 배열값을 가져온다.
+    //.characterSet             //인코딩 반환해주는 속성
+
+
+    // -- Element -- 
+    //.childElementCount()      //자식갯수반환
+    //.setAttribute()           //선택요소의 속성값을 정하는 메서드
+    //.removeAttribute()        //선택요소의 속성값을 지우는 메서드
+    //.getAttribute()           //선택요소의 특정 속성값을 가져오는 메서드
+    //.innerHTML()              /특정요소의 내용을 가져오거나, 특정 요소의 내용을 변경
+
+    //02. String Method && Property
+
+    //.string()                  //문자열의 특정부분만 골라낼때사용 순서대로 ex) (2,4) (2,end) (2)
+    //.substr()                  //자를때 사용 (start, lenght)
+    //.startsWith()              //특장 문자열로 시작하는걸 true / flase로 반환 (seachString, length);
+
+
+    const number = document.getElementById("number");
+    const increase = document.getElementById("increase");
+    const decrease = document.getElementById("decrease");
+    const addClass = document.getElementById('addClass');
+    const btn_modal = document.getElementById('modal-btn');
+    const conBox_modal = document.getElementById('modal_conBox');
+    const remove_attrBTN = document.getElementById('rmat-btn');
+
+    document.getElementById( 'ex_attr1' ).setAttribute( 'title', 'This is title' )
+
+    console.log(number.innerText); // 내용
+    console.log(number.innerHTML ='2'); // 태그정보 가져오기
+    console.log(increase.offsetTop); // top 위치
+    console.log(decrease.id); // id
+    console.log(document.querySelectorAll('.show_class'));
+    increase.onclick = () => {
+        const current = parseInt(number.innerText, 10);
+        number.innerText = current + 1;
+    };
+
+    decrease.onclick = () => {
+        const current = parseInt(number.innerText, 10);
+        number.innerText = current - 1;
+    };
+
+    remove_attrBTN.onclick = () =>{
+        document.getElementById( 'ex_attr1' ).removeAttribute('title')
+    };
+ 
+    btn_modal.onclick = () => {
+        const make_tag = `
+            <div id="modal-con">
+                <div>
+                    <strong>모달창</strong>
+                    <p>모달창입니다.</p>
+                    <button id="close">모달닫기</button>
+                <div>
+            </div>
+        `;
+        conBox_modal.write(make_tag);
+    }
+</script>
+
+
+</html>

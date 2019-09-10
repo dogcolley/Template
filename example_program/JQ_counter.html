@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="kr">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>인풋 플러그인</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="./js/extend.js"></script>
+  <link rel="stylesheet" href="./css/reset.css">
+
+    <script type="text/javascript">
+		$(function(){
+            const moveCT = (num1,num2,tag) => {
+                const $tag = tag;
+                const $data = num1;
+                let setting = num2;
+                let time = 1000 / num1;
+                const roop = setInterval(function(){
+                    console.log('test',$tag,$data,setting); 
+                    if (setting == $data) clearInterval(roop)
+                    else {setting++;$tag.text(setting)}
+                },time)
+            }
+
+            $('#MT_COUNTER > li').each(function(e,tag){
+                $('#MT_COUNTER > li').addClass('on');
+                moveCT($('#MT_COUNTER > li').eq(e).data('num'),0,$('#MT_COUNTER > li').eq(e));
+            });
+		});
+	</script>
+	
+	<style type="text/css">
+		#test_form{width:600px;margin:5% auto 10%}
+        #MT_COUNTER li{height:300px;line-height: 300px;position:relative;transition: 2s all;color;#333}
+        #MT_COUNTER li:before{content: "";transition: 2s all;width:80%;height:80%;top:10%;left:10%;border:1px solid #d9d9d9;display: block;position:absolute;z-index: -1;border-radius: 5px;background: #fff}
+        #MT_COUNTER li.on:before{background: #333}
+        #MT_COUNTER li.on{color:#fff}
+	</style>
+
+ </head>
+ <body>
+    <div class="U_area01 T_mg_top40 T_ft_ct">
+        <h1 class=" T_ft_szB T_ft_wh700 T_ft_c000">TEST COUNTER</h1>
+        <ul class="T_fl_Clt T_ly_04 T_mg_top30 T_ft_szMB" id="MT_COUNTER">
+            <li data-num="40">0</li>
+            <li data-num="60">0</li>
+            <li data-num="150">0</li>
+            <li data-num="90">0</li>
+        </ul>
+    </div>
+ </body>
+</html>

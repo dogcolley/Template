@@ -13,6 +13,7 @@
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
    
    <style>
         #chartdiv {
@@ -26,12 +27,12 @@
         am4core.ready(function() {
         
         // Themes begin
+		am4core.useTheme(am4themes_material);
         am4core.useTheme(am4themes_animated);
         // Themes end
-        
+
         var chart = am4core.create("chartdiv", am4charts.PieChart);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
-        
         chart.data = [ // 수치입력값
         {
             country: "Lithuania",
@@ -62,7 +63,7 @@
         //각도 조절부분
         chart.radius = am4core.percent(70);
         chart.innerRadius = am4core.percent(40);
-        chart.startAngle = 0;
+        chart.startAngle = 180;
         chart.endAngle = 360;  
         
 
@@ -70,7 +71,7 @@
         series.dataFields.value = "value";
         series.dataFields.category = "country";
         
-        series.slices.template.cornerRadius = 0;
+        series.slices.template.cornerRadius = 7;
         series.slices.template.innerCornerRadius = 0;
         series.slices.template.draggable = false;
         series.slices.template.inert = false;
@@ -79,7 +80,7 @@
         series.hiddenState.properties.startAngle = 90;
         series.hiddenState.properties.endAngle = 90;
         
-        chart.legend = new am4charts.Legend();
+        //chart.legend = new am4charts.Legend();
         
         }); // end am4core.ready()
         </script>

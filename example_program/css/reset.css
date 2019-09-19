@@ -121,7 +121,9 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .T_ft_szB{font-size:1.6em}
 
 .T_ft_ct{text-align:center}.T_ft_lt{text-align:left}.T_ft_rt{text-align:right}
-
+   
+.T_vt_md{vertical-align:middle} .T_vt_top{vertical-align:top} .T_vt_btm{vertical-align:bottom}
+    
 .T_lh_10{line-height:1.0}.T_lh_11{line-height:1.1}.T_lh_12{line-height:1.2}.T_lh_13{line-height:1.3}.T_lh_14{line-height:1.4}.T_lh_15{line-height:1.5}.T_lh_16{line-height:1.6}.T_lh_17{line-height:1.7}.T_lh_18{line-height:1.8}.T_lh_19{line-height:1.9}.T_lh_20{line-height:2.0}
 
 .T_bg_cfff{background:#fff}.T_bg_cf9{background:#f9f9f9}.T_bg_cd9{background:#d9d9d9}.T_bg_c333{background:#333}.T_bg_c000{background:#000}
@@ -201,6 +203,16 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_pt_block{display:block}
 .R_pt_table{display:table}
 .R_pt_show01{display:block}
+    
+.R_pt_ly02 > *{float: left;width:calc( 100% / 2)}
+.R_pt_ly03 > *{float: left;width:calc( 100% / 3)}
+.R_pt_ly04 > *{float: left;width:calc( 100% / 4)}
+.R_pt_ly05 > *{float: left;width:calc( 100% / 5)}
+.R_pt_ly06 > *{float: left;width:calc( 100% / 6)}
+.R_pt_ly07 > *{float: left;width:calc( 100% / 7)}
+.R_pt_ly08 > *{float: left;width:calc( 100% / 8)}
+.R_pt_ly09 > *{float: left;width:calc( 100% / 9)}   
+
 }
 
 @media all and (max-width:1024px) {/*T ~ M ver*/
@@ -212,6 +224,15 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_tm_show01{display:block}
 .R_tm_block{display:block}
 .R_tm_table{display:table}
+    
+.R_tm_ly02 > *{float: left;width:calc( 100% / 2)}
+.R_tm_ly03 > *{float: left;width:calc( 100% / 3)}
+.R_tm_ly04 > *{float: left;width:calc( 100% / 4)}
+.R_tm_ly05 > *{float: left;width:calc( 100% / 5)}
+.R_tm_ly06 > *{float: left;width:calc( 100% / 6)}
+.R_tm_ly07 > *{float: left;width:calc( 100% / 7)}
+.R_tm_ly08 > *{float: left;width:calc( 100% / 8)}
+.R_tm_ly09 > *{float: left;width:calc( 100% / 9)}   
 
 }
 
@@ -235,6 +256,15 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_mg_btm30{margin-bottom:30px}
 .R_pd_top60{padding-top:60px}
 .R_pd_btm30{padding-bottom:30px}
+    
+.R_pc_ly02 > *{float: left;width:calc( 100% / 2)}
+.R_pc_ly03 > *{float: left;width:calc( 100% / 3)}
+.R_pc_ly04 > *{float: left;width:calc( 100% / 4)}
+.R_pc_ly05 > *{float: left;width:calc( 100% / 5)}
+.R_pc_ly06 > *{float: left;width:calc( 100% / 6)}
+.R_pc_ly07 > *{float: left;width:calc( 100% / 7)}
+.R_pc_ly08 > *{float: left;width:calc( 100% / 8)}
+.R_pc_ly09 > *{float: left;width:calc( 100% / 9)}
 }
 
 @media (min-width:641px) and (max-width:1024px) {/*tab_ver*/
@@ -259,6 +289,14 @@ body{font-size:2.34375vw}
 .R_t_ft34,.R_tm_ft34{font-size:3.3203125vw}
 .R_t_ft36,.R_tm_ft36{font-size:3.515625vw}
 
+.R_t_ly02 > *{float: left;width:calc( 100% / 2)}
+.R_t_ly03 > *{float: left;width:calc( 100% / 3)}
+.R_t_ly04 > *{float: left;width:calc( 100% / 4)}
+.R_t_ly05 > *{float: left;width:calc( 100% / 5)}
+.R_t_ly06 > *{float: left;width:calc( 100% / 6)}
+.R_t_ly07 > *{float: left;width:calc( 100% / 7)}
+.R_t_ly08 > *{float: left;width:calc( 100% / 8)}
+.R_t_ly09 > *{float: left;width:calc( 100% / 9)}    
 
 }
 
@@ -285,6 +323,15 @@ body{font-size:3.75vw}
 .R_m_ft32,.R_tm_ft32{font-size:5vw}
 .R_m_ft34,.R_tm_ft34{font-size:5.3125vw}
 .R_m_ft36,.R_tm_ft36{font-size:5.625vw}
+    
+.R_m_ly02 > *{float: left;width:calc( 100% / 2)}
+.R_m_ly03 > *{float: left;width:calc( 100% / 3)}
+.R_m_ly04 > *{float: left;width:calc( 100% / 4)}
+.R_m_ly05 > *{float: left;width:calc( 100% / 5)}
+.R_m_ly06 > *{float: left;width:calc( 100% / 6)}
+.R_m_ly07 > *{float: left;width:calc( 100% / 7)}
+.R_m_ly08 > *{float: left;width:calc( 100% / 8)}
+.R_m_ly09 > *{float: left;width:calc( 100% / 9)}   
 
 
 

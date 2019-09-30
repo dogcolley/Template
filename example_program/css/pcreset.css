@@ -1,14 +1,17 @@
 @charset "UTF-8";
 
 /*font-set*/
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
+/*
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
+*/
 
 /*teg-reset*/ /*safari-reset*/
 html {overflow-y:auto}
-body {margin:0;padding:0;font-size:18px;font-family:'Montserrat', 'Noto Sans KR', sans-serif;background:#fff;font-weight:300;letter-spacing:-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
+body {margin:0;padding:0;font-size:18px;font-family:'Noto Sans KR', sans-serif;background:#fff;font-weight:300;line-height: 1;color:#777;word-break:keep-all;line-height:1;letter-spacing:-1px}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
-h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Montserrat', 'Noto Sans KR', sans-serif;font-weight:inherit}
+h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Noto Sans KR', sans-serif;font-weight:inherit}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
 em{font-style:normal}
 strong{font-weight:600}
@@ -31,8 +34,11 @@ p {margin:0;padding:0;word-break:keep-all;line-height: 1.6}
 hr {display:none}
 pre {overflow-x:scroll;font-size:1.1em}
 a {color:inherit;text-decoration:none;font-size:inherit}
-select { border-radius:0; /* 아이폰 사파리 보더 없애기 */ -webkit-appearance:none; /* 화살표 없애기 for chrome*/ -moz-appearance:none; /* 화살표 없애기 for firefox*/ appearance:none /* 화살표 없애기 공통*/ } 
-select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
+    
+/*    
+select { border-radius:0; -webkit-appearance:none;  -moz-appearance:none;  appearance:none } 
+select::-ms-expand{ display:none}
+*/
 
 /*box-sizing-style*/
 *, :after, :before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
@@ -40,7 +46,7 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 /*common Calss*/
 .sound_only, .blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
 .clear:after{content: "";display: block;clear: both}
-
+.caption_blind{height:0;width:0;text-indent:9999px;border:0;padding:0;margin:0}
 #skipNav{position:absolute;left:-9999px;text-align:center;width:100%;height:90px;background:rgba(0,0,0,0.8);color:#fff;font-size:30px;text-align:center;width:100%;line-height:90px;z-index:100}
 #skipNav:focus{left:0}
 /*==== sir.kr common style -start ====*/
@@ -104,11 +110,20 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 
 /*고정 공통 클래스*/
 
-.T_wd_full {width:100%},.T_ht_full{height:100%}
+.T_wd_full {width:100%}
+.T_ht_full {height:100%}
 
 .T_ps_rl{position:relative}.T_ps_ab{position:absolute}.T_ps_st{position:static}.T_ps_fx{position:fixed}
+.T_ps_Crl > *{position: relative}
 
-.T_fl_lt{float:left},.T_fl_rt{float:right}
+.T_ds_block{display: block}
+.T_ds_inbl{display: inline-block}
+.T_ds_in{display: inline}
+.T_ds_table{display: table}
+.T_ds_cell{display: table-cell}
+
+.T_fl_lt{float:left}
+.T_fl_rt{float:right}
 .T_fl_Clt > *{float:left}
 .T_fl_Crt > *{float:left}
 .T_ft_cfff{color:#fff}.T_ft_c000{color:#000}.T_ft_c333{color:#333}.T_ft_c555{color:#555}.T_ft_c777{color:#777}.T_ft_c999{color:#999}
@@ -168,14 +183,17 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_pc_table{display:none}.R_pt_table{display:none}.R_t_table{display:none}.R_m_table{display:none}.R_tm_table{display:none}
  
 /*Javacript 연통 클래스*/
-.J_N_C{}
-.J_C{}
-
+.J_mask{position: fixed;top:0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.4);z-index:100}
+.J_modal_wrap{width:100%;height: 100%;vertical-align: middle;}
+.J_modal_wrap > div{height: 440px;width: 780px;background: #fff;margin:0 auto;padding:30px 25px 20px 25px}
+.J_modal_wrap p{height:328px;overflow:auto;background:#ccc;padding:30px;text-align:left;font-size:18px;color:#313131;font-weight:300;line-height:3}
 /*사용자 지정 클래스*/
 .U_ft_c01{color:#0f2f4c}
 .U_ft_c02{color:#113e68}
 .U_ft_c03{color:#ec0000}
-
+.U_ft_c04{color:#ee003d}
+.U_ft_c05{color:#4fa3e2}
+    
 .U_ft_fm01{font-family:""}
 .U_ft_fm02{font-family:""}
 .U_ft_fm03{font-family:""}
@@ -185,20 +203,71 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 
 .U_bd_01{border:1px solid #d9d9d9}
 
+.U_bd_sub04{}
+    
 .U_area01{width:1200px;margin-left: auto;margin-right:auto}
 
 .U_btn01{}
 .U_btn02{}
 .U_btn03{}
+.U_btn04{}
+.U_btn05{}
+.U_btn06{}
+.U_btn07{}
 
-@media all and (max-width:1500px){/* add 1500 ver */
+.U_table01{}
+.U_table02{}
+.U_table03{}
+.U_table04{}
+.U_table05{}
+
+.U_input01{}
+.U_input02{}
+.U_input03{}
+
+.U_lb_checkBox{}
+.U_lb_label{}
+.U_lb_set{}
+.U_lb_set + .U_lb_checkBox {}
+
+.U_txtArea01{}
+.U_txtArea02{}
+.U_txtArea03{}
+.U_txtArea04{}
+
+.U_login{}
+.U_find{}
+
+.J_pop{}
+.J_mask{}
+
+.J_tab{}
+
+/*form login / find / register / site pricy */
+@media all and (max-width:1200px){
+
 }
+    
+/*only pc end =====================*/
 
-@media all and (max-width:1300px){/* add 1500 ver */
+
+
+
+/* add 1500 ver */
+/*
+@media all and (max-width:1500px){
 }
+*/
 
+/* add 1500 ver */
+/*
+@media all and (max-width:1300px){
+}
+*/
 
-@media all and (min-width:641px){/* pc ~ tab ver */
+/* pc ~ tab ver */
+/*
+@media all and (min-width:641px){
 .R_pct_img {display: block}
 .R_pt_block{display:block}
 .R_pt_table{display:table}
@@ -212,10 +281,12 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_pt_ly07 > *{float: left;width:calc( 100% / 7)}
 .R_pt_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_pt_ly09 > *{float: left;width:calc( 100% / 9)}   
-
 }
+*/
 
-@media all and (max-width:1024px) {/*T ~ M ver*/
+/*T ~ M ver*/
+/*
+@media all and (max-width:1024px) {
 .R_wd_area01{width:100%}
 .R_pd_area01 {width:100%}
 .R_tm_img {display: block}
@@ -233,18 +304,22 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_tm_ly07 > *{float: left;width:calc( 100% / 7)}
 .R_tm_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_tm_ly09 > *{float: left;width:calc( 100% / 9)}   
-
 }
+*/
 
+/*
 @media all and (min-width: 1025px) and (max-width: 1550px) {
 }
+*/
 
+/*
 @media all and (min-width: 1025px) and (max-width: 1200px) {
-
 }
+*/
 
-
-@media (min-width:1025px){/*pc_ver*/
+/*pc_ver*/
+/*
+@media (min-width:1025px){
 .R_pc_block{display:block}
 .R_pc_img{display:block;margin: 0 auto}
 .R_pc_block{display:block}
@@ -266,8 +341,11 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_pc_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_pc_ly09 > *{float: left;width:calc( 100% / 9)}
 }
+*/
 
-@media (min-width:641px) and (max-width:1024px) {/*tab_ver*/
+/*tab_ver*/
+/*
+@media (min-width:641px) and (max-width:1024px) {
 body{font-size:2.34375vw}
 .R_t_b{display:block}
 .R_t_img{display:block}
@@ -297,10 +375,12 @@ body{font-size:2.34375vw}
 .R_t_ly07 > *{float: left;width:calc( 100% / 7)}
 .R_t_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_t_ly09 > *{float: left;width:calc( 100% / 9)}    
-
 }
+*/
 
-@media (min-width:0px) and (max-width:640px) {/*m_ver*/
+/*m_ver*/
+/*
+@media (min-width:0px) and (max-width:640px) {
 body{font-size:3.75vw}
 .R_m_b{display:block}
 .R_m_img{display:block}
@@ -333,12 +413,13 @@ body{font-size:3.75vw}
 .R_m_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_m_ly09 > *{float: left;width:calc( 100% / 9)}   
 
-
-
 }
+*/
 
+/*
 @media (min-width:0px) and (max-width:350px) {
 }
+*/
 
 
 /*==== jsh bt-style -end ====*/

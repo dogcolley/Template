@@ -170,6 +170,9 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 /*Javacript 연통 클래스*/
 .J_N_C{}
 .J_C{}
+.J_slider{}
+.J_modal{}
+
 
 /*사용자 지정 클래스*/
 .U_ft_c01{color:#0f2f4c}
@@ -265,6 +268,48 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .R_pc_ly07 > *{float: left;width:calc( 100% / 7)}
 .R_pc_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_pc_ly09 > *{float: left;width:calc( 100% / 9)}
+    
+.PC_pd_top10{padding-top:10px}
+.PC_pd_top20{padding-top:20px}
+.PC_pd_top30{padding-top:30px}
+.PC_pd_top40{padding-top:40px}
+.PC_pd_top50{padding-top:50px}
+.PC_pd_top60{padding-top:60px}
+.PC_pd_top70{padding-top:70px}
+.PC_pd_top80{padding-top:80px}
+.PC_pd_top90{padding-top:90px}
+    
+.PC_pd_btm10{padding-bottom:10px}
+.PC_pd_btm20{padding-bottom:20px}
+.PC_pd_btm30{padding-bottom:30px}
+.PC_pd_btm40{padding-bottom:40px}
+.PC_pd_btm50{padding-bottom:50px}
+.PC_pd_btm60{padding-bottom:60px}
+.PC_pd_btm70{padding-bottom:70px}
+.PC_pd_btm80{padding-bottom:80px}
+.PC_pd_btm90{padding-bottom:90px}
+
+.PC_pd_lt10{padding-left:10px}
+.PC_pd_lt20{padding-left:20px}
+.PC_pd_lt30{padding-left:30px}
+.PC_pd_lt40{padding-left:40px}
+.PC_pd_lt50{padding-left:50px}
+.PC_pd_lt60{padding-left:60px}
+.PC_pd_lt70{padding-left:70px}
+.PC_pd_lt80{padding-left:80px}
+.PC_pd_lt90{padding-left:90px}
+
+.PC_pd_rt10{padding-right:10px}
+.PC_pd_rt20{padding-right:20px}
+.PC_pd_rt30{padding-right:30px}
+.PC_pd_rt40{padding-right:40px}
+.PC_pd_rt50{padding-right:50px}
+.PC_pd_rt60{padding-right:60px}
+.PC_pd_rt70{padding-right:70px}
+.PC_pd_rt80{padding-right:80px}
+.PC_pd_rt90{padding-right:90px}
+
+    
 }
 
 @media (min-width:641px) and (max-width:1024px) {/*tab_ver*/
@@ -298,6 +343,46 @@ body{font-size:2.34375vw}
 .R_t_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_t_ly09 > *{float: left;width:calc( 100% / 9)}    
 
+.Tab_pd_top10{padding-top:10px}
+.Tab_pd_top20{padding-top:20px}
+.Tab_pd_top30{padding-top:30px}
+.Tab_pd_top40{padding-top:40px}
+.Tab_pd_top50{padding-top:50px}
+.Tab_pd_top60{padding-top:60px}
+.Tab_pd_top70{padding-top:70px}
+.Tab_pd_top80{padding-top:80px}
+.Tab_pd_top90{padding-top:90px}
+    
+.Tab_pd_btm10{padding-bottom:10px}
+.Tab_pd_btm20{padding-bottom:20px}
+.Tab_pd_btm30{padding-bottom:30px}
+.Tab_pd_btm40{padding-bottom:40px}
+.Tab_pd_btm50{padding-bottom:50px}
+.Tab_pd_btm60{padding-bottom:60px}
+.Tab_pd_btm70{padding-bottom:70px}
+.Tab_pd_btm80{padding-bottom:80px}
+.Tab_pd_btm90{padding-bottom:90px}
+
+.Tab_pd_lt10{padding-left:10px}
+.Tab_pd_lt20{padding-left:20px}
+.Tab_pd_lt30{padding-left:30px}
+.Tab_pd_lt40{padding-left:40px}
+.Tab_pd_lt50{padding-left:50px}
+.Tab_pd_lt60{padding-left:60px}
+.Tab_pd_lt70{padding-left:70px}
+.Tab_pd_lt80{padding-left:80px}
+.Tab_pd_lt90{padding-left:90px}
+
+.Tab_pd_rt10{padding-right:10px}
+.Tab_pd_rt20{padding-right:20px}
+.Tab_pd_rt30{padding-right:30px}
+.Tab_pd_rt40{padding-right:40px}
+.Tab_pd_rt50{padding-right:50px}
+.Tab_pd_rt60{padding-right:60px}
+.Tab_pd_rt70{padding-right:70px}
+.Tab_pd_rt80{padding-right:80px}
+.Tab_pd_rt90{padding-right:90px}
+    
 }
 
 @media (min-width:0px) and (max-width:640px) {/*m_ver*/
@@ -333,7 +418,45 @@ body{font-size:3.75vw}
 .R_m_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_m_ly09 > *{float: left;width:calc( 100% / 9)}   
 
+.M_pd_top10{padding-top:10px}
+.M_pd_top20{padding-top:20px}
+.M_pd_top30{padding-top:30px}
+.M_pd_top40{padding-top:40px}
+.M_pd_top50{padding-top:50px}
+.M_pd_top60{padding-top:60px}
+.M_pd_top70{padding-top:70px}
+.M_pd_top80{padding-top:80px}
+.M_pd_top90{padding-top:90px}
+    
+.M_pd_btm10{padding-bottom:10px}
+.M_pd_btm20{padding-bottom:20px}
+.M_pd_btm30{padding-bottom:30px}
+.M_pd_btm40{padding-bottom:40px}
+.M_pd_btm50{padding-bottom:50px}
+.M_pd_btm60{padding-bottom:60px}
+.M_pd_btm70{padding-bottom:70px}
+.M_pd_btm80{padding-bottom:80px}
+.M_pd_btm90{padding-bottom:90px}
 
+.M_pd_lt10{padding-left:10px}
+.M_pd_lt20{padding-left:20px}
+.M_pd_lt30{padding-left:30px}
+.M_pd_lt40{padding-left:40px}
+.M_pd_lt50{padding-left:50px}
+.M_pd_lt60{padding-left:60px}
+.M_pd_lt70{padding-left:70px}
+.M_pd_lt80{padding-left:80px}
+.M_pd_lt90{padding-left:90px}
+
+.M_pd_rt10{padding-right:10px}
+.M_pd_rt20{padding-right:20px}
+.M_pd_rt30{padding-right:30px}
+.M_pd_rt40{padding-right:40px}
+.M_pd_rt50{padding-right:50px}
+.M_pd_rt60{padding-right:60px}
+.M_pd_rt70{padding-right:70px}
+.M_pd_rt80{padding-right:80px}
+.M_pd_rt90{padding-right:90px}
 
 }
 

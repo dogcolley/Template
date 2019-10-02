@@ -555,6 +555,37 @@ $.fn.extend({
     }
 });
 
+$.fn.extend({
+	j_motal : function(options){
+        var defaults = {
+            // 아마 여기에 컨텐츠를 넣어야하는 옵션을 생성해주는게 좋을거같다.
+        }
+        opts = $.extend(defaults,options)
+        var info_tg = true;
+        var set = $(this);
+        set.on('click',function(){
+            var make_tag = "<div class='J_mask01 T_ds_table'>";
+            make_tag += "<div class='J_modal_wrap01 T_ds_cell'>";
+            make_tag += "<div class=''>";
+            make_tag += "plase content";
+            make_tag += "<button type='button' class='J_mask_cl'>닫기</button>"
+            make_tag += "</div>";
+            make_tag += "</div>";
+            if(info_tg){
+                $(this).after(make_tag);
+                info_tg =false;
+            }
+            $('.J_mask_cl').on('click',function(){
+                set.after().remove();
+                info_tg =true;
+            });
+        return false;          
+        });
+
+	return false;
+    }
+});
+
 
 $(function(){
 	var shifton = false;
@@ -572,7 +603,7 @@ $(function(){
 			}
 		});
 	}
-    keyControl();
+    keyControl(); // use function keybord 'shift' ckecking
 
     
     //win key cuntrol funtion
@@ -624,9 +655,11 @@ $(function(){
         $(this).removeClass('on'); 
         $(this).find('ul').stop().hide();
     });
-	
+    
     /*header and sdSnb scroll event*/
-    var sd_tg = $('#U_sd_nav').offset().top;
+	if (document.getElementById('U_sd_nav')) {
+		var sd_tg = $('#U_sd_nav').offset().top;
+	}
     $(window).on('scroll',function(){
         var hd_tg = $('#U_header').innerHeight();
         var win_sc = $(this).scrollTop();
@@ -653,7 +686,7 @@ $(function(){
     });
     
     /* snb */
-    if(!index){
+    if(!index && typeof(dep1_name) !== 'undefined' && typeof(dep2_name) !== 'undefined'){
         $('#U_snb').find('.dep1 button').text(dep1_name);
         $('#U_snb').find('.dep2 button').text(dep2_name);
 
@@ -706,26 +739,7 @@ $(function(){
     });
 
     /*ad_modal*/
-    var info_tg = true;
-    $('.U_table05_btn button').on('click',function(){
-            var make_tag = "<div class='J_mask01 T_ds_table'>";
-            make_tag += "<div class='J_modal_wrap01 T_ds_cell'>";
-            make_tag += "<div class=''>";
-            make_tag += "<strong></strong>";
-            make_tag += "<button type='button' class='J_mask_cl2'>닫기</button>"
-            make_tag += "</div>";
-            make_tag += "</div>";
-            if(info_tg){
-                $(this).after(make_tag);
-                info_tg =false;
-            }
-            $('.J_mask_cl2').on('click',function(){
-                $('.J_mask02').remove();
-                info_tg =true;
-            });
-        return false;          
-    });
-    
+    $('#J_btn01').j_motal();
 
 });
 

@@ -533,8 +533,6 @@ $.fn.extend({
         }      
          
         /* ajax ckeck mode mode */
-        
-        
 	}
 });
 
@@ -556,34 +554,81 @@ $.fn.extend({
 });
 
 $.fn.extend({
-	j_motal : function(options){
+	j_modal : function(options){
         var defaults = {
             // 아마 여기에 컨텐츠를 넣어야하는 옵션을 생성해주는게 좋을거같다.
         }
-        opts = $.extend(defaults,options)
+        opts = $.extend(defaults,options);
         var info_tg = true;
         var set = $(this);
         set.on('click',function(){
-            var make_tag = "<div class='J_mask01 T_ds_table'>";
+
+            var make_tag = "<div class='J_modal T_ds_table'>";
             make_tag += "<div class='J_modal_wrap01 T_ds_cell'>";
-            make_tag += "<div class=''>";
+            make_tag += "<div class='J_modal_contant'>";
             make_tag += "plase content";
             make_tag += "<button type='button' class='J_mask_cl'>닫기</button>"
             make_tag += "</div>";
             make_tag += "</div>";
+            
             if(info_tg){
-                $(this).after(make_tag);
+                set.after(make_tag);
                 info_tg =false;
             }
+            
             $('.J_mask_cl').on('click',function(){
-                set.after().remove();
-                info_tg =true;
+                set.siblings('.J_modal').remove();
+                info_tg = true;
             });
         return false;          
         });
 
 	return false;
     }
+});
+
+
+
+$.fn.extend({
+   j_fullpage : function(opitons){
+    var defaults = {
+       // full page 플러그인 생성란
+       j_hd : true,
+       j_ind : true
+    }
+     
+    opts = $.extend(defaults,opitons)
+
+    var set = $(this),
+    set_section = new Array,
+    set_section_title = new Array,
+    set_section_top = new Array;
+  
+    set.find(' > article ').each(function(e,tag){
+        set_section[e] = $(this);
+        set_section_title[e] = $(this).find('h3').text();
+        set_section_top[e] = $(this).offset().top;
+        //console.log('태그:',set_section[e],',제목:',set_section_title[e],', 높이:',set_section_top[e]); // testing console.log;
+    });
+    
+       
+    if(opts.j_hd){
+        var make_tag = "<nav id='J_fullpage_gd'>";
+        make_tag += "";
+        make_tag += "</nav>";
+        
+        if($('body').find('header').length > 0){
+            $('header').append(make_tag)
+        }else{
+            set.after(make_tag);
+        };
+    }
+    
+    if(opts.j_ind){
+        
+    }
+       
+   } 
 });
 
 
@@ -605,7 +650,7 @@ $(function(){
 	}
     keyControl(); // use function keybord 'shift' ckecking
 
-    
+    var index = false;
     //win key cuntrol funtion
     
 	/* use code scroll and keydow event
@@ -739,7 +784,7 @@ $(function(){
     });
 
     /*ad_modal*/
-    $('#J_btn01').j_motal();
+    //$('#J_btn01').j_motal();
 
 });
 

@@ -594,7 +594,8 @@ $.fn.extend({
     var defaults = {
        // full page 플러그인 생성란
        j_hd : true,
-       j_ind : true
+       j_ind : true,
+       j_resize : false
     }
      
     opts = $.extend(defaults,opitons)
@@ -610,23 +611,48 @@ $.fn.extend({
         set_section_top[e] = $(this).offset().top;
         //console.log('태그:',set_section[e],',제목:',set_section_title[e],', 높이:',set_section_top[e]); // testing console.log;
     });
-    
+       
        
     if(opts.j_hd){
-        var make_tag = "<nav id='J_fullpage_gd'>";
-        make_tag += "";
+        var make_tag = "<nav id='J_fullpage_gnb'>";
+        make_tag += "<ul>";
+        for(var i = 0 ; i < set_section_title.length; i++){
+            make_tag += '<li><button type="button">'+set_section_title[i]+'</button></li>';
+        }
+        make_tag += "</ul>";
         make_tag += "</nav>";
         
         if($('body').find('header').length > 0){
             $('header').append(make_tag)
         }else{
-            set.after(make_tag);
+            set.before(make_tag);
         };
+        
+        $('#J_fullpage_gnb button').on('click',function(){
+            var num = $(this).parent().index();
+            console.log(num)
+            $('body , html').animate({scrollTop:set_section_top[num]});
+        });
     }
     
     if(opts.j_ind){
+        var make_tag = "<nav id='J_fullpage_ind'>";
+        make_tag += "<ul>";
+        for(var i = 0 ; i < set_section_title.length; i++){
+            make_tag += '<li><button type="button">'+set_section_title[i]+'</button></li>';
+        }
+        make_tag += "</ul>";
+        make_tag += "</nav>";
         
+        set.before(make_tag);
+        
+        $('#J_fullpage_ind button').on('click',function(){
+            var num = $(this).parent().index();
+            console.log(num)
+            $('body , html').animate({scrollTop:set_section_top[num]});
+        });   
     }
+
        
    } 
 });
@@ -752,31 +778,6 @@ $(function(){
         });
     }
 
-    /*top_btn*/
-    $('#Top_btn').on('click',function(){
-       $('body , html').animate({scrollTop:0},500);
-        return false;
-    });
-    
-    /*tab*/
-    $('.J_tab_wrap').j_tab();
-    
-    
-    /*main J_slider*/
-    $('#cnt1').j_slider({
-            mode: 'slider', //mode = slider, fade, m3d,  
-			nav:false,
-			btn:true,
-			speed: 400,
-			loop:true,
-			auto:false,
-			autoT:3000, 
-			autoS:1000,
-			view:1,
-			css:true,
-			Indc:false
-    });
-    
     /*toggle*/
     $('#J_tg_btn01').on('click',function(){
         $(this).toggleClass('on');

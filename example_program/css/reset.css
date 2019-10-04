@@ -158,6 +158,10 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .T_ly_08 > *{float: left;width:calc( 100% / 8)}
 .T_ly_09 > *{float: left;width:calc( 100% / 9)}
 
+.T_ht_ct{display:table}
+.T_ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}
+    
+
 /*반응형 스타일*/
 /*.R_wd_area01{width:1200px;margin:0 auto}.R_mg_area01{width:1200px;margin:0 auto}.R_pd_area01{width:1200px;margin:0 auto}*/
 
@@ -189,7 +193,7 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .U_bd_01{border:1px solid #d9d9d9}
 
 .U_area01{width:1200px;margin-left: auto;margin-right:auto}
-
+.T_mg_ct{margin-left:auto;margin-right:auto}
 .U_btn01{}
 .U_btn02{}
 .U_btn03{}

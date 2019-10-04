@@ -1,0 +1,95 @@
+//// HTTP ////
+-Hyper Text Transfer Protocol 약어
+-인터넷에서 데이터를 주곱다을 수 있는 프로토콜
+-CORS, CORB 에러들의 주범이니 해석만 잘하면 충분히 에러를 고칠수있음.
+
+■해석
+Request URL = 응답 URL (사용중인 접속 도메인)
+Request Method = Get or post (정보 주입 방식)
+Status Code : 200 , 404 , 808 .... (상태)
+Remote Address = IP 주소 및 PORT NUMBER
+
+■매서드
+:요청을 보내면 서버에서 확인후 실행합니다.
+GET : 보이는것
+POST : 안보이는것
+PUT :
+PATCH :
+DELETE : 삭제
+
+■헤더
+
+-공통 해더
+Date : http 가 만들어진 시각(자동)
+Connection : http/1.1 대버전에선 keep-alive가설정되어있는데 아무의미 없음 http/2에선 삭제됌
+Cache-Control : 따로 추가 설명(중요)
+Content-Length : 요청과 응답 메세지의 본문 크기를 바이트 단위로 표시해줍니다.
+Content-Type : 인코딩 / 컨텐츠타입 / Aceept , Charset 등과 대조
+Content-Language : 사용자언어
+
+-요청 헤더
+HOST : 도메인 네임
+User-Agent : 클라이언트 확인
+Accept : 원하는 타입 요청 확인 : test/html , image/png, image/gif
+    ex)
+    Accept-Charset: utf-8
+    Accept-Language: ko, en-US
+    Accept-Encoding: br, gzip, deflate
+Authorization : 토큰, JWT 등을 서버로 보낼 때 사용하는 헤더 / API 요청시 토큰이 필요
+Origin: POST 요청일때 요청이 어느 주소에서 시작되는지 나타넴 (다를 경우 CORS 문제 발생)
+Referer : 이전페이지의 정보를 담고있습니다.
+
+-응답 해더
+Access-Control-Allow-Origin : 요청을 보내는 프론트 주소와 받는 백엔드 주소가 다르면 (CORS 문제발생)
+    유사 해더: Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Headers
+Allow : 상단과 유사하지만 CORS 요청이외 GET 일경우 Allow : Get을 표현
+Content-Disposition : 응답 본문을 브라우저가 어떻게 표시해야 할지 알려주는 해더
+Location : 300번대 201 Created 응답일  때 어느 페이지로 이동할지 알려주는 헤더
+    ex)
+    HTTP/1.1 302 Found
+    Location: /
+Content-Security-Policy : 다른 외부 파일들을 불러오는 경우, 차단할 소스와 불러올 소스를 여기에 명시할 수 있습니다. 하나의 웹 페이지는 다양한 외부 소스들을 불러옵니다. 이미지도 불러오고 script 태그로 자바스크립트 파일들도 불러옵니다.
+    ex) none 못가져옴, self  자기것만 가져옴
+
+■쿠키
+쿠키는 클라이언트(프론트)와 서버 간에 데이터를 주고받는 가장 간단한 방법 중 하나입니다. 이런 것들에 대한 설정을 헤더를 통해 할 수 있습니다. 
+쿠키나 캐시에 대한 정보는 개발자 도구(크롬 기준)의 Application 탭에서 쉽게 확인할 수 있습니다.
+웹페이지 개인화, 임시데이터 보관에 사용
+
+Set-Cookie: 서버에서 이런 쿠키를 저장하라고 명령하는 응답해더
+Expires: 쿠키 만료 날짜를 알려줄 수 있습니다.
+Max-Age: 쿠키 수명을 알려줄 수 있습니다. Expires는 무시됩니다.
+Secure: https에서만 쿠키가 전송됩니다.
+HttpOnly: 자바스크립트에서 쿠키에 접근할 수 없습니다. XSS 요청을 막으려면 활성화해두는 것이 좋습니다.
+Domain: 도메인을 적어주면 도메인이 일치하는 요청에서만 쿠키가 전송됩니다. 가끔 도메인이 다른 쿠키들이 있는데, 이런 쿠키들은 써드 파티 쿠키로 여러분을 추적하고 있는 쿠키입니다. 구글이나 페이스북같은 곳이 써드 파티 쿠키를 적극적으로 사용합니다.
+Path: 패스를 적어주면 이 패스와 일치하는 요청 요청에서만 쿠키가 전송됩니다.
+
+Cookie
+반대로 클라이언트가 서버한테 쿠키를 보내줄 때는 이 요청 헤더에 담아 보냅니다.
+Cookie: 키=값; 키=값;
+
+■캐시
+Cache-Control : 캐시제어
+Cache-Control : no-store [안씀]
+Cache-Control : no-cache [쓸지말지 확인]
+Cache-Control : must-revalidate [만료된것만 서버에서 확인받기]
+Cache-Control : pubilc 또는 private [특정사요장의 환경에서만 저장 or 중개서버에서 저장가능]
+Age : 캐시 응답을 나타냄
+Expires : 언제 말료되는 지 나타냅니다.
+ETag : HTTP 컨텐츠가 바뀌었는지 검사가능 태그
+If-None-Match : Etag가 달라졌는지 검사하고 ETag가 다를경우 컨텐츠를 새로 내려주라는뜻
+
+
+■X-
+:사용자가 정의한 헤더라는 것을 알려주기 위해 앞에 X-를 붙이곤 했습니다. (지금은 사라짐 근데 습관적으로 다들 X-를 붙이곤함)
+: X-가 앞에 붙은 헤더들 중 유명한 것들은 알아두시는 게 좋습니다.
+
+X-Forwarded-For, X-Forwarded-Host, X-Forwarded-Proto
+요청이 어디서부터 건너왔는지 알려주는 헤더입니다. 실제 세상에서는 클라이언트(요청) - 서버(응답)와 같은 2단 구조보다는 클라이언트(요청) - 중개 서버 - 중개 서버 - 중개 서버 - ... - 최종 서버(응답) 이런 다단 구조가 더 많습니다.
+
+X-Frame-Options : frame, iframe, object 태그 안에서 페이지를 렌더링하는 것을 막을 수 있습니다.
+아이프레임 안쓰면 X-Frame-Options: DENY 하셈
+특정사이트 허락은 : X-Frame-Options: ALLOW-FROM https://www.zerocho.com
+
+X-Content-Type-Options : Content-Type 헤더가 잘못 설정되었다고 생각하는 경우, 브라우저는 자체적으로 컨텐츠 타입을 추론합니다. 
+> X-Content-Type-Options: nosniff

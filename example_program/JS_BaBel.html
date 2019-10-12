@@ -16,12 +16,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
 
   
-  <script type="text/babel">
-    ReactDOM.render(
-        <h1>Hello, world!</h1>,
-        document.getElementById('root')
-    );
-</script>
+
 
   <style type="text/css">
 
@@ -30,11 +25,17 @@
 </head>
 
 <body>
-
-  <div id="root*" data-product-id="G123">
-    바벨테스트
-  </div>
-
+  
+  <div id="root"></div>
+  
+  <script type="text/babel">
+      ReactDOM.render(
+          <h1>Hello, world!</h1>,
+          document.getElementById('root')
+      );
+  </script>
 </body>
+
+
 
 </html>

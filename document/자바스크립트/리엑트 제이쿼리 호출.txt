@@ -1,0 +1,5 @@
+npm install jquery --save : npm base에 jquery 셋팅
+
+--호출법
+import jQuery from "jquery";
+window.$ = window.jQuery = jQuery;

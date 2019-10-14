@@ -1,0 +1,8 @@
+    var x=document.getElementById("fwrite"); 
+     for (var i=0;i<x.length;i++) { 
+          document.write(x.elements[i].id); 
+          document.write(" --> "); 
+         document.write(x.elements[i].value); 
+         document.write("<br />");
+         document.write("<br />"); 
+      } 

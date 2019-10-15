@@ -11,36 +11,168 @@
   <link rel="stylesheet" href="./css/reset.css">
 
   <!-- 바벨 브라우저 호출식 사용 -->
-  
-  <script src="https://unpkg.com/react@15/dist/react.js"></script>
-  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+  <!--
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  -->
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
-
   
-
-
-  <style type="text/css">
-
-  </style>
+  <!-- JSH NPM 환경없이 사용하는 REACT APP -->
+  <!--
+  <script crossorigin  src="./react/App.js" ></script>
+  -->
+  <link rel="stylesheet" href="./react/react.css">
 
 </head>
 
 <body>
   
   <div id="root"></div>
-  
   <script type="text/babel">
-      ReactDOM.render(
-          <h1>Hello, world!</h1>,
-          document.getElementById('root')
+   
+   //1. 타이머만들기
+    function tick() {
+      const element = (
+        <div>
+          <h1>Hello, world!</h1>
+          <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        </div>
       );
-      const alert_hello = (e) => {
-            alert(e+':  '+'hell_test_es6');
+      ReactDOM.render(element, document.getElementById('root'));
+    }
+
+    //setInterval(tick, 1000);
+    
+    //2. 호출하기 컴퍼먼트를 만든후 APP 펑션으로 실행
+    function Welcome(props) {
+      return <h1>Hello, {props.name}</h1>;
+    }
+
+   
+    //3. 클릭시 반응하는 이벤트 헨들러
+      function handleClick(e) {
+        e.preventDefault();
+        console.log('The link was clicked.');
       }
-      alert_hello('test');
+  
+    //4. 컴퍼먼트 호출
+    function App() {
+      return (
+        <div>
+          <Welcome name="Sara" />
+          <Welcome name="Cahal" />
+          <Welcome name="Edite" />
+          <button onClick={handleClick}>
+              Activate Lasers
+          </button>
+        </div>
+      );
+    }
+    
+    //5.이벤트 헨들러 호출
+    class Toggle extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {isToggleOn: true};
+
+        // 콜백에서 `this`가 작동하려면 아래와 같이 바인딩 해주어야 합니다.
+        this.handleClick = this.handleClick.bind(this);
+      }
+
+      handleClick() {
+        this.setState(state => ({
+          isToggleOn: !state.isToggleOn
+        }));
+      }
+
+      render() {
+        return (
+          <button onClick={this.handleClick}>
+            {this.state.isToggleOn ? 'ON' : 'OFF'}
+          </button>
+        );
+      }
+    }
+    
+    //6.조건부 렌더링
+    function UserGreeting(props) {
+      return <h1>Welcome back!</h1>;
+    }
+
+    function GuestGreeting(props) {
+      return <h1>Please sign up.</h1>;
+    }
+    
+    function Greeting(props) {
+      const isLoggedIn = props.isLoggedIn;
+      if (isLoggedIn) {
+        return <UserGreeting />;
+      }
+      return <GuestGreeting />;
+    }
+
+    //7.map()을 이용한 여러개의 값을 랜더링 + 보통은 JSX하나의 컴퍼몬트를 만들어 리턴을 시키는 방식으로 묶어 준다.
+    
+    function NumberList(props) {
+      const numbers = props.numbers;
+      const listItems = numbers.map((number) =>
+        // 맞습니다! 배열 안에 key를 지정해야 합니다.
+        <ListItem key={number.toString()}
+                  value={number} />
+
+      );
+      return (
+        <ul>
+          {listItems}
+        </ul>
+      );
+    }
+    
+    //8. key를 사용한 검출법 
+    function ListItem(props) {
+      // 맞습니다! 여기에는 key를 지정할 필요가 없습니다.
+      return <li>{props.value}</li>;
+    }
+
+    const numbers = [1, 2, 3, 4, 5];
+
+    //9. key값은 형제들만의 고유값
+    function Blog(props){
+          const sidebar = (
+            <ul>
+                {props.posts.map((post) => 
+                    <li key={post.id}>
+                        {post.id}
+                    </li>
+                )}
+            </ul>
+          );
+          
+          const content = props.posts.map((post) =>
+            <div key={post.id}>
+                <h3>{post.title}</h3>
+                <p>{post.content}</p>
+            </div>  
+          );
+          return (
+            <div>
+                
+            </div>              
+          );
+      }
+            
+    ReactDOM.render(
+      //<App />,
+      //<Toggle />,
+      //<Greeting isLoggedIn={false} />, /* Try changing to isLoggedIn={true}:*/
+      <NumberList numbers={numbers} />,
+      document.getElementById('root')
+    );
+    
+    
   </script>
 </body>
-
-
 
 </html>

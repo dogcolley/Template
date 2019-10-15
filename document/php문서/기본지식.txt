@@ -1,0 +1,90 @@
+정의
+: 웹 프로그래밍 언어 , 서버스크립트 라고한다. C기반의 오픈소스
+
+역사
+: JSP를 대칭하는 서버스크립트로 발전해 왔으며 PHP5는 초기버전은 보안상 취약점이 많았으나 보안을 거쳐 현재 PHP7는 안정 상용화가 성공 되었다.
+2014년 NODE.JS(자바스크립트기반의 오픈소스인 서버스크립트 엔진A8)의 등장으로 약세를 보였지만 APM의 웹 생태계가 아직은 다수를 차지하고 있어 현재 PHP8 개발을 진행중이다.
+
+유명 라이브러리
+1.코드이그나이터
+2.라라벨
+
+전망
+: PHP8버전 개발이 성공시 기대점은 C언어 없이 자체 프로그래밍이 되므로 탈웹 또한 가능하고 CPU제어 모듈로 속도나 성능면에서 큰 기대를 줄 수 있다는게 업계전망이다. 2019기준 (줄시는 2023정도예상)
+
+전역 변수(global variable)
+: 함수밖의 변수를 내부로 진입 시킬때 쓰는 키워드
+
+정적 변수(static variable)
+: static  // 메모리가 저장됌 , 휘발되지 않음
+
+슈퍼 글로벌(superglobal)
+: PHP 에서 제공하는 전역 변수
+
+1. $GLOBALS
+2. $_SERVER
+3. $_GET
+4. $_POST
+5. $_FILES
+6. $_COOKIE
+7. $_SESSION
+8. $_REQUEST
+9. $_ENV
+
+조건문
+1.if
+2.else
+3.else if
+4.삼향 연산가능
+
+
+반복문
+1.while
+2.do / while
+3.for
+4.foreach
+
+기타 제어문
+1.continue 
+2.break 
+3.goto 
+
+비동기 방식 사용법
+
+ex)Curl 이용방식
+
+$post_data=array(
+'log_id' => date('YmdHis'),
+'log_ip' => isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? ip2long($_SERVER['HTTP_X_FORWARDED_FOR']) : ip2long($_SERVER['REMOTE_ADDR']),
+'server_info' => json_encode($_SERVER),
+'request_info' => json_encode($_REQUEST),
+"cookie_info" => json_encode($_COOKIE)
+);
+
+$url = 'http://brtech/logger.php';
+
+$command = "curl ";
+foreach ($post_data as $key => &$val)
+$command .= "-F '$key=$val' ";
+$command .= "$uri -s > /dev/null 2>&1 &"; passthru($command);
+
+ex)cURL 이용방식2
+function https_post($uri, $postdata)  
+{  
+    $ch = curl_init($uri);  
+    curl_setopt($ch, CURLOPT_POST, true);  
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);  
+    $result = curl_exec($ch);  
+    curl_close($ch);  
+    return $result;  
+} 
+
+
+ex) php 자가호출
+$command = "php -f /home/brtech/public_html/index.php main/set_log_with_json/{$data} > /dev/null 2>&1 & ";
+passthru($command);
+
+
+
+
+

@@ -1,0 +1,17 @@
+
+require()
+-> import
+export defulte 'Appname';
+
+module.express()
+express()
+global()
+
+
+
+
+console.log()
+console.dir()
+console.time()
+console.error()
+console.table()

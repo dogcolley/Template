@@ -6,9 +6,9 @@
 
 /*teg-reset*/ /*safari-reset*/
 html {overflow-y:auto}
-body {margin:0;padding:0;font-size:18px;font-family:'Montserrat', 'Noto Sans KR', sans-serif;background:#fff;font-weight:300;letter-spacing:-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
+body {margin:0;padding:0;font-size:18px;font-family: 'Noto Sans KR', sans-serif;background:#fff;font-weight:400;letter-spacing :-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
-h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Montserrat', 'Noto Sans KR', sans-serif;font-weight:inherit}
+h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Noto Sans KR', sans-serif;font-weight:inherit}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
 em{font-style:normal}
 strong{font-weight:600}
@@ -104,16 +104,46 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 
 /*고정 공통 클래스*/
 
-.T_wd_full {width:100%},.T_ht_full{height:100%}
+.T_wd_full {width:100%}
+.T_ht_full{height:100%}
 
-.T_ps_rl{position:relative}.T_ps_ab{position:absolute}.T_ps_st{position:static}.T_ps_fx{position:fixed}
+.T_ps_rl{position:relative}
+.T_ps_ab{position:absolute}
+.T_ps_st{position:static}
+.T_ps_fx{position:fixed}
 
-.T_fl_lt{float:left},.T_fl_rt{float:right}
+.T_ds_block{display: block}
+.T_ds_inbl{display: inline-block}
+.T_ds_in{display: inline}
+.T_ds_table{display: table}
+.T_ds_cell{display: table-cell}
+
+.T_fl_lt{float:left}
+.T_fl_rt{float:right}
 .T_fl_Clt > *{float:left}
 .T_fl_Crt > *{float:left}
-.T_ft_cfff{color:#fff}.T_ft_c000{color:#000}.T_ft_c333{color:#333}.T_ft_c555{color:#555}.T_ft_c777{color:#777}.T_ft_c999{color:#999}
 
-.T_ft_sz10{font-size: 10px}.T_ft_sz12{font-size: 12px}.T_ft_sz14{font-size: 14px}.T_ft_sz16{font-size: 16px}.T_ft_sz18{font-size: 18px}.T_ft_sz20{font-size: 20px}
+.T_ft_cfff{color:#fff}
+.T_ft_c000{color:#000}
+.T_ft_c333{color:#333}
+.T_ft_c555{color:#555}
+.T_ft_c666{color:#666}
+.T_ft_c777{color:#777}
+.T_ft_c999{color:#999}
+.T_ft_c868686{color:#868686}
+
+.T_ft_sz10{font-size: 10px}
+.T_ft_sz11{font-size: 11px}
+.T_ft_sz12{font-size: 12px}
+.T_ft_sz13{font-size: 13px}
+.T_ft_sz14{font-size: 14px}
+.T_ft_sz15{font-size: 15px}
+.T_ft_sz16{font-size: 16px}
+.T_ft_sz17{font-size: 17px}
+.T_ft_sz18{font-size: 18px}
+.T_ft_sz19{font-size: 19px}
+.T_ft_sz20{font-size: 20px}
+
 .T_ft_szS{font-size:0.6em}
 .T_ft_szSM{font-size:0.8em}
 .T_ft_szM{font-size:1.2em}
@@ -198,6 +228,13 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 .U_btn02{}
 .U_btn03{}
 
+
+
+
+
+
+
+/*No USE RESPONE STYLE */
 @media all and (max-width:1500px){/* add 1500 ver */
 }
 
@@ -317,7 +354,7 @@ select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 }
 
 @media (min-width:641px) and (max-width:1024px) {/*tab_ver*/
-body{font-size:2.34375vw}
+/*body{font-size:2.34375vw}*/
 .R_t_b{display:block}
 .R_t_img{display:block}
 .R_t_img2{display:block}
@@ -390,7 +427,7 @@ body{font-size:2.34375vw}
 }
 
 @media (min-width:0px) and (max-width:640px) {/*m_ver*/
-body{font-size:3.75vw}
+/*body{font-size:3.75vw}*/
 .R_m_b{display:block}
 .R_m_img{display:block}
 .R_m_img2{display:block}

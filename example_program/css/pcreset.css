@@ -1,15 +1,12 @@
 @charset "UTF-8";
 
 /*font-set*/
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean');
-/*
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
-*/
 
 /*teg-reset*/ /*safari-reset*/
 html {overflow-y:auto}
-body {margin:0;padding:0;font-size:18px;font-family:'Noto Sans KR', sans-serif;background:#fff;font-weight:300;line-height: 1;color:#777;word-break:keep-all;line-height:1;letter-spacing:-1px}
+body {margin:0;padding:0;font-size:18px;font-family: 'Noto Sans KR', sans-serif;background:#fff;font-weight:400;letter-spacing :-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Noto Sans KR', sans-serif;font-weight:inherit}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
@@ -34,11 +31,8 @@ p {margin:0;padding:0;word-break:keep-all;line-height: 1.6}
 hr {display:none}
 pre {overflow-x:scroll;font-size:1.1em}
 a {color:inherit;text-decoration:none;font-size:inherit}
-    
-/*    
-select { border-radius:0; -webkit-appearance:none;  -moz-appearance:none;  appearance:none } 
-select::-ms-expand{ display:none}
-*/
+select { border-radius:0; /* 아이폰 사파리 보더 없애기 */ -webkit-appearance:none; /* 화살표 없애기 for chrome*/ -moz-appearance:none; /* 화살표 없애기 for firefox*/ appearance:none /* 화살표 없애기 공통*/ } 
+select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 
 /*box-sizing-style*/
 *, :after, :before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
@@ -46,7 +40,7 @@ select::-ms-expand{ display:none}
 /*common Calss*/
 .sound_only, .blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
 .clear:after{content: "";display: block;clear: both}
-.caption_blind{height:0;width:0;text-indent:9999px;border:0;padding:0;margin:0}
+
 #skipNav{position:absolute;left:-9999px;text-align:center;width:100%;height:90px;background:rgba(0,0,0,0.8);color:#fff;font-size:30px;text-align:center;width:100%;line-height:90px;z-index:100}
 #skipNav:focus{left:0}
 /*==== sir.kr common style -start ====*/
@@ -111,10 +105,12 @@ select::-ms-expand{ display:none}
 /*고정 공통 클래스*/
 
 .T_wd_full {width:100%}
-.T_ht_full {height:100%}
+.T_ht_full{height:100%}
 
-.T_ps_rl{position:relative}.T_ps_ab{position:absolute}.T_ps_st{position:static}.T_ps_fx{position:fixed}
-.T_ps_Crl > *{position: relative}
+.T_ps_rl{position:relative}
+.T_ps_ab{position:absolute}
+.T_ps_st{position:static}
+.T_ps_fx{position:fixed}
 
 .T_ds_block{display: block}
 .T_ds_inbl{display: inline-block}
@@ -126,9 +122,28 @@ select::-ms-expand{ display:none}
 .T_fl_rt{float:right}
 .T_fl_Clt > *{float:left}
 .T_fl_Crt > *{float:left}
-.T_ft_cfff{color:#fff}.T_ft_c000{color:#000}.T_ft_c333{color:#333}.T_ft_c555{color:#555}.T_ft_c777{color:#777}.T_ft_c999{color:#999}
 
-.T_ft_sz10{font-size: 10px}.T_ft_sz12{font-size: 12px}.T_ft_sz14{font-size: 14px}.T_ft_sz16{font-size: 16px}.T_ft_sz18{font-size: 18px}.T_ft_sz20{font-size: 20px}
+.T_ft_cfff{color:#fff}
+.T_ft_c000{color:#000}
+.T_ft_c333{color:#333}
+.T_ft_c555{color:#555}
+.T_ft_c666{color:#666}
+.T_ft_c777{color:#777}
+.T_ft_c999{color:#999}
+.T_ft_c868686{color:#868686}
+
+.T_ft_sz10{font-size: 10px}
+.T_ft_sz11{font-size: 11px}
+.T_ft_sz12{font-size: 12px}
+.T_ft_sz13{font-size: 13px}
+.T_ft_sz14{font-size: 14px}
+.T_ft_sz15{font-size: 15px}
+.T_ft_sz16{font-size: 16px}
+.T_ft_sz17{font-size: 17px}
+.T_ft_sz18{font-size: 18px}
+.T_ft_sz19{font-size: 19px}
+.T_ft_sz20{font-size: 20px}
+
 .T_ft_szS{font-size:0.6em}
 .T_ft_szSM{font-size:0.8em}
 .T_ft_szM{font-size:1.2em}
@@ -173,6 +188,10 @@ select::-ms-expand{ display:none}
 .T_ly_08 > *{float: left;width:calc( 100% / 8)}
 .T_ly_09 > *{float: left;width:calc( 100% / 9)}
 
+.T_ht_ct{display:table}
+.T_ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}
+    
+
 /*반응형 스타일*/
 /*.R_wd_area01{width:1200px;margin:0 auto}.R_mg_area01{width:1200px;margin:0 auto}.R_pd_area01{width:1200px;margin:0 auto}*/
 
@@ -183,17 +202,17 @@ select::-ms-expand{ display:none}
 .R_pc_table{display:none}.R_pt_table{display:none}.R_t_table{display:none}.R_m_table{display:none}.R_tm_table{display:none}
  
 /*Javacript 연통 클래스*/
-.J_mask{position: fixed;top:0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.4);z-index:100}
-.J_modal_wrap{width:100%;height: 100%;vertical-align: middle;}
-.J_modal_wrap > div{height: 440px;width: 780px;background: #fff;margin:0 auto;padding:30px 25px 20px 25px}
-.J_modal_wrap p{height:328px;overflow:auto;background:#ccc;padding:30px;text-align:left;font-size:18px;color:#313131;font-weight:300;line-height:3}
+.J_N_C{}
+.J_C{}
+.J_slider{}
+.J_modal{}
+
+
 /*사용자 지정 클래스*/
 .U_ft_c01{color:#0f2f4c}
 .U_ft_c02{color:#113e68}
 .U_ft_c03{color:#ec0000}
-.U_ft_c04{color:#ee003d}
-.U_ft_c05{color:#4fa3e2}
-    
+
 .U_ft_fm01{font-family:""}
 .U_ft_fm02{font-family:""}
 .U_ft_fm03{font-family:""}
@@ -203,71 +222,27 @@ select::-ms-expand{ display:none}
 
 .U_bd_01{border:1px solid #d9d9d9}
 
-.U_bd_sub04{}
-    
 .U_area01{width:1200px;margin-left: auto;margin-right:auto}
-
+.T_mg_ct{margin-left:auto;margin-right:auto}
 .U_btn01{}
 .U_btn02{}
 .U_btn03{}
-.U_btn04{}
-.U_btn05{}
-.U_btn06{}
-.U_btn07{}
 
-.U_table01{}
-.U_table02{}
-.U_table03{}
-.U_table04{}
-.U_table05{}
 
-.U_input01{}
-.U_input02{}
-.U_input03{}
 
-.U_lb_checkBox{}
-.U_lb_label{}
-.U_lb_set{}
-.U_lb_set + .U_lb_checkBox {}
 
-.U_txtArea01{}
-.U_txtArea02{}
-.U_txtArea03{}
-.U_txtArea04{}
 
-.U_login{}
-.U_find{}
 
-.J_pop{}
-.J_mask{}
 
-.J_tab{}
-
-/*form login / find / register / site pricy */
-@media all and (max-width:1200px){
-
+/*No USE RESPONE STYLE */
+@media all and (max-width:1500px){/* add 1500 ver */
 }
-    
-/*only pc end =====================*/
 
-
-
-
-/* add 1500 ver */
-/*
-@media all and (max-width:1500px){
+@media all and (max-width:1300px){/* add 1500 ver */
 }
-*/
 
-/* add 1500 ver */
-/*
-@media all and (max-width:1300px){
-}
-*/
 
-/* pc ~ tab ver */
-/*
-@media all and (min-width:641px){
+@media all and (min-width:641px){/* pc ~ tab ver */
 .R_pct_img {display: block}
 .R_pt_block{display:block}
 .R_pt_table{display:table}
@@ -281,12 +256,10 @@ select::-ms-expand{ display:none}
 .R_pt_ly07 > *{float: left;width:calc( 100% / 7)}
 .R_pt_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_pt_ly09 > *{float: left;width:calc( 100% / 9)}   
-}
-*/
 
-/*T ~ M ver*/
-/*
-@media all and (max-width:1024px) {
+}
+
+@media all and (max-width:1024px) {/*T ~ M ver*/
 .R_wd_area01{width:100%}
 .R_pd_area01 {width:100%}
 .R_tm_img {display: block}
@@ -304,22 +277,18 @@ select::-ms-expand{ display:none}
 .R_tm_ly07 > *{float: left;width:calc( 100% / 7)}
 .R_tm_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_tm_ly09 > *{float: left;width:calc( 100% / 9)}   
-}
-*/
 
-/*
+}
+
 @media all and (min-width: 1025px) and (max-width: 1550px) {
 }
-*/
 
-/*
 @media all and (min-width: 1025px) and (max-width: 1200px) {
-}
-*/
 
-/*pc_ver*/
-/*
-@media (min-width:1025px){
+}
+
+
+@media (min-width:1025px){/*pc_ver*/
 .R_pc_block{display:block}
 .R_pc_img{display:block;margin: 0 auto}
 .R_pc_block{display:block}
@@ -340,13 +309,52 @@ select::-ms-expand{ display:none}
 .R_pc_ly07 > *{float: left;width:calc( 100% / 7)}
 .R_pc_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_pc_ly09 > *{float: left;width:calc( 100% / 9)}
-}
-*/
+    
+.PC_pd_top10{padding-top:10px}
+.PC_pd_top20{padding-top:20px}
+.PC_pd_top30{padding-top:30px}
+.PC_pd_top40{padding-top:40px}
+.PC_pd_top50{padding-top:50px}
+.PC_pd_top60{padding-top:60px}
+.PC_pd_top70{padding-top:70px}
+.PC_pd_top80{padding-top:80px}
+.PC_pd_top90{padding-top:90px}
+    
+.PC_pd_btm10{padding-bottom:10px}
+.PC_pd_btm20{padding-bottom:20px}
+.PC_pd_btm30{padding-bottom:30px}
+.PC_pd_btm40{padding-bottom:40px}
+.PC_pd_btm50{padding-bottom:50px}
+.PC_pd_btm60{padding-bottom:60px}
+.PC_pd_btm70{padding-bottom:70px}
+.PC_pd_btm80{padding-bottom:80px}
+.PC_pd_btm90{padding-bottom:90px}
 
-/*tab_ver*/
-/*
-@media (min-width:641px) and (max-width:1024px) {
-body{font-size:2.34375vw}
+.PC_pd_lt10{padding-left:10px}
+.PC_pd_lt20{padding-left:20px}
+.PC_pd_lt30{padding-left:30px}
+.PC_pd_lt40{padding-left:40px}
+.PC_pd_lt50{padding-left:50px}
+.PC_pd_lt60{padding-left:60px}
+.PC_pd_lt70{padding-left:70px}
+.PC_pd_lt80{padding-left:80px}
+.PC_pd_lt90{padding-left:90px}
+
+.PC_pd_rt10{padding-right:10px}
+.PC_pd_rt20{padding-right:20px}
+.PC_pd_rt30{padding-right:30px}
+.PC_pd_rt40{padding-right:40px}
+.PC_pd_rt50{padding-right:50px}
+.PC_pd_rt60{padding-right:60px}
+.PC_pd_rt70{padding-right:70px}
+.PC_pd_rt80{padding-right:80px}
+.PC_pd_rt90{padding-right:90px}
+
+    
+}
+
+@media (min-width:641px) and (max-width:1024px) {/*tab_ver*/
+/*body{font-size:2.34375vw}*/
 .R_t_b{display:block}
 .R_t_img{display:block}
 .R_t_img2{display:block}
@@ -375,13 +383,51 @@ body{font-size:2.34375vw}
 .R_t_ly07 > *{float: left;width:calc( 100% / 7)}
 .R_t_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_t_ly09 > *{float: left;width:calc( 100% / 9)}    
-}
-*/
 
-/*m_ver*/
-/*
-@media (min-width:0px) and (max-width:640px) {
-body{font-size:3.75vw}
+.Tab_pd_top10{padding-top:10px}
+.Tab_pd_top20{padding-top:20px}
+.Tab_pd_top30{padding-top:30px}
+.Tab_pd_top40{padding-top:40px}
+.Tab_pd_top50{padding-top:50px}
+.Tab_pd_top60{padding-top:60px}
+.Tab_pd_top70{padding-top:70px}
+.Tab_pd_top80{padding-top:80px}
+.Tab_pd_top90{padding-top:90px}
+    
+.Tab_pd_btm10{padding-bottom:10px}
+.Tab_pd_btm20{padding-bottom:20px}
+.Tab_pd_btm30{padding-bottom:30px}
+.Tab_pd_btm40{padding-bottom:40px}
+.Tab_pd_btm50{padding-bottom:50px}
+.Tab_pd_btm60{padding-bottom:60px}
+.Tab_pd_btm70{padding-bottom:70px}
+.Tab_pd_btm80{padding-bottom:80px}
+.Tab_pd_btm90{padding-bottom:90px}
+
+.Tab_pd_lt10{padding-left:10px}
+.Tab_pd_lt20{padding-left:20px}
+.Tab_pd_lt30{padding-left:30px}
+.Tab_pd_lt40{padding-left:40px}
+.Tab_pd_lt50{padding-left:50px}
+.Tab_pd_lt60{padding-left:60px}
+.Tab_pd_lt70{padding-left:70px}
+.Tab_pd_lt80{padding-left:80px}
+.Tab_pd_lt90{padding-left:90px}
+
+.Tab_pd_rt10{padding-right:10px}
+.Tab_pd_rt20{padding-right:20px}
+.Tab_pd_rt30{padding-right:30px}
+.Tab_pd_rt40{padding-right:40px}
+.Tab_pd_rt50{padding-right:50px}
+.Tab_pd_rt60{padding-right:60px}
+.Tab_pd_rt70{padding-right:70px}
+.Tab_pd_rt80{padding-right:80px}
+.Tab_pd_rt90{padding-right:90px}
+    
+}
+
+@media (min-width:0px) and (max-width:640px) {/*m_ver*/
+/*body{font-size:3.75vw}*/
 .R_m_b{display:block}
 .R_m_img{display:block}
 .R_m_img2{display:block}
@@ -413,13 +459,50 @@ body{font-size:3.75vw}
 .R_m_ly08 > *{float: left;width:calc( 100% / 8)}
 .R_m_ly09 > *{float: left;width:calc( 100% / 9)}   
 
-}
-*/
+.M_pd_top10{padding-top:10px}
+.M_pd_top20{padding-top:20px}
+.M_pd_top30{padding-top:30px}
+.M_pd_top40{padding-top:40px}
+.M_pd_top50{padding-top:50px}
+.M_pd_top60{padding-top:60px}
+.M_pd_top70{padding-top:70px}
+.M_pd_top80{padding-top:80px}
+.M_pd_top90{padding-top:90px}
+    
+.M_pd_btm10{padding-bottom:10px}
+.M_pd_btm20{padding-bottom:20px}
+.M_pd_btm30{padding-bottom:30px}
+.M_pd_btm40{padding-bottom:40px}
+.M_pd_btm50{padding-bottom:50px}
+.M_pd_btm60{padding-bottom:60px}
+.M_pd_btm70{padding-bottom:70px}
+.M_pd_btm80{padding-bottom:80px}
+.M_pd_btm90{padding-bottom:90px}
 
-/*
+.M_pd_lt10{padding-left:10px}
+.M_pd_lt20{padding-left:20px}
+.M_pd_lt30{padding-left:30px}
+.M_pd_lt40{padding-left:40px}
+.M_pd_lt50{padding-left:50px}
+.M_pd_lt60{padding-left:60px}
+.M_pd_lt70{padding-left:70px}
+.M_pd_lt80{padding-left:80px}
+.M_pd_lt90{padding-left:90px}
+
+.M_pd_rt10{padding-right:10px}
+.M_pd_rt20{padding-right:20px}
+.M_pd_rt30{padding-right:30px}
+.M_pd_rt40{padding-right:40px}
+.M_pd_rt50{padding-right:50px}
+.M_pd_rt60{padding-right:60px}
+.M_pd_rt70{padding-right:70px}
+.M_pd_rt80{padding-right:80px}
+.M_pd_rt90{padding-right:90px}
+
+}
+
 @media (min-width:0px) and (max-width:350px) {
 }
-*/
 
 
 /*==== jsh bt-style -end ====*/

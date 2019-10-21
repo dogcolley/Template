@@ -1,0 +1,552 @@
+선생님 드롭박스: https://www.dropbox.com/home/web 
+
+브라켓 테마 : new moon
+
+crom 확장기능:window resize,open Wax
+
+굿사이트 모음 사이트: https://www.dbcut.com/bbs/index.php
+
+이미지사용 핀터레스트: https://www.pinterest.co.kr/
+
+이미지 기초 디자인 가이드 선 사이트: http://gridcalculator.dk/ Grid
+
+rgb,hsl,Hex,hue color:https://www.w3schools.com/colors/colors_picker.asp
+
+기초 html ,css 등의 사전 위키 : https://www.w3schools.com/
+css 유효성 검사: http://jigsaw.w3.org/css-validator/#validate_by_uri
+html 유효성 검사: https://validator.w3.org/#validate_by_upload
+
+korea 웹전근성 연구소: http://www.wah.or.kr/
+
+jQuery명령어 정리 사이트 : https://oscarotero.com/jquery/
+
+구글 폰트:https://fonts.google.com/
+
+안경잡이 여러 프로그램 기초강좌 : https://opentutorials.org/course/1
+
+브라우저 점유율 사이트 : http://gs.statcounter.com/
+
+CSS 3D transfrom 베이스 : 
+https://3dtransforms.desandro.com/perspective
+http://css3.bradshawenterprises.com/transforms/#css3dtransforms
+https://hyeonseok.com/docs/css/css3-3d-transform.php
+
+map ping site :http://maschek.hu/imagemap/imgmap
+
+ir 기법 사이트 :
+http://nuli.navercorp.com/forum/post/7
+http://darum.daum.net/convention/css/css_ir
+
+아이콘 만들기
+<link rel="icon" src="사용자.ico">
+■1■지킬것■
+1.표준성 과 접근성을 지키자
+2.스타일은 css에서만 넣자
+3.우리가 만든 타이핑들은 모두 데이터가 포함됨 원칙은 선택자와 중가로에 한칸띄어주지만
+용량을 위해선 안띄어써도 된다. 
+4.중간에 끼어있는 부모를 생략하지 않으면 브라우저가 찾아내는 속도가 빨라짐
+5.index : main page
+6.한 css에 스타일을 모두 적용시킨다. 
+7.공통 스타일은 클레스로 지정한다..
+8.ender 줄바꿈을 할씨에 4,5px 씩 자동으로 띄어진다.
+
+  <한국형 웹표준지침 2.1를 지키자>
+  명도대비 4.5:1 , 3:1 까지 / 
+
+  <!-- 주석 : 실제로 웹브라우저에서는 보여지지 않는 설명글을 작성하는 용도 -->
+   css:일경우엔 /* 양옆은 1칸씩 띄어쓰씨오 */
+
+  <!-- 블록레벨 엘리먼트 -->
+ 1. 한줄을 차지함 , 공간을 나누기 용이함 , 자식에 블럭,일라인 엘리먼트를 사용할수있음
+ 2. dl dt dd , ol ul li , h1~6 , p(자식은 일라인만) 
+ 3.a <a:href="#" > /제자리 이동
+  
+  <!-- 인라인 엘리먼트 -->
+   1.한줄에 여러개를 포함할수있음 , 공간을 나누기 힘듬 ,자식에 일라인 엘리먼트만 사용
+   2.img , sapn , strong , selet ,input ,selet
+  <!-- 다른 문서를 불러오는방법 -->
+   1. <link type="text/css" rel="stylesheet" href="경로" /> // 문서타입, 문서의 종류 , href=파일의경로
+
+html 속성:
+aria-hidden="true" 스크린리더에서 읽을수 있고 없고 해주는 기능
+data-"사용자 지정속성" 사용자가 원하는 데이터의 속성을 만들어준다.
+
+■2■태그리셋 방법■
+/* 좌표값을 초기화 */
+body, p , h1 , ul, ol , dl , dd ,th ,td ,figure,form,filedset{margin:0 ; padding:0} 
+ul, ol{list-style:none} /* 리스트 스타일 초기화*/
+a{text-dacoration:none;color: #666} /* a스타일 초기화 */
+table{border-spacing:0px;border-collapse:collapse} /*테이블 초기화*/
+:solid>dashed>dotted,두께가 두꺼운것을 우선으로 , th>td>tr>t삼몽퉁>table
+
+body{font-family:"폰트스타일" ; color; size ; weight /* 폰트스타일 묶음 */
+
+input,textarea,select{color:inherit;font-size:inherit;font-family:inherit} //상속받지 못   하는 form태그에 상속을주기위해서
+   
+textarea,select,input[type="text"],input[type="password"]{border:1px solid #999} //input 박스스타일 리셋
+
+fieldset{border:none}
+
+<브라우저에선 절대 안보이게 하기 위해서 날려버리는 방법>
+legend{
+font-size:0;line-height:0;  // 폰트를 없애주는 방법
+width:1px;height:1px;overflow:hidden; // 여백을 주고 히든으로 제거
+text-indent:-9999px; // 텍스트 자체를 밖으로 던져주는것
+position:absolute;top:0;left:-9999px} // 포지션값을 줘서 아에 따로 뺴버리는것
+
+img{vertical-align: top},{border:none"i9이하"} //img,input:type="img"여백제거법
+
+input{color:inherit;font-size:inherit} // 임마는 폰트속성을 상속을 받지 못함
+   
+input[type="password"]{border:1px solid #999}
+▶/*속성선택 모두 대갈호안에 써주는것이다. [속성명="값"]*/
+
+input[type=reset]{border=none;text-indent:-9999px;cursor:pointer} 
+▶reset이나 submit의 구린 텍스쳐와 테두리를 날려버리기 위해서 
+▶인풋안의 리셋타입의 태그를 모두 불러와서 리셋을 시켜준다.
+caption{font-size:0px;font-indent=-9999px} //눈에서 안보이게 만들어주기 단 position은 사용하면 안됩니다.
+
+button{{border: none;background: none;cursor:pointer;font-family: inherit;color:inherit;font-size: inherit}
+
+/* 위치설정 이란 */
+
+padding = 내각의 상하좌우 
+margin = 외각의 상하좌우 
+z-index는 포지션 속성을 가진 태그의 층수를 선택해준다.
+가끔 부모의 첫번째 자식에게 margin-top 값을 줄경우에 에러가 생기는 경우도 있다.
+
+/* 위치설정수평 */
+
+▶margin{수직값;(atuo)} //태그 수평 맞추기
+▶수직정렬 속성  {vertical-align:top,middle,bottom}수직정렬 속성을 제어해준다.
+안먹을때:div, p, span 스타일에 display:table-cell
+
+input의 image타입을 줄때 브라우저에서 버그상 여백이 자동으로 생기면 
+▶버티컬로 조절을 해줄수있다.
+▶이미지에 높이값이 준상태에서 오버플로 히든을 준다.*/
+
+/* 위치설정 방법 */
+  <float:방향> : 테그를 상하좌우로 이동을 시킨다, width,height 가로 세로의 길이 설정
+  1.마지막 float 테그에 clear:both를 시켜준다.
+  부모에 높이를 주어서 다른부모와 높이차를 주는 방법도 있다.
+  ▶부모에 가연산자 after / befor등을 이용하여 clear:both를 시켜준다.
+  ▶부모에게 같이 float
+  ▶부모에게 높이를 주지않고 부모에게 overflow:auto 'or' hidden을 준다.
+  
+  2<position:absolute> : 절대 좌표속성을 입력해준다. 좌상단을 기준으로 0,0좌표가 됌
+  ▶첫 태그에 앱솔값을 준다 > 2번째 값을 margin을 이용하여 떨어트려준다.
+  ▶층을 나눠 새로운 좌표값은 준것이다. 
+  +부모에게 포지션을 주면 자식의 포지션 기본위치는 부모안으로 적용된다.
+  
+
+  3.dispaly:style(block,iline,iline-block) 태그의 속성변경에 사용  
+
+/* h,xtml div 구역으로 나누기 */
+    <div id="wrap">  /* 랩은 */
+    <div id="header">상단 헤더</div>
+    <div id="sidebar">왼쪽 사이드바</div>
+    <div id="content">오른쪽 상세내용</div>
+    <div id="footer">하단 푸터</div></div>
+  
+■3■폰트사용방법■
+
+/* font조절방법 */
+
+font-size   :폰트의 사이즈
+font-weight :폰트의 굵기
+line-hight  :폰트의 줄간격
+text-iline:(줄소석) : 좌우상하 속성을 정리할수있음
+1em = 100% , 1em= 16px / color = 인식의 명도대비는 4.5:1 ,3:1
+text-indent :글자 들여쓰기 block type , text-aline:left 만 가능하다.
+letter-spacing:폰트사이 글자끼리 간격
+
+/* web font사용방법 */
+
+<my sever join>
+@font-face{
+    font-family:bja;
+    src:url("../font/BMJUA_ttf.eot"); 
+    src:local(※),url("../font/BMJUA_ttf.woff") format("woff"), /*(※)를달아주면 ie브라우저는 그냥 넘긴다.*/ 
+    src:url("../font/BMJUA_ttf.ttf") format("truetype") 
+    /*.eot .woff .ttf .svg ie구버전용 , 모든폰트(woff2압출률이 증가한것) ,압축하지않은 파일,깨지지않음*/}
+    
+    src:url("font/websymbols-regular-webfont.eot");
+    src:local("※"), url("font/websymbols-regular-webfont.woff") format("woff"),url("font/websymbols-regular-wefont.ttf") format("turetype")
+    
+.eot :구버전
+.woff:모든폰트
+.ttf :압축하지않음파일 (구크롬,폰트용량이 적을때)
+.svg :꺠지지않는파일
+<sever join>
+@import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39'); /css 권장하진 않음
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> /html hrefd링크의 공백은+
+선택자,태그{font-family:'폰트명', cursive}
+
+
+■4■상속자 방법■
+inherit : 값을 그대로 받는다. (텍스트 폰트같은경우 대부분 승계받을수있음)
+
+/* 속성값 */
+"*" 나머지를 포함
+선택자* 선택한 선택자의 자식들 모두 포함
+input[type="text"]{} : 속성 선택자  
+태그+ 태그 {} 인접형체선택자: .title바로 뒤에 오는 형제 선택자
+> :자식 선택자
+! important : 강제 실행문 : 난발시 오류발생
+
+/* 가상,속성 */ 
+▶테그:hover // 태그된 부분에 마우스를 움직이면 나오는 속성
+▶테그:afrer ,before {display:,clear,content""} 태그부모의 앞부분이나 뒷부분에 가연사자를추가해줌
+▶테그:first-child last-child
+<#>id선택 ,<.>클레스선택 , <*> 전체선택 , <#xx xx> 하위선택자   
+▶테그:overflow // hidden
+▶테그:focus =반대= 불러 
+tap으로 이동했을때 변화시켜준다.
+a,input,selet,textarea*/
+▶a태그의 가상선택자 : 순서대로 해야한다.
+a:link(링크), a:visited(클릭한적있으면), H:hover(마우스위), a:active(누르고있는 상태) {르브하} 
+▶부정선택자: :not(){}
+
+/* 조건부 주석 [단축키: cc:조건+tap키] */
+조건부 주석! 조건을 만족하는 경우 주석을 해석한다. 그렇지않으면 넘긴다.
+<!-- it:미만 gt:초과 lte:이하 gte:이상-->
+<!--[if lt IE 9]>
+    <script type="text/javascript" src="js/html5shiv.min.js"></script>
+<![endif]-->
+<!--스타일을 적용되고 기능은 적용시키지 못한다. -->
+
+----사용태그 팁
+<background : color(#fff) url("") non-repeat /* 가로,세로>+x,y-repeat */ 50%=senter
+가로,세로 (숫자는 꼭지키고 영어일경우엔 순서상관없음)
+
+<border: px(10px) lineStyle(solid,dashed,dotid) color(#666)> 
+<border-radius>//모서리 4개의 모깎기기능
+<border: px 선 transparent(투명하다)>
+<box-sizing: border-box(안에 포함),content-box(외각포함)>
+삼각형만드는 방법
+:1.가상 연산자로 블럭하나를 만들어준다.
+ 2.포지션 속성을 주어서 부모 밖으로 좌표이동시켜준다.
+ 3.위치는 50% + 마진+가상블럭의 길이의 절반을 넣어주면 항상 중간에 간다.
+ 4.이후 하단 or 상단 보더에 자신의 높이와 똑같이 준다.
+ 5.
+<background: fixed> : 스크롤바에 따른 배경이미지 고정
+<background-attchment>
+
+<img src:"경로" alt="시작장애를 위한설명" width:"" height="" title=""/>
+ㄴjif:아이콘 , jpg :사진 80%정도의 퀄리티로,png: 백그라운드로
+
+■5■table설명■
+/* xhtml part */
+:많은양의 정보를 정리할때 쓰는 방법,접근성 4가지를 지켜야한다.
+
+<table id="" summary="table에대한 요약 설명:5에선 없어짐" border="'1'를 쓰면 라인이 생김">
+<caption>제목</ccaaption> //접근성을 살리기위해서 쓰지만 외관은 없애주고 밖에 h테그를 많이 사용한다.
+<colgroup> //세로방향 설정 width는 5부터 css에서 줘야한다.
+	<col width="150" />
+    <col width="200" span"2" />  //첫번째 세로칸의 가로길이는 150px이다. / 두번째,세번째는 200px임 html5에선 width는 css에서준다.
+</colgroup> 
+<thead>
+  <tr>
+    <th rowspan="n"></th> //가로or세로로 합칠경우
+    <td colspan="n"></td> //가로or세로로 합칠경우
+  </tr>
+<thead/>
+<tfoot><tfoot/>
+<tbody><tbody />
+
+/* 태그의 디자인 특징 */
+▶caption : 가운데 정렬
+▶th : bold , 가운데 정렬
+▶th,td :높이가 높은경우 수직 가운데 위치 
+테이블의 접근성
+▶table 태그에 summary 속성을 작성(xhtml)
+▶caption 태그 사용
+▶th태그에 scope 속성 작성 = col/row th태그가 영향을 미치는 td의 방향(범위)를 알려준다 
+▶th테그안에 id="ex" , td테그안에 heards="ex"를 입력해준다.
+
+----특별성 계산법   
+특별성 계산법 백{id} , 십{class , 가연산자(befor,after제외)} ,일{가연산자(befor,after),태그}
+특별성이 높은것에 우선적으로 적용이 된다. 
+
+■6■폼 태그사용법■   
+폼속성
+<모든 폼요서의 테그들을 모두 포함시켜야한다>
+<from action="데이터를 전송해줄 경로" name="여러개의 폼테그중 불러오기 위한명제;개발자용"> method="주소표시줄에get=눈에보이게 , post=눈에 안보이게" 보통은 액션과 아이디만 써준다.
+
+label: form태그의 사용자의 접근성을 올려주기 위한 태그
+
+기본형식
+<form action="경로" id"" method="get/cost" name=""> </form>
+<filedset></filedset> :폼안의 컨트롤 태그들을 그룹지을때 사용 안의 <legend>를 이용
+▶id="접근성을 위해서 써줘야함"
+▶name="서버에서 받는 별칭"
+▶value="사용자가 타이핑 한것'
+vid와 name은 똑같이 사용한다.
+
++속성 
+----readonly :읽기만 가능
+----list="id": 텍스쳐타입에 연결할수있다.
+----maxlength 최대입력가능값
+----checked=checcked
+----title="눈에 보이지 않지만 접근성을 살리기위해서 말을 해준다."
+----required:필수 입력을 해줘야하는것
+----placeholder:입력전 상단에 띄어져있음
+----autofocus:포커스 위치에 설정
+----autocomplete:자동화해상기능 제한
+----step="단위로 건너뛰기" 
+----value="사용자 입력 데이터"
+
+<input type="text" list="id">
+<datalist id="id">
+    <option value="a"><optiom>
+</datelust>
+
+1.input:사용자가 한줄짜리를 입력하는것(단독태그) 
+기본형식 <input type="style" id="" name="" value=""> 
+
+▶text type : 텍스쳐 입력타입 (value 노필수)
+▶passward type : 비밀번호 입력타입 (value 노필수)
+▶radio type: 선택 (name을 통일해줘야한다.)<input type="radio" id="" name="통일" value="필수"><label for=""></label>(value 필수)
+▶checkbox type: 중복선택 박스 타입<feild>(value 필수)
+▶image,butten type: 이미지나 버튼타입의 경로<input type="image" src="" alt=""> 
+▶submit,reset: 전송, 취소 타입경로 <input type="submit" value="">
+
+input type=image,button,submit,reset은 역할을 하기 때문에 label로 연결하지않음
+id와 name을 쓰진않는다.
+input name,value submit 버튼을 누르면 각각의 폼컨트롤 요소의 name과 value 짝지어 action에 작성한 경로로 데이터를 보낸다
+
+
+1.5+ html5,css3로 넘어가면서 추가된 input 타입의 기능
+<input type="email" required placeholder=""> // email input
+<input type="url" autofocus  autocomplete="off"> // url input
+<input type="number" min="" max="" value="" step=""> // number input
+<input type="range" min="" max="" value=""> // value를 생략하면 가운데에 위치한다. min:"최소값" max:"최대값"
+<input type="date" min="0000-00-00" max="0000-00-00"> // 최소화 최대 날짜를 만들수있다.
+<input type="month"> // 주와 월이다. 지원되는 브라우저가 몇없다.
+<input type="week">  // ..
+<input type="time">
+<input type="datetime">
+<input type="datetime-local"> // 사용자가 있는 지역의 시간을 표시한다.
+<input type="tel">
+
+2.selet:작성자가만든것을 선택하게 하는것
+첫번째 옵션에 label을 사용하지 않는다.(접근성 위배)
+<select id="" name="">
+<option value="1" selected=selected(우선보이기선택)>1</option>
+</select>
+ <fieldset id="">
+        <legend>피부고민 6가지 타입</legend>
+        <label for=""><input type=checkbox id="" name="" value=""/></label>
+ </fieldset>
+
+3.textarea:장문의글을 작성자가 입력할때 쓰는것
+ <label for=""></label>
+        <textarea id="" name="" rows="" cols=""></textarea>
+
+■7■html5■
+Sementic Markup:의미를 가지고있다.(div로만 나누다보니 소스해석에 힘든것을 이해하기 쉽게만듬)
+1.텍스쳐만 입력하지않고 코덱없이 다양한 기능을탑제시키기 위해서 만들어짐
+2.일부기능은 css로 넘어감 (style을 주기위한 요소들)
+3.api의 내부소스의 기능과 웹스토리즈등의 기능증가
+
+content를 담아주는 엘리먼트 (단 style에서 block을 줘야한다. 속성이 아직없음)
+header, footer : 여러개를 쓸수있다.
+nav: main page 나 sub page 안에 사용한다. : nav란 태그를 둘러싸고 ul li a 를써준다.
+section(본문안 같은 내용을 그룹지을때),aritcle(본문안 내용하나하나) : 본문을 작성한다.
+aside:사이드바 엘리먼트
+div:(구역 나누기 > 디자인을위한 나누기)
+
+pc버전에서 크게 차이가 나지않는경우도 있지만 mobile에선 자판이나 기본효과가 달라진다.
+html_form 추가 된것
+url:주소입력
+email:이메일
+time:시간
+search:검색
+canvas:그림을 그리기 위한 엘리먼트 :일러스트와 같은 방법
+vedio:비디오 파일을 가져와 하면에 띄어준다.
+
+브라우저에서 상위버전에서 만들어진것들중에서 접두사(벤더프리픽스)를 붙일 겅우에 
+하위버전에도 지원을 해준다.:사용시 먼저 써주고 이후 최신버전효과를 넣어준다.
+-webkit- 웹킷방식 사파리 크롬
+-moz-    게코방식 모질라의 파이어폭스
+-o-      오페라 브라우저
+-ms-     인터넷 익스플로어
+
+
+<이미지를 넣어주는 그룹>
+----<figure></figure> : img,테이블,그래표 태그,video,오디오등의 컨텐츠를 그룹지을때 사용 초기화 시키고 블럭 줘야함
+----<figcapton></figcaption>:figure캡션안의 자식이고 첫or마지막에 써야한다.<필수 아님>
+----html a태그
+<a href="id or 경로명">내용<a/> //페이지내의 id를 사용하여 그곳으로 이동하거나 다른 경로로 이동
+
+----html nav태그)) 
+<nav id=""></nav> // gnb :전역 네비
+
+----section nav태그
+<section id=""></section> 내용 나누기 첫시작은 h태그를 이용하여 만든다.
+
+----<mark></mark> : 현광색효과 css에서 호출뒤에 background에서 색조절 가능
+----<br>:1줄띄기
+----<address></address> : 주소정보 위치에따라 뜻이 바뀜 <안에 일라인>
+
+■10■ css 3.0의 설명
+
+<그림자 만들기>
+----{text-shodow:"글자의x축""글자의y축" "딱딱함 px" rgb"숫자"}
+----{box-shodow:"글자의x축""글자의y축" "딱딱함 px" rgb"숫자" inset}
+----<shdow의 text는 i10 box는 i9부터 지원한다.>
+
+<투명도가 추가된 rgba 단 i9이상>
+----rgba(0,0,0,투명도 0~1) // rgb로 색상 효과를 내어 투명도도 제어가 가능하다.
+----{opacity:0.5} 불투명도 조절 1~0.5
+----fiter:8버전용 op:ie jamcoding {filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=50);}
+
+
+
+■■■■효과를 css3의 고급기능 넣어주는 transition, transform , animaition>■■■■
+{transition: i10, 나머지 4개는 저버전 벤더프리틱스로 지원}
+----{transition-delay: 지연시간을 만들어준다. 기본 0s}
+----{transition-timing-function: 재생 모드를 설정해준다 기본 ease.}
+----{transition: 속성명 경과시간{s}}= 효과를 줄때 +liner시간
+----{transition-proety:효과를 줄태그} 클릭동안
+----{transition-duration:효과를 줄태그} 클릭을 떈 동안
+----{transition: 속성명 +경과시간all},{transition:속성명+transition margin S , width S ,height S}
+
+
+{transfrom: i9; 나머지 4개는 저버전 벤더프리틱스로 지원}
+----{transform:skew(0deg)} :기울기 (deg)
+----{transform:scale()}:크기 (x ,y) (공통) 단위는 배율로
+----{transform:translate(px)}: 이동
+----{transfrom:translateY,X,Z()}: Y로만 이동
+----{transform:rotate(0deg)}:회전 (deg)
+
+----{transform:translateZ(px)}:Z축 조절 이동
+----{transfrom:perspective: "Number"px} 3D효과
+속성
+transform-style:preserve-3d ,flat :전달한다. 전달하지 않는다.
+backface-visibility:hidden  :회전시킬때 보일지 않보일지 정해준다.   
+/* animation */
+@keyframes mymove{from{top:0px} to{top:200px}} // 필요 조건
+{animation: name time delay 반복 방}
+
+----animation-name : 불러올 애니메이션
+----animation-duration :길이
+----animation-timing-function :가속도 (ease, outease, inease)
+----animation-delay :지연s 애니메이션 시작전 (기본은 0s)
+----animation-iteration-count: 반복횟수 infinite(무한 반복)
+----animation-direction : 반복 방향 (반대:reverse,왔다갔다:alternate,갔다왔다:alternate-reverse)
+----animation-fill-mode :
+----animation-play-state:
+
+
+이미지 사이즈 효과
+    #list li a{display:block;width:200px;height:112px;overflow:hidden}
+    #list li a img{transition:transform 1s}
+    #list li a img:hover,#list li a img:focus{-ms-transform:scale(1.5);-o-transform:scale(1.5);-wekit-transform:scale(1.5);-moz-transform:scale(1.5);transform:scale(1.5);
+    
+
+<활용도가 많은 a테그>
+----{a href="tell or mailto"} 사용하면 메일보낼수있음
+----{title=""} 부가설명이 가능
+----{date-사용자 지정 속성} : html5에서 태그에 사용자가 원하는 속성을 넣어줄수있다. :ie:9 브라우저 부터 (html5)
+----date-featherlight="큰이미지의 경로명" 
+
+<이미지의 효과를 넣어주는 방법>
+----widow Resizer
+----opne wax
+----n-wax
+
+----position: fixed 고정시키기
+#bg{position: fixed;top:0;left:0;width:auto;height:auto;min-width:100%;min-height:100%;z-index: -10}
+
+----min-width:100%;min-height:100% 화면 꽉채우기
+
+----background-size:contain,cover :
+1.가로,세로 크기지정 2.contain 원본비율확대 여백은 생김 3.cover:여백이 생기않도록 확대시켜줌
+
+■11■비디오,오디오,애니메이션을 이용하는 방법
+
+/* video태그: 다양한 브라우저에 사용할수있게 경로를 여러개를 써준다. i9이상 */
+----3초 이상시 skip버튼에 동영상 정지를 만들어준다.
+----<video width="450" height="254" controls>
+      <source src="media/gate.mp4" type="video/mp4"> <!-- ie,crome,firefox,opera,safari-->
+      <source src="media/gate.webm" type="video/webm"><!-- crome,firefox,opera-->
+      <source src="media/gate.ogv" type="video/ogg"> <!-- crome,firefox,opera-->
+      <!-- 지원이 안될경우 사용하는 방법 -->
+      현재 브라우저는 동영상을 지원하지 못합니다. 브라우저를 업데이트 해주세요.  // 안됀다는 문구
+      <embed src="media/gate.wmv" type="video/x-ms-wmv" wid="450" howfullscreen="ture"> // embed i5 
+      <object date="경로" type="타입"></object> // 
+    </video>
+
+----video 속성설명 자막:수화: 3가지중 1가지는 필수로 넣어준다.
+  src 동영상 파일 경로
+  poster 동영상이 화면에 나타나지 않을 경우 대신 표시할 그림
+  preload 미리 다운로드 받아 재생단추를 눌렀을때 재생되게 함
+  autoplay 자동 재생
+  loop 반복 재생 지정
+  controls 화면에 콘트롤 막대 추가
+  width 화면의 너비
+  height 화면의 높이 
+  muted 오디오를 재생하지만 소리는 끄기
+  
+/* audio 속성설명 */
+<audio controls>
+    <source src="media/old_melody.mp3" type="audio/mepg">
+    <source src="media/old_melody.wav" type="audio/wav">
+    <source src="media/old_melody.ogg" type="audio/ogg">
+    <!-- 현재브라우저는 지원하지 않는 기능입니다.업데이트해주세요 -->
+    <embed src="media/old_melody.wav" type="audio/wav"><!-- 방법2 ie9미만용 -->
+</audio>
+
+----track 속성
+    video text track 의 약자인 vtt 형식파일
+    <track kind="자막종류" src="경로" srclang="언어" label="제목" default>
+
+    ㅁkind의 종류
+    subtitles=비디오에 자막을 표시, 소리를 켤 수 있지만 이해할 수 없는 경우, 다른 언어로 번역한 자막일 경우에 사용하며 비디오 화면에 표시됨
+    captions=청각 장애인 또는 사운드가 음소거 때인 사용자에 적합합니다.음향 효과 같은 중요한 비언어적 정보를 포함 할 수있다. 화면에 표시됨
+    descriptions=(시각 장애인에 적합한) 비디오 콘텐츠에 대한 설명. 화면에 표시되지 않음
+    chapters=비디오 탐색을 위한 창 제목, 비디오 화면에 표시되지 않음
+    metadata=비디오 콘텐츠 정보. 사용자에게 표시하지 않음
+
+    label : 자막이 여러개일 경우, 자막을 식별할수 있도록 제목을 달아줌
+    default : 자막 파일이 여러 개일 경우, 기본으로 사용할 자막을 default로 지정함
+    
+----vtt 파일 만들기
+첫행 WEBVTT  (이후 1칸씩 띄움)
+
+시:분:초 --> 시:분:초 
+내용1
+
+00:00:00 --> 00:00:00
+내용2
+
+■11■ 텝 브라우징 마크업 방법
+1.css의 스타일에  li리스트에 앱솔루트를 적용시켜 위치값을 변경 시켜주는 경우가 있다.
+2.상위 태그에 앱솔루트를 적용시키고 자식은 위치값을 다른 태그에 적용시킬수있게 하는경우는
+높이가 다른 페이지에 적용이 가능하다.
+
+html: 탭과 내용을 분활 작업을 할때는 내용안에는 탭의 제목을 h태그로 가져다준다.
+
+■12■ 접근성을 위해서 이미지 맵사용법
+map 태그를 이용한다. 맵킹 사이트: http://maschek.hu/imagemap/imgmap/
+<img alt="" width="" height="" src="" usemap="#map1">
+<map id="map1" name="map1">
+        <area shape="rect" alt="" coords="" "target="_blank" />
+        <area shape="circle" alt="" coords="" "target="new" />
+        <area shape="poly" alt="" coords="" href="" target="new" />
+    </map>
+
+■13■ 다른 웹브라우저의 기능을 가져가기 위한 iframe 
+<iframe src="https://www.w3schools.com" title=""></iframe> = title 속성이 매우 필요합니다.
+:youtube.com의 동영상일 경우에 퍼가기를 이용해서 가져갈수있다.(소스 복사후 붙음사용)
+■14■ @import url("경로명") 다른 css파일을 사용하고싶을 때
+
+■15■ css의 조건문 : @media
+all	: 반응형 사용시 선언
+print : 복사를 사용시 선언
+screen : 모바일 사용시 선언
+speech : 
+
+@media (only,onlynot ..,not)type and (조건){ style};
+조건: max-width,main-width,min-resolution,orientation(회전)...

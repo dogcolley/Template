@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+/* 중첩시 선택자 선언 */
+.select a {
+	padding: 20px;color: red;text-decoration: none; 
+	&:hover {
+		text-decoration:underline;
+	}
+}
+
+
+.select1 {
+	padding:30px;
+	.another & {
+		margin:20px;
+	}
+}
+
+/* css확장도 가능함 */
+#box1 a{
+	font{
+		size: 14px;family: Dotum;
+	}
+}
+
+/* calc() 함수 대신 속성값의 연산도 가능 */
+#box2{
+	width: 100px / 2;
+	margin-left: 5px + 8px / 2px;
+} 
+
+/* 변수의 특정값을 불러오지 않고 변수명 자체를 불러오려는 경우 */
+@mixin opacity ($num1, $num2) {
+	opacity: $num1;
+	-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$num2})';
+}
+#box3{ 
+	@include opacity (0.5, 50);
+}
+
+/* 미디어쿼리 선언시 이렇게도 가능함 : @extend는 미디어쿼리 내부에서는 에러가 발생해 사용할수 없다 */
+#content{
+	width: 300px;
+	@media all and (orientation: landscape){
+		width: 500px;
+	}
+}
+
+/* @at-root는 특정 선택자를 하위 선택자가 아닌 독립된 선택자로 끌어올려야 하는 경우 사용함 */
+.txt11 {
+  padding-top: 10px;
+  .txt12 {
+    margin:10px;
+  }
+}
+
+.txt21 {
+  padding-top: 10px;
+  @at-root .txt22 {
+    margin:10px;
+  }
+}
+
+/* @at-root (without:      ) 미디어쿼리 내부에서 제거되어 부모선택자로 지정 */
+@media print {
+  .page {
+    width: 800px;
+    @at-root (without: media) {
+      color: red;
+    }
+  }
+}
+
+/* @mixin 에서 변수값은 하나인데 속성이 여러개 인 경우 변수명 뒤에 점 세개(...)를 추가 */
+@mixin boxShadow($shadows...) {
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+  box-shadow: $shadows;
+}
+#box4{
+	@include boxShadow(1px 2px 5px rgba(0,0,0,0.5));
+}
+
+/* 조건문 만들기 */
+@mixin txt ($weight) {
+	color: red;
+	@if $weight == bold {font-weight: bold;}
+	@else if $weight == light {font-weight: 100;}
+	@else if $weight == heavy {font-weight: 900;}
+	@else {font-weight: normal;}
+}
+
+.txt1{
+	@include txt (bold);
+}
+.txt2{
+	@include txt (light);
+}
+.txt3{
+	@include txt (heavy);
+}
+.txt4{
+	@include txt (none);
+}
+.txt5{
+	@include txt (normal);
+}

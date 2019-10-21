@@ -1,0 +1,54 @@
+1) 루비 설치 https://rubyinstaller.org/downloads/
+rubyinstaller-2.5.1-2-x64.exe
+
+2) 윈도우 > 시작 > cmd창 열기(명령프롬프트)
+
+3)  Sass 설치 명령어는 다음과 같습니다 => 만약 이 명령어를 입력 후 액세스 허용 창이 뜨면 허용해주시면 됩니다.
+http://recoveryman.tistory.com/276
+gem install sass
+
+4) scss 파일을 css 파일로 변환 시켜줄 명령을 입력
+만들 폴더의 경로명을 복사해옴(경로명을 정확히) ☞ 만약 드라이브를 이동하려면 먼저 => d: 라고 한다음 실행시킨다
+cd C:\AutoSet10\public_html\bootstrap\css
+
+sass --watch .:.
+현재 디렉토리를 감시해서 scss파일을 생성하면 자동으로 css파일을 생성해줌
+자동으로 style.css와 style.css.map, .sass-cache폴더가 생성됨
+
+★ cmd 창을 닫으면 실시간 변경은 이루어 지지 않는다
+
+
+sass 중요 팁
+① Variable (변수) : 변수명 앞에는 반드시 $가 붙는다
+선언		$active_color : #ff6600;
+호출		a{color:$active_color;}
+
+② Extend (상속)
+선언
+.pad100tb{
+	padding-top:100px;
+	padding-bottom: 100px;
+}
+호출
+.container{
+	@extend .pad100tb;
+}
+
+③ @mixin => argument (인수) 를 받을 수 있다
+선언
+@mixin opa ($num) {
+	opacity: $num;
+	-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=$num)';
+}
+호출
+.fade_in{
+	@include opa(0);
+}
+
+mixin에 인수를 넣지 않아도 가능함
+@mixin Test () {
+	background: yellow;
+}
+body{
+	@include Test ();
+}

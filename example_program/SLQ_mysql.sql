@@ -120,6 +120,52 @@ BIGINT	    8바이트	        -9223372036854775808 	0	                9223372036
 
 10.이외 특수 명령어
     union all : select문을 합칩니다. 단 컬럼수가 같아야합니다.
+
+Explain을 사용해서 쿼리 최적화 하기
+
+처음엔 이거이거 개발해! 이러면 API 만들고 결과 나오는 쿼리 그냥 넣고 결과 나오면 됐다!
+이랬는데 ... 이제는 쿼리를 짤때 성능까지 생각해야 하며, 대충 결과만 나오던 쿼리는 나중에 문제가 되어
+유지보수로 해야할 일이 되더라구요.
+그러니 미리미리 성능을 고려하여 쿼리를 최적화 하는 습관을 길러야 합니다. 좋은 습관은 공유해야지요~  ^^
+
+* 사용방법
+	EXPLAIN[EXTENDEL] SELECT * FROM TB_COMMENT;
+
+	쿼리 앞에 EXPLAIN 을 붙이기만 하면 쿼리에서 어떤 테이블을 쓰고 있는지 SELECT가 빠르게 잘 되는지 조인 여부 등 다양한 것들에 대해서 알 수 있고 쿼리 분석을 하는데 도움이 된다.
+
+	id : SELECT IDENTIFIER. 쿼리 안에 순번같은 것이다.
+
+	select_type : SELECT에 대한 타입
+	 Select Type의 종류 SIMPLE : 단순 select을 말함. (union 또는 subquery 사용 안 함) Primary : 가장 외곽의 select UNION : Union에서 두 번째 혹은 나중에 따라오는 select Dependent Union : UNION 중 외곽쿼리에 의존적인 쿼리 Union result : Union의 결과물 Subquery : 서브 쿼리의 첫 번째 select Dependent Subquery : subquery 중 외곽쿼리에 의존적인 쿼리 Derived : Select로 추출된 테이블 즉, from절 내부의 쿼리
+
+	table : 결과 열이 참조하는 테이블
+
+	type : 조인에 대한 타입
+
+	 Type의 종류 Const : 하나의 행만 매치함. Eq_ref : 조인 수행을 위해 각 테이블에서 하나씩의 행만 읽음 Ref : 조인 수행 시 매치되는 인덱스의 모든 행을 읽음 Ref_or_null : Ref + Null 값 포함 Range : 인덱스를 사용하여 주어진 범위 내의 행들만 추출 Index : Index 전체 스캔 All : 전체 테이블 스캔
+	possible_keys : 이 테이블에서 열을 찾기 위해 MySQL이 선택한 인덱스를 가리킨다.
+	이 컬럼은 EXPLAIN 결과에서 나타나는 테이블 순서와는 전적으로 별개의 순서가 된다.
+	이것은, possible_keys에 있는 키 중에 어떤 것들은 테이블 순서를 만드는 과정에서는 사용되지 않을 수도 있음을 의미하는 것이다.
+	만일 이 컬럼 값이 NULL이라면, 연관된 인덱스가 존재하지 않게 된다.
+	이와 같은 경우, WHERE 구문을 검사해서, 이 구문이 인덱스 하기에 적당한 컬럼을 참조하고 있는지 여부를 알아 봄으로써 쿼리 속도를 개선 시킬 수가 있게 된다.
+	그러한 경우라면, 적절한 인덱스를 하나 생성한 후에, EXPLAIN를 다시 사용해서 쿼리를 검사한다.
+	(솔직히 100% 이해가 되지 않는다. 그래서 참조한 곳에서 그대로 가져옴.)
+
+	key : 실제로 사용할 예정인 키 (인덱스)
+
+	key_len : MySQL이 사용하기로 결정한 키의 길이
+
+	ref : 테이블에서 열을 선택하기 위해 key 컬럼 안에 명명되어 있는 인덱스를 어떤 컬럼 또는 상수(constant)와 비교하는지 보여줌.
+
+	rows : MySQL이 쿼리를 실행하기 위해 조사해야 하는 열의 숫자를 가리킴.
+
+	Extra : 쿼리 실행 시 필요한 추가적인 정보를 제공. 성능 개선에 필요한 주요 정보 컬럼
+
+	 Using filesort Using index Using temporary Using index for group-by - Group by 시 index를 이용하여 값을 추출 함. Using where Using join cache Select tables optimized away – 인덱스를 사용하여 group by 없이 집단함수 값을 추출하는 경우
+
+
+
+explain : tk
 */
 
 

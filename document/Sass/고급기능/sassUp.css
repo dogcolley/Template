@@ -3,80 +3,107 @@
 .select a {
   padding: 20px;
   color: red;
-  text-decoration: none; }
-  .select a:hover {
-    text-decoration: underline; }
+  text-decoration: none;
+}
+
+.select a:hover {
+  text-decoration: underline;
+}
 
 .select1 {
-  padding: 30px; }
-  .another .select1 {
-    margin: 20px; }
+  padding: 30px;
+}
+
+.another .select1 {
+  margin: 20px;
+}
 
 /* css확장도 가능함 */
 #box1 a font {
   size: 14px;
-  family: Dotum; }
+  family: Dotum;
+}
 
 /* calc() 함수 대신 속성값의 연산도 가능 */
 #box2 {
   width: 100px / 2;
-  margin-left: 9px; }
+  margin-left: 9px;
+}
 
 /* 변수의 특정값을 불러오지 않고 변수명 자체를 불러오려는 경우 */
 #box3 {
   opacity: 0.5;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}
 
 /* 미디어쿼리 선언시 이렇게도 가능함 : @extend는 미디어쿼리 내부에서는 에러가 발생해 사용할수 없다 */
 #content {
-  width: 300px; }
-  @media all and (orientation: landscape) {
-    #content {
-      width: 500px; } }
+  width: 300px;
+}
+
+@media all and (orientation: landscape) {
+  #content {
+    width: 500px;
+  }
+}
 
 /* @at-root는 특정 선택자를 하위 선택자가 아닌 독립된 선택자로 끌어올려야 하는 경우 사용함 */
 .txt11 {
-  padding-top: 10px; }
-  .txt11 .txt12 {
-    margin: 10px; }
+  padding-top: 10px;
+}
+
+.txt11 .txt12 {
+  margin: 10px;
+}
 
 .txt21 {
-  padding-top: 10px; }
-  .txt22 {
-    margin: 10px; }
+  padding-top: 10px;
+}
+
+.txt22 {
+  margin: 10px;
+}
 
 /* @at-root (without:      ) 미디어쿼리 내부에서 제거되어 부모선택자로 지정 */
 @media print {
   .page {
-    width: 800px; } }
-  .page {
-    color: red; }
+    width: 800px;
+  }
+}
+
+.page {
+  color: red;
+}
 
 /* @mixin 에서 변수값은 하나인데 속성이 여러개 인 경우 변수명 뒤에 점 세개(...)를 추가 */
 #box4 {
-  -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5); }
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+}
 
 /* 조건문 만들기 */
 .txt1 {
   color: red;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .txt2 {
   color: red;
-  font-weight: 100; }
+  font-weight: 100;
+}
 
 .txt3 {
   color: red;
-  font-weight: 900; }
+  font-weight: 900;
+}
 
 .txt4 {
   color: red;
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 .txt5 {
   color: red;
-  font-weight: normal; }
-
+  font-weight: normal;
+}
 /*# sourceMappingURL=sassUp.css.map */

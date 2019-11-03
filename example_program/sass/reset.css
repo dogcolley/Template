@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* test for mibile git */
+/* scss and j css ver1.2.0 */
 /*font-set*/
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900");
@@ -7,7 +7,7 @@
 /*teg-reset*/
 html {
   overflow-y: auto;
-}
+} 
 
 body {
   margin: 0;

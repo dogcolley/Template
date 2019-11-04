@@ -31,13 +31,13 @@ input::-webkit-input-placeholder {color:#999}
 input:-ms-input-placeholder {color:#999} 
 textarea, select {font-family:inherit;font-size:inherit}
 select {margin:0}
-p {margin:0;padding:0;word-break:keep-all;line-height: 1.6}
+p {margin:0;padding:0;word-break:keep-all;line-height: 1.6}  
 hr {display:none}
 pre {overflow-x:scroll;font-size:1.1em}
 a {color:inherit;text-decoration:none;font-size:inherit}
 select { border-radius:0; /* 아이폰 사파리 보더 없애기 */ -webkit-appearance:none; /* 화살표 없애기 for chrome*/ -moz-appearance:none; /* 화살표 없애기 for firefox*/ appearance:none /* 화살표 없애기 공통*/ } 
 select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
-  
+   
 /*box-sizing-style*/
 *, :after, :before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
 
@@ -206,28 +206,23 @@ $s_area {left:auto;righ}
 */
 
 /*sass 변수 모음*/
-
+$j_device : ('.T_','.Tab','.M','.TM','.PC','.PM'); 
+$S_M: 640px; 
+$S_T: 1024px;
+$S_W: 1200;
+/*mixin and function 모음*/
 @mixin clear {content:'';clear:both;display:block}
 @mixin area {margin-left:auto;margin-right:auto}
 
-$devices : (
-	'T': all,
-	'M': (max-width: 767px),
-	'Tab': (min-width: 767px) and (max-width: 1024px), 
-	'PC': (min-width: 1024px),
-	'TM': (max-width: 1024px),
-	'PT': (min-width: 767px) and (max-width: 1200px), 
-);
+/*SCSS*/
 
 $breakpoints: (
-        'M': (max-width: 767px),
-        'Tab': (min-width: 767px) and (max-width: 1024px), 
-		'PC': (min-width: 1024px),
-		'TM': (max-width: 1024px),
-		'PT': (min-width: 767px) and (max-width: 1200px), 
+        'small': (max-width: 640px),
+        'medium': (max-width: 1024px),
+        'large': (max-width: 1200px),
 ) !default;
 
-@mixin respond-to($breakpoint) {	
+@mixin respond-to($breakpoint) {
     // If the key exists in the map
     @if map-has-key($breakpoints, $breakpoint) {
         // Prints a media query based on the value
@@ -240,170 +235,164 @@ $breakpoints: (
         @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
         + "Available breakpoints are: #{map-keys($breakpoints)}.";
     }
+} 
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $S_M) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $S_M + 1) and (max-width: $S_T - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $S_T) { @content; }
+  }
 }
 
-@mixin device-to($device) {
-    // If the key exists in the map
-    @if map-has-key($devices, $device) {
-        // Prints a media query based on the value
-        @media #{inspect(map-get($devices, $device))} {
-			{
-				&wd_full {width:100%}
-				&ht_full {height:100%} 
-				&ps_{
-					&rl{position:relative}		
-					&ab{position:absolute} 
-					&st{position:static}
-					&fx{position:fixed}
-				}
+.profile-pic {
+    float: left;
+    width: 250px;
+
+    @include respond-to(handhelds) {
+        width: 100%;
+    }
+
+    @include respond-to(medium-screens) {
+        width: 125px;
+    }
+
+    @include respond-to(wide-screens) {
+        float: none;
+    }
+}
+
+
+@each $device_val in $j_device  {
+	#{$device_val}{
+		@if ($device_val == '.M') or ($device_val == '.TM') {
+			@include respond-to(handhelds) {}
+		}@elseif($device_val == '.PC') or ($device_val == '.PM') {
+			@include respond-to(handhelds) {}
+		}
+		&wd_full {width:100%}
+		&ht_full {height:100%} 
+		&ps_{
+			&rl{position:relative}		
+			&ab{position:absolute} 
+			&st{position:static}
+			&fx{position:fixed}
+		}
+	
+	
+		&ds_{
+			&block{display: block}
+			&inbl{display: inline-block} 
+			&in{display: inline}
+			&table{display: table}
+			&cell{display: table-cell}
+		}
+	
+		&fl_{
+			&lt{float:left}
+			&rt{float:right}
+			&Clt > *{float:left}
+			&Crt > *{float:left}
+		}
+	
+		&ft_{
+		&cfff{color:#fff}
+		&c000{color:#000}
+		&c333{color:#333}
+		&c555{color:#555}
+		&c666{color:#666}
+		&c777{color:#777}
+		&c999{color:#999}
+		&c868686{color:#868686}
+	
+		&sz10{font-size: 10px}
+		&sz11{font-size: 11px}
+		&sz12{font-size: 12px}
+		&sz13{font-size: 13px}
+		&sz14{font-size: 14px}
+		&sz15{font-size: 15px}
+		&sz16{font-size: 16px}
+		&sz17{font-size: 17px}
+		&sz18{font-size: 18px}
+		&sz19{font-size: 19px}
+		&sz20{font-size: 20px}
+	
+		&szS{font-size:0.6em}
+		&szSM{font-size:0.8em}
+		&szM{font-size:1.2em}
+		&szMB{font-size:1.4em}
+		&szB{font-size:1.6em}
+		&sm{font-size:0.8em}
+		&md{font-size:1.2em}
+		&bg{font-size:1.4em}
+		&xl{font-size:1.6em}
+	
+		&ct{text-align:center}
+		&lt{text-align:left}
+		&rt{text-align:right}
+	
+		&wh100{font-weight:100}
+		&wh200{font-weight:200}
+		&wh300{font-weight:300}
+		&wh400{font-weight:400}
+		&wh500{font-weight:500}
+		&wh600{font-weight:600}
+		&wh700{font-weight:700}
+		&wh900{font-weight:900}
 		
+		}
 		
-				&ds_{
-					&block{display: block}
-					&inbl{display: inline-block} 
-					&in{display: inline}
-					&table{display: table}
-					&cell{display: table-cell}
-				}
-		
-				&fl_{
-					&lt{float:left}
-					&rt{float:right}
-					&Clt > *{float:left}
-					&Crt > *{float:left}
-				}
-		
-				&ft_{
-				&cfff{color:#fff}
-				&c000{color:#000}
-				&c333{color:#333}
-				&c555{color:#555}
-				&c666{color:#666}
-				&c777{color:#777}
-				&c999{color:#999}
-				&c868686{color:#868686}
-		
-				&sz10{font-size: 10px}
-				&sz11{font-size: 11px}
-				&sz12{font-size: 12px}
-				&sz13{font-size: 13px}
-				&sz14{font-size: 14px}
-				&sz15{font-size: 15px}
-				&sz16{font-size: 16px}
-				&sz17{font-size: 17px}
-				&sz18{font-size: 18px}
-				&sz19{font-size: 19px}
-				&sz20{font-size: 20px}
-		
-				&szS{font-size:0.6em}
-				&szSM{font-size:0.8em}
-				&szM{font-size:1.2em}
-				&szMB{font-size:1.4em}
-				&szB{font-size:1.6em}
-				&sm{font-size:0.8em}
-				&md{font-size:1.2em}
-				&bg{font-size:1.4em}
-				&xl{font-size:1.6em}
-		
-				&ct{text-align:center}
-				&lt{text-align:left}
-				&rt{text-align:right}
-		
-				&wh100{font-weight:100}
-				&wh200{font-weight:200}
-				&wh300{font-weight:300}
-				&wh400{font-weight:400}
-				&wh500{font-weight:500}
-				&wh600{font-weight:600}
-				&wh700{font-weight:700}
-				&wh900{font-weight:900}
-				
-				}
-				
-				&vt_md{vertical-align:middle} &vt_top{vertical-align:top} &vt_btm{vertical-align:bottom}
-					
-				&lh_10{line-height:1.0}&lh_11{line-height:1.1}&lh_12{line-height:1.2}&lh_13{line-height:1.3}&lh_14{line-height:1.4}&lh_15{line-height:1.5}&lh_16{line-height:1.6}&lh_17{line-height:1.7}&lh_18{line-height:1.8}&lh_19{line-height:1.9}&lh_20{line-height:2.0}
-		
-				&bg_{
-					&cfff{background:#fff}
-					&cf9{background:#f9f9f9}
-					&cd9{background:#d9d9d9}
-					&c333{background:#333}
-					&c000{background:#000}
-				}
-		
-		
-					
-				&pd_{
-					@for $i from 1 through 10{
-						&lt{padding-left:10px * $i}
-						&rt{padding-right:10px * $i}
-						&top{padding-right:10px * $i}
-						&btn{padding-bottom:10px * $i}
-					}  
-				}
-		
-				&mg_{
-					@for $i from 1 through 10{
-						&lt{margin-left:10px * $i}
-						&rt{margin-right:10px * $i}
-						&top{margin-right:10px * $i}
-						&btn{margin-bottom:10px * $i}
-					}  
-				}
-		
-				&ly_{
-					@for $i from 2 through 16{
-						&#{$i} > *{float: left;width:calc( 100% / $i)}
-						&#{$i}:after{@include clear}
-					}
-				}
-		
-				&ht_ct{display:table}
-				&ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}
+		&vt_md{vertical-align:middle} &vt_top{vertical-align:top} &vt_btm{vertical-align:bottom}
+			
+		&lh_10{line-height:1.0}&lh_11{line-height:1.1}&lh_12{line-height:1.2}&lh_13{line-height:1.3}&lh_14{line-height:1.4}&lh_15{line-height:1.5}&lh_16{line-height:1.6}&lh_17{line-height:1.7}&lh_18{line-height:1.8}&lh_19{line-height:1.9}&lh_20{line-height:2.0}
+	
+		&bg_{
+			&cfff{background:#fff}
+			&cf9{background:#f9f9f9}
+			&cd9{background:#d9d9d9}
+			&c333{background:#333}
+			&c000{background:#000}
+		}
+	
+	
+			
+		&pd_{
+			@for $i from 1 through 10{
+				&lt{padding-left:10px * $i}
+				&rt{padding-right:10px * $i}
+				&top{padding-right:10px * $i}
+				&btn{padding-bottom:10px * $i}
+			}  
+		}
+	
+		&mg_{
+			@for $i from 1 through 10{
+				&lt{margin-left:10px * $i}
+				&rt{margin-right:10px * $i}
+				&top{margin-right:10px * $i}
+				&btn{margin-bottom:10px * $i}
+			}  
+		}
+	
+		&ly_{
+			@for $i from 2 through 16{
+				&#{$i} > *{float: left;width:calc( 100% / $i)}
+				&#{$i}:after{@include clear}
 			}
 		}
-    }
-    // If the key doesn't exist in the map
-    @else {
-        @warn "Unfortunately, no value could be retrieved from `#{$device}`. "
-        + "Available breakpoints are: #{map-keys($devices)}.";
-    }
-}
-
-
-body {
-    background: white;
-    @include respond-to('M') {
-        background: pink;
-    }
-    @include respond-to('Tab') {
-        background: orange;
-    }
-    @include respond-to('PC') {
-        background: blue;
-	}
-	@include respond-to('TM') {
-        background: blue;
-	}
-	@include respond-to('PT') {
-        background: blue;
-    }
-}
-
-
-body{
-	@include device-to('M') {
-	}
-	@include device-to('Tab') {
-	}
-	@include device-to('PC') {
-	}
-	@include device-to('TM') {
-	}
-	@include device-to('PT') {
+	
+		&ht_ct{display:table}
+		&ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}
 	}
 }
+
+
+
+
 /*반응형 스타일*/
 /*.R_wd_area01{width:1200px;margin:0 auto}.R_mg_area01{width:1200px;margin:0 auto}.R_pd_area01{width:1200px;margin:0 auto}*/
 
@@ -431,10 +420,12 @@ body{
 .R_tm_table{display:none}
  
 /*Javacript 연통 클래스*/
-.J_N_C{}
-.J_C{}
-.J_slider{}
-.J_modal{}
+.J_{
+	&N_C{}
+	&_C{}
+	&_slider{}
+	&_modal{}	
+}
 
 
 /*사용자 지정 클래스*/

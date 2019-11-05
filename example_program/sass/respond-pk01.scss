@@ -1,0 +1,113 @@
+&wd_full {width:100%}
+		&ht_full {height:100%} 
+		&ps_{
+			&rl{position:relative}		
+			&ab{position:absolute} 
+			&st{position:static}
+			&fx{position:fixed}
+		}
+	
+	
+		&ds_{
+			&block{display: block}
+			&inbl{display: inline-block} 
+			&in{display: inline}
+			&table{display: table}
+			&cell{display: table-cell}
+		}
+	
+		&fl_{
+			&lt{float:left}
+			&rt{float:right}
+			&Clt > *{float:left}
+			&Crt > *{float:left}
+		}
+	
+		&ft_{
+		&cfff{color:#fff}
+		&c000{color:#000}
+		&c333{color:#333}
+		&c555{color:#555}
+		&c666{color:#666}
+		&c777{color:#777}
+		&c999{color:#999}
+		&c868686{color:#868686}
+	
+		&sz10{font-size: 10px}
+		&sz11{font-size: 11px}
+		&sz12{font-size: 12px}
+		&sz13{font-size: 13px}
+		&sz14{font-size: 14px}
+		&sz15{font-size: 15px}
+		&sz16{font-size: 16px}
+		&sz17{font-size: 17px}
+		&sz18{font-size: 18px}
+		&sz19{font-size: 19px}
+		&sz20{font-size: 20px}
+	
+		&szS{font-size:0.6em}
+		&szSM{font-size:0.8em}
+		&szM{font-size:1.2em}
+		&szMB{font-size:1.4em}
+		&szB{font-size:1.6em}
+		&sm{font-size:0.8em}
+		&md{font-size:1.2em}
+		&bg{font-size:1.4em}
+		&xl{font-size:1.6em}
+	
+		&ct{text-align:center}
+		&lt{text-align:left}
+		&rt{text-align:right}
+	
+		&wh100{font-weight:100}
+		&wh200{font-weight:200}
+		&wh300{font-weight:300}
+		&wh400{font-weight:400}
+		&wh500{font-weight:500}
+		&wh600{font-weight:600}
+		&wh700{font-weight:700}
+		&wh900{font-weight:900}
+		
+		}
+		
+		&vt_md{vertical-align:middle} &vt_top{vertical-align:top} &vt_btm{vertical-align:bottom}
+			
+		&lh_10{line-height:1.0}&lh_11{line-height:1.1}&lh_12{line-height:1.2}&lh_13{line-height:1.3}&lh_14{line-height:1.4}&lh_15{line-height:1.5}&lh_16{line-height:1.6}&lh_17{line-height:1.7}&lh_18{line-height:1.8}&lh_19{line-height:1.9}&lh_20{line-height:2.0}
+	
+		&bg_{
+			&cfff{background:#fff}
+			&cf9{background:#f9f9f9}
+			&cd9{background:#d9d9d9}
+			&c333{background:#333}
+			&c000{background:#000}
+		}
+	
+	
+			
+		&pd_{
+			@for $i from 1 through 10{
+				&lt{padding-left:10px * $i}
+				&rt{padding-right:10px * $i}
+				&top{padding-right:10px * $i}
+				&btn{padding-bottom:10px * $i}
+			}  
+		}
+	
+		&mg_{
+			@for $i from 1 through 10{
+				&lt{margin-left:10px * $i}
+				&rt{margin-right:10px * $i}
+				&top{margin-right:10px * $i}
+				&btn{margin-bottom:10px * $i}
+			}  
+		}
+	
+		&ly_{
+			@for $i from 2 through 16{
+				&#{$i} > *{float: left;width:calc( 100% / $i)}
+				&#{$i}:after{@include clear}
+			}
+		}
+	
+		&ht_ct{display:table}
+		&ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}

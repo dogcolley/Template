@@ -28,8 +28,8 @@ body {
 .watch {
   width: 370px;
   height: 370px;
-  background: black;
-  border-radius: 50%;
+  background: url("./img/bg-analog-clock.png")no-repeat center;
+  /*border-radius: 50%;*/
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -44,10 +44,10 @@ body {
           align-items: center;
   position: relative;
   overflow: hidden;
-  border: 7px solid #111;
+  border: 0px solid #111;
 }
 .watch--hour {
-  width: 5px;
+  width: 3px;
   height: 80px;
   border-radius: 10px;
   -webkit-transform-origin: center 65px;
@@ -60,7 +60,7 @@ body {
   top: calc(50% - 65px);
 }
 .watch--min {
-  width: 5px;
+  width: 3px;
   height: 110px;
   border-radius: 10px;
   -webkit-transform-origin: center 90px;
@@ -74,7 +74,7 @@ body {
 }
 .watch--sec {
   width: 2px;
-  height: 260px;
+  height: 150px;
   border-radius: 10px;
   -webkit-transform-origin: center 100px;
           transform-origin: center 100px;
@@ -89,11 +89,11 @@ body {
   position: absolute;
   width: 10px;
   height: 10px;
-  background: fff;
+  background: none;
   border-radius: 50%;
   left: calc(50% - 7px);
   top: calc(50% - 7px);
-  border: 2px solid #ddd;
+  border: 2px solid rgb(31, 250, 166);
 }
 
 .day {

@@ -1,0 +1,136 @@
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>common 팝업</title>
+	<style type="text/css">
+		body, html{height:100%}
+		#wrap{position:relative; height:5000px}
+		.btn_wrap{position:fixed}
+		.layer{display:none; position:absolute; top:0; left:0; width:100%; height:100%}
+		.layer .bg{position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.7)}
+		.layer .pop_cnt{position:absolute; top:0; left:calc(50% - 250px); width:500px; height:300px; font-size:25px; line-height:300px; font-weight:700; text-align:center; background:#fff}
+
+		#popup1 .pop_cnt{top: 50px}
+
+		#popup2, #popup3{position:fixed}
+		#popup2 .pop_cnt, #popup3 .pop_cnt{top:calc(50% - 150px)}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+	<script>
+		// 중복방지
+		function eventIng(){}
+		eventIng.prototype = false;
+		// 중복방지
+
+		var openPop =  function(idName, fix, today){
+			// 오늘하루보지않기
+			if(today && getCookie(idName)=='done'){
+				return false;
+			}
+			// 변수
+			var	pop = document.getElementById(idName);
+					bodyStyle = document.body.style;
+					scroll = document.documentElement.scrollTop;
+					popCnt = pop.querySelector('.pop_cnt');
+					popBg = pop.querySelector('.bg');
+					basicTop = parseInt(window.getComputedStyle(popCnt).top);
+			// 변수
+			if(eventIng.prototype==false){
+				eventIng.prototype=true;
+				// SHOW
+				pop.style.display = 'block';
+				setTimeout(function(){
+					pop.className += ' active';
+				}, 400);
+				// SHOW
+				// 스크롤 X
+				if(fix){	
+					bodyStyle.height = '100%';
+					bodyStyle.overflow = 'hidden';
+				} else{
+					popCnt.style.top = scroll+basicTop+'px';
+				}
+				// 스크롤 X
+				// 모션
+				var motion = popCnt.offsetTop;
+				TweenMax.from(popCnt, 0.6, {top:motion-50, opacity:0, onComplete:function(){
+					eventIng.prototype=false;
+				}});
+				TweenMax.from(popBg, 0.2, {opacity:0});
+				// 모션
+			}
+		}
+
+		var closePop =  function(idName, fix, today){
+			if(today){// 오늘하루보지않기
+				setCookie(idName, 'done', 1);
+			}
+			if(eventIng.prototype==false){
+				eventIng.prototype=true;
+				var pop = document.getElementById(idName);
+				var popCnt = pop.querySelector('.pop_cnt');
+				var popCnt = pop.querySelector('.pop_cnt');
+				var popBg = pop.querySelector('.bg');
+							
+				// HIDE
+				pop.className = pop.className.replace(' active', '');
+				setTimeout(function(){
+					pop.style.display = 'none';
+				}, 400);
+				// HIDE
+
+				if(fix){//스크롤 x
+					document.body.removeAttribute('style');
+				}
+				// 모션
+				var motion = popCnt.offsetTop;
+				TweenMax.to(popCnt, 0.6, {top:motion-50, opacity:0, onComplete:function(){
+					popCnt.removeAttribute('style');
+					eventIng.prototype=false;
+				}});
+				TweenMax.to(popBg, 0.6, {opacity:0, onComplete:function(){
+					popBg.removeAttribute('style');
+				}});
+				// 모션
+			}
+			
+		}
+
+		var getCookie = function(name){
+			var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+			return value? value[2] : null;
+		}
+		var setCookie = function(name, value, expiredays){
+			var todayDate = new Date(); 
+			todayDate.setDate( todayDate.getDate() + expiredays );
+			document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+		}
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div class="btn_wrap">
+			<button type="button" onclick="openPop('popup1')">팝업1</button>
+			<button type="button" onclick="openPop('popup2', true)">팝업2</button>
+			<button type="button" onclick="openPop('popup3', true, true)">팝업3</button>
+		</div>
+		
+		<div id="popup1" class="layer">
+			<div class="bg" onclick="closePop('popup1')"></div>
+			<div class="pop_cnt">팝업1</div>
+		</div>
+		
+		<div id="popup2" class="layer">
+			<div class="bg" onclick="closePop('popup2', true)"></div>
+			<div class="pop_cnt">팝업2</div>
+		</div>
+		
+		<div id="popup3" class="layer">
+			<div class="bg" onclick="closePop('popup3', true, true)"></div>
+			<div class="pop_cnt">팝업3</div>
+		</div>
+	</div>
+</body>
+</html>

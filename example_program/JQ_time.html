@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="kr">
+	<head>
+	<meta charset="UTF-8">
+	<title>http://www.blueb.co.kr</title>
+
+<style rel="stylesheet">
+html, body {
+  height: 100%;
+}
+
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #313131;
+}
+
+.watch {
+  width: 370px;
+  height: 370px;
+  background: black;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 7px solid #111;
+}
+.watch--hour {
+  width: 5px;
+  height: 80px;
+  border-radius: 10px;
+  -webkit-transform-origin: center 65px;
+          transform-origin: center 65px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  position: absolute;
+  background: #fff;
+  left: calc(50% - 2.5px);
+  top: calc(50% - 65px);
+}
+.watch--min {
+  width: 5px;
+  height: 110px;
+  border-radius: 10px;
+  -webkit-transform-origin: center 90px;
+          transform-origin: center 90px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  position: absolute;
+  background: #fff;
+  left: calc(50% - 2.5px);
+  top: calc(50% - 90px);
+}
+.watch--sec {
+  width: 2px;
+  height: 260px;
+  border-radius: 10px;
+  -webkit-transform-origin: center 100px;
+          transform-origin: center 100px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  position: absolute;
+  background: rgb(31, 250, 166);
+  left: calc(50% - 2.5px);
+  top: calc(50% - 100px);
+}
+.watch--center {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: fff;
+  border-radius: 50%;
+  left: calc(50% - 7px);
+  top: calc(50% - 7px);
+  border: 2px solid #ddd;
+}
+
+.day {
+  width: 220px;
+  height: 220px;
+  position: absolute;
+  background: #789abc;
+  left: 0;
+  top: 0;
+}
+.day--sun {
+  width: 60px;
+  height: 60px;
+  background: yellow;
+  border-radius: 50%;
+  position: absolute;
+  left: 60px;
+  top: 35px;
+}
+.day--clouds {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #ddd;
+  border-radius: 50%;
+  left: 110px;
+  top: 35px;
+}
+.day--clouds::after {
+  content: "";
+  width: 40px;
+  position: absolute;
+  height: 40px;
+  background: #ddd;
+  left: 30px;
+  top: 10px;
+  border-radius: 50%;
+}
+.day--clouds::before {
+  content: "";
+  width: 25px;
+  position: absolute;
+  height: 25px;
+  background: #ddd;
+  left: -10px;
+  top: 20px;
+  border-radius: 50%;
+}
+.day--ground {
+  position: absolute;
+  width: 220px;
+  height: 80px;
+  background: green;
+  bottom: 0;
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="watch">
+  <div class="watch--inner"></div>
+  <!--
+  <div class="watch--day day">
+    <div class="day--sun"></div>
+    <div class="day--clouds"></div>
+    <div class="day--ground"></div>
+  </div>
+  -->
+  <div class="watch--night night">
+    <div class="night--moon"></div>
+    <div class="night--clouds"></div>
+    <div class="night--ground"></div>
+  </div>
+  <div class="watch--hour"></div>
+  <div class="watch--min"></div>
+  <div class="watch--sec"></div>
+  <div class="watch--center"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	var seconds = new Date().getSeconds(),
+			minutes = new Date().getMinutes(),
+			hours = new Date().getHours(),
+			sdegree = seconds * 6,
+			mdegree = minutes * 6,
+			hdegree = hours * 30;
+		
+	$('.watch--sec').css('transform', 'rotate(' + sdegree + 'deg)');
+	$('.watch--min').css('transform', 'rotate(' + mdegree + 'deg)');
+	$('.watch--hour').css('transform', 'rotate(' + hdegree + 'deg)');
+	
+	setInterval(function(){
+	var seconds = new Date().getSeconds(),
+			minutes = new Date().getMinutes(),
+			hours = new Date().getHours(),
+			sdegree = seconds * 6,
+			mdegree = minutes * 6,
+			hdegree = hours * 30;
+		$('.watch--sec').css('transform', 'rotate(' + sdegree + 'deg)');
+		$('.watch--min').css('transform', 'rotate(' + mdegree + 'deg)');
+		$('.watch--hour').css('transform', 'rotate(' + hdegree + 'deg)');
+	}, 1000)
+})
+</script>
+</body>
+</html>

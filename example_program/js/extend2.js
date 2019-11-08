@@ -221,7 +221,7 @@ $.fn.extend({
 				clearInterval(auto_fn);
 				set_loop_mode = false;
 				set.find('.j_auto').removeClass('on');
-				$('.j_stop').addClass('on');
+				set.find('.j_stop').addClass('on');
 			}
 		});
 
@@ -231,7 +231,7 @@ $.fn.extend({
 				clearInterval(auto_fn);
 				set_loop_mode = false;
 				set.find('.j_auto').removeClass('on');
-				$('.j_stop').addClass('on');
+				set.find('.j_stop').addClass('on');
 			}
 		});
 			

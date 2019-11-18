@@ -16,7 +16,7 @@
         }
 
         .event-time2 {
-            color: #999
+            color: #555;
         }
 
         #calendar {
@@ -38,8 +38,8 @@
         #calendar li {
             display: block;
             float: left;
-            width: 14.342%;
-            padding: 5px;
+            width: calc(100% / 7);
+            padding: 5px 10px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             margin-right: -1px;
@@ -48,10 +48,10 @@
 
         #calendar ul.weekdays {
             height: 60px;
-            background: #0051a4;
         }
 
         #calendar ul.weekdays li {
+            background: #0051a4;;
             text-align: center;
             text-transform: uppercase;
             line-height: 60px;
@@ -62,7 +62,7 @@
         }
 
         #calendar .days li {
-            height: 160px;
+            height: 130px;
         }
 
         #calendar .days li:hover {
@@ -76,6 +76,7 @@
             color: #000;
             width: 20px;
             padding: 5px;
+            padding-left:0;
             height: 20px;
             line-height: 20px;
             border-radius: 50%;
@@ -116,7 +117,7 @@
         .times {
             display: inline-block;
             color: #fff;
-            padding: 3px 5px
+            padding: 3px 9px
         }
 
         .event-time .times {
@@ -176,14 +177,21 @@
             #calendar .date {
                 float: none;
             }
+            #calendar .event{
+                float:left;
+                clear:none;
+                padding-left:0;
+                margin-right:10px;
+            }
+            
         }
 
     </style>
 </head>
 
-<body>
+<body style="height:1500px">
 
-    <div style="width:1250px;margin:0 auto">
+    <div style="width:900px;margin:0 auto">
         <div id="calendar-wrap">
             <header>
                 <h1 style="display: inline-block">2019년 12월</h1>
@@ -192,13 +200,13 @@
             </header>
             <div id="calendar">
                 <ul class="weekdays">
+                    <li>일</li>
                     <li>월</li>
                     <li>화</li>
                     <li>수</li>
                     <li>목</li>
                     <li>금</li>
                     <li>토</li>
-                    <li>일</li>
                 </ul>
 
                 <!-- Days from previous month -->
@@ -210,22 +218,17 @@
                     <li class="day other-month">
                         <div class="date">28</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -233,22 +236,17 @@
                     <li class="day other-month">
                         <div class="date">29</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -256,22 +254,17 @@
                     <li class="day other-month">
                         <div class="date">30</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -279,22 +272,17 @@
                     <li class="day other-month">
                         <div class="date ">31</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -305,48 +293,23 @@
                     <li class="day">
                         <div class="date">1</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
                     </li>
                     <li class="day">
                         <div class="date satur_day">2</div>
-                        <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
-                                예약완료
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
-                                예약완료
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
-                                예약가능
-                            </div>
-                        </div>
                     </li>
                 </ul>
 
@@ -355,46 +318,21 @@
                 <ul class="days">
                     <li class="day">
                         <div class="date sun_day">3</div>
-                        <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
-                                예약완료
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
-                                예약완료
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
-                                예약가능
-                            </div>
-                        </div>
                     </li>
                     <li class="day">
                         <div class="date">4</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -402,22 +340,17 @@
                     <li class="day">
                         <div class="date">5</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -425,22 +358,17 @@
                     <li class="day">
                         <div class="date">6</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -448,22 +376,17 @@
                     <li class="day">
                         <div class="date">7</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -471,38 +394,23 @@
                     <li class="day">
                         <div class="date">8</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
                     </li>
                     <li class="day">
                         <div class="date satur_day">9</div>
-                        <div class="event">
-                            <div class="event-time event-time2"><span class="times">10:30</span>
-                                예약완료
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time2"><span class="times">13:30</span>
-                                예약완료
-                            </div>
-                        </div>
                     </li>
                 </ul>
 
@@ -515,22 +423,17 @@
                     <li class="day">
                         <div class="date">11</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -538,22 +441,17 @@
                     <li class="day">
                         <div class="date">12</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -561,22 +459,17 @@
                     <li class="day">
                         <div class="date">13</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -584,22 +477,17 @@
                     <li class="day">
                         <div class="date">14</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -607,38 +495,23 @@
                     <li class="day">
                         <div class="date">15</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
                     </li>
                     <li class="day">
                         <div class="date satur_day">16</div>
-                        <div class="event">
-                            <div class="event-time event-time2"><span class="times">10:30</span>
-                                예약완료
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time2"><span class="times">13:30</span>
-                                예약완료
-                            </div>
-                        </div>
                     </li>
                 </ul>
 
@@ -651,22 +524,17 @@
                     <li class="day">
                         <div class="date">18</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -674,22 +542,17 @@
                     <li class="day">
                         <div class="date">19</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -697,22 +560,17 @@
                     <li class="day">
                         <div class="date">20</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -720,22 +578,17 @@
                     <li class="day">
                         <div class="date">21</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -743,38 +596,23 @@
                     <li class="day">
                         <div class="date">22</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
                     </li>
                     <li class="day">
                         <div class="date satur_day">23</div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">10:30</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">13:30</span>
-                                예약가능
-                            </div>
-                        </div>
                     </li>
                 </ul>
 
@@ -787,22 +625,17 @@
                     <li class="day">
                         <div class="date">25</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -810,22 +643,17 @@
                     <li class="day">
                         <div class="date">26</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -833,22 +661,17 @@
                     <li class="day">
                         <div class="date ">27</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -856,22 +679,17 @@
                     <li class="day">
                         <div class="date">28</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -879,38 +697,23 @@
                     <li class="day">
                         <div class="date">29</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
                     </li>
                     <li class="day">
                         <div class="date satur_day">30</div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">10:30</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">13:30</span>
-                                예약가능
-                            </div>
-                        </div>
                     </li>
                 </ul>
 
@@ -923,22 +726,17 @@
                     <li class="day other-month">
                         <div class="date">1</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -946,22 +744,17 @@
                     <li class="day other-month">
                         <div class="date">2</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -969,22 +762,17 @@
                     <li class="day other-month">
                         <div class="date">3</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -992,22 +780,17 @@
                     <li class="day other-month">
                         <div class="date">4</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
@@ -1015,38 +798,23 @@
                     <li class="day other-month">
                         <div class="date">5</div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">10 시</span>
+                            <div class="event-time event-time2"><span class="times">1회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time2"><span class="times">11 시</span>
+                            <div class="event-time event-time2"><span class="times">2회</span>
                                 예약완료
                             </div>
                         </div>
                         <div class="event">
-                            <div class="event-time event-time"><span class="times">13 시</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">14 시</span>
+                            <div class="event-time event-time"><span class="times">3회</span>
                                 예약가능
                             </div>
                         </div>
                     </li>
                     <li class="day other-month">
                         <div class="date satur_day">6</div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">10:30</span>
-                                예약가능
-                            </div>
-                        </div>
-                        <div class="event">
-                            <div class="event-time event-time"><span class="times">13:30</span>
-                                예약가능
-                            </div>
-                        </div>
                     </li>
                 </ul>
 

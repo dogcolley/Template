@@ -1,0 +1,24 @@
+.Tg_a_bloc * {
+  display: block;
+}
+
+.Tg_a_inbl * {
+  display: inline-block;
+}
+
+.Tg_a_in * {
+  display: inline;
+}
+
+.Tg_a_table * {
+  display: table;
+}
+
+.Tg_a_cell * {
+  display: table-cell;
+}
+
+.Tg_a_non * {
+  display: none;
+}
+/*# sourceMappingURL=jpk01.css.map */

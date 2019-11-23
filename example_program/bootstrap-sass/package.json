@@ -25,6 +25,6 @@
   "devDependencies": {
     "node-sass": "~1.0",
     "mincer": "~1.1",
-    "ejs": "~1.0"
+    "ejs": "~2.7"
   }
 }

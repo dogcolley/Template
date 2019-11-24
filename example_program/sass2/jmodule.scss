@@ -9,7 +9,6 @@
 
    
 /* J-style and scss style
-    No use Sass because sever base is not setting ruby And node's React libray
 
 	guide : 가이드  해당스타일은 부트스트랩과같은 베이스, css와 사용자 정의 css를 합친 스타일입니다.  
             인스턴트 클레스, 고정형 클레스의 복합 조합입니다. 
@@ -17,18 +16,14 @@
             Instant Class, a combination of fixed and fixed casts.)
 
 		1.첫번째 이니셜 
-			T = 테마 (Theme style) : 초기작성자가 수정하는 클레스로 버그왜 추가나 변경은 하지않는것을 추천드립니다.
-			R = 반응형 (사용하지 않을시에 주석처리 : Annotate when not in use)
+			T = 테마 (Theme style) : 모든 디바이스에서
 			U = 사용자 지정 (user style)
 			J = 자바스크립트용 (javascript class)
-			S = 샵전용 (shop class)
 			PC = 피시버전용 (class for PC)
 			Tab = 테블릿전용  (class for Tab)
 			M = 모바일 전용(class for Mobile)
-			
-			+sass
-			S : scss에서 사용하는 변수들
-			C : scss의 style속성 변수들
+			PT = 피시 and 테블릿 (class for PC , Tab )
+			TM = 모바일 and 테블릿 (class for Tab , mobile )
 
 		2.두번째 단축어
 			ft = 폰트(font)
@@ -46,14 +41,15 @@
 			gd = 가이드 (guide) 
 			ly = 레이아웃(layout) 가로사이즈 제어
 		
-		3.참조어
-			pc = 피시버전 (VER_PC)
-			t = 테블릿버전 (VER_TAB)
-			pt = 피시,테블릿버전 (VER_PC && VER_TAB)
-			tm = 테블릿,모바일 (VER_TAB && VER MOBILE)
-			m = 모바일버전 (VER_MOBILE)
-			c = 공통 (common)
-			full = 100%
+		3.세번째 단축어
+			lf = 레드프(left)
+			rt = 라이트(right) 
+			top = 탑 (top)
+			btm = 바텀(btm)
+			wd = 좌우(left, right)
+			ht = 상하(height, width)
+			rem = rem(rem)
+		
 */
 
 /* 
@@ -132,14 +128,8 @@ unitless($number) : 숫자에 단위가 있는지 여부를 반환합니다.
 comparable($number1, $number2) : 두 개의 숫자가 연산 가능한지 여부를 반환합니다.
 */
 
-/*고정 공통 클래스*/
-/*
-$c_wd_full = width:
-$s_area {left:auto;righ}
-*/
-
 /*sass 변수 모음*/
-$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
+//$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
 $S_M: 640px; 
 $S_T: 1024px;
 $S_W: 1200;
@@ -197,7 +187,6 @@ $cl_red : #e10000;
 $cl_red2 : #d60c00;
 $cl_black : #000;   
 $cl_gray : #767676;   
-
 $t_cl10	: #000;
 $t_cl11 : #ddd;
 
@@ -258,6 +247,7 @@ input[type="text"]{padding-left:10px;padding-right:10px
 .text_over{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
 #skipNav{position:absolute;left:-9999px;text-align:center;width:100%;height:90px;background:rgba(0,0,0,0.8);color:#fff;font-size:30px;text-align:center;width:100%;line-height:90px;z-index:100}
 #skipNav:focus{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
 /*==== sir.kr common style -start ====*/
   
 /*pop*/
@@ -287,12 +277,16 @@ input[type="text"]{padding-left:10px;padding-right:10px
 	//a:focus,a:hover {text-decoration:none} 
 }
 /*==== sir.kr common style -end ====*/ 
+
+/*
 @import url("module/jpk01.css");
 @import url("module/jpk01.css");
+*/
 
 /*==== jsh bt-style -start ====*/
+$j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button'); 
 
-@mixin responde-pk01 {
+@mixin responde-pk01($device) {
 	    &wd{
             &_full {width:100%}
             @for $i from 1 through 100{
@@ -342,31 +336,19 @@ input[type="text"]{padding-left:10px;padding-right:10px
 			&lt{float:left}
 			&rt{float:right}
 			&Clt > *{float:left}
+			&non{float:none}
 			&Crt > *{float:left}
 		}
 	
 		&ft_{
-	
 			@for $i from 10 through 50{
-				&sz#{$i}{font-size:$i+px}
+				&sz#{$i}, &sz#{$i}_span span, &sz#{$i}_a a,&sz#{$i}_strong strong,&sz#{$i}_em em,&sz#{$i}_p p{font-size:$i+px}
 			}  
 		
-			&szS{font-size:0.6rem}
-			&szSM{font-size:0.8rem}
-			&szSSM{font-size:0.9rem}
-			&szMM{font-size:1.1rem}
-			&szM{font-size:1.2rem}
-			&szMBB{font-size:1.3rem}
-			&szMB{font-size:1.4rem}
-			&szB{font-size:1.6rem}
-			&sm{font-size:0.8rem}
-			&md{font-size:1.2rem}
-			&bg{font-size:1.4rem}
-			&xl{font-size:1.6rem}
 		
 			@for $i from 1 through 20{
-				&rem#{$i}{font-size:($i*0.1)+rem}
-				&rem#{$i}hf{font-size:(($i*0.1)+0.05)+rem}
+				&rem#{$i},&rem#{$i}_span span,&rem#{$i}_a a,&rem#{$i}_strong strong ,&rem#{$i}_em em ,&rem#{$i}_p p , &rem#{$i}_div div{font-size:($i*0.1)+rem}
+				&rem#{$i}hf, &rem#{$i}hf_span span , &rem#{$i}hf_a a ,&rem#{$i}hf_strong strong, &rem#{$i}hf_em em, &rem#{$i}hf_p p, &rem#{$i}hf_div div{font-size:(($i*0.1)+0.05)+rem}
 			}  
 
 			&ct{text-align:center}
@@ -384,7 +366,7 @@ input[type="text"]{padding-left:10px;padding-right:10px
             @for $i from 0 through 20{
 				&_#{$i+10}{line-height:1+(0.1*$i)}
 			}
-			@for $i from 0 through 30{
+			@for $i from 0 through 50{
 				&_px#{$i+10}{line-height:(10+$i)+px}
 			}
 		}
@@ -434,7 +416,7 @@ input[type="text"]{padding-left:10px;padding-right:10px
 				&btm#{$i*5}{margin-bottom:5px * $i}
 				&wd#{$i*5}{margin-left:5px * $i;margin-right:5px * $i}
 				&ht#{$i*5}{margin-bottom:5px * $i;margin-top:5px * $i}
-				&all#{$i*5}{padding:5px * $i}
+				&all#{$i*5}{margin:5px * $i}
 				
 				&lt#{$i*5}_cd > *{margin-left:5px * $i}
 				&rt#{$i*5}_cd > *{margin-right:5px * $i}
@@ -442,7 +424,7 @@ input[type="text"]{padding-left:10px;padding-right:10px
 				&btm#{$i*5}_cd > *{margin-bottom:5px * $i}
 				&wd#{$i*5}_cd > *{margin-left:5px * $i;margin-right:5px * $i}
 				&ht#{$i*5}_cd > *{margin-bottom:5px * $i;margin-top:5px * $i}
-                &all#{$i*5}_cd > *{padding:5px * $i}
+                &all#{$i*5}_cd > *{margin:5px * $i}
 			}   
 			@for $i from 1 through 100{
 				&Plt#{$i}{margin-left:$i+%}
@@ -451,33 +433,28 @@ input[type="text"]{padding-left:10px;padding-right:10px
 				&Pbtm#{$i}{margin-bottom:$i+%}
 				&Pwd#{$i}{margin-left:$i+%;margin-right:$i+%}
 				&Pht#{$i}{margin-bottom:$i+%;margin-top:$i+%}
-				&Pall#{$i}{padding:$i+%}
-				
-				&Plt#{$i}_cd > *{margin-left:$i+%}
+				&Pall#{$i}{margin:$i+%}
+					
+				&Plt#{$i}cd > *{margin-left:$i+%}
 				&Prt#{$i}_cd > *{margin-right:$i+%}
 				&Ptop#{$i}_cd > *{margin-top:$i+%} 
 				&Pbtm#{$i}_cd > *{margin-bottom:$i+%}
 				&Pwd#{$i}_cd > *{margin-left:$i+%;margin-right:$i+%}
 				&Pht#{$i}_cd > *{margin-bottom:$i+%;margin-top:$i+%}
-                &Pall#{$i}_cd > *{padding:$i+%}
+				&Pall#{$i}_cd > *{margin:$i+%}
+				}
 			}
-		}
-	
-		&ly_{  
-			@for $i from 2 through 16{
-				&#{$i} > *{float: left;width:calc( 100% / #{$i})}
-				&#{$i}:after{@include clear} 
+		
+			&ly_ , {  
+				@for $i from 2 through 16{
+					&#{$i} > *{float: left;width:calc( 100% / #{$i})}
+					&#{$i}:after{@include clear} 
+				}
 			}
-		}
-	
-		&ht_ct{display:table}
-		&ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}
-		&fl_non{float:none}
-}
-
-.Tg_{
-	@include responde-pk01;
-}
+		
+			&ht_ct{display:table}
+			&ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}
+	}
 
 .U_{
 	&bg_{
@@ -503,27 +480,26 @@ input[type="text"]{padding-left:10px;padding-right:10px
 
 }
 
-@each $device_val in $j_device  {
-	#{$device_val}{
-		@if ($device_val == '.M_' or $device_val == '.TM_'){
-			@include respond-to(handhelds) { 
-				@include responde-pk01;
-			} 
-		}
-		@if($device_val == '.TM_'or $device_val == '.TAB_' or $device_val == '.PT_'){
-			@include respond-to(medium-screens) {
-				@include responde-pk01;
-			}
-		}
-		@if($device_val == '.PC_' or $device_val == '.PT_')  {
-			@include respond-to(wide-screens) {
-				@include responde-pk01;
-			}
-		}@if($device_val == '.T_'){
-			@include responde-pk01;
-		}
-		
+
+
+.M_, .TM_{
+	@include respond-to(handhelds) {
+		@include responde-pk01('M');
 	}
+}
+.TM, .TAB_, .PT_{
+	@include respond-to(medium-screens) {
+		@include responde-pk01('TAB');
+	} 
+}
+.PC_, .PT_, {
+	@include respond-to(wide-screens) {
+		@include responde-pk01('PC');
+	}
+}
+
+.T_{
+	@include responde-pk01('ALL');
 }
 
 /*==== jsh bt-style -end ====*/

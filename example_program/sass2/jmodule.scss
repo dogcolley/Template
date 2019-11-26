@@ -8,12 +8,10 @@
 @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
 
    
-/* J-style and scss style
+/* J-style and scss style (add Grass)
 
-	guide : 가이드  해당스타일은 부트스트랩과같은 베이스, css와 사용자 정의 css를 합친 스타일입니다.  
-            인스턴트 클레스, 고정형 클레스의 복합 조합입니다. 
-            (The corresponding style in the Guide is a combination of base, such as bootstrap, and custom css.  
-            Instant Class, a combination of fixed and fixed casts.)
+	guide : 가이드 해당스타일은 부트스트랩과같은 공통클래스와 사용자 정의 css를 합친 스타일입니다.  
+            (The corresponding style in the Guide is a combination of common classes such as bootstrap and custom css.)
 
 		1.첫번째 이니셜 
 			T = 테마 (Theme style) : 모든 디바이스에서
@@ -49,7 +47,11 @@
 			wd = 좌우(left, right)
 			ht = 상하(height, width)
 			rem = rem(rem)
-		
+
+		4.네번째 단축어 
+			cd = 자식(chard)
+			tagName = 부모의 자식 특정 태그를 지정
+			hf = 반(Half)
 */
 
 /* 
@@ -69,8 +71,6 @@ SCSS base Data
 @if [and],[or],[not] : ex @if ($a > 0) and ($b > 0){}  +@else if , @else
 @import 다른 파일 가져오기
 @for $i from 1 through 3 { @for $i from 1 to 3 {
-
-
 
 색상(RGB / HSL / Opacity) 함수
 mix($color1, $color2) : 두 개의 색을 섞습니다.
@@ -139,6 +139,14 @@ $S_W: 1200;
 @mixin ps_center($size) {left:0;margin-left:auto;margin-right:auto;right:0;width: $size;}
 @mixin bg_base01($url) {background:url($url)no-repeat center}
 @mixin bg_ch_url($url){background-image: url($url);}
+@mixin r_img($mode,$max){
+	$mode: '가로'!default;
+	$max: 100% !default;
+	@if($mode='가로'){width:100%;max-width: $max;}
+	@if($mode='세로'){height:100%;max-height:$max;}
+}
+
+
 /*SCSS*/
 
 $breakpoints: (
@@ -173,7 +181,7 @@ $breakpoints: (
     @media only screen and (min-width: $S_T) { @content; }
   }
 }
-
+ 
 $t_cl01 : #0051a4;
 $t_cl02 : #000;
 $t_cl03 : #767676;
@@ -284,7 +292,8 @@ input[type="text"]{padding-left:10px;padding-right:10px
 */
 
 /*==== jsh bt-style -start ====*/
-$j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button'); 
+$j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button','_em em','_p p'); 
+
 
 @mixin responde-pk01($device) {
 	    &wd{
@@ -324,12 +333,12 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button')
 		&sound_only, &blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
 	
 		&ds_{
-			&block{display: block}
-			&inbl{display: inline-block} 
-			&in{display: inline}
-			&table{display: table}
-            &cell{display: table-cell}
-            &non{display:none}
+			&block,&block_span span , &block_div, &block_strong strong, &block_em em,&block_p p{display: block}
+			&inbl,&inbl_span span , &inbl_div, &inbl_strong strong, &inbl_em em,&inbl_p p{display: inline-block} 
+			&in,&in_span span , &in_div, &in_strong strong, &in_em em,&in_p p{display: inline}
+			&table,&table_span span , &table_div, &table_strong table, &table_em em,&table_p p{display: table}
+            &cell,&cell_span span , &cell_div, &cell_strong table, &cell_em em,&cell_p p{display: table-cell}
+            &non,&non_span span , &non_div, &non_strong table, &non_em em,&non_p p{display:none}
 		}
 	
 		&fl_{

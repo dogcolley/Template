@@ -4,27 +4,20 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900");
 @import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
-/* J-style and scss style
-    No use Sass because sever base is not setting ruby And node's React libray
+/* J-style and scss style (add Grass)
 
-	guide : 가이드  해당스타일은 부트스트랩과같은 베이스, css와 사용자 정의 css를 합친 스타일입니다.  
-            인스턴트 클레스, 고정형 클레스의 복합 조합입니다. 
-            (The corresponding style in the Guide is a combination of base, such as bootstrap, and custom css.  
-            Instant Class, a combination of fixed and fixed casts.)
+	guide : 가이드 해당스타일은 부트스트랩과같은 공통클래스와 사용자 정의 css를 합친 스타일입니다.  
+            (The corresponding style in the Guide is a combination of common classes such as bootstrap and custom css.)
 
 		1.첫번째 이니셜 
-			T = 테마 (Theme style) : 초기작성자가 수정하는 클레스로 버그왜 추가나 변경은 하지않는것을 추천드립니다.
-			R = 반응형 (사용하지 않을시에 주석처리 : Annotate when not in use)
+			T = 테마 (Theme style) : 모든 디바이스에서
 			U = 사용자 지정 (user style)
 			J = 자바스크립트용 (javascript class)
-			S = 샵전용 (shop class)
 			PC = 피시버전용 (class for PC)
 			Tab = 테블릿전용  (class for Tab)
 			M = 모바일 전용(class for Mobile)
-			
-			+sass
-			S : scss에서 사용하는 변수들
-			C : scss의 style속성 변수들
+			PT = 피시 and 테블릿 (class for PC , Tab )
+			TM = 모바일 and 테블릿 (class for Tab , mobile )
 
 		2.두번째 단축어
 			ft = 폰트(font)
@@ -42,14 +35,19 @@
 			gd = 가이드 (guide) 
 			ly = 레이아웃(layout) 가로사이즈 제어
 		
-		3.참조어
-			pc = 피시버전 (VER_PC)
-			t = 테블릿버전 (VER_TAB)
-			pt = 피시,테블릿버전 (VER_PC && VER_TAB)
-			tm = 테블릿,모바일 (VER_TAB && VER MOBILE)
-			m = 모바일버전 (VER_MOBILE)
-			c = 공통 (common)
-			full = 100%
+		3.세번째 단축어
+			lf = 레드프(left)
+			rt = 라이트(right) 
+			top = 탑 (top)
+			btm = 바텀(btm)
+			wd = 좌우(left, right)
+			ht = 상하(height, width)
+			rem = rem(rem)
+
+		4.네번째 단축어 
+			cd = 자식(chard)
+			tagName = 부모의 자식 특정 태그를 지정
+			hf = 반(Half)
 */
 /* 
 SCSS base Data 
@@ -68,8 +66,6 @@ SCSS base Data
 @if [and],[or],[not] : ex @if ($a > 0) and ($b > 0){}  +@else if , @else
 @import 다른 파일 가져오기
 @for $i from 1 through 3 { @for $i from 1 to 3 {
-
-
 
 색상(RGB / HSL / Opacity) 함수
 mix($color1, $color2) : 두 개의 색을 섞습니다.
@@ -125,11 +121,6 @@ variable-exists(name) : 변수가 현재 범위에 존재하는지 여부를 반
 unit($number) : 숫자의 단위를 반환합니다.
 unitless($number) : 숫자에 단위가 있는지 여부를 반환합니다.
 comparable($number1, $number2) : 두 개의 숫자가 연산 가능한지 여부를 반환합니다.
-*/
-/*고정 공통 클래스*/
-/*
-$c_wd_full = width:
-$s_area {left:auto;righ}
 */
 /*sass 변수 모음*/
 /*mixin and function 모음*/
@@ -3290,22 +3281,22 @@ input[type="text"] {
     text-indent: -9999px;
     font-size: 0;
   }
-  .M_ds_block, .TM_ds_block {
+  .M_ds_block, .M_ds_block_span span, .M_ds_block_div, .M_ds_block_strong strong, .M_ds_block_em em, .M_ds_block_p p, .TM_ds_block, .TM_ds_block_span span, .TM_ds_block_div, .TM_ds_block_strong strong, .TM_ds_block_em em, .TM_ds_block_p p {
     display: block;
   }
-  .M_ds_inbl, .TM_ds_inbl {
+  .M_ds_inbl, .M_ds_inbl_span span, .M_ds_inbl_div, .M_ds_inbl_strong strong, .M_ds_inbl_em em, .M_ds_inbl_p p, .TM_ds_inbl, .TM_ds_inbl_span span, .TM_ds_inbl_div, .TM_ds_inbl_strong strong, .TM_ds_inbl_em em, .TM_ds_inbl_p p {
     display: inline-block;
   }
-  .M_ds_in, .TM_ds_in {
+  .M_ds_in, .M_ds_in_span span, .M_ds_in_div, .M_ds_in_strong strong, .M_ds_in_em em, .M_ds_in_p p, .TM_ds_in, .TM_ds_in_span span, .TM_ds_in_div, .TM_ds_in_strong strong, .TM_ds_in_em em, .TM_ds_in_p p {
     display: inline;
   }
-  .M_ds_table, .TM_ds_table {
+  .M_ds_table, .M_ds_table_span span, .M_ds_table_div, .M_ds_table_strong table, .M_ds_table_em em, .M_ds_table_p p, .TM_ds_table, .TM_ds_table_span span, .TM_ds_table_div, .TM_ds_table_strong table, .TM_ds_table_em em, .TM_ds_table_p p {
     display: table;
   }
-  .M_ds_cell, .TM_ds_cell {
+  .M_ds_cell, .M_ds_cell_span span, .M_ds_cell_div, .M_ds_cell_strong table, .M_ds_cell_em em, .M_ds_cell_p p, .TM_ds_cell, .TM_ds_cell_span span, .TM_ds_cell_div, .TM_ds_cell_strong table, .TM_ds_cell_em em, .TM_ds_cell_p p {
     display: table-cell;
   }
-  .M_ds_non, .TM_ds_non {
+  .M_ds_non, .M_ds_non_span span, .M_ds_non_div, .M_ds_non_strong table, .M_ds_non_em em, .M_ds_non_p p, .TM_ds_non, .TM_ds_non_span span, .TM_ds_non_div, .TM_ds_non_strong table, .TM_ds_non_em em, .TM_ds_non_p p {
     display: none;
   }
   .M_fl_lt, .TM_fl_lt {
@@ -17753,22 +17744,22 @@ input[type="text"] {
     text-indent: -9999px;
     font-size: 0;
   }
-  .TMds_block, .TAB_ds_block, .PT_ds_block {
+  .TMds_block, .TMds_block_span span, .TMds_block_div, .TMds_block_strong strong, .TMds_block_em em, .TMds_block_p p, .TAB_ds_block, .TAB_ds_block_span span, .TAB_ds_block_div, .TAB_ds_block_strong strong, .TAB_ds_block_em em, .TAB_ds_block_p p, .PT_ds_block, .PT_ds_block_span span, .PT_ds_block_div, .PT_ds_block_strong strong, .PT_ds_block_em em, .PT_ds_block_p p {
     display: block;
   }
-  .TMds_inbl, .TAB_ds_inbl, .PT_ds_inbl {
+  .TMds_inbl, .TMds_inbl_span span, .TMds_inbl_div, .TMds_inbl_strong strong, .TMds_inbl_em em, .TMds_inbl_p p, .TAB_ds_inbl, .TAB_ds_inbl_span span, .TAB_ds_inbl_div, .TAB_ds_inbl_strong strong, .TAB_ds_inbl_em em, .TAB_ds_inbl_p p, .PT_ds_inbl, .PT_ds_inbl_span span, .PT_ds_inbl_div, .PT_ds_inbl_strong strong, .PT_ds_inbl_em em, .PT_ds_inbl_p p {
     display: inline-block;
   }
-  .TMds_in, .TAB_ds_in, .PT_ds_in {
+  .TMds_in, .TMds_in_span span, .TMds_in_div, .TMds_in_strong strong, .TMds_in_em em, .TMds_in_p p, .TAB_ds_in, .TAB_ds_in_span span, .TAB_ds_in_div, .TAB_ds_in_strong strong, .TAB_ds_in_em em, .TAB_ds_in_p p, .PT_ds_in, .PT_ds_in_span span, .PT_ds_in_div, .PT_ds_in_strong strong, .PT_ds_in_em em, .PT_ds_in_p p {
     display: inline;
   }
-  .TMds_table, .TAB_ds_table, .PT_ds_table {
+  .TMds_table, .TMds_table_span span, .TMds_table_div, .TMds_table_strong table, .TMds_table_em em, .TMds_table_p p, .TAB_ds_table, .TAB_ds_table_span span, .TAB_ds_table_div, .TAB_ds_table_strong table, .TAB_ds_table_em em, .TAB_ds_table_p p, .PT_ds_table, .PT_ds_table_span span, .PT_ds_table_div, .PT_ds_table_strong table, .PT_ds_table_em em, .PT_ds_table_p p {
     display: table;
   }
-  .TMds_cell, .TAB_ds_cell, .PT_ds_cell {
+  .TMds_cell, .TMds_cell_span span, .TMds_cell_div, .TMds_cell_strong table, .TMds_cell_em em, .TMds_cell_p p, .TAB_ds_cell, .TAB_ds_cell_span span, .TAB_ds_cell_div, .TAB_ds_cell_strong table, .TAB_ds_cell_em em, .TAB_ds_cell_p p, .PT_ds_cell, .PT_ds_cell_span span, .PT_ds_cell_div, .PT_ds_cell_strong table, .PT_ds_cell_em em, .PT_ds_cell_p p {
     display: table-cell;
   }
-  .TMds_non, .TAB_ds_non, .PT_ds_non {
+  .TMds_non, .TMds_non_span span, .TMds_non_div, .TMds_non_strong table, .TMds_non_em em, .TMds_non_p p, .TAB_ds_non, .TAB_ds_non_span span, .TAB_ds_non_div, .TAB_ds_non_strong table, .TAB_ds_non_em em, .TAB_ds_non_p p, .PT_ds_non, .PT_ds_non_span span, .PT_ds_non_div, .PT_ds_non_strong table, .PT_ds_non_em em, .PT_ds_non_p p {
     display: none;
   }
   .TMfl_lt, .TAB_fl_lt, .PT_fl_lt {
@@ -32216,22 +32207,22 @@ input[type="text"] {
     text-indent: -9999px;
     font-size: 0;
   }
-  .PC_ds_block, .PT_ds_block {
+  .PC_ds_block, .PC_ds_block_span span, .PC_ds_block_div, .PC_ds_block_strong strong, .PC_ds_block_em em, .PC_ds_block_p p, .PT_ds_block, .PT_ds_block_span span, .PT_ds_block_div, .PT_ds_block_strong strong, .PT_ds_block_em em, .PT_ds_block_p p {
     display: block;
   }
-  .PC_ds_inbl, .PT_ds_inbl {
+  .PC_ds_inbl, .PC_ds_inbl_span span, .PC_ds_inbl_div, .PC_ds_inbl_strong strong, .PC_ds_inbl_em em, .PC_ds_inbl_p p, .PT_ds_inbl, .PT_ds_inbl_span span, .PT_ds_inbl_div, .PT_ds_inbl_strong strong, .PT_ds_inbl_em em, .PT_ds_inbl_p p {
     display: inline-block;
   }
-  .PC_ds_in, .PT_ds_in {
+  .PC_ds_in, .PC_ds_in_span span, .PC_ds_in_div, .PC_ds_in_strong strong, .PC_ds_in_em em, .PC_ds_in_p p, .PT_ds_in, .PT_ds_in_span span, .PT_ds_in_div, .PT_ds_in_strong strong, .PT_ds_in_em em, .PT_ds_in_p p {
     display: inline;
   }
-  .PC_ds_table, .PT_ds_table {
+  .PC_ds_table, .PC_ds_table_span span, .PC_ds_table_div, .PC_ds_table_strong table, .PC_ds_table_em em, .PC_ds_table_p p, .PT_ds_table, .PT_ds_table_span span, .PT_ds_table_div, .PT_ds_table_strong table, .PT_ds_table_em em, .PT_ds_table_p p {
     display: table;
   }
-  .PC_ds_cell, .PT_ds_cell {
+  .PC_ds_cell, .PC_ds_cell_span span, .PC_ds_cell_div, .PC_ds_cell_strong table, .PC_ds_cell_em em, .PC_ds_cell_p p, .PT_ds_cell, .PT_ds_cell_span span, .PT_ds_cell_div, .PT_ds_cell_strong table, .PT_ds_cell_em em, .PT_ds_cell_p p {
     display: table-cell;
   }
-  .PC_ds_non, .PT_ds_non {
+  .PC_ds_non, .PC_ds_non_span span, .PC_ds_non_div, .PC_ds_non_strong table, .PC_ds_non_em em, .PC_ds_non_p p, .PT_ds_non, .PT_ds_non_span span, .PT_ds_non_div, .PT_ds_non_strong table, .PT_ds_non_em em, .PT_ds_non_p p {
     display: none;
   }
   .PC_fl_lt, .PT_fl_lt {
@@ -47585,27 +47576,27 @@ input[type="text"] {
   font-size: 0;
 }
 
-.T_ds_block {
+.T_ds_block, .T_ds_block_span span, .T_ds_block_div, .T_ds_block_strong strong, .T_ds_block_em em, .T_ds_block_p p {
   display: block;
 }
 
-.T_ds_inbl {
+.T_ds_inbl, .T_ds_inbl_span span, .T_ds_inbl_div, .T_ds_inbl_strong strong, .T_ds_inbl_em em, .T_ds_inbl_p p {
   display: inline-block;
 }
 
-.T_ds_in {
+.T_ds_in, .T_ds_in_span span, .T_ds_in_div, .T_ds_in_strong strong, .T_ds_in_em em, .T_ds_in_p p {
   display: inline;
 }
 
-.T_ds_table {
+.T_ds_table, .T_ds_table_span span, .T_ds_table_div, .T_ds_table_strong table, .T_ds_table_em em, .T_ds_table_p p {
   display: table;
 }
 
-.T_ds_cell {
+.T_ds_cell, .T_ds_cell_span span, .T_ds_cell_div, .T_ds_cell_strong table, .T_ds_cell_em em, .T_ds_cell_p p {
   display: table-cell;
 }
 
-.T_ds_non {
+.T_ds_non, .T_ds_non_span span, .T_ds_non_div, .T_ds_non_strong table, .T_ds_non_em em, .T_ds_non_p p {
   display: none;
 }
 

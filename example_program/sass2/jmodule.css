@@ -5,11 +5,10 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900");
 @import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
 /* J-style and scss style (add Grass)
-
 	guide : 가이드 해당스타일은 부트스트랩과같은 공통클래스와 사용자 정의 css를 합친 스타일입니다.  
             (The corresponding style in the Guide is a combination of common classes such as bootstrap and custom css.)
 
-		1.첫번째 이니셜 
+		1.첫번째 이니셜 (디바이스)
 			T = 테마 (Theme style) : 모든 디바이스에서
 			U = 사용자 지정 (user style)
 			J = 자바스크립트용 (javascript class)
@@ -18,8 +17,9 @@
 			M = 모바일 전용(class for Mobile)
 			PT = 피시 and 테블릿 (class for PC , Tab )
 			TM = 모바일 and 테블릿 (class for Tab , mobile )
+			IM = 무조건 (!important)
 
-		2.두번째 단축어
+		2.두번째 단축어 (속성)
 			ft = 폰트(font)
 			bg = 백그라운드(background)
 			fm = 폰트 패밀리(font-family)
@@ -35,7 +35,7 @@
 			gd = 가이드 (guide) 
 			ly = 레이아웃(layout) 가로사이즈 제어
 		
-		3.세번째 단축어
+		3.세번째 단축어(옵션)
 			lf = 레드프(left)
 			rt = 라이트(right) 
 			top = 탑 (top)
@@ -44,7 +44,7 @@
 			ht = 상하(height, width)
 			rem = rem(rem)
 
-		4.네번째 단축어 
+		4.네번째 단축어(보조)
 			cd = 자식(chard)
 			tagName = 부모의 자식 특정 태그를 지정
 			hf = 반(Half)

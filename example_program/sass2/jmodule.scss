@@ -6,6 +6,10 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
 @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+
+
+/*노토산서스 스퀘어한사스*/
 
    
 /* J-style and scss style (add Grass)
@@ -333,18 +337,18 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&sound_only, &blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
 	
 		&ds_{
-			&block,&block_span span , &block_div, &block_strong strong, &block_em em,&block_p p{display: block}
-			&inbl,&inbl_span span , &inbl_div, &inbl_strong strong, &inbl_em em,&inbl_p p{display: inline-block} 
-			&in,&in_span span , &in_div, &in_strong strong, &in_em em,&in_p p{display: inline}
-			&table,&table_span span , &table_div, &table_strong table, &table_em em,&table_p p{display: table}
-            &cell,&cell_span span , &cell_div, &cell_strong table, &cell_em em,&cell_p p{display: table-cell}
-            &non,&non_span span , &non_div, &non_strong table, &non_em em,&non_p p{display:none}
-		}
+			&block,&Cblock > *,&block_span span , &block_div, &block_strong strong, &block_em em,&block_p p{display: block}
+			&inbl,&Cinbl > *,&inbl_span span , &inbl_div, &inbl_strong strong, &inbl_em em,&inbl_p p{display: inline-block} 
+			&in,&Cin > *,&in_span span , &in_div, &in_strong strong, &in_em em,&in_p p{display: inline}
+			&table,&Ctable > *,&table_span span , &table_div, &table_strong table, &table_em em,&table_p p{display: table}
+            &cell,&Ccell > *,&cell_span span , &cell_div, &cell_strong table, &cell_em em,&cell_p p{display: table-cell}
+			&non,&Cnon > *,&non_span span , &non_div, &non_strong table, &non_em em,&non_p p{display:none}
+		} 
 	
 		&fl_{
 			&lt{float:left}
 			&rt{float:right}
-			&Clt > *{float:left}
+			&Clt > *{float:left} 
 			&non{float:none}
 			&Crt > *{float:left}
 		}
@@ -390,13 +394,13 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 				&ht#{$i*5}{padding-top:5px * $i;padding-bottom:5px * $i}
 				&all#{$i*5}{padding:5px * $i}
 				
-				&lt#{$i*5}_cd > *{padding-left:5px * $i}
-				&rt#{$i*5}_cd > *{padding-right:5px * $i}
-				&top#{$i*5}_cd > *{padding-top:5px * $i}
-				&btm#{$i*5}_cd > *{padding-bottom:5px * $i}
-				&wd#{$i*5}_cd > *{padding-left:5px * $i;padding-right:5px * $i}
-				&ht#{$i*5}_cd > *{padding-top:5px * $i;padding-bottom:5px * $i}
-                &all#{$i*5}_cd > *{padding:5px * $i}
+				&Clt#{$i*5} > *{padding-left:5px * $i}
+				&Crt#{$i*5} > *{padding-right:5px * $i}
+				&Ctop#{$i*5} > *{padding-top:5px * $i}
+				&Cbtm#{$i*5} > *{padding-bottom:5px * $i}
+				&Cwd#{$i*5} > *{padding-left:5px * $i;padding-right:5px * $i}
+				&Cht#{$i*5} > *{padding-top:5px * $i;padding-bottom:5px * $i}
+                &Call#{$i*5} > *{padding:5px * $i}
 			}   
 			@for $i from 1 through 100{
 				&Plt#{$i}{padding-left:$i+%}
@@ -407,13 +411,13 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 				&Pht#{$i}{padding-bottom:$i+%;padding-top:$i+%}
 				&Pall#{$i}{padding:$i+%}
 				
-				&Plt#{$i}_cd > *{padding-left:$i+%}
-				&Prt#{$i}_cd > *{padding-right:$i+%}
-				&Ptop#{$i}_cd > *{padding-top:$i+%} 
-				&Pbtm#{$i}_cd > *{padding-bottom:$i+%}
-				&Pwd#{$i}_cd > *{padding-left:$i+%;padding-right:$i+%}
-				&Pht#{$i}_cd > *{padding-bottom:$i+%;padding-top:$i+%}
-                &Pall#{$i}_cd > *{padding:$i+%}
+				&CPlt#{$i} > *{padding-left:$i+%}
+				&CPrt#{$i} > *{padding-right:$i+%}
+				&CPtop#{$i} > *{padding-top:$i+%} 
+				&CPbtm#{$i} > *{padding-bottom:$i+%}
+				&CPwd#{$i} > *{padding-left:$i+%;padding-right:$i+%}
+				&CPht#{$i} > *{padding-bottom:$i+%;padding-top:$i+%}
+                &CPall#{$i} > *{padding:$i+%}
 			}   
 		}  
 	
@@ -427,13 +431,13 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 				&ht#{$i*5}{margin-bottom:5px * $i;margin-top:5px * $i}
 				&all#{$i*5}{margin:5px * $i}
 				
-				&lt#{$i*5}_cd > *{margin-left:5px * $i}
-				&rt#{$i*5}_cd > *{margin-right:5px * $i}
-				&top#{$i*5}_cd > *{margin-top:5px * $i} 
-				&btm#{$i*5}_cd > *{margin-bottom:5px * $i}
-				&wd#{$i*5}_cd > *{margin-left:5px * $i;margin-right:5px * $i}
-				&ht#{$i*5}_cd > *{margin-bottom:5px * $i;margin-top:5px * $i}
-                &all#{$i*5}_cd > *{margin:5px * $i}
+				&Clt#{$i*5} > *{margin-left:5px * $i}
+				&Crt#{$i*5} > *{margin-right:5px * $i}
+				&Ctop#{$i*5} > *{margin-top:5px * $i} 
+				&Cbtm#{$i*5} > *{margin-bottom:5px * $i}
+				&Cwd#{$i*5} > *{margin-left:5px * $i;margin-right:5px * $i}
+				&Cht#{$i*5} > *{margin-bottom:5px * $i;margin-top:5px * $i}
+                &Call#{$i*5} > *{margin:5px * $i}
 			}   
 			@for $i from 1 through 100{
 				&Plt#{$i}{margin-left:$i+%}
@@ -444,13 +448,13 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 				&Pht#{$i}{margin-bottom:$i+%;margin-top:$i+%}
 				&Pall#{$i}{margin:$i+%}
 					
-				&Plt#{$i}cd > *{margin-left:$i+%}
-				&Prt#{$i}_cd > *{margin-right:$i+%}
-				&Ptop#{$i}_cd > *{margin-top:$i+%} 
-				&Pbtm#{$i}_cd > *{margin-bottom:$i+%}
-				&Pwd#{$i}_cd > *{margin-left:$i+%;margin-right:$i+%}
-				&Pht#{$i}_cd > *{margin-bottom:$i+%;margin-top:$i+%}
-				&Pall#{$i}_cd > *{margin:$i+%}
+				&CPlt#{$i} > *{margin-left:$i+%}
+				&CPrt#{$i} > *{margin-right:$i+%}
+				&CPtop#{$i} > *{margin-top:$i+%} 
+				&CPbtm#{$i} > *{margin-bottom:$i+%}
+				&CPwd#{$i} > *{margin-left:$i+%;margin-right:$i+%}
+				&CPht#{$i} > *{margin-bottom:$i+%;margin-top:$i+%}
+				&CPall#{$i} > *{margin:$i+%}
 				}
 			}
 		
@@ -466,6 +470,8 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	}
 
 .U_{
+	&mg_ct{margin-left:auto;margin-right:auto}
+
 	&bg_{
 		&cfff{background:#fff}
 		&cf9{background:#f9f9f9}
@@ -473,6 +479,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&c333{background:#333}
 		&c000{background:#000}
 	}
+
 	&ft_{
 		&cfff{color:#fff}
 		&c000{color:#000}
@@ -485,9 +492,29 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&6a6a6a{color:#6a6a6a}
 		&c767676{color:#767676}
 		&c868686{color:#868686}
+
+		&fm01{font-family: 'Noto Sans KR', sans-serif;}
+		&fm02{font-family: 'Montserrat', sans-serif;}
+		&fm03{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+		&fm04{font-family: 'Black Han Sans', sans-serif;}
+	}
+
+
+	&area01{
+		width:100%;max-width:1250px;margin-left:auto;margin-right:auto;
+		@include respond-to(handhelds) {padding-left:6.25%;padding-right:6.25%}
+		@include respond-to(medium-screens) {padding-left:4.25%;padding-right:4.25%}
 	}
 
 }
+
+.IM{
+	.bd_top0{border-top:0!important}
+	.bd_btm0{border-bottom:0!important}
+	.bd_lt0{border-left:0!important}
+	.bd_rt0{border-right:0!important}
+}
+
 
 
 

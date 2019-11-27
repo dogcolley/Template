@@ -1,0 +1,322 @@
+<?php
+include_once("./_common.php");
+
+include(G5_PATH."/html/moonday.php");
+
+if (!function_exists("get_first_day")) {
+    // mktime() 함수는 1970 ~ 2038년까지만 계산되므로 사용하지 않음
+    // 참고 : http://phpschool.com/bbs2/inc_view.html?id=3924&code=tnt2&start=0&mode=search&s_que=mktime&field=title&operator=and&period=all
+    function get_first_day($year, $month)
+    {
+        $day = 1;
+        $spacer = array(0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4);
+        $year = $year - ($month < 3);
+        $result = ($year + (int) ($year/4) - (int) ($year/100) + (int) ($year/400) + $spacer[$month-1] + $day) % 7;
+        return $result;
+    }
+}
+?>
+
+<!-- <table> -->
+<?
+// 오늘
+$today = getdate(G5_SERVER_TIME);
+$year  = (int)substr($schedule_ym, 0, 4);
+$month = (int)substr($schedule_ym, 4, 2);
+if ($year  < 1)                $year  = $today[year];
+if ($month < 1 || $month > 12) $month = $today[mon];
+$current_ym = sprintf("%04d%02d", $year, $month);
+
+$end_day = array(1=>31, 28, 31, 30 , 31, 30, 31, 31, 30 ,31 ,30, 31);
+// 윤년 계산 부분이다. 4년에 한번꼴로 2월이 28일이 아닌 29일이 있다.
+if( $year%4 == 0 && $year%100 != 0 || $year%400 == 0 )
+    $end_day[2] = 29; // 조건에 적합할 경우 28을 29로 변경
+
+// 해당월의 1일을 mktime으로 변경
+$mktime = mktime(0,0,0,$month,1,$year);
+$mkdate = getdate(strtotime(date("Y-m-1", $mktime)));
+
+// 1일의 첫번째 요일 (0:일, 1:월 ... 6:토)
+$first_day = get_first_day($year, $month);
+// 해당월의 마지막 날짜,
+$last_day  = $end_day[$month];
+
+if ($month - 1 < 1) {
+    $before_ym = sprintf("%04d%02d", ($year-1), 12);
+} else {
+    $before_ym = sprintf("%04d%02d", $year, ($month-1));
+}
+
+if ($month + 1 > 12) {
+    $after_ym  = sprintf("%04d%02d", ($year+1), 1);
+} else {
+    $after_ym  = sprintf("%04d%02d", $year, ($month+1));
+}
+
+	$file_index = G5_PATH."/html"; ### 기념일 폴더 위치 지정
+
+	### 양력 기념일 파일 지정 : 해당년도 파일이 없으면 기본파일(solar.txt)을 불러온다
+	if(file_exists($file_index."/".$year.".txt")) {
+		$dayfile = file($file_index."/".$year.".txt");
+	} else { 
+		$dayfile = file($file_index."/solar.txt");
+	}
+
+echo "<input type='hidden' id='schedule_ym' value='".$current_ym."'>";
+
+echo "<ul>";
+if($pageName =="main"){echo "<li class='reserCal_tit'><strong>예약현황</strong><li>";}
+echo "<li class='reserCal_prev'><a href='".G5_URL."/html/calendar.php?schedule_ym=$before_ym&pageName=$pageName&admin_cate_gubun=$admin_cate_gubun' id='cal_prev'>이전달</a></li>";
+echo " <li class='now_MM'>$year . $month .</li>";
+echo "<li class='reserCal_next'><a href='".G5_URL."/html/calendar.php?schedule_ym=$after_ym&pageName=$pageName&admin_cate_gubun=$admin_cate_gubun' id='cal_next'>다음달</a></li>";
+echo "</ul>";
+
+echo "<div>";
+echo "<table>";
+    
+// 요일
+$yoil = array ("일", "월", "화", "수", "목", "금", "토");
+echo "<tr class='datelist'>";
+for ($i=0; $i<7; $i++) {
+    $width = '13%';
+    $class = array();
+    $class[] = "sc_tit";		
+    if ($i == 0)
+        $class[] = "sc_sun";
+    else if ($i == 6) {
+        $class[] = "sc_sat";
+        $width = '12%';
+    }
+    $class_list = implode(" ", $class);
+    echo "<td class='$class_list' width='$width'>$yoil[$i]</td>";
+}
+echo "</tr>";
+
+$next_day = 1;
+
+$perv_day_ym = date("Ym", mktime(0, 0, 0, $month-1, 1, $year));
+$next_day_ym = date("Ym", mktime(0, 0, 0, $month+1, 1, $year));
+
+$perv_day = date("t", mktime(0, 0, 0, $month-1, 1, $year));
+$perv_day1 = $first_day;
+
+$cnt = $day = 0;
+for ($i=0; $i<6; $i++) {
+    echo "<tr>";
+    for ($k=0; $k<7; $k++) {
+        $cnt++;
+        echo "<td class='sc_day'>";
+        if ($cnt > $first_day) {
+            $day++;
+            if ($day <= $last_day) {
+
+                $class = array();
+
+                // 오늘이라면
+                if ($today[year] == $year && $today[mon] == $month && $today[mday] == $day) {
+                    $class[] = "sc_today";
+                }
+
+                $current_ymd = $current_ym . sprintf("%02d", $day);
+
+				$class[] = $current_ymd;
+
+                if ($k == 0)
+                    $class[] = "sc_sun";
+                else if ($k == 6)
+                    $class[] = "sc_sat";            
+
+                // 예약이 있는경우 이 클래스를 넣는다 on
+				$chk = sql_fetch("select * from reservation where r_date = '$current_ymd'");
+				if($chk[idx]){
+					$class[] = "on";
+				}
+
+				// 기념일 파일 내용 비교위한 변수 선언, 월과 일을 두자리 포맷으로 고정
+				if (strlen($month) == 1) {
+					$monthp = "0".$month ;
+				} else {
+					$monthp = $month ;
+				}
+				if (strlen($day) == 1) {
+					$cdayp = "0".$day ;
+				} else {
+					$cdayp = $day ;
+				}
+				$memday = $year.$monthp.$cdayp;
+				$daycont = "" ;
+				$daycolor = "";
+
+				// 기념일(양력) 표시
+				for($t=0 ; $t < sizeof($dayfile) ; $t++) {  // 파일 첫 행부터 끝행까지 루프
+					$arrDay = explode("|", $dayfile[$t]);
+					if($memday == $year.$arrDay[0]) {
+						$daycont = $arrDay[1];
+						$daycontcolor = $arrDay[2];
+						if(substr($arrDay[2],0,3)=="red") $daycolor = "#e50000"; // 공휴일은 날짜를 빨간색으로 표시
+					}
+				}
+
+				// 석봉운님의 음력날짜 변수선언
+				$myarray = soltolun($year,$month,$day);
+				if ($myarray['day']==1 || $myarray['day']==11 || $myarray['day']==21) {
+					$moonday ="<font color='gray' class='moon_day'>(음){$myarray['month']}.{$myarray['day']}{$myarray['leap']}</font>";
+				} else {
+					$moonday="";
+				}
+				
+				include($file_index."/lunar.txt"); ### 음력 기념일 파일 지정
+				
+				if ($annivmoonday&&$daycont) $blank="<br />"; // 음력절기와 양력기념일이 동시에 있으면 한칸 띔
+				else $blank="";
+
+				if($daycolor){
+					$class[] = "sc_sun";
+				}
+
+				$hol_chk = sql_fetch("select * from reservation_hol where h_date = '".$current_ymd."'");
+				if($hol_chk[idx]){
+					$class[] = "hol";
+				}
+
+				$class_list = implode(" ", $class);
+                //echo "<div class='$class_list'><a href='".G5_URL."/html/sub4_reservation.php'>";
+				echo "<div class='$class_list'>";				
+				if($admin_cate_gubun == "basic"){					
+					$hol_checked = "";
+					if($hol_chk[idx]){
+						$hol_checked = "checked";
+					}
+					echo "<input type='checkbox' name='hol[]' value='".$current_ymd."' $hol_checked class='hol_checkbox'>&nbsp;";
+				}else{
+					echo "<a href='#n' id='res_".$current_ymd."' class='res_date'>";				
+				}
+				echo $day;
+				if($pageName != "main"){
+					echo "$annivmoonday";
+					echo "<font color='$daycontcolor' class='dayInfo'>$daycont</font>";					
+					echo "$moonday";
+					//echo "<font color='$daycolor' class='day'>$daytext</font>$moonday <font color='$daycontcolor' class='dayInfo'>$daycont</font>$blank $annivmoonday";
+				}
+				if($admin_cate_gubun == "basic"){
+				}else{
+					echo "</a>";
+				}
+				echo "</div>";
+
+            } else {
+
+				$class = array();
+
+				if(strlen($next_day) == 1){ $next_day1 = "0".$next_day; }else{ $next_day1 = $next_day; }
+
+				$current_ymd = $next_day_ym.$next_day1;
+
+				if ($k == 0)
+                    $class[] = "sc_sun";
+                else if ($k == 6)
+                    $class[] = "sc_sat";            
+
+                // 예약이 있는경우 이 클래스를 넣는다 on
+				$chk = sql_fetch("select * from reservation where r_date = '$current_ymd'");
+				if($chk[idx]){
+					$class[] = "on";
+				}
+
+				$class[] = "next_mon";
+
+				$class_list = implode(" ", $class);
+				echo "<div class='$class_list'><a href='#n' id='res_".$current_ymd."' class='res_date'>";				
+				echo $next_day;
+                echo "</a></div>";
+
+				$next_day++;
+
+            }
+
+        } else {
+
+			$perv_day1--;
+            $perv_day2 = $perv_day - $perv_day1;// = "&nbsp;";
+			
+			$class = array();
+
+			if(strlen($perv_day2) == 1){ $perv_day2 = "0".$perv_day2; }else{ $perv_day2 = $perv_day2; }
+
+			$current_ymd = $perv_day_ym.$perv_day2;
+
+			if ($k == 0)
+				$class[] = "sc_sun";
+			else if ($k == 6)
+				$class[] = "sc_sat";            
+
+			// 예약이 있는경우 이 클래스를 넣는다 on
+			$chk = sql_fetch("select * from reservation where r_date = '$current_ymd'");
+			if($chk[idx]){
+				$class[] = "on";
+			}
+
+			$class[] = "perv_mon";
+
+			$class_list = implode(" ", $class);
+			echo "<div class='$class_list'><a href='#n' id='res_".$current_ymd."' class='res_date'>";				
+			echo $perv_day2;
+			echo "</a></div>";
+
+        }
+        echo "</td>";
+    }
+    echo "</tr>\n";
+    if ($day >= $last_day)
+        break;
+}
+
+//schedule_est
+?>
+</table>
+</div>
+
+
+<script type="text/javascript">
+<!--
+
+	//$(document).on("click","#cal_prev",function(e){
+	$("#cal_prev").click(function(e){
+		e.preventDefault();
+		var load_html = $(this).attr("href");
+		//$("#reserCal").html("");
+		$("#reserCal").load(load_html);
+	});
+
+//	$(document).on("click","#cal_next",function(e){
+	$("#cal_next").click(function(e){
+		e.preventDefault();
+		var load_html = $(this).attr("href");
+		//$("#reserCal").html("");
+		$("#reserCal").load(load_html);
+	});
+
+//	$(document).on("click",".res_date",function(e){
+	$(".res_date").click(function(e){
+		e.preventDefault();
+		var id = $(this).attr("id").split("_");
+		<?if($pageName =="main"){?>
+		$("#reserlist").load("./html/main_res_info.php?r_date="+id[1]);
+		<?}else{?>
+		$("#reserlist").load("./res_info.php?r_date="+id[1]);
+		<?}?>
+	});
+	$(function(){
+		var test = $('#reserCal table tr').length;	
+		if(test == "7"){
+			$('#reserCal table').addClass('long_style');
+		} else if(test =="6") {
+			$('#reserCal table').addClass('short_style');
+		} else if(test =="5") {
+			$('#reserCal table').addClass('short_style2');
+		}
+
+	});
+	
+//-->
+</script>

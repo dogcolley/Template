@@ -1,0 +1,103 @@
+/*sass 변수 모음*/
+//$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
+$S_M: 640px; 
+$S_T: 1024px;
+$S_W: 1200;
+/*mixin and function 모음*/
+@mixin clear {content:'';clear:both;display:block}
+@mixin area {margin-left:auto;margin-right:auto}
+@mixin ps_center($size) {left:0;margin-left:auto;margin-right:auto;right:0;width: $size;}
+@mixin bg_base01($url) {background:url($url)no-repeat center}
+@mixin bg_ch_url($url){background-image: url($url);}
+@mixin r_img($mode,$max){
+	$mode: '가로'!default;
+	$max: 100% !default;
+	@if($mode='가로'){width:100%;max-width: $max;}
+	@if($mode='세로'){height:100%;max-height:$max;}
+}
+
+
+/*SCSS*/
+
+$breakpoints: (
+        'small': (max-width: 640px),
+        'medium': (max-width: 1024px),
+        'large': (max-width: 1200px),
+) !default;
+
+@mixin respond-to($breakpoint) {
+    // If the key exists in the map
+    @if map-has-key($breakpoints, $breakpoint) {
+        // Prints a media query based on the value
+        @media #{inspect(map-get($breakpoints, $breakpoint))} {
+            @content;
+        }
+    }
+    // If the key doesn't exist in the map
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+    }
+} 
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $S_M) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $S_M + 1) and (max-width: $S_T - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $S_T) { @content; }
+  }
+}
+
+
+$t_cl01 : #0051a4;
+$t_cl02 : #000;
+$t_cl03 : #767676;
+$t_cl04 : #ccc;
+$t_cl05 : #6c6c6c;
+$t_cl06 : #efefef;
+$t_cl07 : #298cd5;
+$t_cl11 : #1c5eb5;
+$t_cl12 : #567f36;
+$cl_red : #e10000;   
+$cl_red2 : #d60c00;
+$cl_black : #000;   
+$cl_gray : #767676;   
+$t_cl10	: #000;
+$t_cl11 : #ddd;
+
+body{
+    &.bd_main {background-color:#000;background-repeat: no-repeat;background-position: center;
+        @include respond-to(handhelds) {background-size: auto 100%;}
+        @include respond-to(medium-screens) {background-size: auto 100%;} 
+        #ft{background:rgba(0,0,0,0.5);border:0}
+        #hd{background:none;border:0}
+        #container{height:100%;display: table;height:100%}
+        .U_bd_C01{ > * {border:1px solid rgba(255,255,255,0.3)}} 
+    }
+    &.type1{background-image: url("/img/pc/main_bg1.jpg");
+        @include respond-to(handhelds) {}
+        @include respond-to(medium-screens) {} 
+        @include respond-to(wide-screens) {}
+    }
+    &.type2{background-image: url("/img/pc/main_bg2.jpg");
+        @include respond-to(handhelds) {}
+        @include respond-to(medium-screens) {} 
+        @include respond-to(wide-screens) {}
+    }
+    &.type3{background-image: url("/img/pc/main_bg3.jpg");
+        @include respond-to(handhelds) {}
+        @include respond-to(medium-screens) {} 
+        @include respond-to(wide-screens) {}
+    }
+}
+
+#ft,#hd{background:#fff}
+#ft{border-top:1px solid #d9d9d9}
+#hd{border-bottom:1px solid #d9d9d9}
+
+.U_line01{display: inline-block;margin: 0 10px;vertical-align: top;width: 1px;height: 13px;background: #fff;position: relative;top: 4px;}
+.U_bd_C01{ > * {border:1px solid #d9d9d9}} 

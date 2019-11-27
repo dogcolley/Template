@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/*sass 변수 모음*/
+/*mixin and function 모음*/
+/*SCSS*/
+body.bd_main {
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media only screen and (max-width: 640px) {
+  body.bd_main {
+    background-size: auto 100%;
+  }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
+  body.bd_main {
+    background-size: auto 100%;
+  }
+}
+
+body.bd_main #ft {
+  background: rgba(0, 0, 0, 0.5);
+  border: 0;
+}
+
+body.bd_main #hd {
+  background: none;
+  border: 0;
+}
+
+body.bd_main #container {
+  height: 100%;
+  display: table;
+  height: 100%;
+}
+
+body.bd_main .U_bd_C01 > * {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.type1 {
+  background-image: url("/img/pc/main_bg1.jpg");
+}
+
+body.type2 {
+  background-image: url("/img/pc/main_bg2.jpg");
+}
+
+body.type3 {
+  background-image: url("/img/pc/main_bg3.jpg");
+}
+
+#ft, #hd {
+  background: #fff;
+}
+
+#ft {
+  border-top: 1px solid #d9d9d9;
+}
+
+#hd {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.U_line01 {
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: top;
+  width: 1px;
+  height: 13px;
+  background: #fff;
+  position: relative;
+  top: 4px;
+}
+
+.U_bd_C01 > * {
+  border: 1px solid #d9d9d9;
+}
+/*# sourceMappingURL=dalyPm.css.map */

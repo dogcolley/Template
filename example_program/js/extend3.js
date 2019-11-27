@@ -851,6 +851,11 @@ $(function(){
 		$(this).toggleClass('on');
 		$(this).siblings('.J_tg_con03').toggle();
 	})
+
+   $("#top_btn").on("click", function() {
+                $("html, body").animate({scrollTop:0}, '500');
+                return false;
+	});
     /*ad_modal*/
     //$('#J_btn01').j_motal();
 

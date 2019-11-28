@@ -1,23 +1,11 @@
-body {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: #313131;
-}
 
 .watch {
-  width: 370px;
-  height: 370px;
-  background: url("./img/bg-analog-clock.png")no-repeat center;
+  width: 450px;
+  height: 450px;
+  border-radius:50%;
+  border:3px solid #fff;
+  background: rgba(0,0,0,0.3) url("./img/bg-analog-clock.png")no-repeat center;
+  box-shadow:0px 0px 35px rgba(0,0,0,0.5);
   /*border-radius: 50%;*/
   display: -webkit-box;
   display: -webkit-flex;
@@ -33,57 +21,47 @@ body {
           align-items: center;
   position: relative;
   overflow: hidden;
-  border: 0px solid #111;
 }
 .watch--hour {
   width: 3px;
-  height: 80px;
+  height: 180px;
   border-radius: 10px;
-  -webkit-transform-origin: center 65px;
-          transform-origin: center 65px;
+  -webkit-transform-origin: center 130px;
+          transform-origin: center 130px;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
   position: absolute;
   background: #fff;
   left: calc(50% - 2.5px);
-  top: calc(50% - 65px);
+  top: calc(50% - 130px);
 }
 .watch--min {
   width: 3px;
-  height: 110px;
+  height: 240px;
   border-radius: 10px;
-  -webkit-transform-origin: center 90px;
-          transform-origin: center 90px;
+  -webkit-transform-origin: center 180px;
+          transform-origin: center 180px;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
   position: absolute;
   background: #fff;
   left: calc(50% - 2.5px);
-  top: calc(50% - 90px);
+  top: calc(50% - 180px);
 }
 .watch--sec {
   width: 2px;
-  height: 150px;
+  height: 340px;
   border-radius: 10px;
-  -webkit-transform-origin: center 100px;
-          transform-origin: center 100px;
+  -webkit-transform-origin: center 240px;
+          transform-origin: center 240px;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
   position: absolute;
-  background: rgb(31, 250, 166);
+  background: #fa583c;
   left: calc(50% - 2.5px);
-  top: calc(50% - 100px);
+  top: calc(50% - 240px);
 }
-.watch--center {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: none;
-  border-radius: 50%;
-  left: calc(50% - 7px);
-  top: calc(50% - 7px);
-  border: 2px solid rgb(31, 250, 166);
-}
+
 
 .day {
   width: 220px;

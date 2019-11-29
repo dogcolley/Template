@@ -1,0 +1,57 @@
+/*teg-reset*/
+html, body{
+	@include respond-to(handhelds) {font-size:14px}
+	@include respond-to(medium-screens) {font-size:16px} 
+    @include respond-to(wide-screens) {font-size:16px;min-width:1250px}
+    @media only screen and (max-width: 360px) {font-size:13px}
+    @media only screen and (max-width: 320px) {font-size:12px}
+}
+html {overflow-y:auto} 
+body {margin:0;padding:0;font-family:'Noto Sans KR', 'Spoqa Han Sans', sans-serif;background:#fff;font-weight:400;letter-spacing :-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1;background:#e1ebf9}
+html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
+h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Noto Sans KR', sans-serif;font-weight:inherit}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+em{font-style:normal} 
+strong{font-weight:600}
+ul, dl,dt,dd {margin:0;padding:0;list-style:none}
+legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
+label, input, button, select, img {vertical-align:middle;font-size:inherit}
+input, button {margin:0;padding:0;font-family: inherit;font-size:inherit;color:inherit}
+input[type="submit"]{cursor:pointer}
+button {cursor:pointer;letter-spacing:inherit}
+input[type=submit] {-webkit-appearance:none;}
+textarea, input[type=text], input[type=password]{ -webkit-border-radius:0; /* 둥근모서리 */ -webkit-appearance:none; /* 그림자 */ }
+img {-ms-interpolation-mode:bicubic;}  
+table{border-spacing:0px;border-collapse:collapse}
+input{border-radius:0}
+input::-webkit-input-placeholder {color:#999}
+input:-ms-input-placeholder {color:#999} 
+textarea, select {font-family:inherit;font-size:inherit;border-color:#ddd;height:40px;background-color:#fff;padding:0 10px}
+select {margin:0}
+p {margin:0;padding:0;word-break:keep-all;line-height: 1.6}  
+hr {display:none}
+pre {overflow-x:scroll;font-size:1.1em}
+a {color:inherit;text-decoration:none;font-size:inherit}
+select { border-radius:0; /* 아이폰 사파리 보더 없애기 */ -webkit-appearance:none; /* 화살표 없애기 for chrome*/ -moz-appearance:none; /* 화살표 없애기 for firefox*/ appearance:none /* 화살표 없애기 공통*/ } 
+select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
+em{font-weight:500}
+select {background:#fff url("/img/icon_aw_btm01.gif")no-repeat calc(100% - 15px) center ;background-size:15px auto;padding-right: 35px;}
+select:focus{background-image:url("/img/icon_aw_top01.gif")}
+button{border:0;background:none}
+/*box-sizing-style*/ 
+*, :after, :before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+
+/*site base tag setting*/
+input{border:1px solid #ddd;}
+input[type="text"]{padding-left:10px;padding-right:10px
+        /*@include respond-to(wide-screens){}*/
+}
+
+/*common Calss*/
+.sound_only, .blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
+.clear:after{content: "";display: block;clear: both}
+.clear2{clear:both}
+.caption_blind{width:0;height:0;text-indent:-9999px;font-size:0;overflow:hidden}
+.text_over{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+#skipNav{position:absolute;left:-9999px;text-align:center;width:100%;height:90px;background:rgba(0,0,0,0.8);color:#fff;font-size:30px;text-align:center;width:100%;line-height:90px;z-index:100}
+#skipNav:focus{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}

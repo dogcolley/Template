@@ -1,0 +1,12 @@
+/*mixin and function 모음*/
+@mixin clear {content:'';clear:both;display:block}
+@mixin area {margin-left:auto;margin-right:auto}
+@mixin ps_center($size) {left:0;margin-left:auto;margin-right:auto;right:0;width: $size;}
+@mixin bg_base01($url) {background:url($url)no-repeat center}
+@mixin bg_ch_url($url){background-image: url($url);}
+@mixin r_img($mode,$max){
+	$mode: '가로'!default;
+	$max: 100% !default;
+	@if($mode='가로'){width:100%;max-width: $max;}
+	@if($mode='세로'){height:100%;max-height:$max;}
+}

@@ -1,0 +1,31 @@
+<?// 음력 절기 파일, 기념일 추가시 else if 구문 복사해서 사용하세요. 한자리 날짜는 한자리로 써야 합니다. 
+if ( $myarray[month].'/'.$myarray[day]=="1/15" ) $daycont="대보름" ;
+
+else if ( $myarray[month].'/'.$myarray[day]=="12/30" ) {
+	$daycont="설연휴" ; 	$daycolor='#e50000' ;}
+
+else if ( $myarray[month].'/'.$myarray[day]=="12/29" && $myarray[year] == "2024") {
+	$daycont="설연휴" ; 	$daycolor='#e50000' ;}
+
+else if ( $myarray[month].'/'.$myarray[day]=="1/1" ) {
+	$daycont="설날" ;
+	$daycolor='#e50000' ;}
+
+else if ( $myarray[month].'/'.$myarray[day]=="1/2" ) {
+	$daycont="설연휴" ; 	$daycolor='#e50000' ;}
+
+else if ( $myarray[month].'/'.$myarray[day]=="4/8" ) {
+	$daycont="석가탄신일" ; $daycolor='#e50000'; }
+
+else if ( $myarray[month].'/'.$myarray[day]=="8/14" ) {
+	$daycont="추석연휴" ; 	$daycolor='#e50000' ;}
+
+else if ( $myarray[month].'/'.$myarray[day]=="8/15" ) {
+	$daycont="추석" ;
+	$daycolor='#e50000' ;}
+
+else if ( $myarray[month].'/'.$myarray[day]=="8/16" ) {
+	$daycont="추석연휴" ; 	$daycolor='#e50000' ;}
+
+else $daycont="" ;
+?>

@@ -1,0 +1,5 @@
+<?
+	include_once('./_common.php');
+	if(!$is_member)alert('회원이용 서비스 입니다.',G5_BBS_URL.'/login.php');
+	goto_url(G5_BBS_URL.'/member_confirm.php?url='.G5_BBS_URL.'/register_form.php');
+?>

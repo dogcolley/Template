@@ -3,8 +3,9 @@
   width: 450px;
   height: 450px;
   border-radius:50%;
-  border:3px solid #fff;
-  background: rgba(0,0,0,0.3) url("./img/bg-analog-clock.png")no-repeat center;
+  /*border:3px solid #fff;*/
+  background: url("/img/m/Clock_Border.png")no-repeat center;
+  background-size: auto 100%;
   box-shadow:0px 0px 35px rgba(0,0,0,0.5);
   /*border-radius: 50%;*/
   display: -webkit-box;
@@ -23,43 +24,50 @@
   overflow: hidden;
 }
 .watch--hour {
-  width: 3px;
+  width: calc(80px /3);
   height: 180px;
-  border-radius: 10px;
-  -webkit-transform-origin: center 130px;
-          transform-origin: center 130px;
+  background: url("/img/m/Clock_AnHourHand.png")no-repeat center;
+  background-size: auto 100%;
+  -webkit-transform-origin: center 150px;
+          transform-origin: center 150px;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
   position: absolute;
-  background: #fff;
-  left: calc(50% - 2.5px);
-  top: calc(50% - 130px);
+  left: 50%;
+  margin-left: calc(-80px /6);
+  top: calc(50% - 150px);
+  z-index:55;
 }
 .watch--min {
-  width: 3px;
+  width: calc(80px /3);
   height: 240px;
-  border-radius: 10px;
-  -webkit-transform-origin: center 180px;
-          transform-origin: center 180px;
+  background: url("/img/m/Clock_AMinuteHand.png")no-repeat center;
+  background-size: auto 100%;
+  -webkit-transform-origin: center 190px;
+          transform-origin: center 190px;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
   position: absolute;
-  background: #fff;
-  left: calc(50% - 2.5px);
-  top: calc(50% - 180px);
+  /*background: #fff;*/
+  left: 50%;
+  margin-left: calc(-80px /6);
+  top: calc(50% - 190px);
+  z-index:60;
 }
 .watch--sec {
   width: 2px;
-  height: 340px;
+  height: 280px;
   border-radius: 10px;
-  -webkit-transform-origin: center 240px;
-          transform-origin: center 240px;
+  -webkit-transform-origin: center 222px;
+          transform-origin: center 222px;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
   position: absolute;
   background: #fa583c;
   left: calc(50% - 2.5px);
-  top: calc(50% - 240px);
+  top: calc(50% - 222px);
+  z-index:70;
+
 }
 
 
@@ -115,4 +123,54 @@
   height: 80px;
   background: green;
   bottom: 0;
+}
+
+@media only screen and (max-width: 480px){
+	.watch {width:300px;height:300px}
+	.watch--hour {
+	  width: calc(80px /3);
+	  height: 130px;
+	  background: url("/img/m/Clock_AnHourHand.png")no-repeat center;
+	  background-size: auto 100%;
+	  -webkit-transform-origin: center 100px;
+			  transform-origin: center 100px;
+	  -webkit-transform: rotate(0deg);
+			  transform: rotate(0deg);
+	  position: absolute;
+	  left: 50%;
+	  margin-left: calc(-80px /6);
+	  top: calc(50% - 100px);
+	  z-index:55;
+	}
+	.watch--min {
+	  width: calc(80px /3);
+	  height: 155px;
+	  background: url("/img/m/Clock_AMinuteHand.png")no-repeat center;
+	  background-size: auto 100%;
+	  -webkit-transform-origin: center 125px;
+			  transform-origin: center 125px;
+	  -webkit-transform: rotate(0deg);
+			  transform: rotate(0deg);
+	  position: absolute;
+	  /*background: #fff;*/
+	  left: 50%;
+	  margin-left: calc(-80px /6);
+	  top: calc(50% - 125px);
+	  z-index:60;
+	}
+	.watch--sec {
+	  width: 2px;
+	  height: 170px;
+	  border-radius: 10px;
+	  -webkit-transform-origin: center 148px;
+			  transform-origin: center 148px;
+	  -webkit-transform: rotate(0deg);
+			  transform: rotate(0deg);
+	  position: absolute;
+	  background: #fa583c;
+	  left: calc(50% - 2.5px);
+	  top: calc(50% - 148px);
+	  z-index:70;
+
+	}
 }

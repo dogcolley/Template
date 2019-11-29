@@ -320,7 +320,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&ht{
             &_full {height:100%}       
             @for $i from 1 through 100{
-				&_p#{$i*10} {height: $i+%}
+				&_p#{$i*1} {height: $i+%}
             }
             @for $i from 1 through 200{
 				&_sz#{$i*5} {height: $i*5+px}
@@ -370,6 +370,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		
 			@for $i from 1 through 9{
 				&wh#{$i*100}{font-weight:($i*100)}
+				&Cwh#{$i*100} *{font-weight:($i*100)}
 			}   
 		}
 		
@@ -430,7 +431,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 				&wd#{$i*5}{margin-left:5px * $i;margin-right:5px * $i}
 				&ht#{$i*5}{margin-bottom:5px * $i;margin-top:5px * $i}
 				&all#{$i*5}{margin:5px * $i}
-				
+				 
 				&Clt#{$i*5} > *{margin-left:5px * $i}
 				&Crt#{$i*5} > *{margin-right:5px * $i}
 				&Ctop#{$i*5} > *{margin-top:5px * $i} 
@@ -504,18 +505,20 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		width:100%;max-width:1250px;margin-left:auto;margin-right:auto;
 		@include respond-to(handhelds) {padding-left:6.25%;padding-right:6.25%}
 		@include respond-to(medium-screens) {padding-left:4.25%;padding-right:4.25%}
+	} 
+	&img_box01 img{width:100%;height:auto}
+
+} 
+  
+.IM_{
+	&bd_{
+		&top0{border-top:0!important}
+		&btm0{border-bottom:0!important}
+		&lt0{border-left:0!important}
+		&rt0{border-right:0!important}
+		&all0{border:0!important}
 	}
-
-}
-
-.IM{
-	.bd_top0{border-top:0!important}
-	.bd_btm0{border-bottom:0!important}
-	.bd_lt0{border-left:0!important}
-	.bd_rt0{border-right:0!important}
-}
-
-
+} 
 
 
 .M_, .TM_{
@@ -523,7 +526,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		@include responde-pk01('M');
 	}
 }
-.TM, .TAB_, .PT_{
+.TM_, .TAB_, .PT_{
 	@include respond-to(medium-screens) {
 		@include responde-pk01('TAB');
 	} 
@@ -532,10 +535,11 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	@include respond-to(wide-screens) {
 		@include responde-pk01('PC');
 	}
-}
+}  
 
 .T_{
 	@include responde-pk01('ALL');
 }
 
-/*==== jsh bt-style -end ====*/
+/*==== jsh bt-style -end ==== */
+ 

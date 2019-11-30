@@ -73,11 +73,12 @@ body{
     &.bd_main {background-color:#000;background-repeat: no-repeat;background-position: center;
         @include respond-to(handhelds) {background-size: auto 100%;}
         @include respond-to(medium-screens) {background-size: auto 100%;} 
-        #ft{background:rgba(0,0,0,0.5);border:0}
-        #hd{background:none;border:0}
+        #ft{background:rgba(0,0,0,0.5);border:0;color:#fff}
+        #hd{background:none;border:0;color:#fff}
         #container{height:100%;display: table;height:100%}
         .U_bd_C01{ > * {border:1px solid rgba(255,255,255,0.3)}} 
         .U_pc_nav{color:#fff}
+        .U_line01{background:#fff}
     }
     &.type1{background-image: url("/img/pc/main_bg1.jpg");
         @include respond-to(handhelds) {}
@@ -100,7 +101,7 @@ body{
 #ft{border-top:1px solid #d9d9d9}
 #hd{border-bottom:1px solid #d9d9d9}
 
-.U_line01{display: inline-block;margin: 0 10px;vertical-align: top;width: 1px;height: 13px;background: #fff;position: relative;top: 4px;}
+.U_line01{display: inline-block;margin: 0 10px;vertical-align: top;width: 1px;height: 13px;background: #777;position: relative;top: 4px;}
 .U_bd_C01{ > * {border:1px solid #d9d9d9}} 
 .U_bg_C01{background:#fa583c}
 .U_bx_sh01{box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4)}
@@ -111,3 +112,6 @@ body{
 .U_btn02{
     border:1px solid #fff;width:48px;height:48px;
 }
+
+.U_btm_mypage{@include bg_base01('/img/m/Top_Mypage.png');background-size: 40% auto;}
+.U_btm_stieMap{@include bg_base01('/img/m/Top_Menu.png');background-size: 40% auto;}

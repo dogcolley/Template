@@ -23,11 +23,13 @@ body.bd_main {
 body.bd_main #ft {
   background: rgba(0, 0, 0, 0.5);
   border: 0;
+  color: #fff;
 }
 
 body.bd_main #hd {
   background: none;
   border: 0;
+  color: #fff;
 }
 
 body.bd_main #container {
@@ -42,6 +44,10 @@ body.bd_main .U_bd_C01 > * {
 
 body.bd_main .U_pc_nav {
   color: #fff;
+}
+
+body.bd_main .U_line01 {
+  background: #fff;
 }
 
 body.type1 {
@@ -74,7 +80,7 @@ body.type3 {
   vertical-align: top;
   width: 1px;
   height: 13px;
-  background: #fff;
+  background: #777;
   position: relative;
   top: 4px;
 }
@@ -103,5 +109,15 @@ body.type3 {
   border: 1px solid #fff;
   width: 48px;
   height: 48px;
+}
+
+.U_btm_mypage {
+  background: url("/img/m/Top_Mypage.png") no-repeat center;
+  background-size: 40% auto;
+}
+
+.U_btm_stieMap {
+  background: url("/img/m/Top_Menu.png") no-repeat center;
+  background-size: 40% auto;
 }
 /*# sourceMappingURL=dalyPm.css.map */

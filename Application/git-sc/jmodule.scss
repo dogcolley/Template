@@ -1,0 +1,547 @@
+@charset "UTF-8";
+
+/* test for mibile git */
+
+/*font-set*/
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
+@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+
+
+/*노토산서스 스퀘어한사스*/
+
+   
+/* J-style and scss style (add Grass)
+	guide : 가이드 해당스타일은 부트스트랩과같은 공통클래스와 사용자 정의 css를 합친 스타일입니다.  
+            (The corresponding style in the Guide is a combination of common classes such as bootstrap and custom css.)
+
+		1.첫번째 이니셜 (디바이스)
+			T = 테마 (Theme style) : 모든 디바이스에서
+			U = 사용자 지정 (user style)
+			J = 자바스크립트용 (javascript class)
+			PC = 피시버전용 (class for PC)
+			Tab = 테블릿전용  (class for Tab)
+			M = 모바일 전용(class for Mobile)
+			PT = 피시 and 테블릿 (class for PC , Tab )
+			TM = 모바일 and 테블릿 (class for Tab , mobile )
+			IM = 무조건 (!important)
+
+		2.두번째 단축어 (속성)
+			ft = 폰트(font)
+			bg = 백그라운드(background)
+			fm = 폰트 패밀리(font-family)
+			mg = 마진 (margin)    
+			pd = 패딩 (padding)    
+			cl = 컬러 (color)
+			sz = 사이즈 (size)
+			lh = 라인하이트 (line-height)
+			fl = 플롯 (float)
+			ps = 포지션 (position)
+			wd = 넓이 (width)
+			ht = 높이 (ht)
+			gd = 가이드 (guide) 
+			ly = 레이아웃(layout) 가로사이즈 제어
+		
+		3.세번째 단축어(옵션)
+			lf = 레드프(left)
+			rt = 라이트(right) 
+			top = 탑 (top)
+			btm = 바텀(btm)
+			wd = 좌우(left, right)
+			ht = 상하(height, width)
+			rem = rem(rem)
+
+		4.네번째 단축어(보조)
+			cd = 자식(chard)
+			tagName = 부모의 자식 특정 태그를 지정
+			hf = 반(Half)
+*/
+
+/* 
+SCSS base Data 
+
+!default : 값이 없으면 초기값을 할당 시켜준다.
+#'에'{} : 문자 보간
+!global (전역 설정)
+중첩 안에서 & 키워드는 상위(부모) 선택자를 참조하여 치환합니다.
+@at-root (중첩 벗어나기)
+@mixin @inlclude : 믹스인은 해당 선언 사용후 그걸 인크루도 재활용한다. $mixin test-style ($매개변수){}
+@extend 
+@function($x, $y)
+@return
+@each $변수 in 데이터 {}
+@while 조건 {}
+@if [and],[or],[not] : ex @if ($a > 0) and ($b > 0){}  +@else if , @else
+@import 다른 파일 가져오기
+@for $i from 1 through 3 { @for $i from 1 to 3 {
+
+색상(RGB / HSL / Opacity) 함수
+mix($color1, $color2) : 두 개의 색을 섞습니다.
+lighten($color, $amount) : 더 밝은색을 만듭니다.
+darken($color, $amount) : 더 어두운색을 만듭니다.
+saturate($color, $amount) : 색상의 채도를 올립니다.
+desaturate($color, $amount) : 색상의 채도를 낮춥니다.
+grayscale($color) : 색상을 회색으로 변환합니다.
+invert($color) : 색상을 반전시킵니다.
+rgba($color, $alpha) : 색상의 투명도를 변경합니다.
+opacify($color, $amount) / fade-in($color, $amount) : 색상을 더 불투명하게 만듭니다.
+transparentize($color, $amount) / fade-out($color, $amount) : 색상을 더 투명하게 만듭니다.
+
+문자(String) 함수
+unquote($string) : 문자에서 따옴표를 제거합니다.
+quote($string) : 문자에 따옴표를 추가합니다.
+str-insert($string, $insert, $index) : 문자의 index번째에 특정 문자를 삽입합니다.
+str-index($string, $substring) : 문자에서 특정 문자의 첫 index를 반환합니다.
+str-slice($string, $start-at, [$end-at]) : 문자에서 특정 문자(몇 번째 글자부터 몇 번째 글자까지)를 추출합니다.
+to-upper-case($string) : 문자를 대문자를 변환합니다.
+to-lower-case($string) : 문자를 소문자로 변환합니다.
+
+숫자(Number) 함수
+percentage($number) : 숫자(단위 무시)를 백분율로 변환합니다.
+round($number) : 정수로 반올림합니다.
+ceil($number) : 정수로 올림합니다.
+floor($number) : 정수로 내림(버림)합니다.
+abs($number) : 숫자의 절대 값을 반환합니다.
+min($numbers…) : 숫자 중 최소 값을 찾습니다.
+max($numbers…) : 숫자 중 최대 값을 찾습니다.
+random() : 0 부터 1 사이의 난수를 반환합니다.
+
+List 함수
+모든 List 내장 함수는 기존 List 데이터를 갱신하지 않고 새 List 데이터를 반환합니다.
+모든 List 내장 함수는 Map 데이터에서도 사용할 수 있습니다.
+
+length($list) : List의 개수를 반환합니다.
+nth($list, $n) : List에서 n번째 값을 반환합니다.
+set-nth($list, $n, $value) : List에서 n번째 값을 다른 값으로 변경합니다.
+join($list1, $list2, [$separator]) : 두 개의 List를 하나로 결합합니다.
+zip($lists…) : 여러 List들을 하나의 다차원 List로 결합합니다.
+index($list, $value) : List에서 특정 값의 index를 반환합니다.
+
+Map 함수
+모든 Map 내장 함수는 기존 Map 데이터를 갱신하지 않고 새 Map 데이터를 반환합니다.
+map-get($map, $key) : Map에서 특정 key의 value를 반환합니다.
+map-merge($map1, $map2) : 두 개의 Map을 병합하여 새로운 Map를 만듭니다.
+map-keys($map) : Map에서 모든 key를 List로 반환합니다.
+map-values($map) : Map에서 모든 value를 List로 반환합니다.
+
+관리(Introspection) 함수
+variable-exists(name) : 변수가 현재 범위에 존재하는지 여부를 반환합니다.(인수는 $없이 변수의 이름만 사용합니다.)
+unit($number) : 숫자의 단위를 반환합니다.
+unitless($number) : 숫자에 단위가 있는지 여부를 반환합니다.
+comparable($number1, $number2) : 두 개의 숫자가 연산 가능한지 여부를 반환합니다.
+*/
+
+/*sass 변수 모음*/
+//$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
+$S_M: 640px; 
+$S_T: 1024px;
+$S_W: 1200;
+/*mixin and function 모음*/
+@mixin clear {content:'';clear:both;display:block}
+@mixin area {margin-left:auto;margin-right:auto}
+@mixin ps_center($size) {left:0;margin-left:auto;margin-right:auto;right:0;width: $size;}
+@mixin bg_base01($url) {background:url($url)no-repeat center}
+@mixin bg_ch_url($url){background-image: url($url);}
+@mixin r_img($mode,$max){
+	$mode: '가로'!default;
+	$max: 100% !default;
+	@if($mode='가로'){width:100%;max-width: $max;}
+	@if($mode='세로'){height:100%;max-height:$max;}
+}
+
+
+/*SCSS*/
+
+$breakpoints: (
+        'small': (max-width: 640px),
+        'medium': (max-width: 1024px),
+        'large': (max-width: 1200px),
+) !default;
+
+@mixin respond-to($breakpoint) {
+    // If the key exists in the map
+    @if map-has-key($breakpoints, $breakpoint) {
+        // Prints a media query based on the value
+        @media #{inspect(map-get($breakpoints, $breakpoint))} {
+            @content;
+        }
+    }
+    // If the key doesn't exist in the map
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+    }
+} 
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $S_M) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $S_M + 1) and (max-width: $S_T - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $S_T) { @content; }
+  }
+}
+ 
+$t_cl01 : #0051a4;
+$t_cl02 : #000;
+$t_cl03 : #767676;
+$t_cl04 : #ccc;
+$t_cl05 : #6c6c6c;
+$t_cl06 : #efefef;
+$t_cl07 : #298cd5;
+$t_cl11 : #1c5eb5;
+$t_cl12 : #567f36;
+$cl_red : #e10000;   
+$cl_red2 : #d60c00;
+$cl_black : #000;   
+$cl_gray : #767676;   
+$t_cl10	: #000;
+$t_cl11 : #ddd;
+
+/*teg-reset*/
+html, body{
+	@include respond-to(handhelds) {font-size:14px}
+	@include respond-to(medium-screens) {font-size:16px} 
+    @include respond-to(wide-screens) {font-size:16px;min-width:1250px}
+    @media only screen and (max-width: 360px) {font-size:13px}
+    @media only screen and (max-width: 320px) {font-size:12px}
+}
+html {overflow-y:auto} 
+body {margin:0;padding:0;font-family:'Noto Sans KR', 'Spoqa Han Sans', sans-serif;background:#fff;font-weight:400;letter-spacing :-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
+html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
+h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Noto Sans KR', sans-serif;font-weight:inherit}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+em{font-style:normal} 
+strong{font-weight:600}
+ul, dl,dt,dd {margin:0;padding:0;list-style:none} 
+legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
+label, input, button, select, img {vertical-align:middle;font-size:inherit}
+input, button {margin:0;padding:0;font-family: inherit;font-size:inherit;color:inherit}
+input[type="submit"]{cursor:pointer}
+button {cursor:pointer;letter-spacing:inherit}
+input[type=submit] {-webkit-appearance:none;}
+textarea, input[type=text], input[type=password]{ -webkit-border-radius:0; /* 둥근모서리 */ -webkit-appearance:none; /* 그림자 */ }
+img {-ms-interpolation-mode:bicubic;}  
+table{border-spacing:0px;border-collapse:collapse}
+input{border-radius:0}
+input::-webkit-input-placeholder {color:#999}
+input:-ms-input-placeholder {color:#999} 
+textarea, select {font-family:inherit;font-size:inherit;border-color:#ddd;height:40px;background-color:#fff;padding:0 10px}
+select {margin:0}
+p {margin:0;padding:0;word-break:keep-all;line-height: 1.6}  
+hr {display:none}
+pre {overflow-x:scroll;font-size:1.1em}
+a {color:inherit;text-decoration:none;font-size:inherit}
+select { border-radius:0; /* 아이폰 사파리 보더 없애기 */ -webkit-appearance:none; /* 화살표 없애기 for chrome*/ -moz-appearance:none; /* 화살표 없애기 for firefox*/ appearance:none /* 화살표 없애기 공통*/ } 
+select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
+em{font-weight:500}
+/*
+select {background:#fff url("/img/icon_aw_btm01.gif")no-repeat calc(100% - 15px) center ;background-size:15px auto;padding-right: 35px;}
+select:focus{background-image:url("/img/icon_aw_top01.gif")}
+*/
+button{border:0;background:none}
+/*box-sizing-style*/ 
+*, :after, :before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+
+/*site base tag setting*/
+input{border:1px solid #ddd;}
+input[type="text"]{padding-left:10px;padding-right:10px
+        /*@include respond-to(wide-screens){}*/
+}
+
+/*common Calss*/
+.sound_only, .blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
+.clear:after{content: "";display: block;clear: both}
+.clear2{clear:both}
+.caption_blind{width:0;height:0;text-indent:-9999px;font-size:0;overflow:hidden}
+.text_over{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+#skipNav{position:absolute;left:-9999px;text-align:center;width:100%;height:90px;background:rgba(0,0,0,0.8);color:#fff;font-size:30px;text-align:center;width:100%;line-height:90px;z-index:100}
+#skipNav:focus{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+/*==== sir.kr common style -start ====*/
+  
+/*pop*/
+.hd_pops_footer{font-size:15px}
+
+/* search color */
+.sch_word {color:$t_cl01} 
+
+/* page-view gd_bd*/
+.pg{font-size:13px;
+	&_wrap{clear:both;margin:30px 0 ;text-align:center}
+	&_wrap:after {display:block;visibility:hidden;clear:both;content:""} 
+	&_page, &_current {display:inline-block;vertical-align:middle;background-color:#f3f3f3;border:1px solid #bbbcc3}
+	&_page{color:#555;height:35px;line-height:33px;padding:0 5px;width:35px;text-decoration:none;border-radius:3px;}
+	&_page:hover{background-color:#f3f3f3} 
+    /*이부분에 이미지는 추가로 삽입해줘야합니다.*/
+    /*
+	&_start {text-indent:-999px;overflow:hidden;background:url('../img/btn_first.gif') no-repeat 50% 50% #fff;padding:0;border:1px solid #bbb;}
+	&_prev {text-indent:-999px;overflow:hidden;background:url('../img/btn_prev.gif') no-repeat 50% 50% #fff;padding:0;border:1px solid #bbb}
+	&_end {text-indent:-999px;overflow:hidden;background:url('../img/btn_end.gif') no-repeat 50% 50% #fff;padding:0;border:1px solid #bbb}
+    &_next {text-indent:-999px;overflow:hidden;background:url('../img/btn_next.gif') no-repeat 50% 50% #fff;padding:0;border:1px solid #bbb}
+    */
+    /* 
+        &_start:hover,&_prev:hover,&_end:hover,&_next:hover{background-color:#fafafa}
+    */
+	&_current {display:inline-block;background-color:$t_cl01;border-color:$t_cl01;color:#fff;font-weight:bold;height:35px;line-height:33px;min-width:35px;border-radius:3px;box-shadow: inset 0px 0px 0px #222542;}
+	//a:focus,a:hover {text-decoration:none} 
+}
+/*==== sir.kr common style -end ====*/ 
+
+/*
+@import url("module/jpk01.css");
+@import url("module/jpk01.css");
+*/
+
+/*==== jsh bt-style -start ====*/
+$j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button','_em em','_p p'); 
+
+
+@mixin responde-pk01($device) {
+	    &wd{
+            &_full {width:100%}
+            @for $i from 1 through 100{
+				&_p#{$i} {width: $i+%}
+            }
+            @for $i from 1 through 200{
+				&_sz#{$i*5} {width: $i*5+px}
+			}
+
+            @for $i from 1 through 100{
+				&_p#{$i}_cd > * {width: $i+%}
+            }
+            @for $i from 1 through 200{
+				&_sz#{$i*5}_cd {width: $i*5+px}
+			}
+		}
+		
+		&ht{
+            &_full {height:100%}       
+            @for $i from 1 through 100{
+				&_p#{$i*1} {height: $i+%}
+            }
+            @for $i from 1 through 200{
+				&_sz#{$i*5} {height: $i*5+px}
+			}    
+		}
+		
+		&ps_{
+			&rl{position:relative}		
+			&ab{position:absolute} 
+			&st{position:static}
+			&fx{position:fixed}
+		}
+
+		&sound_only, &blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
+	
+		&ds_{
+			&block,&Cblock > *,&block_span span , &block_div, &block_strong strong, &block_em em,&block_p p{display: block}
+			&inbl,&Cinbl > *,&inbl_span span , &inbl_div, &inbl_strong strong, &inbl_em em,&inbl_p p{display: inline-block} 
+			&in,&Cin > *,&in_span span , &in_div, &in_strong strong, &in_em em,&in_p p{display: inline}
+			&table,&Ctable > *,&table_span span , &table_div, &table_strong table, &table_em em,&table_p p{display: table}
+            &cell,&Ccell > *,&cell_span span , &cell_div, &cell_strong table, &cell_em em,&cell_p p{display: table-cell}
+			&non,&Cnon > *,&non_span span , &non_div, &non_strong table, &non_em em,&non_p p{display:none}
+		} 
+	
+		&fl_{
+			&lt{float:left}
+			&rt{float:right}
+			&Clt > *{float:left} 
+			&non{float:none}
+			&Crt > *{float:left}
+		}
+	
+		&ft_{
+			@for $i from 10 through 50{
+				&sz#{$i}, &sz#{$i}_span span, &sz#{$i}_a a,&sz#{$i}_strong strong,&sz#{$i}_em em,&sz#{$i}_p p{font-size:$i+px}
+			}  
+		
+		
+			@for $i from 1 through 20{
+				&rem#{$i},&rem#{$i}_span span,&rem#{$i}_a a,&rem#{$i}_strong strong ,&rem#{$i}_em em ,&rem#{$i}_p p , &rem#{$i}_div div{font-size:($i*0.1)+rem}
+				&rem#{$i}hf, &rem#{$i}hf_span span , &rem#{$i}hf_a a ,&rem#{$i}hf_strong strong, &rem#{$i}hf_em em, &rem#{$i}hf_p p, &rem#{$i}hf_div div{font-size:(($i*0.1)+0.05)+rem}
+			}  
+
+			&ct{text-align:center}
+			&lt{text-align:left}
+			&rt{text-align:right}
+		
+			@for $i from 1 through 9{
+				&wh#{$i*100}{font-weight:($i*100)}
+				&Cwh#{$i*100} *{font-weight:($i*100)}
+			}   
+		}
+		
+		&vt_md{vertical-align:middle} &vt_top{vertical-align:top} &vt_btm{vertical-align:bottom}&vt_us{vertical-align: unset;}&vt_sp{vertical-align: super;}&vt_bs{vertical-align: baseline;}&vt_tp{vertical-align: text-top;}
+			
+		&lh{
+            @for $i from 0 through 20{ 
+				&_#{$i+10}{line-height:1+(0.1*$i)}
+			}
+			@for $i from 0 through 50{
+				&_px#{$i+10}{line-height:(10+$i)+px}
+			}
+		}
+		
+		&pd_{
+			@for $i from 1 through 20{
+				&lt#{$i*5}{padding-left:5px * $i}
+				&rt#{$i*5}{padding-right:5px * $i}
+				&top#{$i*5}{padding-top:5px * $i}
+				&btm#{$i*5}{padding-bottom:5px * $i}
+				&wd#{$i*5}{padding-left:5px * $i;padding-right:5px * $i}
+				&ht#{$i*5}{padding-top:5px * $i;padding-bottom:5px * $i}
+				&all#{$i*5}{padding:5px * $i}
+				
+				&Clt#{$i*5} > *{padding-left:5px * $i}
+				&Crt#{$i*5} > *{padding-right:5px * $i}
+				&Ctop#{$i*5} > *{padding-top:5px * $i}
+				&Cbtm#{$i*5} > *{padding-bottom:5px * $i}
+				&Cwd#{$i*5} > *{padding-left:5px * $i;padding-right:5px * $i}
+				&Cht#{$i*5} > *{padding-top:5px * $i;padding-bottom:5px * $i}
+                &Call#{$i*5} > *{padding:5px * $i}
+			}   
+			@for $i from 1 through 100{
+				&Plt#{$i}{padding-left:$i+%}
+				&Prt#{$i}{padding-right:$i+%}
+				&Ptop#{$i}{padding-top:$i+%} 
+				&Pbtm#{$i}{padding-bottom:$i+%}
+				&Pwd#{$i}{padding-left:$i+%;padding-right:$i+%}
+				&Pht#{$i}{padding-bottom:$i+%;padding-top:$i+%}
+				&Pall#{$i}{padding:$i+%}
+				
+				&CPlt#{$i} > *{padding-left:$i+%}
+				&CPrt#{$i} > *{padding-right:$i+%}
+				&CPtop#{$i} > *{padding-top:$i+%} 
+				&CPbtm#{$i} > *{padding-bottom:$i+%}
+				&CPwd#{$i} > *{padding-left:$i+%;padding-right:$i+%}
+				&CPht#{$i} > *{padding-bottom:$i+%;padding-top:$i+%}
+                &CPall#{$i} > *{padding:$i+%}
+			}   
+		}  
+	
+		&mg_{
+			@for $i from 1 through 20{
+				&lt#{$i*5}{margin-left:5px * $i}
+				&rt#{$i*5}{margin-right:5px * $i}
+				&top#{$i*5}{margin-top:5px * $i} 
+				&btm#{$i*5}{margin-bottom:5px * $i}
+				&wd#{$i*5}{margin-left:5px * $i;margin-right:5px * $i}
+				&ht#{$i*5}{margin-bottom:5px * $i;margin-top:5px * $i}
+				&all#{$i*5}{margin:5px * $i}
+				 
+				&Clt#{$i*5} > *{margin-left:5px * $i}
+				&Crt#{$i*5} > *{margin-right:5px * $i}
+				&Ctop#{$i*5} > *{margin-top:5px * $i} 
+				&Cbtm#{$i*5} > *{margin-bottom:5px * $i}
+				&Cwd#{$i*5} > *{margin-left:5px * $i;margin-right:5px * $i}
+				&Cht#{$i*5} > *{margin-bottom:5px * $i;margin-top:5px * $i}
+                &Call#{$i*5} > *{margin:5px * $i}
+			}   
+			@for $i from 1 through 100{
+				&Plt#{$i}{margin-left:$i+%}
+				&Prt#{$i}{margin-right:$i+%}
+				&Ptop#{$i}{margin-top:$i+%} 
+				&Pbtm#{$i}{margin-bottom:$i+%}
+				&Pwd#{$i}{margin-left:$i+%;margin-right:$i+%}
+				&Pht#{$i}{margin-bottom:$i+%;margin-top:$i+%}
+				&Pall#{$i}{margin:$i+%}
+					
+				&CPlt#{$i} > *{margin-left:$i+%}
+				&CPrt#{$i} > *{margin-right:$i+%}
+				&CPtop#{$i} > *{margin-top:$i+%} 
+				&CPbtm#{$i} > *{margin-bottom:$i+%}
+				&CPwd#{$i} > *{margin-left:$i+%;margin-right:$i+%}
+				&CPht#{$i} > *{margin-bottom:$i+%;margin-top:$i+%}
+				&CPall#{$i} > *{margin:$i+%}
+				}
+			}
+		
+			&ly_ , {  
+				@for $i from 2 through 16{
+					&#{$i} > *{float: left;width:calc( 100% / #{$i})}
+					&#{$i}:after{@include clear} 
+				}
+			}
+		
+			&ht_ct{display:table}
+			&ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}
+	}
+
+.U_{
+	&mg_ct{margin-left:auto;margin-right:auto}
+
+	&bg_{
+		&cfff{background:#fff}
+		&cf9{background:#f9f9f9}
+		&cd9{background:#ddd}
+		&c333{background:#333}
+		&c000{background:#000}
+	}
+
+	&ft_{
+		&cfff{color:#fff}
+		&c000{color:#000}
+		&c333{color:#333}
+		&c555{color:#555}
+		&c666{color:#666}
+		&c777{color:#777}
+		&c999{color:#999}
+		&c6c6c6c{color:#6c6c6c}
+		&6a6a6a{color:#6a6a6a}
+		&c767676{color:#767676}
+		&c868686{color:#868686}
+
+		&fm01{font-family: 'Noto Sans KR', sans-serif;}
+		&fm02{font-family: 'Montserrat', sans-serif;}
+		&fm03{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+		&fm04{font-family: 'Black Han Sans', sans-serif;}
+	}
+
+
+	&area01{
+		width:100%;max-width:1250px;margin-left:auto;margin-right:auto;
+		@include respond-to(handhelds) {padding-left:6.25%;padding-right:6.25%}
+		@include respond-to(medium-screens) {padding-left:4.25%;padding-right:4.25%}
+	} 
+	&img_box01 img{width:100%;height:auto}
+
+} 
+  
+.IM_{
+	&bd_{
+		&top0{border-top:0!important}
+		&btm0{border-bottom:0!important}
+		&lt0{border-left:0!important}
+		&rt0{border-right:0!important}
+		&all0{border:0!important}
+	}
+} 
+
+
+.M_, .TM_{
+	@include respond-to(handhelds) {
+		@include responde-pk01('M');
+	}
+}
+.TM_, .TAB_, .PT_{
+	@include respond-to(medium-screens) {
+		@include responde-pk01('TAB');
+	} 
+}
+.PC_, .PT_, {
+	@include respond-to(wide-screens) {
+		@include responde-pk01('PC');
+	}
+}  
+
+.T_{
+	@include responde-pk01('ALL');
+}
+
+/*==== jsh bt-style -end ==== */
+ 

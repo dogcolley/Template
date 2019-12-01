@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/*sass 변수 모음*/
+/*mixin and function 모음*/
+/*SCSS*/
+body.bd_main {
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media only screen and (max-width: 640px) {
+  body.bd_main {
+    background-size: auto 100%;
+  }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
+  body.bd_main {
+    background-size: auto 100%;
+  }
+}
+
+body.bd_main #ft {
+  background: rgba(0, 0, 0, 0.5);
+  border: 0;
+  color: #fff;
+}
+
+body.bd_main #hd {
+  background: none;
+  border: 0;
+  color: #fff;
+}
+
+body.bd_main #container {
+  height: 100%;
+  display: table;
+  height: 100%;
+}
+
+body.bd_main .U_bd_C01 > * {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.bd_main .U_pc_nav {
+  color: #fff;
+}
+
+body.bd_main .U_line01 {
+  background: #fff;
+}
+
+body.type1 {
+  background-image: url("/img/pc/main_bg1.jpg");
+}
+
+body.type2 {
+  background-image: url("/img/pc/main_bg2.jpg");
+}
+
+body.type3 {
+  background-image: url("/img/pc/main_bg3.jpg");
+}
+
+#ft, #hd {
+  background: #fff;
+}
+
+#ft {
+  border-top: 1px solid #d9d9d9;
+}
+
+#hd {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.U_line01 {
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: top;
+  width: 1px;
+  height: 13px;
+  background: #777;
+  position: relative;
+  top: 4px;
+}
+
+.U_bd_C01 > * {
+  border: 1px solid #d9d9d9;
+}
+
+.U_bg_C01 {
+  background: #fa583c;
+}
+
+.U_bx_sh01 {
+  -webkit-box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
+          box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
+}
+
+.U_btn01 {
+  border-radius: 7px;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.U_btn02 {
+  border: 1px solid #fff;
+  width: 48px;
+  height: 48px;
+}
+
+.U_btm_mypage {
+  background: url("/img/m/Top_Mypage.png") no-repeat center;
+  background-size: 40% auto;
+}
+
+.U_btm_stieMap {
+  background: url("/img/m/Top_Menu.png") no-repeat center;
+  background-size: 40% auto;
+}
+/*# sourceMappingURL=dalyPm.css.map */

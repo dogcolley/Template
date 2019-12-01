@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>To Do List</title>
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<style>
+html, body, input { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Gamja Flower', cursive; }
+button { font-family: 'Gamja Flower', cursive; background: #a369af; color: #fff; font-size: 18px; cursor: pointer; }
+.list-box { width: 500px; margin: 100px auto; border: 1px solid #eee; padding: 20px 30px 50px; background: #333; }
+.list-box h1 { padding-bottom: 10px; text-align: center; color: #9fd6c2; border-bottom: 1px solid #87898f; }
+.write-box { width: 100%; height: 35px; font-size: 0; }
+.write-box input { width: 400px; font-size: 20px; border: none; padding: 0 10px; height: 100%; }
+.write-box button { width: 100px; border: none; height: 100%; }
+.list-table { border-spacing:0px; border-collapse: collapse; width: 100%; margin: 20px 0; }
+th, td { border: 1px solid #ddd; padding: 10px 20px; font-size: 20px; }
+th { background: #9fd6c2; }
+td { color: #fff; }
+tbody td:first-child { text-align: center; }
+.btn-area { text-align: center; }
+.btn-area button { height: 35px; padding: 0 10px; border: none; }
+</style>
+</head>
+<body>
+<div class="list-box">
+<h1>To Do List</h1>
+<div class="write-box">
+<input type="text" class="text-basic">
+<button type="button" id="btnAdd">추가</button>
+</div>
+<table class="list-table">
+<colgroup>
+<col width="10%">
+<col width="90%">
+</colgroup>
+<thead>
+<tr>
+<th>check</th>
+<th>To do List</th>
+</tr>
+</thead>
+<tbody id="listBody">
+<tr>
+<td>
+<input type="checkbox" class="btn-chk">
+</td>
+<td>
+청소하기
+</td>
+</tr>
+<tr>
+<td>
+<input type="checkbox" class="btn-chk">
+</td>
+<td>
+숙제하기
+</td>
+</tr>
+</tbody>
+</table>
+<div class="btn-area">
+<button type="button" id="DeleteSel">선택 삭제</button>
+<button type="button" id="btnDelLast">마지막 항목 삭제</button>
+<button type="button" id="btnDelAll">전체 삭제</button>
+</div>
+</div>
+<script>
+
+document.getElementById('btnAdd').addEventListener('click', addList); // 추가
+document.getElementById('btnDelAll').addEventListener('click', delAllEle); // 전체삭제
+document.getElementById('btnDelLast').addEventListener('click', delLastEle); // 마지막 요소 삭제
+document.getElementById('DeleteSel').addEventListener('click', delSelected); // 선택 삭제
+
+// 추가
+function addList() {
+var contents = document.querySelector('.text-basic');
+if (!contents.value) {
+alert('내용을 입력해주세요.');
+contents.focus();
+return false;
+}
+var tr = document.createElement('tr');
+var input = document.createElement('input');
+input.setAttribute('type', 'checkbox');
+input.setAttribute('class', 'btn-chk');
+var td01 = document.createElement('td');
+td01.appendChild(input);
+tr.appendChild(td01);
+var td02 = document.createElement('td');
+td02.innerHTML = contents.value;
+tr.appendChild(td02);
+document.getElementById('listBody').appendChild(tr);
+contents.value='';
+contents.focus();
+}
+
+
+
+
+function delAllEle() {
+var list = document.getElementById('listBody');
+var listChild = list.children;
+for(var i=0; i<listChild.length; i++) {
+list.removeChild(listChild[i])
+i--;
+}
+}
+
+
+function delLastEle() {
+var body = document.getElementById('listBody');
+var list = document.querySelectorAll('#listBody > tr');
+if(list.length > 0) {
+var liLen = list.length-1;
+body.removeChild(list[liLen]);
+} else {
+alert('삭제할 항목이 없습니다.')
+return false;
+}
+}
+
+
+
+function delSelected() {
+var body = document.getElementById('listBody');
+var chkbox = document.querySelectorAll('#listBody .btn-chk');
+for(var i in chkbox) {
+if(chkbox[i].nodeType == 1 && chkbox[i].checked == true) {
+body.removeChild(chkbox[i].parentNode.parentNode);
+}
+}
+}
+
+
+</script>
+
+</body>
+</html>

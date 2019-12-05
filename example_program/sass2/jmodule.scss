@@ -211,7 +211,7 @@ html, body{
     @media only screen and (max-width: 320px) {font-size:12px}
 }
 html {overflow-y:auto} 
-body {margin:0;padding:0;font-family:'Noto Sans KR', 'Spoqa Han Sans', sans-serif;background:#fff;font-weight:400;letter-spacing :-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1;background:#e1ebf9}
+body {margin:0;padding:0;font-family:'Noto Sans KR', 'Spoqa Han Sans', sans-serif;background:#fff;font-weight:400;letter-spacing :-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Noto Sans KR', sans-serif;font-weight:inherit}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
@@ -270,7 +270,7 @@ input[type="text"]{padding-left:10px;padding-right:10px
 
 /* page-view gd_bd*/
 .pg{font-size:13px;
-	&_wrap{clear:both;margin:30px 0 ;text-align:center}
+	&_wrap{clear:both;margin: 0 ;text-align:center}
 	&_wrap:after {display:block;visibility:hidden;clear:both;content:""} 
 	&_page, &_current {display:inline-block;vertical-align:middle;background-color:#f3f3f3;border:1px solid #bbbcc3}
 	&_page{color:#555;height:35px;line-height:33px;padding:0 5px;width:35px;text-decoration:none;border-radius:3px;}
@@ -285,7 +285,7 @@ input[type="text"]{padding-left:10px;padding-right:10px
     /* 
         &_start:hover,&_prev:hover,&_end:hover,&_next:hover{background-color:#fafafa}
     */
-	&_current {display:inline-block;background-color:$t_cl01;border-color:$t_cl01;color:#fff;font-weight:bold;height:35px;line-height:33px;min-width:35px;border-radius:3px;box-shadow: inset 0px 0px 0px #222542;}
+	&_current {display:inline-block;background-color:#fa583c;border-color:#fa583c;color:#fff;font-weight:bold;height:35px;line-height:33px;min-width:35px;border-radius:3px;box-shadow: inset 0px 0px 0px #222542;}
 	//a:focus,a:hover {text-decoration:none} 
 }
 /*==== sir.kr common style -end ====*/ 
@@ -303,27 +303,20 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	    &wd{
             &_full {width:100%}
             @for $i from 1 through 100{
-				&_p#{$i} {width: $i+%}
+				&_p#{$i}, &_p#{$i}_cd > * {width: $i+%}
             }
             @for $i from 1 through 200{
-				&_sz#{$i*5} {width: $i*5+px}
-			}
-
-            @for $i from 1 through 100{
-				&_p#{$i}_cd > * {width: $i+%}
-            }
-            @for $i from 1 through 200{
-				&_sz#{$i*5}_cd {width: $i*5+px}
+				&_sz#{$i*5},&_sz#{$i*5}_cd > * {width: $i*5+px}
 			}
 		}
 		
 		&ht{
             &_full {height:100%}       
             @for $i from 1 through 100{
-				&_p#{$i*1} {height: $i+%}
+				&_p#{$i*1} ,  &_p#{$i*1}_cd > * {height: $i+%}
             }
             @for $i from 1 through 200{
-				&_sz#{$i*5} {height: $i*5+px}
+				&_sz#{$i*5}, &_sz#{$i*5}_cd > * {height: $i*5+px}
 			}    
 		}
 		
@@ -490,10 +483,10 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&c777{color:#777}
 		&c999{color:#999}
 		&c6c6c6c{color:#6c6c6c}
-		&6a6a6a{color:#6a6a6a}
+		&c6a6a6a{color:#6a6a6a}
 		&c767676{color:#767676}
 		&c868686{color:#868686}
-
+		&cd9d9d9{color:#d9d9d9}
 		&fm01{font-family: 'Noto Sans KR', sans-serif;}
 		&fm02{font-family: 'Montserrat', sans-serif;}
 		&fm03{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
@@ -506,8 +499,18 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		@include respond-to(handhelds) {padding-left:6.25%;padding-right:6.25%}
 		@include respond-to(medium-screens) {padding-left:4.25%;padding-right:4.25%}
 	} 
+	&area02{ 
+		width:100%;max-width:1050px;margin-left:auto;margin-right:auto;
+		@include respond-to(handhelds) {padding-left:6.25%;padding-right:6.25%}
+		@include respond-to(medium-screens) {padding-left:4.25%;padding-right:4.25%}
+	} 
 	&img_box01 img{width:100%;height:auto}
-
+	&ct_box01{display: table;height: 100%;
+		> * {display:table-cell;vertical-align: middle;}
+	}
+	&ct_box02{display: table;
+		> * {display:table-cell;vertical-align: middle;}
+	}
 } 
   
 .IM_{

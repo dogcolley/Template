@@ -98,6 +98,11 @@ body.type3 {
           box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
 }
 
+.U_ft01 {
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
 .U_btn01 {
   border-radius: 7px;
   text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
@@ -119,5 +124,120 @@ body.type3 {
 .U_btm_stieMap {
   background: url("/img/m/Top_Menu.png") no-repeat center;
   background-size: 40% auto;
+}
+
+/*bd skin*/
+.sir_bd_cate li {
+  background: #f3f3f3;
+}
+
+.sir_bd_cate a {
+  display: block;
+}
+
+.sir_bd_cate li.on {
+  background: #fa583c;
+  color: #fff;
+}
+
+.sir_bd_list01 {
+  border-top: 1px solid #d9d9d9;
+}
+
+.sir_bd_list01 > li {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.sir_bd_list01 .list_info:after {
+  content: "";
+  position: absolute;
+  height: 53%;
+  border-right: 1px dashed #d9d9d9;
+  top: 50%;
+  margin-top: -26.5%;
+  display: block;
+  right: 0;
+}
+
+.sir_bd_list01 .list_info.is_notice {
+  color: #fa583c;
+}
+
+.sir_bd_list01 .list_info.is_notice span {
+  color: #000;
+}
+
+.sir_bd_list01 .list_info {
+  min-width: 105px;
+}
+
+.cs_benner {
+  position: relative;
+  top: 1px;
+  background: #000 no-repeat center;
+}
+
+.cs_benner.cs_notice {
+  background-image: url("/img/pc/cs_benner1.jpg");
+}
+
+.cs_benner.cs_qna {
+  background-image: url("/img/pc/cs_benner2.jpg");
+}
+
+.cs_benner.cs_reviewH {
+  background-image: url("/img/pc/cs_benner3.jpg");
+}
+
+.cs_benner.cs_reviewP {
+  background-image: url("/img/pc/cs_benner4.jpg");
+}
+
+.sir_bd_top01 {
+  border-top: 1px solid #fa583c;
+}
+
+.sir_bd_top02 {
+  border-top: 2px solid #fa583c;
+}
+
+.sir_bd_top03 {
+  border-top: 3px solid #fa583c;
+}
+
+.sir_bd_top11 {
+  border-top: 1px solid #d9d9d9;
+}
+
+.sir_bd_top12 {
+  border-top: 2px solid #d9d9d9;
+}
+
+.sir_bd_top13 {
+  border-top: 3px solid #d9d9d9;
+}
+
+.sir_bd_btm11 {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.sir_bd_btm12 {
+  border-bottom: 2px solid #d9d9d9;
+}
+
+.sir_bd_btm13 {
+  border-bottom: 3px solid #d9d9d9;
+}
+
+.sir_bd_all01 {
+  border: 1px solid #fa583c;
+}
+
+.sir_bd_all11 {
+  border: 1px solid #d9d9d9;
+}
+
+.sir_bg01 {
+  background: #fa583c;
 }
 /*# sourceMappingURL=dalyPm.css.map */

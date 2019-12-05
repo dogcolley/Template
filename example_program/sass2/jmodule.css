@@ -263,11 +263,15 @@ input {
 }
 
 input::-webkit-input-placeholder {
-  color: #999;
+  color: #c1c1c1;
 }
 
 input:-ms-input-placeholder {
-  color: #999;
+  color: #c1c1c1;
+}
+
+input:focus {
+  color: #333;
 }
 
 textarea, select {
@@ -327,10 +331,13 @@ select {
   background: #fff url("/img/icon_aw_btm01.gif") no-repeat calc(100% - 15px) center;
   background-size: 15px auto;
   padding-right: 35px;
+  border: 1px solid #bdbdbd;
+  color: #333;
 }
 
 select:focus {
   background-image: url("/img/icon_aw_top01.gif");
+  color: #333;
 }
 
 button {
@@ -346,7 +353,7 @@ button {
 
 /*site base tag setting*/
 input {
-  border: 1px solid #ddd;
+  border: 1px solid #bdbdbd;
 }
 
 input[type="text"] {
@@ -616,6 +623,27 @@ input[type="text"] {
 
 @media only screen and (min-width: 641px) and (max-width: 1023px) {
   .U_area02 {
+    padding-left: 4.25%;
+    padding-right: 4.25%;
+  }
+}
+
+.U_area03 {
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 640px) {
+  .U_area03 {
+    padding-left: 6.25%;
+    padding-right: 6.25%;
+  }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
+  .U_area03 {
     padding-left: 4.25%;
     padding-right: 4.25%;
   }
@@ -2524,7 +2552,7 @@ input[type="text"] {
     float: none;
   }
   .M_fl_Crt > *, .TM_fl_Crt > * {
-    float: left;
+    float: right;
   }
   .M_ft_sz10, .M_ft_sz10_span span, .M_ft_sz10_a a, .M_ft_sz10_strong strong, .M_ft_sz10_em em, .M_ft_sz10_p p, .TM_ft_sz10, .TM_ft_sz10_span span, .TM_ft_sz10_a a, .TM_ft_sz10_strong strong, .TM_ft_sz10_em em, .TM_ft_sz10_p p {
     font-size: 10px;
@@ -16114,7 +16142,7 @@ input[type="text"] {
     float: none;
   }
   .TM_fl_Crt > *, .TAB_fl_Crt > *, .PT_fl_Crt > * {
-    float: left;
+    float: right;
   }
   .TM_ft_sz10, .TM_ft_sz10_span span, .TM_ft_sz10_a a, .TM_ft_sz10_strong strong, .TM_ft_sz10_em em, .TM_ft_sz10_p p, .TAB_ft_sz10, .TAB_ft_sz10_span span, .TAB_ft_sz10_a a, .TAB_ft_sz10_strong strong, .TAB_ft_sz10_em em, .TAB_ft_sz10_p p, .PT_ft_sz10, .PT_ft_sz10_span span, .PT_ft_sz10_a a, .PT_ft_sz10_strong strong, .PT_ft_sz10_em em, .PT_ft_sz10_p p {
     font-size: 10px;
@@ -29704,7 +29732,7 @@ input[type="text"] {
     float: none;
   }
   .PC_fl_Crt > *, .PT_fl_Crt > * {
-    float: left;
+    float: right;
   }
   .PC_ft_sz10, .PC_ft_sz10_span span, .PC_ft_sz10_a a, .PC_ft_sz10_strong strong, .PC_ft_sz10_em em, .PC_ft_sz10_p p, .PT_ft_sz10, .PT_ft_sz10_span span, .PT_ft_sz10_a a, .PT_ft_sz10_strong strong, .PT_ft_sz10_em em, .PT_ft_sz10_p p {
     font-size: 10px;
@@ -43910,7 +43938,7 @@ input[type="text"] {
 }
 
 .T_fl_Crt > * {
-  float: left;
+  float: right;
 }
 
 .T_ft_sz10, .T_ft_sz10_span span, .T_ft_sz10_a a, .T_ft_sz10_strong strong, .T_ft_sz10_em em, .T_ft_sz10_p p {

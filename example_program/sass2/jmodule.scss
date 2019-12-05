@@ -228,8 +228,9 @@ textarea, input[type=text], input[type=password]{ -webkit-border-radius:0; /* �
 img {-ms-interpolation-mode:bicubic;}  
 table{border-spacing:0px;border-collapse:collapse}
 input{border-radius:0}
-input::-webkit-input-placeholder {color:#999}
-input:-ms-input-placeholder {color:#999} 
+input::-webkit-input-placeholder {color:#c1c1c1}
+input:-ms-input-placeholder {color:#c1c1c1} 
+input:focus{color:#333}
 textarea, select {font-family:inherit;font-size:inherit;border-color:#ddd;height:40px;background-color:#fff;padding:0 10px}
 select {margin:0}
 p {margin:0;padding:0;word-break:keep-all;line-height: 1.6}  
@@ -239,14 +240,14 @@ a {color:inherit;text-decoration:none;font-size:inherit}
 select { border-radius:0; /* 아이폰 사파리 보더 없애기 */ -webkit-appearance:none; /* 화살표 없애기 for chrome*/ -moz-appearance:none; /* 화살표 없애기 for firefox*/ appearance:none /* 화살표 없애기 공통*/ } 
 select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 em{font-weight:500}
-select {background:#fff url("/img/icon_aw_btm01.gif")no-repeat calc(100% - 15px) center ;background-size:15px auto;padding-right: 35px;}
-select:focus{background-image:url("/img/icon_aw_top01.gif")}
+select {background:#fff url("/img/icon_aw_btm01.gif")no-repeat calc(100% - 15px) center ;background-size:15px auto;padding-right: 35px;border:1px solid #bdbdbd;color:#333}
+select:focus{background-image:url("/img/icon_aw_top01.gif");color:#333}
 button{border:0;background:none}
 /*box-sizing-style*/ 
 *, :after, :before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
 
 /*site base tag setting*/
-input{border:1px solid #ddd;}
+input{border:1px solid #bdbdbd;}
 input[type="text"]{padding-left:10px;padding-right:10px
         /*@include respond-to(wide-screens){}*/
 }
@@ -343,7 +344,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 			&rt{float:right}
 			&Clt > *{float:left} 
 			&non{float:none}
-			&Crt > *{float:left}
+			&Crt > *{float:right}
 		}
 	
 		&ft_{
@@ -504,6 +505,11 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		@include respond-to(handhelds) {padding-left:6.25%;padding-right:6.25%}
 		@include respond-to(medium-screens) {padding-left:4.25%;padding-right:4.25%}
 	} 
+	&area03{
+		width:100%;max-width:600px;margin-left:auto;margin-right:auto;
+		@include respond-to(handhelds) {padding-left:6.25%;padding-right:6.25%}
+		@include respond-to(medium-screens) {padding-left:4.25%;padding-right:4.25%}	
+	}
 	&img_box01 img{width:100%;height:auto}
 	&ct_box01{display: table;height: 100%;
 		> * {display:table-cell;vertical-align: middle;}

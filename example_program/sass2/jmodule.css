@@ -36,6 +36,7 @@
 			ht = 높이 (ht)
 			gd = 가이드 (guide) 
 			ly = 레이아웃(layout) 가로사이즈 제어
+			bx = 박스(box)
 		
 		3.세번째 단축어(옵션)
 			lf = 레드프(left)
@@ -128,13 +129,13 @@ comparable($number1, $number2) : 두 개의 숫자가 연산 가능한지 여부
 /*mixin and function 모음*/
 /*SCSS*/
 /*teg-reset*/
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   html, body {
     font-size: 14px;
   }
 }
 
-@media only screen and (min-width: 641px) and (max-width: 1023px) {
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
   html, body {
     font-size: 16px;
   }
@@ -522,6 +523,10 @@ input[type="text"] {
   background: #000;
 }
 
+.U_bg_cf0 {
+  background: #f0f0f0;
+}
+
 .U_ft_cfff {
   color: #fff;
 }
@@ -593,14 +598,14 @@ input[type="text"] {
   margin-right: auto;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   .U_area01 {
     padding-left: 6.25%;
     padding-right: 6.25%;
   }
 }
 
-@media only screen and (min-width: 641px) and (max-width: 1023px) {
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
   .U_area01 {
     padding-left: 4.25%;
     padding-right: 4.25%;
@@ -614,14 +619,14 @@ input[type="text"] {
   margin-right: auto;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   .U_area02 {
     padding-left: 6.25%;
     padding-right: 6.25%;
   }
 }
 
-@media only screen and (min-width: 641px) and (max-width: 1023px) {
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
   .U_area02 {
     padding-left: 4.25%;
     padding-right: 4.25%;
@@ -635,14 +640,14 @@ input[type="text"] {
   margin-right: auto;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   .U_area03 {
     padding-left: 6.25%;
     padding-right: 6.25%;
   }
 }
 
-@media only screen and (min-width: 641px) and (max-width: 1023px) {
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
   .U_area03 {
     padding-left: 4.25%;
     padding-right: 4.25%;
@@ -673,6 +678,10 @@ input[type="text"] {
   vertical-align: middle;
 }
 
+.U_bd_rd {
+  border-radius: 9999px;
+}
+
 .IM_bd_top0 {
   border-top: 0 !important;
 }
@@ -693,7 +702,7 @@ input[type="text"] {
   border: 0 !important;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   .M_wd_full, .TM_wd_full {
     width: 100%;
   }
@@ -14281,9 +14290,17 @@ input[type="text"] {
     height: 100%;
     text-align: center;
   }
+  .M_box_bd, .TM_box_bd {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .M_box_ct, .TM_box_ct {
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+  }
 }
 
-@media only screen and (min-width: 641px) and (max-width: 1023px) {
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
   .TM_wd_full, .TAB_wd_full, .PT_wd_full {
     width: 100%;
   }
@@ -27870,6 +27887,14 @@ input[type="text"] {
     vertical-align: middle;
     height: 100%;
     text-align: center;
+  }
+  .TM_box_bd, .TAB_box_bd, .PT_box_bd {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .TM_box_ct, .TAB_box_ct, .PT_box_ct {
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
   }
 }
 
@@ -41460,6 +41485,14 @@ input[type="text"] {
     vertical-align: middle;
     height: 100%;
     text-align: center;
+  }
+  .PC_box_bd, .PT_box_bd {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .PC_box_ct, .PT_box_ct {
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
   }
 }
 
@@ -59239,6 +59272,16 @@ input[type="text"] {
   vertical-align: middle;
   height: 100%;
   text-align: center;
+}
+
+.T_box_bd {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.T_box_ct {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 
 /*==== jsh bt-style -end ==== */

@@ -42,6 +42,7 @@
 			ht = 높이 (ht)
 			gd = 가이드 (guide) 
 			ly = 레이아웃(layout) 가로사이즈 제어
+			bx = 박스(box)
 		
 		3.세번째 단축어(옵션)
 			lf = 레드프(left)
@@ -134,7 +135,7 @@ comparable($number1, $number2) : 두 개의 숫자가 연산 가능한지 여부
 
 /*sass 변수 모음*/
 //$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
-$S_M: 640px; 
+$S_M: 768px; 
 $S_T: 1024px;
 $S_W: 1200;
 /*mixin and function 모음*/
@@ -453,7 +454,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 				}
 			}
 		
-			&ly_ , {  
+			&ly_{  
 				@for $i from 2 through 16{
 					&#{$i} > *{float: left;width:calc( 100% / #{$i})}
 					&#{$i}:after{@include clear} 
@@ -462,6 +463,11 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		
 			&ht_ct{display:table}
 			&ht_ct > * {display:table-cell;vertical-align:middle;height:100%;text-align:center}
+
+			&box_{
+				&bd{box-sizing: border-box;}
+				&ct{box-sizing: content-box;}
+			}
 	}
 
 .U_{
@@ -473,6 +479,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&cd9{background:#ddd}
 		&c333{background:#333}
 		&c000{background:#000}
+		&cf0{background: #f0f0f0;}
 	}
 
 	&ft_{
@@ -517,6 +524,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	&ct_box02{display: table;
 		> * {display:table-cell;vertical-align: middle;}
 	}
+	&bd_rd{border-radius: 9999px;}
 } 
   
 .IM_{

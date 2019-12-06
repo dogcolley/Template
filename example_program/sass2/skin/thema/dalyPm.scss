@@ -1,6 +1,6 @@
 /*sass 변수 모음*/
 //$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
-$S_M: 640px; 
+$S_M: 768px; 
 $S_T: 1024px;
 $S_W: 1200;
 /*mixin and function 모음*/
@@ -79,6 +79,11 @@ body{
         .U_bd_C01{ > * {border:1px solid rgba(255,255,255,0.3)}} 
         .U_pc_nav{color:#fff}
         .U_line01{background:#fff}
+        .U_pc_nav {
+            a:hover,a:focus{color:#fff;
+            }
+            a:after{background:#fff}
+        }
     }
     &.type1{background-image: url("/img/pc/main_bg1.jpg");
         @include respond-to(handhelds) {}
@@ -100,6 +105,12 @@ body{
 #ft,#hd{background:#fff}
 #ft{border-top:1px solid #bdbdbd}
 #hd{border-bottom:1px solid #bdbdbd}
+#U_logo{
+    @include respond-to(wide-screens) {
+        width:128px;margin-top:9.5px
+
+    }
+}
 
 $set_color01: #fa583c;
 
@@ -113,7 +124,14 @@ $set_color01: #fa583c;
 .U_btn02{
     border:1px solid #fff;width:48px;height:48px;
 }
-
+.U_pc_nav {
+    a:hover,a:focus{color:$set_color01;
+        &:after{width:100%}
+    }
+    a{position:relative}
+    a:after{content:"";display:block;position:absolute;height:3px;width:0%;top:100%;margin:0 auto;left:0;right:0;background: $set_color01;transition: 0.5s all;}
+    
+}
 .U_btm_mypage{@include bg_base01('/img/m/Top_Mypage.png');background-size: 40% auto;}
 .U_btm_stieMap{@include bg_base01('/img/m/Top_Menu.png');background-size: 40% auto;}
 
@@ -126,10 +144,12 @@ $set_color01: #fa583c;
 
 .sir_bd_list01{border-top: 1px solid #d9d9d9;
     > li {border-bottom: 1px solid #d9d9d9;}
-    .list_info:after{content:"";position: absolute;height:53%;border-right: 1px dashed #d9d9d9;top:50%;margin-top:-26.5%;display:block;right:0}
+    .list_info:after{content:"";position: absolute;height:100px;border-right: 1px dashed #d9d9d9;top:50%;margin-top:-50px;display:block;right:0}
     .list_info.is_notice{color:$set_color01;span{color:#000}}
     .list_info {min-width:105px}
+    li:hover .list_info * {color:#000}
 }
+
 
 .sir_input_box{border:1px solid #bdbdbd;border-radius: 4px;padding:0 30px;height:65px;
     > * {display:inline-block;vertical-align:middle;line-height:60px;}
@@ -141,13 +161,20 @@ $set_color01: #fa583c;
 .sir_input02{padding:0 30px;height:65px;border-radius: 4px 0 0 4px!important;padding:0 30px!important;line-height:63px;border:1px solid #bdbdbd;border-right:0;
     @include respond-to(handhelds) {height:50px;line-height:48px}
 }
+
+.sir_input03{border:1px solid #f7954c;border-radius: 4px 0 0 4px;
+    &::-webkit-input-placeholder {color:#f7954c}
+    &:-ms-input-placeholder {color:#f7954c} 
+}
+
+
 .sir_input_btn{padding:0 30px;height:65px;border-radius: 0 4px 4px 0!important;text-align:center;line-height:65px;background: $set_color01;color:#fff;max-width:170px;
     @include respond-to(handhelds) {height:50px;line-height:50px}
 }
 
 .sir_label{margin-bottom:15px;display:block;}
 
-.cs_benner{position: relative;top: 1px;background:#000 no-repeat center;
+.cs_benner{position: relative;top: 1px;background:url("/img/pc/cs_benner0.jpg") #000 no-repeat center;
     &.cs_notice{background-image: url("/img/pc/cs_benner1.jpg");}
     &.cs_qna{background-image: url("/img/pc/cs_benner2.jpg");}
     &.cs_reviewH{background-image: url("/img/pc/cs_benner3.jpg");}
@@ -180,5 +207,30 @@ $set_color01: #fa583c;
 .sir_bg01{background:$set_color01}
 .sir_ftc01{color:$set_color01}
 .sir_rd01{border-radius: 5px;}
+.sir_rd02{border-radius: 0 4px 4px 0;}
+
+
 
 .sir_btn02{height:40px;width:85px;line-height:38px;border:1px solid #d9d9d9;font-size:15px}
+.sir_btn03{background:#ff9735!important;color:#fff!important;
+    @include respond-to(medium-screens) {width:58px;} 
+    @include respond-to(wide-screens) {width:58px;}
+}
+.sir_btn04{height:20px;line-height:20px;padding:0 20px;font-size:13px;color:#fff;border-radius: 20px;background: #989898;}
+.sir_btn04.on{background: #f7954c;}
+
+.sir_btn05{height:30px;line-height:30px;padding:0 30px;font-size:17px;color:#fff;border-radius: 30px;background: #989898;}
+.sir_btn05.on{background: #f7954c;}
+.sir_btn06{border:1px solid #ff9735;color:#ff9735}
+.sir_btn06.on{background:#ff9735;color:#fff}
+
+.sir_btn07{border:1px solid #fa583c;color:#fa583c}
+.sir_btn07.on{background:#fa583c;color:#fff}
+
+.U_benner {background:  no-repeat center;height:250px;
+    &.set_sub01{background-image: url("/img/pc/subBenner_event.jpg");}
+    &.set_sub02{background-image: url("/img/pc/subBenner_cs.jpg");}
+    &.set_sub03,&.set_sub04,&.set_sub05{background-image: url("/img/pc/subBenner_member.jpg");}
+    &.set_sub06,&.set_sub07{background-image: url("/img/pc/subBenner_py.jpg");}
+
+}

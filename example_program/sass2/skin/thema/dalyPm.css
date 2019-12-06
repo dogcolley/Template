@@ -8,13 +8,13 @@ body.bd_main {
   background-position: center;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   body.bd_main {
     background-size: auto 100%;
   }
 }
 
-@media only screen and (min-width: 641px) and (max-width: 1023px) {
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
   body.bd_main {
     background-size: auto 100%;
   }
@@ -50,6 +50,14 @@ body.bd_main .U_line01 {
   background: #fff;
 }
 
+body.bd_main .U_pc_nav a:hover, body.bd_main .U_pc_nav a:focus {
+  color: #fff;
+}
+
+body.bd_main .U_pc_nav a:after {
+  background: #fff;
+}
+
 body.type1 {
   background-image: url("/img/pc/main_bg1.jpg");
 }
@@ -72,6 +80,13 @@ body.type3 {
 
 #hd {
   border-bottom: 1px solid #bdbdbd;
+}
+
+@media only screen and (min-width: 1024px) {
+  #U_logo {
+    width: 128px;
+    margin-top: 9.5px;
+  }
 }
 
 .U_line01 {
@@ -116,6 +131,33 @@ body.type3 {
   height: 48px;
 }
 
+.U_pc_nav a:hover, .U_pc_nav a:focus {
+  color: #fa583c;
+}
+
+.U_pc_nav a:hover:after, .U_pc_nav a:focus:after {
+  width: 100%;
+}
+
+.U_pc_nav a {
+  position: relative;
+}
+
+.U_pc_nav a:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 0%;
+  top: 100%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  background: #fa583c;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
 .U_btm_mypage {
   background: url("/img/m/Top_Mypage.png") no-repeat center;
   background-size: 40% auto;
@@ -151,10 +193,10 @@ body.type3 {
 .sir_bd_list01 .list_info:after {
   content: "";
   position: absolute;
-  height: 53%;
+  height: 100px;
   border-right: 1px dashed #d9d9d9;
   top: 50%;
-  margin-top: -26.5%;
+  margin-top: -50px;
   display: block;
   right: 0;
 }
@@ -169,6 +211,10 @@ body.type3 {
 
 .sir_bd_list01 .list_info {
   min-width: 105px;
+}
+
+.sir_bd_list01 li:hover .list_info * {
+  color: #000;
 }
 
 .sir_input_box {
@@ -195,7 +241,7 @@ body.type3 {
   padding: 0 30px !important;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   .sir_input01 {
     height: 50px;
   }
@@ -211,11 +257,24 @@ body.type3 {
   border-right: 0;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   .sir_input02 {
     height: 50px;
     line-height: 48px;
   }
+}
+
+.sir_input03 {
+  border: 1px solid #f7954c;
+  border-radius: 4px 0 0 4px;
+}
+
+.sir_input03::-webkit-input-placeholder {
+  color: #f7954c;
+}
+
+.sir_input03:-ms-input-placeholder {
+  color: #f7954c;
 }
 
 .sir_input_btn {
@@ -229,7 +288,7 @@ body.type3 {
   max-width: 170px;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   .sir_input_btn {
     height: 50px;
     line-height: 50px;
@@ -244,7 +303,7 @@ body.type3 {
 .cs_benner {
   position: relative;
   top: 1px;
-  background: #000 no-repeat center;
+  background: url("/img/pc/cs_benner0.jpg") #000 no-repeat center;
 }
 
 .cs_benner.cs_notice {
@@ -343,11 +402,101 @@ body.type3 {
   border-radius: 5px;
 }
 
+.sir_rd02 {
+  border-radius: 0 4px 4px 0;
+}
+
 .sir_btn02 {
   height: 40px;
   width: 85px;
   line-height: 38px;
   border: 1px solid #d9d9d9;
   font-size: 15px;
+}
+
+.sir_btn03 {
+  background: #ff9735 !important;
+  color: #fff !important;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
+  .sir_btn03 {
+    width: 58px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .sir_btn03 {
+    width: 58px;
+  }
+}
+
+.sir_btn04 {
+  height: 20px;
+  line-height: 20px;
+  padding: 0 20px;
+  font-size: 13px;
+  color: #fff;
+  border-radius: 20px;
+  background: #989898;
+}
+
+.sir_btn04.on {
+  background: #f7954c;
+}
+
+.sir_btn05 {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 30px;
+  font-size: 17px;
+  color: #fff;
+  border-radius: 30px;
+  background: #989898;
+}
+
+.sir_btn05.on {
+  background: #f7954c;
+}
+
+.sir_btn06 {
+  border: 1px solid #ff9735;
+  color: #ff9735;
+}
+
+.sir_btn06.on {
+  background: #ff9735;
+  color: #fff;
+}
+
+.sir_btn07 {
+  border: 1px solid #fa583c;
+  color: #fa583c;
+}
+
+.sir_btn07.on {
+  background: #fa583c;
+  color: #fff;
+}
+
+.U_benner {
+  background: no-repeat center;
+  height: 250px;
+}
+
+.U_benner.set_sub01 {
+  background-image: url("/img/pc/subBenner_event.jpg");
+}
+
+.U_benner.set_sub02 {
+  background-image: url("/img/pc/subBenner_cs.jpg");
+}
+
+.U_benner.set_sub03, .U_benner.set_sub04, .U_benner.set_sub05 {
+  background-image: url("/img/pc/subBenner_member.jpg");
+}
+
+.U_benner.set_sub06, .U_benner.set_sub07 {
+  background-image: url("/img/pc/subBenner_py.jpg");
 }
 /*# sourceMappingURL=dalyPm.css.map */

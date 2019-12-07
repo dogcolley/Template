@@ -29,12 +29,26 @@
 
     <!-- scss -->
     <link rel="stylesheet" href="./jmodule.css"> 
+    <style>
 
+            #bg {background: url("./img/bg.jpg")no-repeat center;background-size: auto 100%;overflow: hidden;}
+            .bg2{width: 100%;height: 100%;animation:rd_wb 10s infinite  alternate;}
+            /*linear*/
+            .btn01{border-radius: 50%;background: rgb(155, 150, 150);}
+    </style>
+    <script>
+        var btns = document.getElementsByClassName('btn01');
+        console.log(btns)
+        window.addEventListener('resize',function(){
+            //btns.style.fontSize  = '14px';
+        });
+    </script>
 </head>
-<body class="U_bg_c000">
-    <div class="T_wd_sz375 T_ht_sz665 U_mg_ct T_mg_top50 U_bg_cfff">
-        
-
+<body class="U_bg_c000" >
+    <div class="T_wd_sz375 T_ht_sz665 U_mg_ct T_mg_top50 U_bg_cfff T_ds_table" id="bg">
+        <div class="bg2 T_ds_cell T_vt_md T_ft_ct">
+            <button class="U_ft_cfff btn01 T_wd_sz200 T_ht_sz200 T_ft_sz30 U_ft_fm01 T_ft_wh500">로그인</button>
+        </div>
     </div>
 </body>
 </html>

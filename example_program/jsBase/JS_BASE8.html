@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //전역 변수와 지역 변수
+
+        //전역변수 : window
+
+        //스코프(Scope)
+        var x = 'global';
+            function ex() {
+                x = 'change';
+            }
+            ex();
+        console.log(x); // 'change'
+        
+        //스코프 체인 안은 밖을 불러올수있지만 밖에선 안을 못부른다.
+        var name = 'zero';
+        function outer() {
+            console.log('외부', name);
+            function inner() {
+                var enemy = 'nero';
+                console.log('내부', name);
+            }
+            inner();
+        }
+        outer();
+        //console.log(enemy); // undefined
+
+        //렉시컬 스코핑(lexical scoping)
+        //데 스코프는 함수를 호출할 때가 아니라 선언할 때 생깁니다. 
+        var name = 'zero';
+            function log() {
+            console.log(name);
+        }
+
+        function wrapper() {
+            name = 'nero';
+              log();
+            }
+        wrapper();
+
+        const type2 = () =>{
+            var name = 'zero';
+            function log() {
+            console.log(name);
+            }
+
+            function wrapper() {
+                var name = 'nero';
+                log();
+            }
+            wrapper();
+        }
+        type2();
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

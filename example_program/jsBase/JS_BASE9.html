@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //실행 컨텍스트 : 문맥이다.
+        var name = 'zero'; // (1)변수 선언 (6)변수 대입
+        function wow(word) { // (2)변수 선언 (3)변수 대입
+            console.log(word + ' ' + name); // (11)
+        }
+        function say () { // (4)변수 선언 (5)변수 대입
+            var name = 'nero'; // (8)
+            console.log(name); // (9)
+            wow('hello'); // (10)
+        }
+        say(); // (7)
+
+        //호이스팅
+
+        var sayYeah = function() { // (1) 선언 (6) 대입
+            console.log('yeah');
+        }
+        function sayWow() { // (2) 선언과 동시에 초기화(호이스팅)
+            console.log('wow'); // (4)
+        }
+        sayWow(); // (3)
+        sayYeah(); // (5) 여기서 대입되기 전에 호출해서 에러
+
+        //클로저
+        //라이브러리를 만들 때 사용한다는 IIFE가 사실 클로저를 활용한 패턴입니다
+        var makeClosure = function() {
+            var name = 'zero';
+            return function () {
+                console.log(name);
+            }
+        };
+        var closure = makeClosure(); // function () { console.log(name); }
+        closure(); // 'zero';
+        
+    </script>
+</head>
+<body>
+    
+</body>
+
+</html>
+

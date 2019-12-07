@@ -103,7 +103,35 @@
 	ex)document.body.insertBefore(newElement, document.getElementById('header'));
 	태그.cloneNode(자신을 복사합니다.)
 	ex)var clone = document.getElementsByTagName('nav')[0].cloneNode();
-*/
+
+	08. 
+	-new date();
+	날짜.getFullYear(), 날짜.setFullYear(연도)
+	날짜.getDate(), 날짜.setDate()
+	날짜.getDay(), 날짜.setDay()
+	날짜.getHours(), 날짜.getMinutes(), 날짜.getSeconds()
+	날짜.setHours(), 날짜.setMinutes(), 날짜.setSeconds()
+	날짜.toString(), 날짜.toLocaleString(), 날짜.toUTCString()
+	
+	-RegExp 문자열에서 특정한 패턴을 찾아줍니다.
+	https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D
+	 ^는 시작, $는 끝
+	var array = ['사자', '과자', '과일', '타자', '타일'];
+	var result = [];
+	array.forEach(function(item) {
+	if (item.match(/자$/)) {
+	result.push(item);
+	}
+	});
+	console.log(result);  // ['사자', '과자', '타자']
+
+	-문자열.match(패턴)
+	-문자열.search(패턴)
+	-패턴.test(문자열)
+	-패턴.exec(문자열)
+	-
+
+*/	
 
 const make_popup = (text,addDow) =>  {
 	var popup = window.open('', '', 'width=200,height=200');

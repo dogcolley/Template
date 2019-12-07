@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //Object
+        function Person(name) { this.name = name; }
+            Person.prototype.sayHello = function() {
+            alert(this.name);
+        };
+        var zero = new Person('zero');
+        zero.__proto__; // { sayHello: function() }
+        zero.__proto__.__proto__; // Object { ... }
+
+        console.log(zero.__proto__);
+        console.log(zero.__proto__.__proto__);
+
+        //객체.hasOwnProperty(속성명)
+        // : 객체의 속성이 상속받지 않은 속성인지 알려줍니다. 자신의 속성이면 true, 부모의 속성이거나 아예 속성이 아니면 false를 반환합니다.
+        var obj = {
+        example: 'yes',
+        };
+        obj.example; // yes
+        obj.hasOwnProperty('example'); // true
+        obj.toString; // function toString() { [native code] }
+        obj.hasOwnProperty('toString'); // false
+
+        //객체.isPrototypeOf(대상) : 객체가 대상의 조상인지 알려줍니다.
+        var GrandParent = function() { };
+
+        var Parent = function() { };
+        Parent.prototype = new GrandParent();
+        Parent.prototype.constructor = Parent;
+
+        var Child = function() { };
+        Child.prototype = new Parent();
+        Child.prototype.constructor = Child;
+
+        var child = new Child();
+        Parent.prototype.isPrototypeOf(child); // true
+        GrandParent.prototype.isPrototypeOf(child); // true
+
+        //Object.getPrototypeOf(객체), Object.setPrototypeOf(객체, prototype)
+        //:객체의 prototype을 조회하거나 설정할 수 있습니다.\
+        Object.getPrototypeOf(child); // GrandParent
+        Object.getPrototypeOf(new GrandParent()); // 빈 객체 { }
+        Object.setPrototypeOf(child, new Parent());
+
+        //instanceof : 객체가 특정 생성자의 자식인지 조회할 수 있습니다.
+        child instanceof Parent; // true
+        child instanceof GrandParent; // true
+
+        //객체.propertyIsEnumerable(속성)
+        /*해당 속성이 열거 가능한 속성인지 알려줍니다. 열거 가능이란 for ... in과 같은 반복문 안에서 쓸 수 있는지를 말합니다. 
+        상속받은 속성과 해당 객체의 속성이 아닌 것은 기본적으로 제외됩니다.*/
+        var a = [false, 1, '2'];
+        a.propertyIsEnumerable(0); // true
+        a.propertyIsEnumerable('length'); // false
+        for (var value in a) {
+            console.log(value); // 0, 1, 2
+        }
+        
+        //객체.toString
+        /*
+            가끔 객체를 alert하거나 console.log할 때 원하는 결과는 안 나오고, [object Object] 이런 게 나올 때가 있습니다. 
+            내부적으로 toString 메소드가 호출된 결과입니다. 문자열끼리 더할 때 주로 호출됩니다. 
+            기본적으로는 객체의 종류를 알려주고, 사용자가 임의로 바꿀 수 있습니다.
+        */
+        var obj = { a: 'hi', b: 'zero' };
+        obj.toString(); // [object Object]
+        Math.toString(); // [object Math]
+        obj.toString = function() {
+           return this.a + ' ' + this.b;
+        }; // 임의로 바꿈
+        obj.toString(); // 'hi zero';
+        obj + ' cho'; // 'hi zero cho'
+
+        //객체.valueOf
+        var obj = { a: 'hi', b: 'zero' };
+            obj.valueOf(); // { a: 'hi', b: 'zero' }
+            obj + 5; // '[object Object]5' <-- 내부적으로 toString이 호출됨
+            obj.valueOf = function() {
+            return 3;
+        }
+        obj + 5; // 8 <-- 내부적으로 valueOf가 호출됨
+
+        //Object.create(prototype, 속성들)
+        /*
+            객체를 생성하는 방법 중 하나입니다. 
+            속성들 부분은 writable, configurable, enumerable, get, set ,value의 옵션이 있는데 아래 defineProperties를 참고하세요.
+        */
+        var obj = {}; // Object.create(Object.prototype); 과 같음
+        var obj2 = Object.create(null, {
+            a: {
+                writable: true,
+                configurable: false,
+                value: 5,
+            }
+        });
+        obj2.a; // 5
+
+        //Object.defineProperties(객체, 속성들), Object.defineProperty(객체, 속성, 설명)
+        /*
+        객체의 속성을 자세하게 정의할 수 있습니다. 속성의 설명을 따로 설정할 수 있는데, 
+        writable은 속성값을 변경할 수 있는지, 
+        enumerable은 for ... in 반복문 안에서 사용할 수 있는지, 
+        configurable은 속성의 설명을 바꿀 수 있는지를 설정합니다. 
+        false인 경우 delete 동작도 불가능합니다. 
+        기본적으로 writable, enumerable, configurable은 false입니다.
+        value는 속성의 값, get은 속성의 값을 가져올 때, set은 속성의 값을 설정할 때를 의미합니다.
+        */
+
+        var obj = {};
+        Object.defineProperties(obj, {
+            a: {
+                value: 5,
+                writable: false,
+                enumerable: true,
+            },
+            b: {
+                get: function() {
+                return 'zero';
+                },
+                set: function(value) {
+                console.log(this, value);
+                this.a = value;
+                },
+                enumerable: false,
+                configurable: false,
+            },
+        });
+        console.log(obj.a); // 5
+        console.log(obj.b); // 'zero'
+        obj.a= 10;
+        console.log(obj.a); // writable이 false라 그대로 5
+        for (var key in obj) {
+            console.log(key); // b의 enumerable이 false이니까 a만 log됨
+        }
+        obj.b = 15; // 15로 설정되는 대신 set의 내용이 실행됨. set의 value는 15
+
+        console.log(obj.a); // this.a = value로 인해 15로 바뀌어야 하나 writable이 false라 무시됨
+        console.log(obj.b); // 그대로 'zero'
+        /*
+        Object.defineProperty(obj, 'b', {
+            value: 5
+        });*/ // Uncaught TypeError: Cannot redefine property: b
+
+        Object.defineProperty(obj, 'c', {
+            value: { x: 3, y: 4 },
+            writable: false,
+            enumerable: true,
+        });
+        obj.c; // { x: 3, y: 4 }
+        console.log(obj.c);
+        obj.c = 'zero';
+        obj.c; // writable이 false라 그대로 { x: 3, y: 4 }
+        console.log(obj.c);
+        obj.c.x = 5; // 값이 객체인 경우 그 객체의 속성을 바꿈
+        console.log(obj.c); // { x: 5, y: 4 }로 바뀜
+
+        //Object.getOwnPropertyDescriptor(객체, 속성)
+        //속성의 설명 값을 불러옵니다. 위의 예시를 그대로 사용해보겠습니다.
+        Object.getOwnPropertyDescriptor(obj, 'b'); 
+        console.log(Object.getOwnPropertyDescriptor(obj, 'b'));
+
+        //Object.freeze, Object.seal, Object.preventExtensions
+        /*
+        위의 예시에서 writable을 false로 해도, value가 객체인 경우에는 객체의 속성을 바꾸는 것을 막지 못합니다. 
+        Object.freeze를 사용하면 객체 전체를 바꾸지 못하게 고정할 수 있습니다. 
+        값도 못 바꿀뿐더러, 속성을 추가 또는 제거할 수도 없고, 속성의 설명을 바꿀 수도 없습니다.
+        */
+        var frozenObj = Object.freeze(obj);
+        frozenObj.a = 10;
+        frozenObj.a; // 그대로 5
+        delete frozenObj.c; // false
+        Object.freeze(obj.c); // 이것까지 해야 내부 객체까지 완전히 얼려짐
+        console.log(frozenObj);
+
+        /*
+            Object.seal의 경우는 속성의 추가, 제거를 막고, configurable을 false로 바꿉니다.
+            대신 속성의 값은 writable이 true이기만 하면 바꿀 수 있습니다.
+        */
+        var sealedObj = Object.seal(obj);
+        sealedObj.a = 10;
+        sealedObj.a; // 5로 변경이 안 되지만 writable이 true면 변경 가능
+        delete sealedObj.c; // false
+        /*
+        그  냥 속성의 추가만 막고 싶다면 Object.preventExtensions가 있습니다. 
+        그 외의 속성 제거, 값 변경, 설정 변경은 가능합니다.
+        */
+        var nonExtensible = Object.preventExtensions(obj);
+        nonExtensible.d = 'new';
+        nonExtensible.d; // undefined
+
+        //Object.keys : 객체의 속성명을 모두 가져와 배열로 만듭니다. enumerable이 false인 것은 빠집니다.
+        Object.keys(obj); // ['a', 'c']
+
+        //Object.isFrozen, Object.isSealed, Object.isExtensible
+        //:객체가 freeze 되었는지, sealed 되었는지 또는 preventExtension 상태인지 알려줍니다.
+        Object.isFrozen(frozenObj); // true
+        Object.isSealed(sealedObj); // true
+        Object.isExtensible(nonExtensible); // false
+
+
+        //typeof
+        /*
+        식의 타입을 알려줍니다. 배열과 null도 object로 표시되기 때문에 배열을 구분하려면 Array.isArray 메소드를 사용하고, null을 구분하려면 따로 처리해야합니다. 
+        null이 object로 표시되는 것은 흔히 자바스크립트의 실수라고 여겨집니다.
+        */
+        var a = 1;
+        var b = 'zero';
+        var c = true;
+        var d = {};
+        var e = [];
+        var f = function() {};
+        var g;
+        var h = null;
+
+        typeof a; // 'number'
+        typeof b; // 'string';
+        typeof c; // 'boolean';
+        typeof d; // 'object';
+        typeof e; // 'object';
+        typeof f; // 'function';
+        typeof g; // 'undefined'
+        typeof h; // 'object';
+
+        //delete
+        //객체 내의 속성을 지울 수 있습니다. 성공하면 true를 실패하면 false를 반환합니다. configurable이 false거나 freeze된 상태면 실패합니다.
+        var obj = {
+        a: 'hi',
+        b: 'zero',
+        };
+        obj.b; // zero
+        delete obj.b;
+        obj.b; // undefined    
+
+        
+</script>
+</head>
+<body>
+    
+</body>
+</html>

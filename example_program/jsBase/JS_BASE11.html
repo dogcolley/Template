@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        //01 event
+        window.onload = function () {
+        alert('I\'m loaded');
+        };
+
+        //onblur(객체가 focus를 잃었을 때)
+        //onchange(객체의 내용이 바뀌고 focus를 잃었을 때)
+        //onclick(객체를 클릭했을 때)
+        //ondblclick(더블클릭할 때)
+        //onerror(에러가 발생했을 때)
+        //onfocus(객체에 focus가 되었을 때)
+        //onkeydown(키를 눌렀을 때)
+        //onkeypress(키를 누르고 있을 때)
+        //onkeyup(키를 눌렀다 뗐을 때)
+        //onload(문서나 객체가 로딩되었을 때)
+        //onmouseover(마우스가 객체 위에 올라왔을 때)
+        //onmouseout(마우스가 객체 바깥으로 나갔을 때)
+        //onreset(Reset 버튼을 눌렀을 때)
+        //onresize(객체의 크기가 바뀌었을 때)
+        //onscroll(스크롤바를 조작할 때)
+        //onsubmit(폼이 전송될 때) 등
+
+
+        //버블링
+        <div id="first"><div id="second"><div id="third"></div></div></div>
+        
+        //이벤트 객체
+        document.onclick = function(event) {
+            event.preventDefault(); // 버블링 방지
+            event.stopPropagation(); //버블링 클릭방지
+            event.stopImmediatePropagation(); 
+        };
+
+        //02.함수의 메소드 중 중요한 건 call, apply, bind입니다.
+        var example = function (a, b, c) {
+            return a + b + c;
+        };
+        example(1, 2, 3);
+        example.call(null, 1, 2, 3);
+        example.apply(null, [1, 2, 3]);
+        /*
+        실행 컨텍스트 강좌에서 this는 기본적으로 window라고 했었죠. 
+        몇 가지 방법으로 window를 다른 것으로 바꿀 수 있는데요. 
+        call, apply, bind에서 첫 번째 인자로 다른 것을 넣어주는 게 this를 바꾸는 방법 중 하나입니다.
+        */
+
+        /*
+        위 메소드들을 쓰는 예로, 함수의 arguments를 조작할 때 사용합니다. 
+        arguments는 함수라면 처음부터 갖고 있는 숨겨진 속성인데요. 
+        바로 함수에 들어온 인자를 배열 형식으로(배열은 아닙니다. 유사 배열이라고 부릅니다.) 반환합니다.
+        */
+       /*
+       이제 bind 함수에 대해 알아보겠습니다. 
+       bind 함수는 함수가 가리키는 this만 바꾸고 호출하지는 않는 겁니다.
+        위의 예를 재사용하겠습니다.
+       */
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

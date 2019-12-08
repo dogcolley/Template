@@ -31,10 +31,30 @@
     <link rel="stylesheet" href="./jmodule.css"> 
     <style>
 
-            #bg {background: url("./img/bg.jpg")no-repeat center;background-size: auto 100%;overflow: hidden;}
-            .bg2{width: 100%;height: 100%;animation:rd_wb 10s infinite  alternate;}
+            #bg {background: #fff /*url("./img/bg.jpg")*/ no-repeat center;background-size: auto 100%;overflow: hidden;}
             /*linear*/
             .btn01{border-radius: 50%;background: rgb(155, 150, 150);}
+
+            .git_button {
+                position: relative;
+                background: #fff;
+                background:linear-gradient( to right, #00b1e5, #08e68d );
+            }
+            .git_button:after{content: "";position: absolute;top:50%;left: 0;right:0;margin:0 auto;width: 90%;height: 90%;background: #fff;border-radius: 50%;margin-top: -45%;transition: 0.3s all;}
+            .git_button:hover:after{width:0;height:0}
+            .git_button span{
+                position: relative;z-index: 80;
+                background: linear-gradient(to right, #00b1e5, #08e68d);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+            }
+            .git_button:hover span{
+                background: linear-gradient(to right, #fff, #fff);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    opacity: 0.95;
+            }
+
     </style>
     <script>
         var btns = document.getElementsByClassName('btn01');
@@ -46,8 +66,8 @@
 </head>
 <body class="U_bg_c000" >
     <div class="T_wd_sz375 T_ht_sz665 U_mg_ct T_mg_top50 U_bg_cfff T_ds_table" id="bg">
-        <div class="bg2 T_ds_cell T_vt_md T_ft_ct">
-            <button class="U_ft_cfff btn01 T_wd_sz200 T_ht_sz200 T_ft_sz30 U_ft_fm01 T_ft_wh500">로그인</button>
+        <div class="bg2 T_ds_cell T_vt_md T_ft_ct "> 
+            <button class="git_button U_ft_cfff btn01 T_wd_sz200 T_ht_sz200 T_ft_sz30 U_ft_fm01 T_ft_wh500"> <span class="T_ft_wh500 T_ft_sz33">로그인</span>    </button>
         </div>
     </div>
 </body>

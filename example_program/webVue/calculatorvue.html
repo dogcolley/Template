@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="T_ht_p100">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>J 템플릿</title>
+
+    <!-- 반응형 추가 메타-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+
+    <!-- molto jsh add module start -->
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <!-- react And Babel JS ES6 -->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+
+    <!-- jquery and j_extend-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/extend3.js"></script>
+    <!--<script src="../js/jsh_es6.js" type="text/babel"></script>-->
+    <!-- scss -->
+    <link rel="stylesheet" href="../sass2/jmodule.css"> 
+
+    <script type="text/babel">
+        window.onload = function(){
+            console.log('??')
+            function isNotNumericValue(value){
+                return isNaN(value) || !isFinite(value)
+            }
+                var calc = new Vue({
+                    el : "#app",
+                    data : {x:0, y:0, lastResult: 0},
+                    computed: {
+                        result: function(){
+                            let x = parseFloat(this.x);
+                            if(isNotNumericValue(x))
+                                return this.lastResult;
+                            let y = parseFloat(this.y);
+                            if(isNotNumericValue(y))
+                                return this.lastResult;
+                            this.lastResult = x + y; 
+                            return this.lastResult;
+                        }
+                    }
+                })
+        }
+    </script>
+
+</head>
+<body class="T_ht_p100">
+   <div id="app" class="U_ct_box01 T_ht_p100 T_wd_p100 T_ft_ct">
+       <div >
+           <div class="T_wd_sz600 U_mg_ct T_pd_all20" style="border: 1px solid #d9d9d9;">
+                <h1 class="T_ft_sz20 T_mg_btm20"> 계산기</h1>
+                <p><input type="text" v-model="x" class="T_wd_full"></p>
+                <p class="T_pd_btm20" style="border-bottom:1px dashed #d9d9d9"><input type="text" v-model="y" class="T_wd_full"></p>
+                
+                <p class="T_pd_top20 T_ft_lt">합계 = <span v-text="result"></span></p>
+           </div>
+            
+       </div>
+       
+    </div>
+</body>
+</html>
+

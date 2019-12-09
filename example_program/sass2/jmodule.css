@@ -248,6 +248,7 @@ textarea, input[type=text], input[type=password] {
   /* 둥근모서리 */
   -webkit-appearance: none;
   /* 그림자 */
+  border-color: #bdbdbd;
 }
 
 img {
@@ -509,6 +510,10 @@ input[type="text"] {
 
 .U_bg_cf9 {
   background: #f9f9f9;
+}
+
+.U_bg_cf8 {
+  background: #f8f8f8;
 }
 
 .U_bg_cd9 {

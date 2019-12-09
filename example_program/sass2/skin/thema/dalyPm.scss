@@ -199,6 +199,7 @@ $set_color01: #fa583c;
 .sir_bd_btm21{border-bottom: 1px solid #d9d9d9}
 .sir_bd_btm22{border-bottom: 2px solid #d9d9d9}
 .sir_bd_btm23{border-bottom: 3px solid #d9d9d9}
+.sir_bd_btm24{border-bottom: 1px dashed #d9d9d9}
 
 .sir_bd_all01{border:1px solid $set_color01}
 
@@ -227,6 +228,14 @@ $set_color01: #fa583c;
 .sir_btn07{border:1px solid #fa583c;color:#fa583c}
 .sir_btn07.on{background:#fa583c;color:#fff}
 
+.sir_btn08{border:1px solid #fe8a36;color:#fe8a36}
+.sir_btn08.on{background:#fe8a36;color:#fff}
+
+.sir_btn09{border:1px solid #bdbdbd;color:#777}
+.sir_btn09.on{background:#bdbdbd;color:#fff}
+
+
+
 .U_benner {background:  no-repeat center;height:250px;
     &.set_sub01{background-image: url("/img/pc/subBenner_event.jpg");}
     &.set_sub02{background-image: url("/img/pc/subBenner_cs.jpg");}
@@ -234,3 +243,6 @@ $set_color01: #fa583c;
     &.set_sub06,&.set_sub07{background-image: url("/img/pc/subBenner_py.jpg");}
 
 }
+
+.sir_modal{background: rgba(0, 0, 0, 0.3);position: fixed;top:0;left: 0;height: 100%;width: 100%}
+.sir_box_sd{box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);}

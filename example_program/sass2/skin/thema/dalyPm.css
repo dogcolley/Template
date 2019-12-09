@@ -382,6 +382,10 @@ body.type3 {
   border-bottom: 3px solid #d9d9d9;
 }
 
+.sir_bd_btm24 {
+  border-bottom: 1px dashed #d9d9d9;
+}
+
 .sir_bd_all01 {
   border: 1px solid #fa583c;
 }
@@ -479,6 +483,26 @@ body.type3 {
   color: #fff;
 }
 
+.sir_btn08 {
+  border: 1px solid #fe8a36;
+  color: #fe8a36;
+}
+
+.sir_btn08.on {
+  background: #fe8a36;
+  color: #fff;
+}
+
+.sir_btn09 {
+  border: 1px solid #bdbdbd;
+  color: #777;
+}
+
+.sir_btn09.on {
+  background: #bdbdbd;
+  color: #fff;
+}
+
 .U_benner {
   background: no-repeat center;
   height: 250px;
@@ -498,5 +522,19 @@ body.type3 {
 
 .U_benner.set_sub06, .U_benner.set_sub07 {
   background-image: url("/img/pc/subBenner_py.jpg");
+}
+
+.sir_modal {
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.sir_box_sd {
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
 }
 /*# sourceMappingURL=dalyPm.css.map */

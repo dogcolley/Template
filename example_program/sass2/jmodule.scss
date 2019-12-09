@@ -223,9 +223,9 @@ legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-inde
 label, input, button, select, img {vertical-align:middle;font-size:inherit}
 input, button {margin:0;padding:0;font-family: inherit;font-size:inherit;color:inherit}
 input[type="submit"]{cursor:pointer}
-button {cursor:pointer;letter-spacing:inherit}
+button {cursor:pointer;letter-spacing:inherit}   
 input[type=submit] {-webkit-appearance:none;}
-textarea, input[type=text], input[type=password]{ -webkit-border-radius:0; /* 둥근모서리 */ -webkit-appearance:none; /* 그림자 */ }
+textarea, input[type=text], input[type=password]{ -webkit-border-radius:0; /* 둥근모서리 */ -webkit-appearance:none; /* 그림자 */ ;border-color: #bdbdbd;}
 img {-ms-interpolation-mode:bicubic;}  
 table{border-spacing:0px;border-collapse:collapse}
 input{border-radius:0}
@@ -476,6 +476,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	&bg_{
 		&cfff{background:#fff}
 		&cf9{background:#f9f9f9}
+		&cf8{background:#f8f8f8}
 		&cd9{background:#ddd}
 		&c333{background:#333}
 		&c000{background:#000}

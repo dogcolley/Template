@@ -217,6 +217,27 @@ body.type3 {
   color: #000;
 }
 
+.sir_area01 {
+  border: 1px solid #bdbdbd;
+  border-radius: 4px 4px 0 0;
+  padding: 10px 30px;
+  height: 130px;
+  overflow: auto;
+  width: 100%;
+}
+
+.sir_input_box02 {
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  padding: 10px 30px;
+  line-height: 30px;
+}
+
+.sir_input_box02 label {
+  margin-right: 10px;
+  color: #333;
+}
+
 .sir_input_box {
   border: 1px solid #bdbdbd;
   border-radius: 4px;
@@ -227,17 +248,18 @@ body.type3 {
 .sir_input_box > * {
   display: inline-block;
   vertical-align: middle;
-  line-height: 60px;
+  line-height: 65px;
 }
 
 .sir_input_box label {
   margin-right: 10px;
+  color: #333;
 }
 
 .sir_input01 {
   padding: 0 30px;
   height: 65px;
-  border-radius: 4px !important;
+  border-radius: 4px;
   padding: 0 30px !important;
 }
 
@@ -250,7 +272,7 @@ body.type3 {
 .sir_input02 {
   padding: 0 30px;
   height: 65px;
-  border-radius: 4px 0 0 4px !important;
+  border-radius: 4px 0 0 4px;
   padding: 0 30px !important;
   line-height: 63px;
   border: 1px solid #bdbdbd;
@@ -278,9 +300,9 @@ body.type3 {
 }
 
 .sir_input_btn {
-  padding: 0 30px;
+  padding: 0;
   height: 65px;
-  border-radius: 0 4px 4px 0 !important;
+  border-radius: 0 4px 4px 0;
   text-align: center;
   line-height: 65px;
   background: #fa583c;
@@ -298,6 +320,21 @@ body.type3 {
 .sir_label {
   margin-bottom: 15px;
   display: block;
+}
+
+.sir_label_ck {
+  cursor: pointer;
+  padding-left: 30px;
+  background: url("/img/icon_ch.png") no-repeat left center;
+  background-size: 20px;
+}
+
+input[type="checkbox"]:checked + .sir_label_ck {
+  background-image: url("/img/icon_chOn.png");
+}
+
+input[type="radio"]:checked + .sir_label_ck {
+  background-image: url("/img/icon_chOn.png");
 }
 
 .cs_benner {
@@ -358,6 +395,10 @@ body.type3 {
   border-top: 3px solid #d9d9d9;
 }
 
+.sir_bd_top24 {
+  border-top: 1px dashed #d9d9d9;
+}
+
 .sir_bd_btm11 {
   border-bottom: 1px solid #bdbdbd;
 }
@@ -394,6 +435,10 @@ body.type3 {
   border: 1px solid #bdbdbd;
 }
 
+.sir_bd_all21 {
+  border: 1px solid #d9d9d9;
+}
+
 .sir_bg01 {
   background: #fa583c;
 }
@@ -408,6 +453,11 @@ body.type3 {
 
 .sir_rd02 {
   border-radius: 0 4px 4px 0;
+}
+
+.sir_a_hover01 a:hover, .sir_a_hover01 a:focus {
+  background: #fa583c;
+  color: #fff;
 }
 
 .sir_btn02 {
@@ -503,12 +553,33 @@ body.type3 {
   color: #fff;
 }
 
+.sir_btn10 span {
+  position: relative;
+}
+
+.sir_btn10 span:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  left: calc(100% + 5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fa583c;
+}
+
+.sir_btn11 {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
 .U_benner {
   background: no-repeat center;
   height: 250px;
 }
 
-.U_benner.set_sub01 {
+.U_benner.set_sub01, .U_benner.set_sub09 {
   background-image: url("/img/pc/subBenner_event.jpg");
 }
 
@@ -520,7 +591,7 @@ body.type3 {
   background-image: url("/img/pc/subBenner_member.jpg");
 }
 
-.U_benner.set_sub06, .U_benner.set_sub07 {
+.U_benner.set_sub06, .U_benner.set_sub07, .U_benner.set_sub08 {
   background-image: url("/img/pc/subBenner_py.jpg");
 }
 
@@ -536,5 +607,21 @@ body.type3 {
 .sir_box_sd {
   -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
           box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
+}
+
+.sir_fregister::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+  left: 0;
+  background: #f6f6f6;
+  top: 50px;
+  height: calc(100% - 50px);
+}
+
+.sir_fregister * {
+  position: relative;
 }
 /*# sourceMappingURL=dalyPm.css.map */

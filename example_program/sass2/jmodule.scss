@@ -224,10 +224,10 @@ label, input, button, select, img {vertical-align:middle;font-size:inherit}
 input, button {margin:0;padding:0;font-family: inherit;font-size:inherit;color:inherit}
 input[type="submit"]{cursor:pointer}
 button {cursor:pointer;letter-spacing:inherit}   
-input[type=submit] {-webkit-appearance:none;}
-textarea, input[type=text], input[type=password]{ -webkit-border-radius:0; /* 둥근모서리 */ -webkit-appearance:none; /* 그림자 */ ;border-color: #bdbdbd;}
+input[type=submit] {-webkit-appearance:none;}  
+textarea, input[type=text], input[type=password]{ -webkit-appearance:none; /* 그림자 */ ;border-color: #bdbdbd;}
 img {-ms-interpolation-mode:bicubic;}  
-table{border-spacing:0px;border-collapse:collapse}
+table{border-spacing:0px;border-collapse:collapse} 
 input{border-radius:0}
 input::-webkit-input-placeholder {color:#c1c1c1}
 input:-ms-input-placeholder {color:#c1c1c1} 
@@ -250,7 +250,7 @@ button{border:0;background:none}
 /*site base tag setting*/
 input{border:1px solid #bdbdbd;}
 input[type="text"]{padding-left:10px;padding-right:10px
-        /*@include respond-to(wide-screens){}*/
+        /*@include respond-to(wide-screens){}*/ 
 }
 
 /*common Calss*/
@@ -332,12 +332,12 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&sound_only, &blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
 	
 		&ds_{
-			&block,&Cblock > *,&block_span span , &block_div, &block_strong strong, &block_em em,&block_p p{display: block}
-			&inbl,&Cinbl > *,&inbl_span span , &inbl_div, &inbl_strong strong, &inbl_em em,&inbl_p p{display: inline-block} 
-			&in,&Cin > *,&in_span span , &in_div, &in_strong strong, &in_em em,&in_p p{display: inline}
-			&table,&Ctable > *,&table_span span , &table_div, &table_strong table, &table_em em,&table_p p{display: table}
-            &cell,&Ccell > *,&cell_span span , &cell_div, &cell_strong table, &cell_em em,&cell_p p{display: table-cell}
-			&non,&Cnon > *,&non_span span , &non_div, &non_strong table, &non_em em,&non_p p{display:none}
+			&block,&Cblock > *,&block_a a,&block_span span , &block_div, &block_strong strong, &block_em em,&block_p p{display: block}
+			&inbl,&Cinbl > *,&inbl_a a,&inbl_span span , &inbl_div, &inbl_strong strong, &inbl_em em,&inbl_p p{display: inline-block} 
+			&in,&Cin > *,&in_a a,&in_span span , &in_div, &in_strong strong, &in_em em,&in_p p{display: inline}
+			&table,&Ctable > *,&table_a,&table_span span , &table_div, &table_strong table, &table_em em,&table_p p{display: table}
+            &cell,&Ccell > *,&cell_a a,&cell_span span , &cell_div, &cell_strong table, &cell_em em,&cell_p p{display: table-cell}
+			&non,&Cnon > *,&non_a a,&non_span span , &non_div, &non_strong table, &non_em em,&non_p p{display:none}
 		} 
 	
 		&fl_{
@@ -350,7 +350,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	
 		&ft_{
 			@for $i from 10 through 50{
-				&sz#{$i}, &sz#{$i}_span span, &sz#{$i}_a a,&sz#{$i}_strong strong,&sz#{$i}_em em,&sz#{$i}_p p{font-size:$i+px}
+				&sz#{$i}, &sz#{$i}_span span, &sz#{$i}_a a,&sz#{$i}_strong strong,&sz#{$i}_em em,&sz#{$i}_p p,&sz#{$i}_li li{font-size:$i+px}
 			}  
 		
 		
@@ -364,7 +364,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 			&rt{text-align:right}
 		
 			@for $i from 1 through 9{
-				&wh#{$i*100}{font-weight:($i*100)}
+				&wh#{$i*100} ,&Cwh#{$i*100} > * , &wh#{$i*100}_p p, &wh#{$i*100}_span span, &wh#{$i*100}_strong strong, &wh#{$i*100}_a a , &wh#{$i*100}_button button{font-weight:($i*100)}
 				&Cwh#{$i*100} *{font-weight:($i*100)}
 			}   
 		}
@@ -478,6 +478,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&cf9{background:#f9f9f9}
 		&cf8{background:#f8f8f8}
 		&cd9{background:#ddd}
+		&ceb{background:#ebebeb}
 		&c333{background:#333}
 		&c000{background:#000}
 		&cf0{background: #f0f0f0;}
@@ -496,6 +497,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&c767676{color:#767676}
 		&c868686{color:#868686}
 		&cd9d9d9{color:#d9d9d9}
+		&ce70000{color:#e70000}
 		&fm01{font-family: 'Noto Sans KR', sans-serif;}
 		&fm02{font-family: 'Montserrat', sans-serif;}
 		&fm03{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
@@ -516,7 +518,6 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	&area03{
 		width:100%;max-width:600px;margin-left:auto;margin-right:auto;
 		@include respond-to(handhelds) {padding-left:6.25%;padding-right:6.25%}
-		@include respond-to(medium-screens) {padding-left:4.25%;padding-right:4.25%}	
 	}
 	&img_box01 img{width:100%;height:auto}
 	&ct_box01{display: table;height: 100%;
@@ -535,10 +536,11 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&lt0{border-left:0!important}
 		&rt0{border-right:0!important}
 		&all0{border:0!important}
+		&rd0{border-radius: 0!important;}
 	}
 } 
 
-
+ 
 .M_, .TM_{
 	@include respond-to(handhelds) {
 		@include responde-pk01('M');

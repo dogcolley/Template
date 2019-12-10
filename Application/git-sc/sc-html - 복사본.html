@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>J 템플릿</title>
+
+    <!-- 반응형 추가 메타-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+
+    <!-- molto jsh add module start -->
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <!-- react And Babel JS ES6 -->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+
+    <!-- jquery and j_extend-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./extend.js"></script>
+
+    <!-- scss -->
+    <link rel="stylesheet" href="./jmodule.css"> 
+    <style>
+
+            #bg {background: #fff /*url("./img/bg.jpg")*/ no-repeat center;background-size: auto 100%;overflow: hidden;}
+            /*linear*/
+            .btn01{border-radius: 500px;background: rgb(155, 150, 150);}
+
+            .git_button {
+                position: relative;
+                background: #fff;
+                background:linear-gradient( to right, #00b1e5, #08e68d );
+            }
+
+    </style>
+    <script>
+        var btns = document.getElementsByClassName('btn01');
+        console.log(btns)
+        window.addEventListener('resize',function(){
+            //btns.style.fontSize  = '14px';
+        });
+    </script>
+</head>
+<body class="U_bg_c000" >
+    <div class="T_wd_sz375 T_ht_sz665 U_mg_ct T_mg_top50 U_bg_cfff T_ds_table" id="bg">
+        <div class="bg2 T_ds_cell T_vt_md T_ft_ct"> 
+            <button class="git_button U_ft_cfff btn01 T_wd_sz340 T_ht_sz90 T_ft_sz30 U_ft_fm01 T_ft_wh500T_lh_10"> 
+                <span class="T_ds_block T_ft_sz14 U_ft_fm02" style="letter-spacing: 3px;">GitHub</span>
+                <span class="T_ft_wh500 T_ft_sz30 T_lh_px10">JOIN APP</span>    
+                
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+

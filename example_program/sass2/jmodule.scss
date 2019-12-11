@@ -249,8 +249,9 @@ button{border:0;background:none}
 
 /*site base tag setting*/
 input{border:1px solid #bdbdbd;}
-input[type="text"]{padding-left:10px;padding-right:10px
-        /*@include respond-to(wide-screens){}*/ 
+input[type="text"]{padding-left:10px;padding-right:10px;
+        @include respond-to(wide-screens){padding-left:30px;padding-right:30px} 
+        @include respond-to(medium-screens){padding-left:30px;padding-right:30px} 
 }
 
 /*common Calss*/

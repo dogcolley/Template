@@ -152,6 +152,12 @@ $set_color01: #fa583c;
 }
 
 .U_siteMap .U_btn02 {border-color:#fff}
+.U_siteMap{
+    &.on{
+        @include respond-to(handhelds) {display:block}
+        @include respond-to(medium-screens) {display:block} 
+    }
+}
 
 .sir_area01{border:1px solid #bdbdbd;border-radius: 4px 4px 0 0;padding:10px 30px;height:130px;overflow: auto;width:100%;}
 
@@ -186,11 +192,14 @@ input[type="checkbox"]:checked + .sir_label_ck{background-image: url("/img/icon_
 input[type="radio"]:checked + .sir_label_ck{background-image: url("/img/icon_chOn.png");}
 
 .cs_benner{position: relative;top: 1px;background:url("/img/pc/cs_benner0.jpg") #000 no-repeat center;
-    &.cs_notice{background-image: url("/img/pc/cs_benner1.jpg");}
-    &.cs_qna{background-image: url("/img/pc/cs_benner2.jpg");}
-    &.cs_reviewH{background-image: url("/img/pc/cs_benner3.jpg");}
-    &.cs_reviewP{background-image: url("/img/pc/cs_benner4.jpg");}
+    &.cs_notice{background: url("/img/pc/cs_benner1.jpg") #000 no-repeat center;}
+    &.cs_qna{background: url("/img/pc/cs_benner2.jpg") #000 no-repeat center;}
+    &.cs_reviewP{background: url("/img/pc/cs_benner3.jpg") #000 no-repeat center;}
+    &.cs_reviewH{background: url("/img/pc/cs_benner4.jpg") #000 no-repeat center;}
 }
+.cs_benner img{position: relative;transition:0.5s all;left:0}
+.cs_benner a:hover img{left:20px}
+
 .sir_bd_top01{border-top: 1px solid $set_color01;}
 .sir_bd_top02{border-top: 2px solid $set_color01}
 .sir_bd_top03{border-top: 3px solid $set_color01}
@@ -253,7 +262,7 @@ input[type="radio"]:checked + .sir_label_ck{background-image: url("/img/icon_chO
 }
 
 .sir_btn11{color:#fff;border:1px solid #fff;} 
-
+.sir_top02{top:2px}
 
 .U_benner {background:  no-repeat center;height:250px;
     &.set_sub01,&.set_sub09{background-image: url("/img/pc/subBenner_event.jpg");}
@@ -275,3 +284,12 @@ input[type="radio"]:checked + .sir_label_ck{background-image: url("/img/icon_chO
     .U_site_con{float:right;height:100%;overflow:auto;max-width:640px;width:80%;position: relative;}
     .U_btm_stieMap2{position:absolute;left:0;right:0;height:100%;width:100%}
 } 
+
+.sir_text_bg{}
+.sir_text_bg01{}
+.sir_text_bg02{}
+.sir_text_bg03{}
+.sir_text_bg04{}
+.sir_text_bg05{}
+.sir_text_bg06{}
+.sir_text_bg07{}

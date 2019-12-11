@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>구구단</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+
+</head>
+<body>
+    <div id="root">
+        <word-relay wr-num="1" v-on:increment="set_dataChage" wr-hint="1번문힌트 누르면 복붙!"></word-relay>
+        <word-relay wr-num="2" v-on:increment="set_dataChage" wr-hint="2번문힌트 누르면 복붙!"></word-relay>
+        <word-relay wr-num="3" v-on:increment="set_dataChage" wr-hint="3번문힌트 누르면 복붙!"></word-relay>
+
+        <form v-on:submit="onSubmitForm">
+            <input type="text" ref="answer" v-model="value">
+            <button type="submit">입력</button>
+        </form>
+        <div>{{command}}</div>
+
+    </div>
+
+    <script>
+        //케멀케이스 camelCase: wordRelay;
+        //파스칼케이스 PascalCase: WordRelay;
+        //케밥 kebab-case : word-relay
+        Vue.component('wordRelay',{
+            template:`
+            <div>
+                <span>문제:{{num}}</span>
+                <button v-on:click="capyHint">힌트:x</button>
+                <button v-on:click="set_dataChage">열러라폼창</button>
+                <input ref="copy" v-model="keyword" type="text" class="sound_only" style="display:none" >
+            </div>
+            `,
+            props: {
+                'wrNum':{},
+                'wrHint':{},
+            },
+            data(){
+                //console.log(this)
+                return{
+                    num:this.wrNum,
+                    keyword:this.wrHint,
+                    test:''
+                }
+            },
+            methods:{
+                set_dataChage(){
+                    this.$emit('increment',this.num);
+                },
+                opform(e){
+                    e.preventDefault();
+                },
+                capyHint(e){ 
+                    var tag = this.$refs.copy;
+                    tag.style.display ='block';
+                    tag.select();
+                    setTimeout(function(){
+                        tag.style.display ='none';      
+                    },10);
+                    document.execCommand("copy");
+                },
+            }
+        })
+ 
+    </script>
+
+    <script>
+        const app = new Vue({
+            el:'#root',
+            data:{
+                command:'ㅇㅇㅇ',
+                value:'',
+                wrId:'그누보드 테이블 넘버'
+            },
+            methods:{
+                set_dataChage(e){
+                    this.value = e
+                },
+                onSubmitForm(e){
+                    e.preventDefault();
+                    this.getAnswer()
+                },
+                getAnswer: _.debounce(
+                function () {
+                    this.answer = '생각중...'
+                    var vm = this
+                    axios.get('https://yesno.wtf/api')
+                    .then(function (response) {
+                        vm.command = _.capitalize(response.data.command)
+                    })
+                    .catch(function (error) {
+                        vm.command = '에러! API 요청에 오류가 있습니다. ' + error
+                    })
+                },
+                // 사용자가 입력을 기다리는 시간(밀리세컨드) 입니다.
+             500
+              )
+            }
+        });
+    </script>
+</body>
+</html>

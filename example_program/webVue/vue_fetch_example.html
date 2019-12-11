@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>webpos-do</title>
+
+  </head>
+  <body>
+   <div id='app'>
+	<div v-for='post in posts'>
+		<h3>{{ post.title }}</h3>
+		<p>{{ post.userId }}</p>
+		<p>{{ post.body }}</p>
+	</div>
+	</div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+     new Vue({
+		el: '#app',
+		data: {
+			posts: []
+		},
+		created() {
+			fetch('https://jsonplaceholder.typicode.com/posts/1')
+				.then((response) => {
+					if(response.ok) {
+						return response.json();
+					}
+				
+					throw new Error('Network response was not ok');
+				})
+				.then((json) => {
+					this.posts.push({
+						userId: json.userId,
+						title: json.title,
+						body: json.body
+					});
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	});
+    </script>
+  </body>
+</html>

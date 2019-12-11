@@ -7,9 +7,8 @@
     <title>구구단</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
-    <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="root">
@@ -85,23 +84,13 @@
                 },
                 onSubmitForm(e){
                     e.preventDefault();
-                    this.getAnswer()
+                    axios.get('https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json')
+                    .then(function(res){
+                        console.log(res);
+                    }).catch(function(e){
+                        console.error(e);
+                    });
                 },
-                getAnswer: _.debounce(
-                function () {
-                    this.answer = '생각중...'
-                    var vm = this
-                    axios.get('https://yesno.wtf/api')
-                    .then(function (response) {
-                        vm.command = _.capitalize(response.data.command)
-                    })
-                    .catch(function (error) {
-                        vm.command = '에러! API 요청에 오류가 있습니다. ' + error
-                    })
-                },
-                // 사용자가 입력을 기다리는 시간(밀리세컨드) 입니다.
-             500
-              )
             }
         });
     </script>

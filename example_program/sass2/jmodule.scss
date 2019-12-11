@@ -249,7 +249,7 @@ button{border:0;background:none}
 
 /*site base tag setting*/
 input{border:1px solid #bdbdbd;}
-input[type="text"]{padding-left:10px;padding-right:10px;
+input[type="text"],input[type=password]{padding-left:5%;padding-right:5%;
         @include respond-to(wide-screens){padding-left:30px;padding-right:30px} 
         @include respond-to(medium-screens){padding-left:30px;padding-right:30px} 
 }
@@ -496,6 +496,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&c6c6c6c{color:#6c6c6c}
 		&c6a6a6a{color:#6a6a6a}
 		&c767676{color:#767676}
+		&c8c8c8c{color:#8c8c8c}
 		&c868686{color:#868686}
 		&cd9d9d9{color:#d9d9d9}
 		&ce70000{color:#e70000}
@@ -528,6 +529,8 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		> * {display:table-cell;vertical-align: middle;}
 	}
 	&bd_rd{border-radius: 9999px;}
+
+	&ov_fl{overflow: hidden;}
 } 
   
 .IM_{

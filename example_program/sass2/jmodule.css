@@ -356,20 +356,20 @@ input {
   border: 1px solid #bdbdbd;
 }
 
-input[type="text"] {
-  padding-left: 10px;
-  padding-right: 10px;
+input[type="text"], input[type=password] {
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 @media only screen and (min-width: 1024px) {
-  input[type="text"] {
+  input[type="text"], input[type=password] {
     padding-left: 30px;
     padding-right: 30px;
   }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1023px) {
-  input[type="text"] {
+  input[type="text"], input[type=password] {
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -588,6 +588,10 @@ input[type="text"] {
   color: #767676;
 }
 
+.U_ft_c8c8c8c {
+  color: #8c8c8c;
+}
+
 .U_ft_c868686 {
   color: #868686;
 }
@@ -698,6 +702,10 @@ input[type="text"] {
 
 .U_bd_rd {
   border-radius: 9999px;
+}
+
+.U_ov_fl {
+  overflow: hidden;
 }
 
 .IM_bd_top0 {

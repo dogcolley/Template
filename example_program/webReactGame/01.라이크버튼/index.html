@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>첫번째라고 하는데 난 이런걸 몇번쨰하는지 모르는 첫컴퍼넌트 복습</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const e = React.createElement;
+
+        class LikeButton extends React.Component{
+            constructor(props){
+                super(props);
+                this.state = {
+                    liked: false,
+                }
+            }
+            
+            render(){
+                return e('button',{onClick: ()=> { this.setState({liked:true})},type:'submist'},
+                this.state.liked === true ? 'Liked' : 'Like');
+
+            }
+        }
+    </script>
+    <script>
+        ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+    </script>
+</body>
+</html>

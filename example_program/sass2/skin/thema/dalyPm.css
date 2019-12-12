@@ -462,6 +462,12 @@ input[type="radio"]:checked + .sir_label_ck {
   left: 20px;
 }
 
+@media only screen and (max-width: 768px) {
+  .cs_benner a:hover img {
+    left: 0;
+  }
+}
+
 .sir_bd_top01 {
   border-top: 1px solid #fa583c;
 }
@@ -839,153 +845,153 @@ a:hover + .mb_info {
 .sir_calendar {
   width: 640px;
   margin: 0 auto;
-}
-
-.sir_calendar > ul {
-  height: 60px;
-  width: 100%;
-  background: #1f5eac;
-  color: #fff;
-  text-align: center;
-  border-radius: 7px 7px 0 0;
-  position: relative;
-}
-
-.sir_calendar > ul li.now_MM {
-  font-size: 22px;
-  line-height: 60px;
-  font-family: 'Montserrat';
-  position: absolute;
-  top: 0;
-  right: 90px;
-  font-weight: 500;
-}
-
-.sir_calendar > ul li.reserCal_next, .sir_calendar > ul li.reserCal_prev {
-  text-indent: -9999px;
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 5px;
-  top: 50%;
-  margin-top: -15px;
-}
-
-.sir_calendar > ul li.reserCal_next a, .sir_calendar > ul li.reserCal_prev a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30px;
-  height: 30px;
-}
-
-.sir_calendar > ul li.reserCal_next {
-  background-image: url("/img/Ca_Nextbtn.png");
-  right: 20px;
-}
-
-.sir_calendar > ul li.reserCal_prev {
-  background-image: url("/img/Ca_Prevbtn.png");
-  right: 49px;
-}
-
-.sir_calendar > ul li.reserCal_tit {
-  float: left;
-  line-height: 60px;
-  padding-left: 35px;
-  font-size: 22px;
-}
-
-.sir_calendar > ul li.reserCal_tit strong {
-  font-weight: 300;
+  color: #000;
 }
 
 .sir_calendar table {
   width: 100%;
-}
-
-.sir_calendar > div {
-  width: 100%;
-  padding: 5px 0px 0 35px;
-  border: 1px solid #d9d9d9;
-  border-top: 0;
-}
-
-.sir_calendar div > table {
-  width: 100%;
-  text-align: left;
+  text-align: center;
   border-collapse: collapse;
-  border-spacing: 0;
 }
 
-.sir_calendar div > table td {
+@media only screen and (max-width: 768px) {
+  .sir_calendar {
+    width: 100%;
+  }
+}
+
+.sir_calendar .datelist {
+  color: #fff;
+}
+
+.sir_calendar .datelist div {
+  padding: 20px 0;
+  background: #fa583c;
+  padding: 20px 0;
+  height: auto;
+}
+
+.sir_calendar .datelist > *:first-child div {
+  border-radius: 10px 0 0 0;
+}
+
+.sir_calendar .datelist > *:last-child div {
+  border-radius: 0 10px 0  0;
+}
+
+.sir_calendar .datelist * {
+  color: #fff;
+}
+
+.sir_calendar tr .on {
+  background: url("/img/m/Attendance_check.png") no-repeat center;
+  background-size: 80%;
+}
+
+.sir_calendar tr .on span {
+  font-size: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .sir_calendar tr .on {
+    background-position: center !important;
+    height: 13.02vw !important;
+    background-size: 70% auto;
+  }
+}
+
+.sir_calendar tr:nth-child(2) div.on {
+  background-position: center calc(100% - 5px);
+}
+
+.sir_calendar tr:last-child div.on {
+  background-position: center calc(100% - 20px);
+}
+
+.sir_calendar tr div {
+  height: 90px;
+}
+
+@media only screen and (max-width: 768px) {
+  .sir_calendar tr div {
+    background-position: center !important;
+    height: 13.02vw !important;
+    line-height: 13.02vw;
+    padding: 0 !important;
+  }
+}
+
+.sir_calendar tr > * {
+  width: calc(100% / 7);
+  padding: 0;
+}
+
+.sir_calendar tr > * div {
+  padding: 30px 0;
+}
+
+.sir_calendar tr > *:first-child div {
+  border-left: 1px solid #d9d9d9;
+}
+
+.sir_calendar tr > *:last-child div {
+  border-right: 1px solid #d9d9d9;
+}
+
+.sir_calendar tr:first-child div {
+  border: 0;
+}
+
+.sir_calendar tr:nth-child(2) div {
+  height: 100px;
+}
+
+.sir_calendar tr:last-child div {
+  border-bottom: 1px solid #d9d9d9;
+  height: 100px;
+}
+
+.sir_calendar tr:last-child > *:first-child div {
+  border-radius: 0 0 0 10px;
+}
+
+.sir_calendar tr:last-child > *:last-child div {
+  border-radius: 0 0 10px  0;
+}
+
+.sc_sun {
+  color: #db1b1b;
+}
+
+.sc_sat {
+  color: #1972ce;
+}
+
+.sir_cal_tit {
+  font-size: 150px;
   position: relative;
+  top: -30px;
 }
 
-.sir_calendar div > table font {
-  display: none;
+.sir_cal_tit > span {
+  top: 80px;
 }
 
-.sir_calendar div > table td div.on:after {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background: #e60000;
-  border-radius: 50%;
-  top: 8px;
-  left: 30px;
+.sir_cal_tit span span {
+  font-size: 60px;
+  top: 20px;
 }
 
-.sir_calendar div > table td div.sc_today:before {
-  content: "";
-  position: absolute;
-  width: 22px;
-  height: 4px;
-  background: #ffb21d;
-  border-radius: 10px;
-  top: 30px;
-  left: 0;
-}
-
-.sir_calendar div > table .sc_tit {
-  font-size: 20px;
-  vertical-align: middle;
-  height: 64px;
-}
-
-.sir_calendar div > table .sc_sat {
-  color: #0375e0;
-}
-
-.sir_calendar div > table .sc_sun {
-  color: #e50000;
-}
-
-.sir_calendar div > table .perv_mon {
-  color: #999;
-}
-
-.sir_calendar div > table .next_mon {
-  color: #999;
-}
-
-.sir_calendar div > table .sc_day {
-  height: 80px;
-}
-
-.sir_calendar div > table .sc_day div {
-  width: 100%;
-  height: 100%;
-}
-
-.sir_calendar div > table .sc_day div a {
-  display: block;
-  height: 100%;
-}
-
-.sir_calendar div > table td {
-  vertical-align: top;
-  font-size: 17px;
+@media only screen and (max-width: 768px) {
+  .sir_cal_tit {
+    font-size: 7rem;
+  }
+  .sir_cal_tit > span {
+    top: 11.5vw;
+  }
+  .sir_cal_tit span span {
+    font-size: 3.7rem;
+    top: 14%;
+  }
 }
 /*# sourceMappingURL=dalyPm.css.map */

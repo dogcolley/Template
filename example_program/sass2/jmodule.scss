@@ -355,7 +355,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 			}  
 		
 		
-			@for $i from 1 through 20{
+			@for $i from 1 through 30{
 				&rem#{$i},&rem#{$i}_span span,&rem#{$i}_a a,&rem#{$i}_strong strong ,&rem#{$i}_em em ,&rem#{$i}_p p , &rem#{$i}_div div, &rem#{$i}_em em{font-size:($i*0.1)+rem}
 				&rem#{$i}hf, &rem#{$i}hf_span span , &rem#{$i}hf_a a ,&rem#{$i}hf_strong strong, &rem#{$i}hf_em em, &rem#{$i}hf_p p, &rem#{$i}hf_div div, &rem#{$i}hf_div em{font-size:(($i*0.1)+0.05)+rem}
 			}  
@@ -374,7 +374,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 			
 		&lh{
             @for $i from 0 through 20{
-				&_#{$i+10}{line-height:1+(0.1*$i)}
+				&_#{$i}{line-height:(0.1*$i)}
 			}
 			@for $i from 0 through 50{
 				&_px#{$i+10}{line-height:(10+$i)+px}
@@ -497,6 +497,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&c6a6a6a{color:#6a6a6a}
 		&c767676{color:#767676}
 		&c8c8c8c{color:#8c8c8c}
+		&ce2e2e2{color:#e2e2e2}
 		&c868686{color:#868686}
 		&cd9d9d9{color:#d9d9d9}
 		&ce70000{color:#e70000}

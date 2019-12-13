@@ -100,8 +100,8 @@ body{
 }
 
 #ft,#hd{background:#fff}
-#ft{border-top:1px solid #d9d9d9}
-#hd{border-bottom:1px solid #d9d9d9}
+#ft{border-top:1px solid #bdbdbd}
+#hd{border-bottom:1px solid #bdbdbd}
 #U_logo{
     @include respond-to(wide-screens) {
         width:128px;margin-top:9.5px

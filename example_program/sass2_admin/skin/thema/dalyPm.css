@@ -114,11 +114,11 @@ body.type8 {
 }
 
 #ft {
-  border-top: 1px solid #d9d9d9;
+  border-top: 1px solid #bdbdbd;
 }
 
 #hd {
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid #bdbdbd;
 }
 
 @media only screen and (min-width: 1024px) {

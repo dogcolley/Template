@@ -736,6 +736,22 @@ input[type="text"], input[type=password] {
   border-radius: 0 !important;
 }
 
+.IM_mg_top0 {
+  margin-top: 0 !important;
+}
+
+.IM_mg_btm0 {
+  margin-bottom: 0 !important;
+}
+
+.IM_mg_lt0 {
+  margin-left: 0 !important;
+}
+
+.IM_mg_rt0 {
+  margin-right: 0 !important;
+}
+
 @media only screen and (max-width: 768px) {
   .M_wd_full, .TM_wd_full {
     width: 100%;

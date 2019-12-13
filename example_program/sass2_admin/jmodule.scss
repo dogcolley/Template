@@ -543,34 +543,12 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&all0{border:0!important}
 		&rd0{border-radius: 0!important;}
 	}
-	&mg_{
-		&top0{margin-top: 0!important;}
-		&btm0{margin-bottom: 0!important;}
-		&lt0{margin-left: 0!important;}
-		&rt0{margin-right: 0!important;}
-	}
 } 
 
  
-.M_, .TM_{
-	@include respond-to(handhelds) {
-		@include responde-pk01('M');
-	}
-}
-.TM_, .TAB_, .PT_{
-	@include respond-to(medium-screens) {
-		@include responde-pk01('TAB');
-	} 
-}
-.PC_, .PT_, {
-	@include respond-to(wide-screens) {
-		@include responde-pk01('PC');
-	}
-}  
-
-.T_{
-	@include responde-pk01('ALL');
+.T_,.PC_ ,.PT_{
+	@include responde-pk01('M');
 }
 
 /*==== jsh bt-style -end ==== */
- 
+  

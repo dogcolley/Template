@@ -1,0 +1,176 @@
+
+.watch {
+  width: 450px;
+  height: 450px;
+  border-radius:50%;
+  /*border:3px solid #fff;*/
+  background: url("/img/m/Clock_Border.png")no-repeat center;
+  background-size: auto 100%;
+  box-shadow:0px 0px 35px rgba(0,0,0,0.5);
+  /*border-radius: 50%;*/
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.watch--hour {
+  width: calc(80px /3);
+  height: 180px;
+  background: url("/img/m/Clock_AnHourHand.png")no-repeat center;
+  background-size: auto 100%;
+  -webkit-transform-origin: center 150px;
+          transform-origin: center 150px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  position: absolute;
+  left: 50%;
+  margin-left: calc(-80px /6);
+  top: calc(50% - 150px);
+  z-index:55;
+}
+.watch--min {
+  width: calc(80px /3);
+  height: 240px;
+  background: url("/img/m/Clock_AMinuteHand.png")no-repeat center;
+  background-size: auto 100%;
+  -webkit-transform-origin: center 190px;
+          transform-origin: center 190px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  position: absolute;
+  /*background: #fff;*/
+  left: 50%;
+  margin-left: calc(-80px /6);
+  top: calc(50% - 190px);
+  z-index:60;
+}
+.watch--sec {
+  width: 2px;
+  height: 280px;
+  border-radius: 10px;
+  -webkit-transform-origin: center 222px;
+          transform-origin: center 222px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  position: absolute;
+  background: #fa583c;
+  left: calc(50% - 2.5px);
+  top: calc(50% - 222px);
+  z-index:70;
+
+}
+
+
+.day {
+  width: 220px;
+  height: 220px;
+  position: absolute;
+  background: #789abc;
+  left: 0;
+  top: 0;
+}
+.day--sun {
+  width: 60px;
+  height: 60px;
+  background: yellow;
+  border-radius: 50%;
+  position: absolute;
+  left: 60px;
+  top: 35px;
+}
+.day--clouds {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #ddd;
+  border-radius: 50%;
+  left: 110px;
+  top: 35px;
+}
+.day--clouds::after {
+  content: "";
+  width: 40px;
+  position: absolute;
+  height: 40px;
+  background: #ddd;
+  left: 30px;
+  top: 10px;
+  border-radius: 50%;
+}
+.day--clouds::before {
+  content: "";
+  width: 25px;
+  position: absolute;
+  height: 25px;
+  background: #ddd;
+  left: -10px;
+  top: 20px;
+  border-radius: 50%;
+}
+.day--ground {
+  position: absolute;
+  width: 220px;
+  height: 80px;
+  background: green;
+  bottom: 0;
+}
+
+@media only screen and (max-width: 480px){
+	.watch {width:300px;height:300px}
+	.watch--hour {
+	  width: calc(80px /3);
+	  height: 130px;
+	  background: url("/img/m/Clock_AnHourHand.png")no-repeat center;
+	  background-size: auto 100%;
+	  -webkit-transform-origin: center 100px;
+			  transform-origin: center 100px;
+	  -webkit-transform: rotate(0deg);
+			  transform: rotate(0deg);
+	  position: absolute;
+	  left: 50%;
+	  margin-left: calc(-80px /6);
+	  top: calc(50% - 100px);
+	  z-index:55;
+	}
+	.watch--min {
+	  width: calc(80px /3);
+	  height: 155px;
+	  background: url("/img/m/Clock_AMinuteHand.png")no-repeat center;
+	  background-size: auto 100%;
+	  -webkit-transform-origin: center 125px;
+			  transform-origin: center 125px;
+	  -webkit-transform: rotate(0deg);
+			  transform: rotate(0deg);
+	  position: absolute;
+	  /*background: #fff;*/
+	  left: 50%;
+	  margin-left: calc(-80px /6);
+	  top: calc(50% - 125px);
+	  z-index:60;
+	}
+	.watch--sec {
+	  width: 2px;
+	  height: 170px;
+	  border-radius: 10px;
+	  -webkit-transform-origin: center 148px;
+			  transform-origin: center 148px;
+	  -webkit-transform: rotate(0deg);
+			  transform: rotate(0deg);
+	  position: absolute;
+	  background: #fa583c;
+	  left: calc(50% - 2.5px);
+	  top: calc(50% - 148px);
+	  z-index:70;
+
+	}
+}

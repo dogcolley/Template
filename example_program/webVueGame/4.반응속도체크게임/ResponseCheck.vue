@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="screen" v-bind:class="state" @click="onClickScreen">{{message}}</div>
-    <div>
+    <div >
       <div>평균시간 : {{ avarage }} ms</div>
       <button @click="onReset">초기화</button>
     </div>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class GuGuDan extends React.Component{
+            constructor(props){
+                super(props)
+                this.state ={
+                    first : Math.ceil(Math.random() * 9 ),
+                    second : Math.ceil(Math.random() * 9 ),
+                    value : '',
+                    result:'',
+                    resultNum : ''
+                } 
+            }
+            
+            onSubmit = (e) =>{
+                            e.preventDefault();
+                            console.log(e);
+                            if(parseInt(this.state.value) === this.state.first * this.state.second){
+                                this.setState((prevState) => {
+                                    return{
+                                        result:'정답',
+                                        resultNum: prevState.value,
+                                        first : Math.ceil(Math.random() * 9 ),
+                                        second : Math.ceil(Math.random() * 9 ),
+                                        result:''
+                                    }
+                                });
+                                this.input.focus();
+                            }else{
+                                this.setState({
+                                    result: '땡',
+                                    value: ''
+                                });
+                                this.input.focus();
+                            }
+                        }
+            onChange = (e) =>{
+                this.setState({value: e.target.value})
+            }
+            
+            onInput = (c)=>{this.input = c}
+            
+            render(){
+                return(
+                    <React.Fragment>
+                        <div>{this.state.first}곱하기{this.state.second} 은?</div>
+                        <form onSubmit={this.onSubmit}>
+                            <input 
+                                type="text"
+                                value={this.state.value}
+                                onChange ={this.onChange}
+                                ref = {this.onInput}
+                            />
+                            <button>제출</button>
+                            <div>{this.state.result} 답은 : {this.state.resultNum}</div>
+                        </form>
+                    </React.Fragment>
+                )
+            }
+        }
+        
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+    </script>
+</body>
+</html> 

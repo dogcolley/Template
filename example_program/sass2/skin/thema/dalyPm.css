@@ -115,6 +115,7 @@ body.type8 {
 
 #ft {
   border-top: 1px solid #d9d9d9;
+  letter-spacing: -0.3px;
 }
 
 #hd {
@@ -232,7 +233,7 @@ body.type8 {
 
 .sir_bd_list01 > li {
   border-bottom: 1px solid #d9d9d9;
-  background: url("/img/m/List_arrow2.jpg") no-repeat;
+  background: url("/img/m/List_arrow.png") no-repeat;
   background-position: calc(100% - 30px) center;
   background-size: 17px auto;
 }
@@ -257,15 +258,21 @@ body.type8 {
 }
 
 .sir_bd_list01 .list_info {
-  min-width: 105px;
+  min-width: 120px;
+}
+
+@media only screen and (max-width: 768px) {
+  .sir_bd_list01 .list_info {
+    min-width: 105px;
+  }
 }
 
 .sir_bd_list01 li:hover .list_info * {
   color: #000;
 }
 
-.sir_bd_list01 > li:hover {
-  background-image: url("/img/m/List_arrow.png");
+.sir_bd_list01 li.off {
+  background-image: url("/img/m/List_arrow2.jpg");
 }
 
 @media only screen and (max-width: 768px) {

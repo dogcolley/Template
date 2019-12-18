@@ -36,7 +36,7 @@
   left: 50%;
   margin-left: calc(-80px /6);
   top: calc(50% - 150px);
-  z-index:55;
+  z-index:80;
 }
 .watch--min {
   width: calc(80px /3);
@@ -52,7 +52,7 @@
   left: 50%;
   margin-left: calc(-80px /6);
   top: calc(50% - 190px);
-  z-index:60;
+  z-index:75;
 }
 .watch--sec {
   width: 2px;

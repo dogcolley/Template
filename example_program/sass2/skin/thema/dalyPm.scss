@@ -100,7 +100,7 @@ body{
 }
 
 #ft,#hd{background:#fff}
-#ft{border-top:1px solid #d9d9d9}
+#ft{border-top:1px solid #d9d9d9;letter-spacing: -0.3px;}
 #hd{border-bottom:1px solid #d9d9d9}
 #U_logo{
     @include respond-to(wide-screens) {
@@ -141,12 +141,15 @@ $set_color01: #fa583c;
 }
 
 .sir_bd_list01{border-top: 1px solid #d9d9d9;
-    > li {border-bottom: 1px solid #d9d9d9;background:url("/img/m/List_arrow2.jpg")no-repeat;background-position: calc(100% - 30px) center;background-size: 17px auto;}
+    > li {border-bottom: 1px solid #d9d9d9;background:url("/img/m/List_arrow.png")no-repeat;background-position: calc(100% - 30px) center;background-size: 17px auto;}
     .list_info:after{content:"";position: absolute;height:100px;border-right: 1px dashed #d9d9d9;top:50%;margin-top:-50px;display:block;right:0}
     .list_info.is_notice{color:$set_color01;span{color:#000}}
-    .list_info {min-width:105px}
+    .list_info {min-width:120px;
+        @include respond-to(handhelds) {min-width:105px;}
+    
+    }
     li:hover .list_info * {color:#000}
-    > li:hover{background-image:url("/img/m/List_arrow.png")}
+    li.off{background-image:url("/img/m/List_arrow2.jpg")}
     @include respond-to(handhelds) {
         > li {background:#fff}
         > li:hover{background:#fff}

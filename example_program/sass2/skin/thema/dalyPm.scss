@@ -1,6 +1,6 @@
 /*sass 변수 모음*/
 //$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
-$S_M: 768px; 
+$S_M: 640px; 
 $S_T: 1024px;
 $S_W: 1200;
 /*mixin and function 모음*/
@@ -143,7 +143,7 @@ $set_color01: #fa583c;
 .sir_bd_list01{border-top: 1px solid #d9d9d9;
     > li {border-bottom: 1px solid #d9d9d9;background:url("/img/m/List_arrow.png")no-repeat;background-position: calc(100% - 30px) center;background-size: 17px auto;}
     .list_info:after{content:"";position: absolute;height:100px;border-right: 1px dashed #d9d9d9;top:50%;margin-top:-50px;display:block;right:0}
-    .list_info.is_notice{color:$set_color01;span{color:#000}}
+    .list_info.is_notice{color:$set_color01;span{color:#d9d9d9}}
     .list_info {min-width:120px;
         @include respond-to(handhelds) {min-width:105px;}
     
@@ -309,14 +309,6 @@ input[type="radio"]:checked + .sir_label_ck{background-image: url("/img/icon_chO
 .sir_text_bg06{}
 .sir_text_bg07{}
 
-#wrapper #captcha {
-    @include respond-to(handhelds) {
-        width:100%;
-        #captcha_audio{margin:0;width:100%}
-        #captcha_img{margin-right:0;width:100%;margin:5px 0}
-        #captcha_key{width:calc(100% - 45px );height:40px;border:1px solid #ddd;background:#fff;border-radius:0;margin:0}
-    }
-}
 
 .mb_info{position:absolute;bottom: 110%;border-radius: 3px;box-shadow: 0 0 30px 3px rgba(0, 0, 0, 0.15);left:0;right:0;margin-left:-170px;
     @include respond-to(handhelds) {left:0;margin-left:0;z-index:80}
@@ -361,10 +353,17 @@ a:hover + .mb_info{display:block}
 
 .sir_cal_tit{font-size: 150px;position:relative;top:-30px;
     > span {top:80px;}
-    span span{font-size:60px;top:20px}
+    span span{font-size:60px;top:20px;right:-84px}
     @include respond-to(handhelds) {
         font-size:7rem;
         > span {top:11.5vw;}
-        span span{font-size:3.7rem;top:14%}
+        span span{font-size:3.7rem;top:14%;right:-44%}
     }
 }
+
+#captcha.m_captcha audio{width:100%;margin: 0 0 10px 0}
+#captcha.m_captcha #captcha_img{margin:0;height:40px;float:left;border:1px solid #bdbdbd;margin-bottom: 10px;}
+#captcha.m_captcha #captcha_key{margin:0;height:40px;float:left;border:1px solid #bdbdbd;border-right:0;border-left:0;border-radius: 0;margin-bottom: 10px;width:calc(100% - 200px)}
+#captcha.m_captcha #captcha_reload{float:left;margin-bottom: 10px;border-radius: 0;}
+#captcha.m_captcha #captcha_info{clear:both;display:block}
+#captcha.m_captcha{display:block} 

@@ -129,7 +129,7 @@ comparable($number1, $number2) : 두 개의 숫자가 연산 가능한지 여부
 /*mixin and function 모음*/
 /*SCSS*/
 /*teg-reset*/
-@media only screen and (min-width: 769px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   html, body {
     font-size: 16px;
   }
@@ -368,7 +368,7 @@ input[type="text"], input[type=password] {
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   input[type="text"], input[type=password] {
     padding-left: 30px;
     padding-right: 30px;
@@ -635,14 +635,14 @@ input[type="text"], input[type=password] {
   margin-right: auto;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .U_area01 {
     padding-left: 6.25%;
     padding-right: 6.25%;
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   .U_area01 {
     padding-left: 4.25%;
     padding-right: 4.25%;
@@ -656,14 +656,14 @@ input[type="text"], input[type=password] {
   margin-right: auto;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .U_area02 {
     padding-left: 6.25%;
     padding-right: 6.25%;
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   .U_area02 {
     padding-left: 4.25%;
     padding-right: 4.25%;
@@ -677,7 +677,7 @@ input[type="text"], input[type=password] {
   margin-right: auto;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .U_area03 {
     padding-left: 6.25%;
     padding-right: 6.25%;
@@ -714,6 +714,10 @@ input[type="text"], input[type=password] {
 
 .U_ov_hd {
   overflow: hidden;
+}
+
+.U_lt_sp05 {
+  letter-spacing: -0.5px;
 }
 
 .IM_bd_top0 {
@@ -756,7 +760,7 @@ input[type="text"], input[type=password] {
   margin-right: 0 !important;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .M_wd_full, .TM_wd_full {
     width: 100%;
   }
@@ -14414,7 +14418,7 @@ input[type="text"], input[type=password] {
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   .TM_wd_full, .TAB_wd_full, .PT_wd_full {
     width: 100%;
   }

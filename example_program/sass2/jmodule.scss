@@ -135,7 +135,7 @@ comparable($number1, $number2) : 두 개의 숫자가 연산 가능한지 여부
 
 /*sass 변수 모음*/
 //$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
-$S_M: 768px; 
+$S_M: 640px; 
 $S_T: 1024px;
 $S_W: 1200;
 /*mixin and function 모음*/
@@ -367,7 +367,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 			@for $i from 1 through 9{
 				&wh#{$i*100} ,&Cwh#{$i*100} > * , &wh#{$i*100}_p p, &wh#{$i*100}_em em, &wh#{$i*100}_span span, &wh#{$i*100}_strong strong, &wh#{$i*100}_a a , &wh#{$i*100}_button button{font-weight:($i*100)}
 				&Cwh#{$i*100} *{font-weight:($i*100)}
-			}   
+			}
 		}
 		
 		&vt_md{vertical-align:middle} &vt_top{vertical-align:top} &vt_btm{vertical-align:bottom}&vt_us{vertical-align: unset;}&vt_sp{vertical-align: super;}&vt_bs{vertical-align: baseline;}&vt_tp{vertical-align: text-top;}
@@ -533,6 +533,8 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	&bd_rd{border-radius: 9999px;}
 
 	&ov_hd{overflow: hidden;}
+
+	&lt_sp05{letter-spacing: -0.5px;}
 } 
   
 .IM_{
@@ -572,6 +574,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 .T_{
 	@include responde-pk01('ALL');
 }
+
 
 /*==== jsh bt-style -end ==== */
  

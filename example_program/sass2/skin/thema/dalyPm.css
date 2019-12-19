@@ -8,13 +8,13 @@ body.bd_main {
   background-position: center;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   body.bd_main {
     background-size: auto 100%;
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   body.bd_main {
     background-size: auto 100%;
   }
@@ -254,14 +254,14 @@ body.type8 {
 }
 
 .sir_bd_list01 .list_info.is_notice span {
-  color: #000;
+  color: #d9d9d9;
 }
 
 .sir_bd_list01 .list_info {
   min-width: 120px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_bd_list01 .list_info {
     min-width: 105px;
   }
@@ -275,7 +275,7 @@ body.type8 {
   background-image: url("/img/m/List_arrow2.jpg");
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_bd_list01 > li {
     background: #fff;
   }
@@ -288,13 +288,13 @@ body.type8 {
   border-color: #fff;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .U_siteMap.on {
     display: block;
   }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   .U_siteMap.on {
     display: block;
   }
@@ -356,7 +356,7 @@ body.type8 {
   padding: 0 30px !important;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_input01 {
     height: 50px;
   }
@@ -372,7 +372,7 @@ body.type8 {
   border-right: 0;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_input02 {
     height: 50px;
     line-height: 48px;
@@ -403,7 +403,7 @@ body.type8 {
   max-width: 170px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_input_btn {
     height: 50px;
     line-height: 50px;
@@ -415,7 +415,7 @@ body.type8 {
   display: block;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_label {
     font-size: 1.25rem;
   }
@@ -469,7 +469,7 @@ input[type="radio"]:checked + .sir_label_ck {
   left: 20px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .cs_benner a:hover img {
     left: 0;
   }
@@ -593,7 +593,7 @@ input[type="radio"]:checked + .sir_label_ck {
   color: #fff !important;
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   .sir_btn03 {
     width: 58px;
   }
@@ -784,29 +784,6 @@ input[type="radio"]:checked + .sir_label_ck {
   width: 100%;
 }
 
-@media only screen and (max-width: 768px) {
-  #wrapper #captcha {
-    width: 100%;
-  }
-  #wrapper #captcha #captcha_audio {
-    margin: 0;
-    width: 100%;
-  }
-  #wrapper #captcha #captcha_img {
-    margin-right: 0;
-    width: 100%;
-    margin: 5px 0;
-  }
-  #wrapper #captcha #captcha_key {
-    width: calc(100% - 45px);
-    height: 40px;
-    border: 1px solid #ddd;
-    background: #fff;
-    border-radius: 0;
-    margin: 0;
-  }
-}
-
 .mb_info {
   position: absolute;
   bottom: 110%;
@@ -818,7 +795,7 @@ input[type="radio"]:checked + .sir_label_ck {
   margin-left: -170px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .mb_info {
     left: 0;
     margin-left: 0;
@@ -844,7 +821,7 @@ a:hover + .mb_info {
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .mb_info:after {
     display: none;
   }
@@ -862,7 +839,7 @@ a:hover + .mb_info {
   border-collapse: collapse;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_calendar {
     width: 100%;
   }
@@ -900,7 +877,7 @@ a:hover + .mb_info {
   font-size: 0;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_calendar tr .on {
     background-position: center !important;
     height: 13.02vw !important;
@@ -920,7 +897,7 @@ a:hover + .mb_info {
   height: 90px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_calendar tr div {
     background-position: center !important;
     height: 13.02vw !important;
@@ -988,9 +965,10 @@ a:hover + .mb_info {
 .sir_cal_tit span span {
   font-size: 60px;
   top: 20px;
+  right: -84px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
   .sir_cal_tit {
     font-size: 7rem;
   }
@@ -1000,6 +978,47 @@ a:hover + .mb_info {
   .sir_cal_tit span span {
     font-size: 3.7rem;
     top: 14%;
+    right: -44%;
   }
+}
+
+#captcha.m_captcha audio {
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+#captcha.m_captcha #captcha_img {
+  margin: 0;
+  height: 40px;
+  float: left;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 10px;
+}
+
+#captcha.m_captcha #captcha_key {
+  margin: 0;
+  height: 40px;
+  float: left;
+  border: 1px solid #bdbdbd;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  margin-bottom: 10px;
+  width: calc(100% - 200px);
+}
+
+#captcha.m_captcha #captcha_reload {
+  float: left;
+  margin-bottom: 10px;
+  border-radius: 0;
+}
+
+#captcha.m_captcha #captcha_info {
+  clear: both;
+  display: block;
+}
+
+#captcha.m_captcha {
+  display: block;
 }
 /*# sourceMappingURL=dalyPm.css.map */

@@ -907,7 +907,7 @@ a:hover + .mb_info {
 }
 
 .sir_calendar tr > * {
-  width: calc(100% / 7);
+  width: 13.5%;
   padding: 0;
 }
 
@@ -915,12 +915,18 @@ a:hover + .mb_info {
   padding: 30px 0;
 }
 
+.sir_calendar tr > *:last-child, .sir_calendar tr > *:first-child {
+  width: 16.25%;
+}
+
 .sir_calendar tr > *:first-child div {
   border-left: 1px solid #d9d9d9;
+  padding-left: 17.35%;
 }
 
 .sir_calendar tr > *:last-child div {
   border-right: 1px solid #d9d9d9;
+  padding-right: 17.35%;
 }
 
 .sir_calendar tr:first-child div {

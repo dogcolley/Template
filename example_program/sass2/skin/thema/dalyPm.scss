@@ -330,27 +330,36 @@ a:hover + .mb_info{display:block}
     @include respond-to(handhelds) {}
 }
 .sir_calendar tr {
-    .on{background:url("/img/m/Attendance_check.png")no-repeat center;background-size:80%;
-        span{font-size:0}
-        @include respond-to(handhelds) {background-position:center!important;height:13.02vw!important;background-size:70% auto}
+    .on > div {background:url("/img/m/Attendance_circle.png")no-repeat center;background-size:100%;span{color:#ff9b34;font-size:22px;top:-2px}}
+    .point div{border:3px solid #fa583c;color:#fa583c;line-height:1!important;text-align:left;padding-left:10px;padding-top:12px;font-size:22px;
+       > span > span{font-size:16px;display:block}
+       > span > span span{font-size:13px}
     }
-    &:nth-child(2) div.on{background-position: center calc(100% - 5px);}
-    &:last-child div.on{background-position: center calc(100% - 20px);}
-    div{height:90px;
-        @include respond-to(handhelds) {background-position:center!important;height:13.02vw!important;line-height:13.02vw;padding: 0!important;}
+    .uplevel div{position: relative;
+        &:after{content:"";position:absolute;display:block;height:17px;width:19px;right:5px;top:5px;background: url("/img/m/Attendance_star1.png")no-repeat center;background-size: cover;;}
     }
-    > * {width: 13.5%;padding:0;div{padding:30px 0 }}
+
+    &:nth-child(2) .on{}
+    &:last-child .on{}
+    td.sc_day:first-child{color:#db1b1b}
+    td.sc_day:last-child{color:#1972ce}
+
+    .sc_day > div > div{height:70px;line-height:70px;width:70px;margin:0 auto}
+    .sc_day > div {padding:5px 0}
     > *:last-child,> *:first-child {width:16.25%}
-    > *:first-child div{border-left:1px solid #d9d9d9;padding-left:17.35%}
-    > *:last-child div{border-right:1px solid #d9d9d9;padding-right: 17.35%}
-    &:first-child div{border:0}
-    &:nth-child(2) div{height:100px}
-    &:last-child div{border-bottom:1px solid #d9d9d9;height:100px;}
-    &:last-child > *:first-child div{border-radius: 0 0 0 10px;}
-    &:last-child > *:last-child div{border-radius:0 0 10px  0;}
+    > * {width: 13.5%;padding:0;}
+
+    > *:first-child >div{border-left:1px solid #d9d9d9;padding-left:17.35%;}
+    > *:last-child >div{border-right:1px solid #d9d9d9;padding-right: 17.35%;}
+    
+    &:first-child td > div{border:0}
+    &:nth-child(2) td>div{padding-top:40px}
+    &:last-child td>div{border-bottom:1px solid #d9d9d9;padding-bottom:80px}
+    
+    &:last-child > *:first-child >div{border-radius: 0 0 0 10px;}
+    &:last-child > *:last-child >div{border-radius:0 0 10px  0;}
+
 }
-.sc_sun{color:#db1b1b}
-.sc_sat{color:#1972ce}
 
 .sir_cal_tit{font-size: 150px;position:relative;top:-30px;
     > span {top:80px;}

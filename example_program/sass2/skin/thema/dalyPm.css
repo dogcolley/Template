@@ -868,42 +868,73 @@ a:hover + .mb_info {
   color: #fff;
 }
 
-.sir_calendar tr .on {
-  background: url("/img/m/Attendance_check.png") no-repeat center;
-  background-size: 80%;
+.sir_calendar tr .on > div {
+  background: url("/img/m/Attendance_circle.png") no-repeat center;
+  background-size: 100%;
 }
 
-.sir_calendar tr .on span {
-  font-size: 0;
+.sir_calendar tr .on > div span {
+  color: #ff9b34;
+  font-size: 22px;
+  top: -2px;
 }
 
-@media only screen and (max-width: 640px) {
-  .sir_calendar tr .on {
-    background-position: center !important;
-    height: 13.02vw !important;
-    background-size: 70% auto;
-  }
+.sir_calendar tr .point div {
+  border: 3px solid #fa583c;
+  color: #fa583c;
+  line-height: 1 !important;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 12px;
+  font-size: 22px;
 }
 
-.sir_calendar tr:nth-child(2) div.on {
-  background-position: center calc(100% - 5px);
+.sir_calendar tr .point div > span > span {
+  font-size: 16px;
+  display: block;
 }
 
-.sir_calendar tr:last-child div.on {
-  background-position: center calc(100% - 20px);
+.sir_calendar tr .point div > span > span span {
+  font-size: 13px;
 }
 
-.sir_calendar tr div {
-  height: 90px;
+.sir_calendar tr .uplevel div {
+  position: relative;
 }
 
-@media only screen and (max-width: 640px) {
-  .sir_calendar tr div {
-    background-position: center !important;
-    height: 13.02vw !important;
-    line-height: 13.02vw;
-    padding: 0 !important;
-  }
+.sir_calendar tr .uplevel div:after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 17px;
+  width: 19px;
+  right: 5px;
+  top: 5px;
+  background: url("/img/m/Attendance_star1.png") no-repeat center;
+  background-size: cover;
+}
+
+.sir_calendar tr td.sc_day:first-child {
+  color: #db1b1b;
+}
+
+.sir_calendar tr td.sc_day:last-child {
+  color: #1972ce;
+}
+
+.sir_calendar tr .sc_day > div > div {
+  height: 70px;
+  line-height: 70px;
+  width: 70px;
+  margin: 0 auto;
+}
+
+.sir_calendar tr .sc_day > div {
+  padding: 5px 0;
+}
+
+.sir_calendar tr > *:last-child, .sir_calendar tr > *:first-child {
+  width: 16.25%;
 }
 
 .sir_calendar tr > * {
@@ -911,51 +942,35 @@ a:hover + .mb_info {
   padding: 0;
 }
 
-.sir_calendar tr > * div {
-  padding: 30px 0;
-}
-
-.sir_calendar tr > *:last-child, .sir_calendar tr > *:first-child {
-  width: 16.25%;
-}
-
-.sir_calendar tr > *:first-child div {
+.sir_calendar tr > *:first-child > div {
   border-left: 1px solid #d9d9d9;
   padding-left: 17.35%;
 }
 
-.sir_calendar tr > *:last-child div {
+.sir_calendar tr > *:last-child > div {
   border-right: 1px solid #d9d9d9;
   padding-right: 17.35%;
 }
 
-.sir_calendar tr:first-child div {
+.sir_calendar tr:first-child td > div {
   border: 0;
 }
 
-.sir_calendar tr:nth-child(2) div {
-  height: 100px;
+.sir_calendar tr:nth-child(2) td > div {
+  padding-top: 40px;
 }
 
-.sir_calendar tr:last-child div {
+.sir_calendar tr:last-child td > div {
   border-bottom: 1px solid #d9d9d9;
-  height: 100px;
+  padding-bottom: 80px;
 }
 
-.sir_calendar tr:last-child > *:first-child div {
+.sir_calendar tr:last-child > *:first-child > div {
   border-radius: 0 0 0 10px;
 }
 
-.sir_calendar tr:last-child > *:last-child div {
+.sir_calendar tr:last-child > *:last-child > div {
   border-radius: 0 0 10px  0;
-}
-
-.sc_sun {
-  color: #db1b1b;
-}
-
-.sc_sat {
-  color: #1972ce;
 }
 
 .sir_cal_tit {

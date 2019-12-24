@@ -238,15 +238,14 @@ body.type8 {
   background-size: 17px auto;
 }
 
-.sir_bd_list01 .list_info:after {
+.sir_bd_list01 .list_info + a:after, .sir_bd_list01 .list_info + div:after {
   content: "";
   position: absolute;
-  height: 100px;
+  height: 70%;
   border-right: 1px dashed #d9d9d9;
-  top: 50%;
-  margin-top: -50px;
+  top: 15%;
   display: block;
-  right: 0;
+  left: 0;
 }
 
 .sir_bd_list01 .list_info.is_notice {
@@ -795,6 +794,18 @@ input[type="radio"]:checked + .sir_label_ck {
   margin-left: -170px;
 }
 
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
+  .mb_info {
+    left: 110%;
+    margin-left: 0;
+    top: 50%;
+    margin-top: -150px;
+    clear: both;
+    height: 300px;
+    z-index: 80;
+  }
+}
+
 @media only screen and (max-width: 640px) {
   .mb_info {
     left: 0;
@@ -819,6 +830,12 @@ a:hover + .mb_info {
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
+  .mb_info:after {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 640px) {
@@ -879,14 +896,30 @@ a:hover + .mb_info {
   top: -2px;
 }
 
+@media only screen and (max-width: 640px) {
+  .sir_calendar tr .on > div span {
+    font-size: 3.4375vw;
+  }
+}
+
 .sir_calendar tr .point div {
   border: 3px solid #fa583c;
   color: #fa583c;
   line-height: 1 !important;
   text-align: left;
-  padding-left: 10px;
-  padding-top: 12px;
+  padding-left: 10%;
+  padding-top: 15%;
   font-size: 22px;
+}
+
+@media only screen and (max-width: 640px) {
+  .sir_calendar tr .point div {
+    font-size: 3.4375vw;
+  }
+}
+
+.sir_calendar tr .point div > span {
+  display: block;
 }
 
 .sir_calendar tr .point div > span > span {
@@ -894,8 +927,20 @@ a:hover + .mb_info {
   display: block;
 }
 
+@media only screen and (max-width: 640px) {
+  .sir_calendar tr .point div > span > span {
+    font-size: 2.5vw;
+  }
+}
+
 .sir_calendar tr .point div > span > span span {
   font-size: 13px;
+}
+
+@media only screen and (max-width: 640px) {
+  .sir_calendar tr .point div > span > span span {
+    font-size: 2.03125vw;
+  }
 }
 
 .sir_calendar tr .uplevel div {
@@ -914,6 +959,13 @@ a:hover + .mb_info {
   background-size: cover;
 }
 
+@media only screen and (max-width: 640px) {
+  .sir_calendar tr .uplevel div:after {
+    width: 2.96875vw;
+    height: 2.65625vw;
+  }
+}
+
 .sir_calendar tr td.sc_day:first-child {
   color: #db1b1b;
 }
@@ -927,6 +979,14 @@ a:hover + .mb_info {
   line-height: 70px;
   width: 70px;
   margin: 0 auto;
+}
+
+@media only screen and (max-width: 640px) {
+  .sir_calendar tr .sc_day > div > div {
+    width: 90%;
+    height: 10.6vw;
+    line-height: 10.6vw;
+  }
 }
 
 .sir_calendar tr .sc_day > div {

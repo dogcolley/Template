@@ -142,7 +142,7 @@ $set_color01: #fa583c;
 
 .sir_bd_list01{border-top: 1px solid #d9d9d9;
     > li {border-bottom: 1px solid #d9d9d9;background:url("/img/m/List_arrow.png")no-repeat;background-position: calc(100% - 30px) center;background-size: 17px auto;}
-    .list_info:after{content:"";position: absolute;height:100px;border-right: 1px dashed #d9d9d9;top:50%;margin-top:-50px;display:block;right:0}
+    .list_info + a:after,.list_info + div:after{content:"";position: absolute;height:70%;border-right: 1px dashed #d9d9d9;top:15%;display:block;left:0}
     .list_info.is_notice{color:$set_color01;span{color:#d9d9d9}}
     .list_info {min-width:120px;
         @include respond-to(handhelds) {min-width:105px;}
@@ -311,10 +311,12 @@ input[type="radio"]:checked + .sir_label_ck{background-image: url("/img/icon_chO
 
 
 .mb_info{position:absolute;bottom: 110%;border-radius: 3px;box-shadow: 0 0 30px 3px rgba(0, 0, 0, 0.15);left:0;right:0;margin-left:-170px;
+    @include respond-to(medium-screens) {left: 110%;margin-left: 0;top: 50%;margin-top: -150px;clear: both;height: 300px;z-index: 80;}
     @include respond-to(handhelds) {left:0;margin-left:0;z-index:80}
 }
 a:hover + .mb_info{display:block}
 .mb_info:after{width:30px;position: absolute;bottom:-25px;content: "";display: block;border-top:25px solid #fff;border-right:25px solid transparent;border-left:25px solid transparent;left:0;right:0;margin:0 auto;
+    @include respond-to(medium-screens){display:none}
     @include respond-to(handhelds) {display:none}
 }
 
@@ -330,21 +332,33 @@ a:hover + .mb_info{display:block}
     @include respond-to(handhelds) {}
 }
 .sir_calendar tr {
-    .on > div {background:url("/img/m/Attendance_circle.png")no-repeat center;background-size:100%;span{color:#ff9b34;font-size:22px;top:-2px}}
-    .point div{border:3px solid #fa583c;color:#fa583c;line-height:1!important;text-align:left;padding-left:10px;padding-top:12px;font-size:22px;
-       > span > span{font-size:16px;display:block}
-       > span > span span{font-size:13px}
+    .on > div {background:url("/img/m/Attendance_circle.png")no-repeat center;background-size:100%;
+        span{color:#ff9b34;font-size:22px;top:-2px;
+            @include respond-to(handhelds) {font-size:3.4375vw}
+            }
+        }
+    .point div{border:3px solid #fa583c;color:#fa583c;line-height:1!important;text-align:left;padding-left:10%;padding-top:15%;font-size:22px;
+        @include respond-to(handhelds){font-size:3.4375vw}
+        > span {display:block}    
+        > span >span {font-size:16px;display:block;
+        @include respond-to(handhelds) {font-size:2.5vw}
+    }
+       > span >span span{font-size:13px;
+        @include respond-to(handhelds) {font-size:2.03125vw}
+    }
     }
     .uplevel div{position: relative;
-        &:after{content:"";position:absolute;display:block;height:17px;width:19px;right:5px;top:5px;background: url("/img/m/Attendance_star1.png")no-repeat center;background-size: cover;;}
+        &:after{content:"";position:absolute;display:block;height:17px;width:19px;right:5px;top:5px;background: url("/img/m/Attendance_star1.png")no-repeat center;background-size: cover;
+            @include respond-to(handhelds) {width:2.96875vw;height:2.65625vw}
+        }
     }
 
-    &:nth-child(2) .on{}
-    &:last-child .on{}
     td.sc_day:first-child{color:#db1b1b}
     td.sc_day:last-child{color:#1972ce}
 
-    .sc_day > div > div{height:70px;line-height:70px;width:70px;margin:0 auto}
+    .sc_day > div > div{height:70px;line-height:70px;width:70px;margin:0 auto;
+        @include respond-to(handhelds) {width:90%;height:10.6vw;line-height:10.6vw}
+    }
     .sc_day > div {padding:5px 0}
     > *:last-child,> *:first-child {width:16.25%}
     > * {width: 13.5%;padding:0;}

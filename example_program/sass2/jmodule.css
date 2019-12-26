@@ -760,6 +760,30 @@ input[type="text"], input[type=password] {
   margin-right: 0 !important;
 }
 
+.IM_mg_all {
+  margin: 0 !important;
+}
+
+.IM_mg_top0 {
+  padding-top: 0 !important;
+}
+
+.IM_mg_btm0 {
+  padding-bottom: 0 !important;
+}
+
+.IM_mg_lt0 {
+  padding-left: 0 !important;
+}
+
+.IM_mg_rt0 {
+  padding-right: 0 !important;
+}
+
+.IM_mg_all {
+  padding: 0 !important;
+}
+
 @media only screen and (max-width: 640px) {
   .M_wd_full, .TM_wd_full {
     width: 100%;

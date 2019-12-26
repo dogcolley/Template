@@ -764,23 +764,23 @@ input[type="text"], input[type=password] {
   margin: 0 !important;
 }
 
-.IM_mg_top0 {
+.IM_pd_top0 {
   padding-top: 0 !important;
 }
 
-.IM_mg_btm0 {
+.IM_pd_btm0 {
   padding-bottom: 0 !important;
 }
 
-.IM_mg_lt0 {
+.IM_pd_lt0 {
   padding-left: 0 !important;
 }
 
-.IM_mg_rt0 {
+.IM_pd_rt0 {
   padding-right: 0 !important;
 }
 
-.IM_mg_all {
+.IM_pd_all {
   padding: 0 !important;
 }
 

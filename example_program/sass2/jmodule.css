@@ -784,6 +784,10 @@ input[type="text"], input[type=password] {
   padding: 0 !important;
 }
 
+.IM_bd_none {
+  background: none !important;
+}
+
 @media only screen and (max-width: 640px) {
   .M_wd_full, .TM_wd_full {
     width: 100%;

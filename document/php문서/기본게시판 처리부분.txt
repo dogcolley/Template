@@ -1,0 +1,23 @@
+<?
+	$g4_path = "..";
+	include("../common.php");
+
+	$reg_date = $g4['time_ymdhis'];
+
+	if($w=="u"){
+
+		$sql = "update s3_06 set title = '$title', m_date = '$m_date' where idx = '$idx'";
+
+		sql_query($sql);
+
+		alert("마감일이 수정 되었습니다.","s3_06_form.php?w=u&idx=$idx&gopage=$gopage$qtr");
+
+	}else{
+		$sql = "insert into s3_06 set title = '$title', m_date = '$m_date', reg_date = '$reg_date'";
+
+		sql_query($sql);
+
+		alert("마감일이 등록 되었습니다.","s3_06.php");
+
+	}
+?>

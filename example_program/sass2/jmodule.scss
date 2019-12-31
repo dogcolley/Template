@@ -138,6 +138,7 @@ comparable($number1, $number2) : 두 개의 숫자가 연산 가능한지 여부
 $S_M: 640px; 
 $S_T: 1024px;
 $S_W: 1200;
+
 /*mixin and function 모음*/
 @mixin clear {content:'';clear:both;display:block}
 @mixin area {margin-left:auto;margin-right:auto}
@@ -188,20 +189,6 @@ $breakpoints: (
 }
  
 $t_cl01 : #0051a4;
-$t_cl02 : #000;
-$t_cl03 : #767676;
-$t_cl04 : #ccc;
-$t_cl05 : #6c6c6c;
-$t_cl06 : #efefef;
-$t_cl07 : #298cd5;
-$t_cl11 : #1c5eb5;
-$t_cl12 : #567f36;
-$cl_red : #e10000;   
-$cl_red2 : #d60c00;
-$cl_black : #000;   
-$cl_gray : #767676;   
-$t_cl10	: #000;
-$t_cl11 : #ddd;
 
 /*teg-reset*/
 html, body{
@@ -324,7 +311,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		}
 		
 		&ps_{
-			&rl{position:relative}		
+			&rl{position:relative}
 			&ab{position:absolute} 
 			&st{position:static}
 			&fx{position:fixed}
@@ -574,7 +561,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		@include responde-pk01('TAB');
 	} 
 }
-.PC_, .PT_, {
+.PC_, .PT_ {
 	@include respond-to(wide-screens) {
 		@include responde-pk01('PC');
 	}

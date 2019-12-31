@@ -63,6 +63,7 @@ r.on('line',function(answer){
             set_lines.push(parseInt(arr[i]));
         } 
         console.log(algorit(set_N, set_S, set_lines));
+        process.exit();
     }
     r.prompt('>');  
 });

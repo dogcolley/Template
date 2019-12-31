@@ -1,0 +1,6 @@
+npm i nodemon -g
+
+npm i mysql
+npm i body-parser
+npm i ejs
+npm i exrpess

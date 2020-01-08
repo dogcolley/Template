@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jquery mobile</title>
+ 
+<link rel="stylesheet" href="./css/jquery.mobile-1.4.5.css">
+<script src="./js/jquery-1.11.0.js"></script>
+<script src="./js/jquery.mobile-1.4.5.js"></script>
+</head>
+<script type="text/javascript">
+$(function(){
+    $("#goChangPage2Btn").bind("click",function(){
+        alert("005changePage2.html 페이지로 이동합니다." );
+        $.mobile.changePage( "005changePage2.html", {transition: "flip", changeHash: false });
+    });
+    
+    $("#backBtn").bind("click",function(){
+        $.mobile.changePage( "#page1", { transition: "flip", changeHash: false });
+    });
+});
+</script>
+<body>
+ 
+<section id="page1" data-role="page">
+    <header data-role="header"><h1>jQuery Mobile</h1></header>                   
+    <div class="content" data-role="content">
+        <p>1 page</p>
+        <p><a href="#page2" >go page2</a></p>
+        <p><button id="goChangPage2Btn">go 005changePage2.html</button></p>
+    </div>
+    <footer data-role="footer"><h1>cofs</h1></footer>
+</section>
+ 
+<section id="page2" data-role="page">
+    <header data-role="header" data-add-back-btn="true"><h1>jQuery Mobile</h1></header>                   
+    <div class="content" data-role="content">
+        <p>2 page</p>
+        <p><button id="backBtn">뒤로가기</button></p>
+    </div>
+    <footer data-role="footer"><h1>cofs</h1></footer>
+</section>
+ 
+ 
+</body>
+</html>
+

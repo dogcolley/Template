@@ -171,7 +171,7 @@ body {
   font-family: 'Jua ','Noto Sans KR', 'Spoqa Han Sans', sans-serif;
   background: #fff;
   font-weight: 400;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   line-height: 1;
   color: #777;
   word-break: keep-all;
@@ -186,7 +186,7 @@ html, h1, h2, h3, h4, h5, h6, form, fieldset, img {
 
 h1, h2, h3, h4, h5, h6 {
   font-size: inherit;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Jua', sans-serif;
   font-weight: inherit;
 }
 

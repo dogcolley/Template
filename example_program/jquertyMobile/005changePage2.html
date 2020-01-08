@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jquery mobile</title>
+ 
+<link rel="stylesheet" href="./css/jquery.mobile-1.4.5.css">
+<script src="./js/jquery-1.11.0.js"></script>
+<script src="./js/jquery.mobile-1.4.5.js"></script>
+</head>
+<body>
+ 
+ 
+<section id="page3" data-role="page">
+<script type="text/javascript">
+$(function(){
+    $("#backBtn1").on("click",function(){
+        $.mobile.changePage( "005changePage.html", { transition: "slideup", changeHash: false, reverse :false });
+    });
+});
+</script>
+    <header data-role="header" data-add-back-btn="true"><h1>jQuery Mobile</h1></header>
+    <div class="content" data-role="content">
+        <p>3 page</p>
+        <p><a href="#page4" >go page4</a></p>
+        <p><button id="backBtn1">뒤로가기</button></p>
+    </div>
+    <footer data-role="footer"><h1>cofs</h1></footer>
+</section>
+ 
+<section id="page4" data-role="page">
+    <header data-role="header" data-add-back-btn="true"><h1>jQuery Mobile</h1></header>
+    <div class="content" data-role="content">
+        <p>4 page</p>
+    </div>
+    <footer data-role="footer"><h1>cofs</h1></footer>
+</section>
+ 
+ 
+</body>
+</html>
+

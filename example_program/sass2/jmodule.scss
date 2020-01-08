@@ -4,9 +4,10 @@
 
 /*font-set*/
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
-@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
-@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
+/*@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');*/
+/*@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');*/
+/*@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');*/
 
 
 /*노토산서스 스퀘어한사스*/
@@ -199,7 +200,7 @@ html, body{
     @media only screen and (max-width: 768px) {font-size:14px}
 }
 html {overflow-y:auto} 
-body {margin:0;padding:0;font-family:'Noto Sans KR', 'Spoqa Han Sans', sans-serif;background:#fff;font-weight:400;letter-spacing :-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
+body {margin:0;padding:0;font-family:'Jua ','Noto Sans KR', 'Spoqa Han Sans', sans-serif;background:#fff;font-weight:400;letter-spacing :-1px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Noto Sans KR', sans-serif;font-weight:inherit}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
@@ -493,6 +494,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&fm02{font-family: 'Montserrat', sans-serif;}
 		&fm03{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
 		&fm04{font-family: 'Black Han Sans', sans-serif;}
+		&fm05{font-family: 'Jua', sans-serif;}
 	}
 
 
@@ -550,7 +552,8 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	&bg_none{background:none!important}
 } 
 
- 
+
+/*
 .M_, .TM_{
 	@include respond-to(handhelds) {
 		@include responde-pk01('M');
@@ -566,7 +569,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		@include responde-pk01('PC');
 	}
 }  
-
+*/
 .T_{
 	@include responde-pk01('ALL');
 }

@@ -1,0 +1,356 @@
+<?
+	include_once('./_common.php');
+	$mt_set_page = 'sub01'; 
+	$mt_set_dep2 = "01";
+	include_once(G5_PATH.'/head.php');
+?>		
+			<?/*
+			<input type="text" value="111111" id="copyT" class="copyT">
+			*/?>
+<?
+	if(!$event_id){ alert("잘못된 접근입니다."); } 
+	$event = sql_fetch("select * from g5_write_event where wr_id = '$event_id'");
+	if(!$event[wr_id]){ alert("잘못된 접근입니다."); } 
+
+	if(!$is_member)alert('회원이용 서비스 입니다.',G5_BBS_URL.'/login.php');
+	if($member['mb_level'] == 3)alert('휴면계정은 이용 할 수 없습니다. 온라인 문의페이지에서 휴면해제를 해주세요.',G5_BBS_URL.'/board.php?bo_table=cs_qna');
+	if($member['mb_level'] == 2)alert('정지게정은 이용 할 수 없습니다. 문의사항은 온라인문의에서 해주세요.',G5_BBS_URL.'/board.php?bo_table=cs_qna');
+
+	//여기서 이벤트 상태 체크
+
+	$event_state = '';
+
+	$set_today = date("Y-m-d");
+	$day_difference = ( strtotime($set_today) - strtotime($event[wr_1]) ) / 86400;  //시작일 음수일 경우엔 before
+	$day_difference1 = ( strtotime($set_today) - strtotime($event[wr_2]) ) / 86400;  // 종료일 양수일 경우엔 after
+	if($day_difference >= 0 && $day_difference1 <=0){
+		$event_state = '진행중';
+	}else if($day_difference < 0 ){
+		$event_state = '시작전';
+	}else {
+		$event_state = '종료';
+	}
+
+?>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="<?=G5_JS_URL?>/axios.js"></script>
+    <script src="<?=G5_JS_URL?>/clipboard.min.js"></script>
+
+	<?/*
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+	<script src="https://npmcdn.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	*/?>
+	
+<div id="bo_view_event">
+	<?include_once(G5_PATH.'/html/sub01_snb.php')?>
+	<div class="sir_event_view U_area02 T_pd_btm100 clear ">
+		<h2 class="T_pd_top40 PD_pd_btm30 T_ft_ct sir_bd_top21">
+			<span class="sir_btn05 <?if($event_state =='진행중') echo 'on'?> "><?=$event_state?></span>
+			<strong class="T_mg_ht10 T_ft_wh400 U_ft_c000 PT_ft_sz30 T_ds_block T_lh_14 M_ft_rem14"><?=$event[wr_subject]?></strong>
+			<span class="U_ft_c999"><?=$event[wr_1]?> ~ <?=$event[wr_2]?></span>
+		</h2>
+		<div class="U_bg_cf9 T_pd_all30 T_mg_top30 T_mg_btm30" id="event_bd_content">
+			<?=conv_content($event[wr_content],1)?>
+		</div>
+		<div class="T_ft_ct T_pd_btm40 sir_bd_btm21 ">
+			<a href="<?=G5_URL?>/html/sub01_04.php" class="T_ds_inbl sir_rd01 sir_btn06 on U_ft_fm04 PT_ht_sz50 PT_pd_wd60 PT_ft_sz30 M_ft_rem15 M_pd_wd50 M_pd_ht10" target="_blank">
+				<span class="U_ct_box01"><span class="T_ps_rl sir_top02">참여방법</span></span>
+			</a>
+			<? if($member['mb_level'] > $event[wr_7] || $event[wr_7] =='all'){?>
+
+<!--			<div class="T_ps_ab U_mg_ct" style="left:0;right:0">-->
+				<input type="text" class="CPT_event" id="CPT_event" data-clipboard-text="클립보드" value="??" />
+		<!-- 	</div>-->
+
+			<div id="root">
+				<ul class="T_mg_Ctop10 PT_wd_sz440 U_mg_ct PT_ft_sz30 U_ft_c000 T_mg_top50" v-if="!(pass >= result)">
+					<li class="U_ct_box02 PT_ht_sz80 M_ft_rem15 M_wd_full" v-for="(problems, index) in problems" :key="index">
+						<div class="T_ds_Cinbl M_pd_Cht20">
+							<strong class="U_ft_fm02 T_vt_md M_wd_p15"><span class="T_ds_inbl PT_wd_sz80 T_ft_lt T_ft_wh700">Q. {{index+1}}</span></strong>
+							<button class="U_ft_fm04 PT_ht_sz80 PT_wd_sz80 U_bg_cf0  PT_mg_rt5 sir_rd01 M_wd_p16 M_mg_Prt2 J_copy" v-on:click="capyHint(index,problems.number )"><span class="T_ps_rl sir_top02">?</span></button>
+							<button v-on:click="set_dataChage(problems.number , index)" :class="problems.buttonClass">
+							{{problems.rqTxt}}
+							</button>
+							<input ref="copy" v-model="problems.keyword" contentEditable="true" type="text" class="J_ctxt" <?echo 'style="display:none;bottom:-999px;position:absolute"';?> >
+						</div>
+					</li>
+				</ul>
+				<form v-on:submit="onSubmitForm" v-if="formShow">
+					<div class="T_mg_top40 T_fl_Clt clear PC_wd_sz600 U_mg_ct PT_ft_sz18 M_ft_rem15 M_pd_Cht20">	
+						<input type="text" class="sir_input03 PT_ht_sz80 PT_pd_lt30 PT_wd_p86 IM_bd_rt0 M_wd_p75 PT_ft_sz26" placeholder="정답입력" ref="answer" v-model="answer" style="border-color:#ff9735"/>
+						<input type="submit" value="확인" class=" PT_ft_sz23 PT_ht_sz80 sir_btn06 on PT_wd_p14 sir_rd02 M_wd_p25" />
+					</div>
+				</form>
+				<p class="PT_ft_sz15 U_ft_c777 T_mg_top10 U_ft_ce70000 M_ft_rem11"  v-if="formShow"><span :class="commandColor">{{command}}</span></p>
+				<div class="PT_wd_sz440 T_mg_top50 U_mg_ct" v-if="pass >= result">
+					이미맞춘 문제입니다.
+				</div>
+			</div>
+		</div>
+		<?}else{?>
+			<div class="PT_wd_sz440 T_mg_top100  T_mg_btm60 T_pd_ht30 U_mg_ct">
+				해당 이벤트는 이용할 수없습니다.
+			</div>
+		<?}?>
+		<div class="T_ft_ct T_mg_top40">
+			<a href="./sub01_01.php" class="T_ds_inbl sir_btn07 on  M_wd_p80 PT_wd_sz250 T_ht_sz55 PT_ft_sz25 T_ft_wh300 PT_pd_wd30">
+				<span class="U_ct_box01 T_ft_ct T_wd_full M_ft_rem15  "><span >목록</span></span>
+			</a>
+		</div>
+</div>
+
+<script>
+  var clipboard = new ClipboardJS( '.btn' );
+  clipboard.on( 'success', function() {
+	alert( 'Success' );
+  } );
+  clipboard.on( 'error', function() {
+	alert( 'Fail' );
+  } );
+</script>
+
+<script type="text/babel">
+
+	let copy_master = false;
+	$(function(){
+			/*
+			$(document).on('click', '.J_copy', function(){
+				var set_this = $(this).siblings('.J_ctxt');
+				setTimeout(function(){
+						var set_val =set_this.val();
+						set_this.after(' <p class="CPT_event" id="CPT" data-clipboard-text="'+set_val+'">Click</p>');
+						var clipboard = new ClipboardJS( '.CPT_event' );
+						
+						clipboard.on( 'success', function() {
+							//console.log( 'Success' );
+						} );
+						clipboard.on( 'error', function() {
+							//console.log( 'Fail' );
+						} );
+
+						
+						//clipboard.tiggler("click");
+					//console.log(set_this.val());
+					//set_this.val(set_val);
+					//set_this.show();
+					//set_this.select();
+					//document.execCommand("copy");
+					//set_this.hide();
+				},70);
+			});
+			*/
+		
+		var clipboard = new ClipboardJS( '.CPT_event' );
+		
+		$(document).on('click', '.J_copy', function(){
+				var set_this = $(this).siblings('.J_ctxt');
+				//$('.CPT_event').show();
+				setTimeout(function(){
+						$('.CPT_event').trigger('click');
+						alert("복사완료")
+						
+						
+						//var set_val =set_this.val();
+						//set_this.after(' <p class="CPT_event" id="CPT" data-clipboard-text="'+set_val+'">Click</p>');
+						/*
+						$('.CPT_event').attr({'data-clipboard-text':set_this.val()})
+						$('.CPT_event').val(set_this.val());
+						setTimeout(function(){
+							$('.CPT_event').trigger('click');
+							alert("복사완료")
+						},1000);
+						*/
+					//clipboard.tiggler("click");
+					//console.log(set_this.val());
+					//set_this.val(set_val);
+					//set_this.show();
+					//set_this.select();
+					//document.execCommand("copy");
+					//set_this.hide();
+				},1000);
+			});
+
+			/*
+			$(document).on('click', '.J_copy', function(){
+				var set_this2 = $(this).siblings('.J_ctxt');
+				set_this2.show();
+				var set_this = $('#copyT');
+				set_this.val(set_this2.val());
+				setTimeout(function(){
+					//set_this.show();
+					setTimeout(function(){
+						set_this.select();
+						copyToClipboard(set_this);
+						//copyToClipboard();
+						setTimeout(function(){
+							//set_this.hide();
+						});
+					},80)
+				},80);
+			});
+			*/
+	});
+
+	let Macro = true;
+	const MacroChack = () =>{
+		setTimeout( () => { Macro = false},<?if($event[wr_5])echo $event[wr_5] * 1000; else echo '7000'?>)
+	}
+	//케멀케이스 camelCase: wordRelay;
+	//파스칼케이스 PascalCase: WordRelay;
+	//케밥 kebab-case : word-relay
+
+	const app = new Vue({
+		mode: 'production',
+		el:'#root',
+		data:{
+			formShow : false,
+			command:'',
+			event_id:'<?=$event_id?>', 
+			set_list : '',
+			set_num : '',
+			answer : '',
+			copy:'',
+			commandColor:'U_ft_c777',
+			problems : [
+					<?
+						$mt_result = 0;
+						$mt_pass = 0;
+						$result = sql_query("select * from g5_write_event_data where wr_id = '$event_id' order by rand()");
+						for($i=0, $j=1; $row=sql_fetch_array($result); $i++,$j++) {
+							$mt_result++;
+							$ans_gu = "";
+							$sql  = "select * from g5_write_event_data_answer where wr_id = '$event_id' and data_idx = '$row[idx]' and mb_id = '$member[mb_id]'";
+							$chk = sql_fetch($sql);
+							if($chk["answer"])$mt_pass ++; 
+					?>	
+							{number: <?=$row[idx]?>,
+							 buttonClass:'<?php if($chk["answer"])echo "on"?> PT_wd_sz235 T_ft_ct T_ds_inbl sir_rd01 T_ft_wh300 PT_ht_sz80 sir_btn06 T_vt_md M_wd_p50',
+							 keyword : '',
+							 state: <?if($chk["answer"])echo 'true'; else echo 'false'?>,
+							 rqTxt : '정답'
+							},
+					<?}?>
+			],
+			result : <?=$mt_result?>,
+			pass : <?=$mt_pass?>,
+		},
+		methods:{
+			set_dataChage(hintNum , index){
+				//정답 버튼을 없애고 힌트를 누를시에 확인을 할 수 있게 만들었다.
+				if(this.problems[index].state){
+					alert('이미 맞춘 문제입니다. 다른문제를 맞춰주세요!');
+					this.problems.forEach(element => {
+						element.rqTxt ="정답";
+					});
+					this.formShow = false;
+				}else{
+					this.formShow = true;
+					this.set_num = hintNum;
+					this.set_list = index;
+					Macro = true;
+					MacroChack();
+					this.problems.forEach(element => {
+							element.rqTxt ="정답";
+						});
+					if(!this.problems[index].state)this.problems[index].rqTxt ="선택";
+
+					alert('문제를 선택하였습니다. 정답을 입력하여 확인해주세요');
+
+				}
+			},
+			capyHint(index,hintNum){ 
+
+				this.problems.forEach(element => {
+						element.rqTxt ="정답";
+					});
+				if(!this.problems[index].state)this.problems[index].rqTxt ="선택";
+
+				var tag = this.$refs.copy[index];
+				axios.get(`/bbs/hintCheck_ajax.php?event_id=${this.event_id}&idx=${hintNum}`)
+				.then(res=>{
+					//console.log(res) 
+					this.problems[index].keyword = res.data; // 값
+					tag.value = res.data;
+					this.copy = res.data;
+					//document.getElementById('copyT').value = res.data;
+					//console.log("vue _value:"+tag.value);
+					copy_master = true;
+
+					var dom = document.getElementById('CPT_event');
+					dom.value = tag.value;
+					console.log( dom.getAttribute( 'data-clipboard-text' ) ); //hika
+					dom.setAttribute('data-clipboard-text', tag.value );
+
+				});
+				alert('힌트가 복사되었습니다. 네이버 검색창에 정답을 붙어넣고 검색해보세요!');
+			},
+
+			onSubmitForm(e){
+				e.preventDefault();
+				if(!this.set_num)alert('?를 눌러 힌트를 복사후 네이버 검색창에서 정답을 확인후 정답을 입력해주세요!');
+				else if( this.problems[this.set_list].state == true){
+					this.command = "이미 맞춘 문제입니다. 다른문제를 선택하여 주세요";
+				}else{
+					axios.get(`/bbs/event_check.php?event_id=${this.event_id}&set_num=${this.set_num}&answer=${this.answer}`)
+					.then(res => {
+						console.log(res); //여기가 데이터반환 변수들
+						console.log(res.data);
+						if(Macro == true){
+							axios.get(`/bbs/Macro_ajax.php?macro_add=true`)
+								.then(res=>{
+									if(res.data == 'out'){
+										alert('부정행위 3회로 계정이 정지됩니다. 관련 문의는 고객센터를 이용해 글을 작성해주세요.');
+										window.location.reload();
+									}else{
+										alert('회원님! 현재 부정 행위가 의심 됩니다. 정상적인 방법으로 정답을 맞혀 주세요. 3회 적발시 이용 중지 됩니다.');
+									}
+									clearTimeout(MacroChack);
+								});
+						}else if(this.pass == (this.result-1)){
+							this.problems[this.set_list].rqTxt = '정답'
+							this.problems[this.set_list].buttonClass = ' on PT_wd_sz235 T_ft_ct T_ds_inbl sir_rd01 T_ft_wh300 PT_ht_sz80 sir_btn06 T_vt_md M_wd_p50';
+							axios.get(`/bbs/add_point_ajax.php?event_id=${this.event_id}`)
+								.then(res=>{
+									console.log(res) // 뭐가 저장이 되었을까~
+									console.log(res.data); // 값
+									alert('포인트증정!') //인원이 마감됬는지 확인하는 AJAX 그리고 맞으면 포인트는 주는걸로 처리하고 안됄경우 빽;
+									window.location.reload();
+								});
+						}else  if(res.data =="ok"){
+							alert('정답입니다. 다음 힌트를 클릭후 정답을 맞추세요!');
+							this.pass++;
+							this.command ="정답입니다. 다음 힌트를 클릭후 정답을 맞추세요!";
+							this.commandColor = 'U_ft_c777';
+							this.problems[this.set_list].buttonClass = ' on PT_wd_sz235 T_ft_ct T_ds_inbl sir_rd01 T_ft_wh300 PT_ht_sz80 sir_btn06 T_vt_md M_wd_p50';
+							this.problems[this.set_list].state = true;
+							this.problems[this.set_list].rqTxt = '정답';
+							this.formShow = false;
+							this.command = "";
+							this.answer ="";
+						}else if(res.data =="dup"){
+							alert('이미 맞춘 문제입니다.');
+							this.problems[this.set_list].state = true;
+							this.problems[this.set_list].rqTxt = '정답';
+							this.problems[this.set_list].state = true;
+							this.problems[this.set_list].rqTxt = '정답';
+							this.formShow = false;
+							this.command = "";
+							this.answer ="";
+						}else {
+							this.command ="정답이 아닙니다. 다시 입력해주세요!"
+							this.commandColor = 'U_ft_ce70000'
+						}
+					}).catch(function(e){
+						console.error(e);
+					});
+				}
+			},
+		}
+	});
+
+</script>
+<?
+	include_once(G5_PATH.'/tail.php');
+?>

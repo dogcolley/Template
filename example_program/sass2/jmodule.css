@@ -725,8 +725,452 @@ input[type="text"], input[type=password] {
   overflow: hidden;
 }
 
+.U_ov_at {
+  overflow: auto;
+}
+
 .U_lt_sp05 {
   letter-spacing: -0.5px;
+}
+
+.U_bd_top01 {
+  border-top: 1px solid #d9d9d9;
+}
+
+.U_bd_top02 {
+  border-top: 1px dashed #d9d9d9;
+}
+
+.U_bd_left01 {
+  border-left: 1px solid #d9d9d9;
+}
+
+.U_bd_left02 {
+  border-left: 1px dashed #d9d9d9;
+}
+
+.U_bd_right01 {
+  border-right: 1px solid #d9d9d9;
+}
+
+.U_bd_right02 {
+  border-right: 1px dashed #d9d9d9;
+}
+
+.U_bd_btm01 {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.U_bd_btm02 {
+  border-bottom: 1px dashed #d9d9d9;
+}
+
+.U_bd_all01 {
+  border: 1px solid #d9d9d9;
+}
+
+.U_bd_all02 {
+  border: 1px dashed #d9d9d9;
+}
+
+.U_op_1 {
+  opacity: 0.01;
+}
+
+.U_op_2 {
+  opacity: 0.02;
+}
+
+.U_op_3 {
+  opacity: 0.03;
+}
+
+.U_op_4 {
+  opacity: 0.04;
+}
+
+.U_op_5 {
+  opacity: 0.05;
+}
+
+.U_op_6 {
+  opacity: 0.06;
+}
+
+.U_op_7 {
+  opacity: 0.07;
+}
+
+.U_op_8 {
+  opacity: 0.08;
+}
+
+.U_op_9 {
+  opacity: 0.09;
+}
+
+.U_op_10 {
+  opacity: 0.1;
+}
+
+.U_op_11 {
+  opacity: 0.11;
+}
+
+.U_op_12 {
+  opacity: 0.12;
+}
+
+.U_op_13 {
+  opacity: 0.13;
+}
+
+.U_op_14 {
+  opacity: 0.14;
+}
+
+.U_op_15 {
+  opacity: 0.15;
+}
+
+.U_op_16 {
+  opacity: 0.16;
+}
+
+.U_op_17 {
+  opacity: 0.17;
+}
+
+.U_op_18 {
+  opacity: 0.18;
+}
+
+.U_op_19 {
+  opacity: 0.19;
+}
+
+.U_op_20 {
+  opacity: 0.2;
+}
+
+.U_op_21 {
+  opacity: 0.21;
+}
+
+.U_op_22 {
+  opacity: 0.22;
+}
+
+.U_op_23 {
+  opacity: 0.23;
+}
+
+.U_op_24 {
+  opacity: 0.24;
+}
+
+.U_op_25 {
+  opacity: 0.25;
+}
+
+.U_op_26 {
+  opacity: 0.26;
+}
+
+.U_op_27 {
+  opacity: 0.27;
+}
+
+.U_op_28 {
+  opacity: 0.28;
+}
+
+.U_op_29 {
+  opacity: 0.29;
+}
+
+.U_op_30 {
+  opacity: 0.3;
+}
+
+.U_op_31 {
+  opacity: 0.31;
+}
+
+.U_op_32 {
+  opacity: 0.32;
+}
+
+.U_op_33 {
+  opacity: 0.33;
+}
+
+.U_op_34 {
+  opacity: 0.34;
+}
+
+.U_op_35 {
+  opacity: 0.35;
+}
+
+.U_op_36 {
+  opacity: 0.36;
+}
+
+.U_op_37 {
+  opacity: 0.37;
+}
+
+.U_op_38 {
+  opacity: 0.38;
+}
+
+.U_op_39 {
+  opacity: 0.39;
+}
+
+.U_op_40 {
+  opacity: 0.4;
+}
+
+.U_op_41 {
+  opacity: 0.41;
+}
+
+.U_op_42 {
+  opacity: 0.42;
+}
+
+.U_op_43 {
+  opacity: 0.43;
+}
+
+.U_op_44 {
+  opacity: 0.44;
+}
+
+.U_op_45 {
+  opacity: 0.45;
+}
+
+.U_op_46 {
+  opacity: 0.46;
+}
+
+.U_op_47 {
+  opacity: 0.47;
+}
+
+.U_op_48 {
+  opacity: 0.48;
+}
+
+.U_op_49 {
+  opacity: 0.49;
+}
+
+.U_op_50 {
+  opacity: 0.5;
+}
+
+.U_op_51 {
+  opacity: 0.51;
+}
+
+.U_op_52 {
+  opacity: 0.52;
+}
+
+.U_op_53 {
+  opacity: 0.53;
+}
+
+.U_op_54 {
+  opacity: 0.54;
+}
+
+.U_op_55 {
+  opacity: 0.55;
+}
+
+.U_op_56 {
+  opacity: 0.56;
+}
+
+.U_op_57 {
+  opacity: 0.57;
+}
+
+.U_op_58 {
+  opacity: 0.58;
+}
+
+.U_op_59 {
+  opacity: 0.59;
+}
+
+.U_op_60 {
+  opacity: 0.6;
+}
+
+.U_op_61 {
+  opacity: 0.61;
+}
+
+.U_op_62 {
+  opacity: 0.62;
+}
+
+.U_op_63 {
+  opacity: 0.63;
+}
+
+.U_op_64 {
+  opacity: 0.64;
+}
+
+.U_op_65 {
+  opacity: 0.65;
+}
+
+.U_op_66 {
+  opacity: 0.66;
+}
+
+.U_op_67 {
+  opacity: 0.67;
+}
+
+.U_op_68 {
+  opacity: 0.68;
+}
+
+.U_op_69 {
+  opacity: 0.69;
+}
+
+.U_op_70 {
+  opacity: 0.7;
+}
+
+.U_op_71 {
+  opacity: 0.71;
+}
+
+.U_op_72 {
+  opacity: 0.72;
+}
+
+.U_op_73 {
+  opacity: 0.73;
+}
+
+.U_op_74 {
+  opacity: 0.74;
+}
+
+.U_op_75 {
+  opacity: 0.75;
+}
+
+.U_op_76 {
+  opacity: 0.76;
+}
+
+.U_op_77 {
+  opacity: 0.77;
+}
+
+.U_op_78 {
+  opacity: 0.78;
+}
+
+.U_op_79 {
+  opacity: 0.79;
+}
+
+.U_op_80 {
+  opacity: 0.8;
+}
+
+.U_op_81 {
+  opacity: 0.81;
+}
+
+.U_op_82 {
+  opacity: 0.82;
+}
+
+.U_op_83 {
+  opacity: 0.83;
+}
+
+.U_op_84 {
+  opacity: 0.84;
+}
+
+.U_op_85 {
+  opacity: 0.85;
+}
+
+.U_op_86 {
+  opacity: 0.86;
+}
+
+.U_op_87 {
+  opacity: 0.87;
+}
+
+.U_op_88 {
+  opacity: 0.88;
+}
+
+.U_op_89 {
+  opacity: 0.89;
+}
+
+.U_op_90 {
+  opacity: 0.9;
+}
+
+.U_op_91 {
+  opacity: 0.91;
+}
+
+.U_op_92 {
+  opacity: 0.92;
+}
+
+.U_op_93 {
+  opacity: 0.93;
+}
+
+.U_op_94 {
+  opacity: 0.94;
+}
+
+.U_op_95 {
+  opacity: 0.95;
+}
+
+.U_op_96 {
+  opacity: 0.96;
+}
+
+.U_op_97 {
+  opacity: 0.97;
+}
+
+.U_op_98 {
+  opacity: 0.98;
+}
+
+.U_op_99 {
+  opacity: 0.99;
+}
+
+.U_op_100 {
+  opacity: 1;
 }
 
 .IM_bd_top0 {

@@ -524,7 +524,25 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 
 	&ov_hd{overflow: hidden;}
 
+	&ov_at{overflow: auto;}
+
 	&lt_sp05{letter-spacing: -0.5px;}
+
+	&bd_top01{border-top:1px solid #d9d9d9}
+	&bd_top02{border-top:1px dashed #d9d9d9}
+	&bd_left01{border-left:1px solid #d9d9d9}
+	&bd_left02{border-left:1px dashed #d9d9d9}
+	&bd_right01{border-right:1px solid #d9d9d9}
+	&bd_right02{border-right:1px dashed #d9d9d9}
+	&bd_btm01{border-bottom:1px solid #d9d9d9}
+	&bd_btm02{border-bottom:1px dashed #d9d9d9}
+	&bd_all01{border:1px solid #d9d9d9}
+	&bd_all02{border:1px dashed #d9d9d9}
+
+	@for $i from 1 through 100{
+		&op_#{$i}{opacity: ($i * 0.01)}
+	}
+
 } 
   
 .IM_{

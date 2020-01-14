@@ -163,6 +163,10 @@ body, html {
   background: #b6d5f5;
 }
 
+.sir_bg06 {
+  background: #f09dc3;
+}
+
 .sir_ft01 {
   color: #3d8dfb;
 }
@@ -181,6 +185,10 @@ body, html {
 
 .sir_ft05 {
   color: #b6d5f5;
+}
+
+.sir_ft06 {
+  color: #f09dc3;
 }
 
 #sir_hd {
@@ -436,6 +444,64 @@ body, html {
   height: 600px;
   border: 1px solid #4785cf;
   background: rgba(255, 255, 255, 0.8);
+}
+
+.sir_faq .J_tg_btn01 {
+  background: url("/img/web/cnt10_icon02.png") no-repeat calc(100% - 60px) center;
+}
+
+.sir_faq .J_tg_btn01.on {
+  background-image: url("/img/web/cnt10_icon01.png");
+}
+
+.sir_item_list_wrap {
+  background-repeat: no-repeat, no-repeat;
+  background-position: 31.5% 140px, 68.5% 140px;
+  background-image: url("/img/web/cnt11_icon02.png"), url("/img/web/cnt11_icon02.png");
+}
+
+.sir_cart_layer {
+  position: absolute;
+  width: 313px;
+  top: 0;
+  left: 0;
+  font-family: "Noto Sans KR";
+}
+
+.cart-layer.sct_cartop {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0 30px;
+  display: table-cell;
+  width: 313px;
+  height: 312px;
+  vertical-align: bottom;
+  padding-bottom: 30px;
+}
+
+.cart-layer.sct_cartop .sct_cartop_wr form > * {
+  display: block;
+  width: 100%;
+}
+
+.cart-layer.sct_cartop .cartopt_close_btn {
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  color: #fff;
+  background: #ec70ac;
+}
+
+.cart-layer.sct_cartop .cartopt_oder_btn, .cart-layer.sct_cartop .cartopt_cart_btn {
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  color: #000;
+  background: #fff;
+  margin-top: 10px;
+}
+
+.cart-layer.sct_cartop .J_num {
+  height: 50px;
 }
 
 /*

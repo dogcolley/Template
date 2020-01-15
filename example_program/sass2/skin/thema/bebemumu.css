@@ -504,38 +504,102 @@ body, html {
   height: 50px;
 }
 
+.sir_label_ck {
+  cursor: pointer;
+  padding-left: 30px;
+  background: url("/img/web/icon_ch.png") no-repeat left center;
+  background-size: 20px;
+  color: #000;
+}
+
+input[type="checkbox"]:checked + .sir_label_ck {
+  background-image: url("/img/web/icon_chOn.png");
+}
+
+input[type="radio"]:checked + .sir_label_ck {
+  background-image: url("/img/web/icon_chOn.png");
+}
+
+.sir_input_box02 {
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  padding: 10px 30px;
+  line-height: 30px;
+}
+
+.sir_input_box02 label {
+  margin-right: 10px;
+  color: #333;
+}
+
+.sir_input_box {
+  border: 1px solid #bdbdbd;
+  padding: 0 30px;
+  height: 55px;
+}
+
+.sir_input_box > * {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 55px;
+}
+
+.sir_input_box label {
+  margin-right: 10px;
+  color: #333;
+}
+
+.sir_input01 {
+  padding: 0 30px;
+  height: 55px;
+  padding: 0 30px !important;
+}
+
+.sir_input02 {
+  padding: 0 30px;
+  height: 55px;
+  padding: 0 30px !important;
+  line-height: 53px;
+  border: 1px solid #bdbdbd;
+  border-right: 0;
+}
+
+.sir_input03 {
+  border: 1px solid #3d8dfb;
+}
+
+.sir_input03::-webkit-input-placeholder {
+  color: #3d8dfb;
+}
+
+.sir_input03:-ms-input-placeholder {
+  color: #3d8dfb;
+}
+
+.sir_input_btn {
+  padding: 0;
+  height: 55px;
+  text-align: center;
+  line-height: 53px;
+  background: #3d8dfb;
+  color: #fff;
+  max-width: 120px;
+  font-size: 13px;
+}
+
+.sir_label {
+  margin-bottom: 15px;
+  display: block;
+}
+
+@media only screen and (max-width: 640px) {
+  .sir_label {
+    font-size: 1.25rem;
+  }
+}
+
 /*
-.sir_input_box02{border:1px solid #bdbdbd;border-radius: 4px;padding:10px 30px;line-height:30px;
-    label{margin-right:10px;color:#333}
-}
-.sir_input_box{border:1px solid #bdbdbd;border-radius: 4px;padding:0 30px;height:65px;
-    > * {display:inline-block;vertical-align:middle;line-height:65px;}
-    label{margin-right:10px;color:#333}
-}
 
-.sir_input01{padding:0 30px;height:65px;border-radius: 4px;padding:0 30px!important;
-    @include respond-to(handhelds) {height:50px}
-}
-.sir_input02{padding:0 30px;height:65px;border-radius: 4px 0 0 4px;padding:0 30px!important;line-height:63px;border:1px solid #bdbdbd;border-right:0;
-    @include respond-to(handhelds) {height:50px;line-height:48px}
-}
-
-.sir_input03{border:1px solid #f7954c;border-radius: 4px 0 0 4px;
-    &::-webkit-input-placeholder {color:#f7954c}
-    &:-ms-input-placeholder {color:#f7954c} 
-}
-
-
-.sir_input_btn{padding:0;height:65px;border-radius: 0 4px 4px 0;text-align:center;line-height:65px;background: $set_color01;color:#fff;max-width:170px;
-    @include respond-to(handhelds) {height:50px;line-height:50px}
-}
-
-.sir_label{margin-bottom:15px;display:block;
-    @include respond-to(handhelds) {font-size:1.25rem}
-}
-.sir_label_ck{cursor: pointer;padding-left:30px;background: url("/img/icon_ch.png")no-repeat left center;background-size: 20px;}
-input[type="checkbox"]:checked + .sir_label_ck{background-image: url("/img/icon_chOn.png");}
-input[type="radio"]:checked + .sir_label_ck{background-image: url("/img/icon_chOn.png");}
 
 .cs_benner{position: relative;top: 1px;background:url("/img/pc/cs_benner0.jpg") #000 no-repeat center;
     &.cs_notice{background: url("/img/pc/cs_benner1.jpg") #000 no-repeat center;}

@@ -89,7 +89,7 @@ body{
 
 
 
-$set_color01: #3d8dfb;
+$set_color01: #4785cf; /*3d8dfb*/
 $set_color02: #ffde00;
 $set_color03: #ec70ac;
 $set_color04: #4785cf;
@@ -139,7 +139,8 @@ body,html{min-width:1200px;font-family: "Jua";}
 .sir_ft06{color:$set_color06;}
 
 #sir_hd{background:rgba(255,255,255,1);min-width: 1200px;transition: 0.5s all;}
-#sir_hd.on{box-shadow:0px 0px 20px rgba(0,0,0,0.3);position: fixed;z-index: 90;background:rgba(255,255,255,0.8)}
+#sir_hd.on{box-shadow:0px 0px 20px rgba(0,0,0,0.3);position: fixed;z-index: 90;background:rgba(255,255,255,0.6)}
+#sir_hd.shdow{box-shadow:0px 0px 20px rgba(0,0,0,0.3)}
 #sir_nav{
     ul li{padding-left:25px;padding-right:25px;
         @include respond-to(pc-screens){padding-left:25px;padding-right:25px;}
@@ -219,14 +220,19 @@ body,html{min-width:1200px;font-family: "Jua";}
 .sir_cart_layer{position:absolute;width:313px;top:0;left:0;font-family: "Noto Sans KR";}
 .cart-layer.sct_cartop{background:rgba(0,0,0,0.5);padding:0 30px;display:table-cell;width:313px;height:312px;vertical-align: bottom;padding-bottom:30px;
     .sct_cartop_wr form > * {display:block;width:100%}
-    .cartopt_close_btn{height:50px;line-height: 50px;font-size: 18px;color:#fff;background: $set_color03;}
-    .cartopt_oder_btn, .cartopt_cart_btn{height:50px;line-height: 50px;font-size:18px;color:#000;background: #fff;margin-top: 10px;;}
+    .cartopt_oder_btn, .cartopt_cart_btn{height:50px;line-height: 50px;font-size: 18px;color:#fff;background: $set_color03;margin-top: 10px;}
+    .cartopt_close_btn{height:50px;line-height: 50px;font-size:18px;color:#000;background: #fff;}
     .J_num{height:50px}
 }
 
 .sir_label_ck{cursor: pointer;padding-left:30px;background: url("/img/web/icon_ch.png")no-repeat left center;background-size: 20px;color:#000}
 input[type="checkbox"]:checked + .sir_label_ck{background-image: url("/img/web/icon_chOn.png");}
 input[type="radio"]:checked + .sir_label_ck{background-image: url("/img/web/icon_chOn.png");}
+
+.sir_label_ck2{cursor: pointer;padding-right:30px;background: url("/img/web/icon_ch.png")no-repeat  calc(100% - 1px) center;background-size: 18px;color:#000}
+input[type="checkbox"]:checked + .sir_label_ck2{background-image: url("/img/web/icon_chOn.png");}
+input[type="radio"]:checked + .sir_label_ck2{background-image: url("/img/web/icon_chOn.png");}
+
 
 .sir_input_box02{border:1px solid #bdbdbd;border-radius: 4px;padding:10px 30px;line-height:30px;
     label{margin-right:10px;color:#333}

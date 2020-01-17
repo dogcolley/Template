@@ -466,6 +466,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&cfff{background:#fff}
 		&cf9{background:#f9f9f9}
 		&cf8{background:#f8f8f8}
+		&cf7{background:#f7f7f7}
 		&cd9{background:#ddd}
 		&ceb{background:#ebebeb}
 		&c333{background:#333}
@@ -540,6 +541,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	&bd_all01{border:1px solid #d9d9d9}
 	&bd_all02{border:1px dashed #d9d9d9}
 
+	&bd_cbd {border-color:#bdbdbd}
 	@for $i from 1 through 100{
 		&op_#{$i}{opacity: ($i * 0.01)}
 	}

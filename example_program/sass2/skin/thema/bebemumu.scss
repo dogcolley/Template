@@ -67,6 +67,33 @@ $breakpoints: (
     }
   }
 
+@keyframes bubble01 {
+    0% {
+      margin-top:-30px;
+    }
+    100% {
+      margin-top:30px;
+    }
+  }
+
+  @keyframes duck01 {
+    0% {
+      transform: rotate(0.5deg);
+    }
+    100% {
+      transform: rotate(-0.5deg);
+    }
+  }
+
+  @keyframes wave01 {
+    0% {
+      background-position: -1920px;
+    }
+    100% {      
+      background-position: 1920px;
+    }
+  }
+
 $t_cl01 : #0051a4;
 $t_cl02 : #000;
 $t_cl03 : #767676;
@@ -102,9 +129,14 @@ body,html{min-width:1200px;font-family: "Jua";}
 .sir_area01{max-width:1200px;margin-left:auto;margin-right:auto;min-width:1200px;width:100%;}
 
 .sir_title01{text-align: center;color:#000;line-height:65px;font-size:50px}
-.sir_title02{position: relative;}
+.sir_title02,.sir_title02_1{position: relative;}
 .sir_title02 span{position: relative;z-index: 60;}
-.sir_title02:before{position: absolute;content: "";width: 102%;height: 55%;background: $set_color02;top:35%;;left:-1%}
+.sir_title02:before{position: absolute;content: "";width: 102%;height: 50%;background: $set_color02;top:45%;;left:-1%}
+.sir_title02_1 span{position: relative;z-index: 60;}
+.sir_title02_1:before{position: absolute;content: "";width: 102%;height: 50%;background: $set_color02;top:45%;;left:-1%}
+.J_fade  {.sir_title02:before{width:0;transition: 1s all;}}
+.J_fade.fadeOn  {.sir_title02:before{width:102%}}
+
 .be_bg01:before{background:#bcd0ec}
 .be_bg02:before{background:#d9ccf4}
 .be_bg03:before{background:#c3cfef}
@@ -153,26 +185,47 @@ body,html{min-width:1200px;font-family: "Jua";}
 }
 #sir_ft{background:url("/img/web/ft_bg.png")no-repeat center bottom}
 
-#cnt01{background:url("/img/web/cnt1_bg.png")no-repeat center;
-    .img00{bottom: 30px;left: 650px;}
+#cnt01{background:url("/img/web/cnt1_bg.png")repeat-x center;
+    animation: wave01 150s cubic-bezier(0, -0.01, 0.97, 0.99)  infinite alternate;
+    .img00{bottom: 65px;left: 650px;}
     .img01{bottom: 30px;left: 140px;}
-    .img02{bottom: 30px;left: 820px;}
-    .img03{bottom: 20px;left: -290px;}
-    .img04{bottom:0;right:-305px}
+    .img02{bottom: 30px;left: 730px;opacity:0;}
+    .img03{bottom: 55px;left: -290px;}
+    .img04{bottom:30px;right:-305px;}
     .img05{left: 60px;bottom: 30px;}
     .img06{bottom:430px;left:600px}
 }
+#cnt01.fadeOn{
+    .img02{left: 820px;opacity:1;}
+}
 
 #cnt02{
-    .bg2{background: url("/img/web/cnt2_bg2.png")no-repeat center bottom;}
-    .bg2:after{width:241px;height:361px;content:"";position: absolute;background: url("/img/web/cnt2_bg1.png");top:-50px;left:-225px}
+    .bg2{background: url("/img/web/cnt2_bg2.png")no-repeat center bottom;transition: 1.5s background;background-size: 0px 0px;}
+    .bg2:after{width:241px;height:361px;content:"";position: absolute;background: url("/img/web/cnt2_bg1.png");top:-50px;left:-225px;
+    animation: bubble01 5s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite alternate;
+    }
+    ul li img{position:relative;bottom:-40px;opacity: 0;transition: 1s all;}
 }
+
+#cnt02.J_fade.fadeOn{ul li img{position:relative;bottom:0px;opacity: 1;}}
+
+#cnt02.fadeOn{
+.bg2{background-size: 729px 463px;}
+}
+
+#cnt03:before{width:241px;height:361px;content:"";position: absolute;background: url("/img/web/cnt3_bg1.png");top:0px;left:1040px;
+    animation: bubble01 5s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite alternate; animation-delay: 2.5s;}
+
 #cnt04{
-    background: #e6eef8;
-    .bg2:before{width:241px;height:361px;content:"";position: absolute;background: url("/img/web/cnt4_bg1.png");top:-115px;left:-100px}
+    > div {background: #e6eef8;}
+    .bg2:before{width:241px;height:361px;content:"";position: absolute;background: url("/img/web/cnt4_bg1.png");top:-115px;left:-100px;
+        animation: bubble01 5s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite alternate}
     .img01{bottom:-100px;left:160px}
-    .img02{right:50px;top:-145px}
+    .img02{right:50px;top:-145px;
+      animation: duck01 2.5s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite alternate}
+    ul li img{opacity: 0;transition-property: all; transition-duration:0.5s}
 }
+#cnt04.fadeOn{ ul li img{opacity: 1;}}
  
 
 #cnt05{
@@ -184,7 +237,7 @@ body,html{min-width:1200px;font-family: "Jua";}
     .box01{height: 493px;background: url("/img/web/cnt6_btm04.png")no-repeat center;width: 630px;}
     .txt01{left:0;top:0;}
     .txt02{top:265px;right:0;}
-    .txt03{left:690px;bottom:45px;background: url("/img/web/cnt6_top04.png")no-repeat center;
+    .txt03{left:690px;bottom:45px;background: url("/img/web/cnt6_top04.png")no-repeat -417px center ;opacity: 0;transition: 1s all;;
     ul li{line-height:37px;margin-top:1px}
     }
     .img01{left:315px;bottom:20px}
@@ -192,16 +245,32 @@ body,html{min-width:1200px;font-family: "Jua";}
     .bg2:after{width:194px;height:299px;content:"";position: absolute;background: url("/img/web/cnt6_btm01.png");bottom:0;left:-360px}
     .bg2:before{width:374px;height:298px;content:"";position: absolute;background: url("/img/web/cnt6_btm02.png");bottom:0;left:1185px}
 }
+#cnt06.fadeOn{.txt03{opacity: 1;background-position-x: 0;}}
 
 #cnt07{
-    .swiper-slide{padding: 0 50px}
+    #J_sw01{height:570px}
+    .swiper-slide{padding: 0 50px;opacity: 0;transition: 1s all;}
     .swiper-slide div{border-radius: 300px;background:#e6eef8;height:570px}
+    .swiper-slide[data-swiper-slide-index="0"]{opacity: 1;}
     .swiper-container{overflow:  inherit;}
     .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{margin:0 7.5px}
     .swiper-pagination-bullet{width:15px;height:15px;opacity: 1;background:#d9d9d9}
     .swiper-pagination-bullet.swiper-pagination-bullet-active{background: #f19dc3;width: 45px;border-radius: 50px;;}
     .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{bottom:-50px}
 } 
+#cnt07.fadeOn{.swiper-slide{opacity: 1;}}
+
+#cnt08{
+    .img01{bottom:-20px;left:100px;opacity: 0;}
+    li img,p img{opacity: 0}
+    
+
+}
+#cnt08.fadeOn{
+    .img01{left:170px;opacity: 1;}
+    li img,p img{opacity: 1}
+
+}
 
 #cnt09{
     background:url("/img/web/cnt10_bg01.png")no-repeat center

@@ -546,6 +546,16 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&op_#{$i}{opacity: ($i * 0.01)}
 	}
 
+	@for $i from 1 through 20{
+		&ts_#{$i*5}{transition: ($i * 0.5s) all;}
+	}
+
+	@for $i from 1 through 10{
+		&ts_dl#{$i*1}{transition-delay: ($i * 0.1s)}
+	}
+
+
+
 } 
   
 .IM_{

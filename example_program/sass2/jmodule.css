@@ -1185,6 +1185,156 @@ input[type="text"], input[type=password] {
   opacity: 1;
 }
 
+.U_ts_5 {
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.U_ts_10 {
+  -webkit-transition: 1s all;
+  transition: 1s all;
+}
+
+.U_ts_15 {
+  -webkit-transition: 1.5s all;
+  transition: 1.5s all;
+}
+
+.U_ts_20 {
+  -webkit-transition: 2s all;
+  transition: 2s all;
+}
+
+.U_ts_25 {
+  -webkit-transition: 2.5s all;
+  transition: 2.5s all;
+}
+
+.U_ts_30 {
+  -webkit-transition: 3s all;
+  transition: 3s all;
+}
+
+.U_ts_35 {
+  -webkit-transition: 3.5s all;
+  transition: 3.5s all;
+}
+
+.U_ts_40 {
+  -webkit-transition: 4s all;
+  transition: 4s all;
+}
+
+.U_ts_45 {
+  -webkit-transition: 4.5s all;
+  transition: 4.5s all;
+}
+
+.U_ts_50 {
+  -webkit-transition: 5s all;
+  transition: 5s all;
+}
+
+.U_ts_55 {
+  -webkit-transition: 5.5s all;
+  transition: 5.5s all;
+}
+
+.U_ts_60 {
+  -webkit-transition: 6s all;
+  transition: 6s all;
+}
+
+.U_ts_65 {
+  -webkit-transition: 6.5s all;
+  transition: 6.5s all;
+}
+
+.U_ts_70 {
+  -webkit-transition: 7s all;
+  transition: 7s all;
+}
+
+.U_ts_75 {
+  -webkit-transition: 7.5s all;
+  transition: 7.5s all;
+}
+
+.U_ts_80 {
+  -webkit-transition: 8s all;
+  transition: 8s all;
+}
+
+.U_ts_85 {
+  -webkit-transition: 8.5s all;
+  transition: 8.5s all;
+}
+
+.U_ts_90 {
+  -webkit-transition: 9s all;
+  transition: 9s all;
+}
+
+.U_ts_95 {
+  -webkit-transition: 9.5s all;
+  transition: 9.5s all;
+}
+
+.U_ts_100 {
+  -webkit-transition: 10s all;
+  transition: 10s all;
+}
+
+.U_ts_dl1 {
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+}
+
+.U_ts_dl2 {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+.U_ts_dl3 {
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+
+.U_ts_dl4 {
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+}
+
+.U_ts_dl5 {
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+}
+
+.U_ts_dl6 {
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+}
+
+.U_ts_dl7 {
+  -webkit-transition-delay: 0.7s;
+          transition-delay: 0.7s;
+}
+
+.U_ts_dl8 {
+  -webkit-transition-delay: 0.8s;
+          transition-delay: 0.8s;
+}
+
+.U_ts_dl9 {
+  -webkit-transition-delay: 0.9s;
+          transition-delay: 0.9s;
+}
+
+.U_ts_dl10 {
+  -webkit-transition-delay: 1s;
+          transition-delay: 1s;
+}
+
 .IM_bd_top0 {
   border-top: 0 !important;
 }

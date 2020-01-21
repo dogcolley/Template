@@ -37,6 +37,24 @@
   }
 }
 
+@-webkit-keyframes bubble02 {
+  0% {
+    background-position: 31.5% 130px, 68.5% 150px;
+  }
+  100% {
+    background-position: 31.5% 150px, 68.5% 130px;
+  }
+}
+
+@keyframes bubble02 {
+  0% {
+    background-position: 31.5% 130px, 68.5% 150px;
+  }
+  100% {
+    background-position: 31.5% 150px, 68.5% 130px;
+  }
+}
+
 @-webkit-keyframes duck01 {
   0% {
     -webkit-transform: rotate(0.5deg);
@@ -87,6 +105,7 @@ body, html {
   font-family: "Jua";
 }
 
+/*html{cursor: url("/img/web/cnt11_icon02.png"), auto}*/
 .sir_ft_cl01 {
   color: #4785cf;
 }
@@ -118,11 +137,11 @@ body, html {
 .sir_title02:before {
   position: absolute;
   content: "";
-  width: 102%;
+  width: 103%;
   height: 50%;
   background: #ffde00;
   top: 45%;
-  left: -1%;
+  left: -1.5%;
 }
 
 .sir_title02_1 span {
@@ -133,11 +152,11 @@ body, html {
 .sir_title02_1:before {
   position: absolute;
   content: "";
-  width: 102%;
+  width: 103%;
   height: 50%;
   background: #ffde00;
   top: 45%;
-  left: -1%;
+  left: -1.5%;
 }
 
 .J_fade .sir_title02:before {
@@ -147,7 +166,7 @@ body, html {
 }
 
 .J_fade.fadeOn .sir_title02:before {
-  width: 102%;
+  width: 103%;
 }
 
 .be_bg01:before {
@@ -346,7 +365,7 @@ body, html {
 }
 
 #cnt01 .img00 {
-  bottom: 65px;
+  bottom: 40px;
   left: 650px;
 }
 
@@ -362,13 +381,15 @@ body, html {
 }
 
 #cnt01 .img03 {
-  bottom: 55px;
+  bottom: 0px;
   left: -290px;
+  opacity: 0;
 }
 
 #cnt01 .img04 {
-  bottom: 30px;
+  bottom: 0px;
   right: -305px;
+  opacity: 0;
 }
 
 #cnt01 .img05 {
@@ -382,8 +403,20 @@ body, html {
 }
 
 #cnt01.fadeOn .img02 {
-  left: 820px;
+  left: 835px;
   opacity: 1;
+}
+
+#cnt01.fadeOn .img04, #cnt01.fadeOn .img03 {
+  opacity: 1;
+}
+
+#cnt01.fadeOn .img04 {
+  bottom: 30px;
+}
+
+#cnt01.fadeOn .img03 {
+  bottom: 55px;
 }
 
 #cnt02 .bg2 {
@@ -517,11 +550,23 @@ body, html {
   opacity: 0;
   -webkit-transition: 1s all;
   transition: 1s all;
+  /*ul li{line-height:37px;margin-top:1px}*/
+}
+
+#cnt06 .txt03 ul {
+  height: 418px;
+  background: url("/img/web/cnt6_top04_1.png") no-repeat center;
+  opacity: 0;
+  -webkit-transition: 1s all;
+  transition: 1s all;
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
 }
 
 #cnt06 .txt03 ul li {
-  line-height: 37px;
-  margin-top: 1px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 #cnt06 .img01 {
@@ -557,6 +602,10 @@ body, html {
 #cnt06.fadeOn .txt03 {
   opacity: 1;
   background-position-x: 0;
+}
+
+#cnt06.fadeOn ul {
+  opacity: 1;
 }
 
 #cnt07 #J_sw01 {
@@ -648,7 +697,8 @@ body, html {
 
 .sir_item_list_wrap {
   background-repeat: no-repeat, no-repeat;
-  background-position: 31.5% 140px, 68.5% 140px;
+  -webkit-animation: bubble02 5s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite alternate;
+          animation: bubble02 5s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite alternate;
   background-image: url("/img/web/cnt11_icon02.png"), url("/img/web/cnt11_icon02.png");
 }
 

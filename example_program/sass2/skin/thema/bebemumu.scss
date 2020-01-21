@@ -74,16 +74,25 @@ $breakpoints: (
     100% {
       margin-top:30px;
     }
-  }
+}
 
-  @keyframes duck01 {
+@keyframes bubble02 {
     0% {
-      transform: rotate(0.5deg);
+        background-position: 31.5% 130px, 68.5% 150px;
     }
     100% {
-      transform: rotate(-0.5deg);
+        background-position: 31.5% 150px, 68.5% 130px;
     }
-  }
+}
+
+@keyframes duck01 {
+    0% {
+        transform: rotate(0.5deg);
+    }
+    100% {
+        transform: rotate(-0.5deg);
+    }
+}
 
   @keyframes wave01 {
     0% {
@@ -93,6 +102,10 @@ $breakpoints: (
       background-position: 1920px;
     }
   }
+
+
+
+ 
 
 $t_cl01 : #0051a4;
 $t_cl02 : #000;
@@ -124,6 +137,10 @@ $set_color05: #b6d5f5;
 $set_color06: #f09dc3;
 
 body,html{min-width:1200px;font-family: "Jua";}
+/*html{cursor: url("/img/web/cnt11_icon02.png"), auto}*/
+
+
+
 
 .sir_ft_cl01{color:$set_color01}
 .sir_area01{max-width:1200px;margin-left:auto;margin-right:auto;min-width:1200px;width:100%;}
@@ -131,11 +148,11 @@ body,html{min-width:1200px;font-family: "Jua";}
 .sir_title01{text-align: center;color:#000;line-height:65px;font-size:50px}
 .sir_title02,.sir_title02_1{position: relative;}
 .sir_title02 span{position: relative;z-index: 60;}
-.sir_title02:before{position: absolute;content: "";width: 102%;height: 50%;background: $set_color02;top:45%;;left:-1%}
+.sir_title02:before{position: absolute;content: "";width: 103%;height: 50%;background: $set_color02;top:45%;;left:-1.5%}
 .sir_title02_1 span{position: relative;z-index: 60;}
-.sir_title02_1:before{position: absolute;content: "";width: 102%;height: 50%;background: $set_color02;top:45%;;left:-1%}
+.sir_title02_1:before{position: absolute;content: "";width: 103%;height: 50%;background: $set_color02;top:45%;;left:-1.5%}
 .J_fade  {.sir_title02:before{width:0;transition: 1s all;}}
-.J_fade.fadeOn  {.sir_title02:before{width:102%}}
+.J_fade.fadeOn  {.sir_title02:before{width:103%}}
 
 .be_bg01:before{background:#bcd0ec}
 .be_bg02:before{background:#d9ccf4}
@@ -187,16 +204,19 @@ body,html{min-width:1200px;font-family: "Jua";}
 
 #cnt01{background:url("/img/web/cnt1_bg.png")repeat-x center;
     animation: wave01 150s cubic-bezier(0, -0.01, 0.97, 0.99)  infinite alternate;
-    .img00{bottom: 65px;left: 650px;}
+    .img00{bottom: 40px;left: 650px;}
     .img01{bottom: 30px;left: 140px;}
     .img02{bottom: 30px;left: 730px;opacity:0;}
-    .img03{bottom: 55px;left: -290px;}
-    .img04{bottom:30px;right:-305px;}
+    .img03{bottom: 0px;left: -290px;opacity:0;}
+    .img04{bottom:0px;right:-305px;opacity:0;}
     .img05{left: 60px;bottom: 30px;}
     .img06{bottom:430px;left:600px}
 }
 #cnt01.fadeOn{
-    .img02{left: 820px;opacity:1;}
+    .img02{left: 835px;opacity:1;}
+    .img04,.img03{opacity:1}
+    .img04{bottom:30px}
+    .img03{bottom:55px}
 }
 
 #cnt02{
@@ -238,14 +258,16 @@ body,html{min-width:1200px;font-family: "Jua";}
     .txt01{left:0;top:0;}
     .txt02{top:265px;right:0;}
     .txt03{left:690px;bottom:45px;background: url("/img/web/cnt6_top04.png")no-repeat -417px center ;opacity: 0;transition: 1s all;;
-    ul li{line-height:37px;margin-top:1px}
+    /*ul li{line-height:37px;margin-top:1px}*/
+    ul {height:418px;background: url("/img/web/cnt6_top04_1.png")no-repeat center;opacity: 0;transition: 1s all ;transition-delay: 0.5s;}
+    ul li{width:0;height:0;overflow: hidden;}
     }
     .img01{left:315px;bottom:20px}
     .img02{left:460px;bottom:20px}
     .bg2:after{width:194px;height:299px;content:"";position: absolute;background: url("/img/web/cnt6_btm01.png");bottom:0;left:-360px}
     .bg2:before{width:374px;height:298px;content:"";position: absolute;background: url("/img/web/cnt6_btm02.png");bottom:0;left:1185px}
 }
-#cnt06.fadeOn{.txt03{opacity: 1;background-position-x: 0;}}
+#cnt06.fadeOn{.txt03{opacity: 1;background-position-x: 0;}ul{opacity: 1;}}
 
 #cnt07{
     #J_sw01{height:570px}
@@ -282,7 +304,7 @@ body,html{min-width:1200px;font-family: "Jua";}
 
 .sir_item_list_wrap {
     background-repeat: no-repeat, no-repeat;
-    background-position: 31.5% 140px, 68.5% 140px;
+    animation: bubble02 5s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite alternate;
     background-image: url("/img/web/cnt11_icon02.png"),  url("/img/web/cnt11_icon02.png");
 }
 

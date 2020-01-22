@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="kr" class="T_ht_p100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>깃허브 정보 가져오기</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./sass2/jmodule.css">
+
+    <style>
+        #app{width:600px;margin:0 auto;}
+        #contributions_info ul.commitBox li{/*width:20px;height:20px*/;background:#000;margin: 2px 2px 0 0;border:1px solid red;color:#fff}
+        #contributions_info ul.commitYear li{}
+    </style>
+</head>
+<body class="T_ds_table T_ht_p100 U_mg_ct">
+    
+    <div id="app" class="T_ds_cell T_vt_md">
+        <div class="T_wd_sz600 U_mg_ct">
+            <h1 class="U_ft_fm05 T_ft_ct T_ft_sz40 U_ft_c000">인증데이터 체크</h1> 
+            <div id="contributions_info">
+                
+                <div>오늘 :{{today}} </div>
+                <div>사용년도 데이터 : </div>
+                
+                <ul>
+                    <li v-for="(data, index) in years" :key="index"><button type="button">{{Object.values(years[index])[0]}} ({{Object.values(years[index])[1]}})</button></li>
+                </ul>
+
+                <ul class="commitBox" >
+                    <li v-for="(data, index) in showContributions" :key="index">{{data}}</li>
+                </ul>
+            <form action="" v-on:submit="onSubmitForm">
+                <input type="text" name="" id="" v-model="userName">
+                {{userName}}
+                <button>정보확인하기</button>
+            </form>       
+        </div> 
+    </div>
+
+    <script>
+
+    function dateAddDel(sDate, nNum, type) {
+        var yy = parseInt(sDate.substr(0, 4), 10);
+        var mm = parseInt(sDate.substr(5, 2), 10);
+        var dd = parseInt(sDate.substr(8), 10);
+        
+        if (type == "d") {
+            d = new Date(yy, mm - 1, dd + nNum);
+        }
+        else if (type == "m") {
+            d = new Date(yy, mm - 1, dd + (nNum * 31));
+        }
+        else if (type == "y") {
+            d = new Date(yy + nNum, mm - 1, dd);
+        }
+    
+        yy = d.getFullYear();
+        mm = d.getMonth() + 1; mm = (mm < 10) ? '0' + mm : mm;
+        dd = d.getDate(); dd = (dd < 10) ? '0' + dd : dd;
+    
+        return '' + yy + '-' +  mm  + '-' + dd;
+    }
+
+    const today = new Date();
+	const app = new Vue({
+		mode: 'production',
+		el:'#app',
+		data:{
+			mode2: '',
+			pass : 0,
+            userName: 'dogcolley',
+            setName : '',
+            today: today.getFullYear()+'.'+today.getMonth()+'.'+today.getDate(),
+            historyName : [],
+            years : [],
+            contributions : [],
+            showContributions : [],
+		},
+		methods:{
+			onSubmitForm(e){
+				e.preventDefault();
+                axios.get(`https://github-contributions-api.now.sh/v1/${this.userName}`).then(res=>{
+                    if(res.data.contributions.length == 0){
+                        alert("유저정보가 없습니다.");
+                    }
+                    console.log(res.data);
+                    console.log(res.data.years);
+                    console.log(res.data.contributions);
+                    this.years = res.data.years;
+                    this.contributions = res.data.contributions;
+                    this.contributions.forEach(element => {
+                       //console.log(element.date); 
+                       const yy = parseInt(element.date.substr(0, 4), 10);
+                       //console.log(Object.values(this.years[0])[0]);
+                       //console.log(yy);
+                       if( yy == Object.values(this.years[0])[0] )this.showContributions.push(element);
+                       //if(yy == parseint(Object.values(this.years[0])[0]))
+                    });
+                    console.log(this.showContributions);
+                });
+		    },
+            chageYear(e){
+
+
+            }
+        }
+	});
+        
+    </script>
+</body c>
+</html>

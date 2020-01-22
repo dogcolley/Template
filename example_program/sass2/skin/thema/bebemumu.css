@@ -55,6 +55,42 @@
   }
 }
 
+@-webkit-keyframes bubble03 {
+  0% {
+    margin-top: -20px;
+  }
+  100% {
+    margin-top: 20px;
+  }
+}
+
+@keyframes bubble03 {
+  0% {
+    margin-top: -20px;
+  }
+  100% {
+    margin-top: 20px;
+  }
+}
+
+@-webkit-keyframes bubble04 {
+  0% {
+    margin-top: 20px;
+  }
+  100% {
+    margin-top: -20px;
+  }
+}
+
+@keyframes bubble04 {
+  0% {
+    margin-top: 20px;
+  }
+  100% {
+    margin-top: -20px;
+  }
+}
+
 @-webkit-keyframes duck01 {
   0% {
     -webkit-transform: rotate(0.5deg);
@@ -79,19 +115,19 @@
 
 @-webkit-keyframes wave01 {
   0% {
-    background-position: -1920px;
+    background-position: -1920px bottom;
   }
   100% {
-    background-position: 1920px;
+    background-position: 1920px  bottom;
   }
 }
 
 @keyframes wave01 {
   0% {
-    background-position: -1920px;
+    background-position: -1920px bottom;
   }
   100% {
-    background-position: 1920px;
+    background-position: 1920px  bottom;
   }
 }
 
@@ -241,6 +277,13 @@ body, html {
   background: #000;
 }
 
+.sir_line01 {
+  width: 1px;
+  height: 10px;
+  display: inline-block;
+  margin: 0 10px;
+}
+
 .sir_ani01 {
   -webkit-animation: arrow 0.8s linear infinite alternate;
           animation: arrow 0.8s linear infinite alternate;
@@ -306,7 +349,7 @@ body, html {
           box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   position: fixed;
   z-index: 90;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 #sir_hd.shdow {
@@ -359,7 +402,7 @@ body, html {
 }
 
 #cnt01 {
-  background: url("/img/web/cnt1_bg.png") repeat-x center;
+  background: url("/img/web/cnt1_bg.png") repeat-x bottom;
   -webkit-animation: wave01 150s cubic-bezier(0, -0.01, 0.97, 0.99) infinite alternate;
           animation: wave01 150s cubic-bezier(0, -0.01, 0.97, 0.99) infinite alternate;
 }
@@ -400,6 +443,85 @@ body, html {
 #cnt01 .img06 {
   bottom: 430px;
   left: 600px;
+}
+
+#cnt01 .img07 {
+  top: 50px;
+  left: -240px;
+  width: 40px;
+  -webkit-animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img08 {
+  top: -150px;
+  left: 0px;
+  width: 40px;
+  -webkit-animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img09 {
+  top: -40px;
+  left: 1000px;
+  width: 40px;
+  -webkit-animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img10 {
+  top: 0px;
+  left: 1400px;
+  width: 40px;
+  -webkit-animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img11 {
+  top: 0px;
+  left: 200px;
+  width: 70px;
+  -webkit-animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img12 {
+  top: -200px;
+  left: 1200px;
+  width: 70px;
+  -webkit-animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img13 {
+  top: -150px;
+  left: -300px;
+  width: 70px;
+  -webkit-animation: bubble03 8s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble03 8s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img14 {
+  top: -50px;
+  left: -100px;
+  width: 130px;
+  -webkit-animation: bubble04 8s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble04 8s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img15 {
+  top: 300px;
+  left: 0px;
+  width: 130px;
+  -webkit-animation: bubble03 8s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble03 8s cubic-bezier(0, 0, 1, 1) infinite alternate;
+}
+
+#cnt01 .img16 {
+  top: 0px;
+  left: 1100px;
+  -webkit-animation: bubble04 10s cubic-bezier(0, 0, 1, 1) infinite alternate;
+          animation: bubble04 10s cubic-bezier(0, 0, 1, 1) infinite alternate;
 }
 
 #cnt01.fadeOn .img02 {
@@ -854,6 +976,57 @@ input[type="radio"]:checked + .sir_label_ck2 {
   .sir_label {
     font-size: 1.25rem;
   }
+}
+
+.sir_btn01 {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #ec70ac;
+  text-align: center;
+  -webkit-transition: 1s all;
+  transition: 1s all;
+  border-radius: 40px;
+  line-height: 34px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.sir_btn01 span.icon {
+  width: 9px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: top;
+  background: url("/img/web/arrow_left.png") no-repeat center;
+  margin-top: 9px;
+  position: relative;
+  z-index: 60;
+}
+
+.sir_btn01 span.txt {
+  color: #fff;
+  font-size: 20px;
+  -webkit-transition: 1s all;
+  transition: 1s all;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  margin-top: -17px;
+  opacity: 0;
+}
+
+.sir_btn01:hover, .sir_btn01:focus {
+  background: #ec70ac;
+  width: 140px;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.sir_btn01:hover span.icon, .sir_btn01:focus span.icon {
+  background: url("/img/web/arrow_leftOn.png") no-repeat center;
+}
+
+.sir_btn01:hover span.txt, .sir_btn01:focus span.txt {
+  opacity: 1;
 }
 
 /*

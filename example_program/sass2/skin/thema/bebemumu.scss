@@ -85,6 +85,25 @@ $breakpoints: (
     }
 }
 
+@keyframes bubble03 {
+    0% {
+        margin-top:-20px;
+    }
+    100% {
+        margin-top:20px;
+    }
+}
+
+@keyframes bubble04 {
+    0% {
+        margin-top:20px;
+    }
+    100% {
+        margin-top:-20px;
+    }
+}
+
+
 @keyframes duck01 {
     0% {
         transform: rotate(0.5deg);
@@ -96,10 +115,10 @@ $breakpoints: (
 
   @keyframes wave01 {
     0% {
-      background-position: -1920px;
+      background-position: -1920px bottom;
     }
     100% {      
-      background-position: 1920px;
+      background-position: 1920px  bottom;
     }
   }
 
@@ -168,7 +187,7 @@ body,html{min-width:1200px;font-family: "Jua";}
 .sir_icon02:after{content: "";position: absolute;width:100%;height:5px;border-radius: 5px;top:50%;left: 0;margin-top: -2.5px;background: #000;}
 
 
-.sir_line01{}
+.sir_line01{width:1px;height: 10px;display:inline-block;margin:0 10px}
 .sir_hover01{}
 
 .sir_ani01{animation: arrow 0.8s linear infinite alternate}
@@ -188,13 +207,13 @@ body,html{min-width:1200px;font-family: "Jua";}
 .sir_ft06{color:$set_color06;}
 
 #sir_hd{background:rgba(255,255,255,1);min-width: 1200px;transition: 0.5s all;}
-#sir_hd.on{box-shadow:0px 0px 20px rgba(0,0,0,0.3);position: fixed;z-index: 90;background:rgba(255,255,255,0.6)}
+#sir_hd.on{box-shadow:0px 0px 20px rgba(0,0,0,0.3);position: fixed;z-index: 90;background:rgba(255,255,255,0.9)}
 #sir_hd.shdow{box-shadow:0px 0px 20px rgba(0,0,0,0.3)}
 #sir_nav{
     ul li{padding-left:25px;padding-right:25px;
         @include respond-to(pc-screens){padding-left:25px;padding-right:25px;}
     }
-}
+} 
 #sir_logo{@include respond-to(pc-screens){margin-left:50px;}}
 #sir_user{margin-top:44px;@include respond-to(pc-screens){margin-right:50px;}
     li {margin-left:15px;padding-left:15px;border-left:1px solid #d9d9d9}
@@ -202,7 +221,7 @@ body,html{min-width:1200px;font-family: "Jua";}
 }
 #sir_ft{background:url("/img/web/ft_bg.png")no-repeat center bottom}
 
-#cnt01{background:url("/img/web/cnt1_bg.png")repeat-x center;
+#cnt01{background:url("/img/web/cnt1_bg.png")repeat-x bottom;
     animation: wave01 150s cubic-bezier(0, -0.01, 0.97, 0.99)  infinite alternate;
     .img00{bottom: 40px;left: 650px;}
     .img01{bottom: 30px;left: 140px;}
@@ -211,6 +230,17 @@ body,html{min-width:1200px;font-family: "Jua";}
     .img04{bottom:0px;right:-305px;opacity:0;}
     .img05{left: 60px;bottom: 30px;}
     .img06{bottom:430px;left:600px}
+
+    .img07{top:50px;left:-240px;width:40px;animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img08{top:-150px;left:0px;width:40px;animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img09{top:-40px;left:1000px;width:40px;animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img10{top:0px;left:1400px;width:40px;animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img11{top:0px;left:200px;width:70px;animation: bubble03 5s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img12{top:-200px;left:1200px;width:70px;animation: bubble04 5s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img13{top:-150px;left:-300px;width:70px;animation: bubble03 8s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img14{top:-50px;left:-100px;width:130px;animation: bubble04 8s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img15{top:300px;left:0px;width:130px;animation: bubble03 8s cubic-bezier(0, 0, 1, 1) infinite alternate;}
+    .img16{top:0px;left:1100px;animation: bubble04 10s cubic-bezier(0, 0, 1, 1) infinite alternate;}
 }
 #cnt01.fadeOn{
     .img02{left: 835px;opacity:1;}
@@ -351,6 +381,19 @@ input[type="radio"]:checked + .sir_label_ck2{background-image: url("/img/web/ico
 .sir_label{margin-bottom:15px;display:block;
     @include respond-to(handhelds) {font-size:1.25rem}
 }
+
+.sir_btn01{
+    width:40px;height:40px;border:3px solid #ec70ac;text-align:center;transition:1s all;border-radius:40px;line-height:34px;background:#fff;overflow:hidden;
+    span.icon{width:9px;height:16px;display:inline-block;vertical-align: top;background: url("/img/web/arrow_left.png")no-repeat center;margin-top: 9px;position: relative;z-index: 60;}
+    span.txt{color:#fff;font-size:20px;transition:1s all;position:absolute;left:20px;top:50%;margin-top:-17px;opacity: 0;}
+}
+
+.sir_btn01:hover,.sir_btn01:focus{background:#ec70ac;
+    width:140px;text-align:right;padding-right:20px;
+    span.icon{background: url("/img/web/arrow_leftOn.png")no-repeat center;}
+    span.txt{opacity: 1;}
+}
+
 /*
 
 

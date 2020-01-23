@@ -12,30 +12,34 @@
 
     <style>
         #app{margin:0 auto;padding:50px 0;width: 100%;}
-        #app div{max-width:600px;width:100%;overflow: hidden;box-sizing: border-box;padding:0 2%;}
+        #app > div{max-width:600px;width:100%;overflow: hidden;box-sizing: border-box;padding:0 1.5%;}
         #contributions_info ul.commitBox li{width:9.5px;height:9.5px;background:none;margin: 5px 2px 0 0;position: relative;float:left}
         #contributions_info ul.commitBox li:nth-child(7n + 1){margin-left:90px}
         #contributions_info ul.commitBox li div{position: absolute;left: 0;top:0;color:#333;width:150px;padding:10px 20px;display:none;}
         #contributions_info ul.commitBox li:hover div{display: block;z-index: 90;background: rgba(255,255,255,0.7);}
         #contributions_info ul.commitBox li .weekTitle{position: absolute;left: -60px;;}
-        #contributions_info ul.commitYear li{padding:0 10px}
+        #contributions_info ul.commitYear li{padding:0 10px;margin-top:10px;}
+        #contributions_info ul.commitYear {margin-top:10px;margin-bottom:20px}
         #contributions_info ul.commitYear li button{border:1px solid rgb(35, 154, 59);width:100%;padding:5px 0;color:rgb(35, 154, 59);border-radius: 55px;max-width: 130px;}
         #contributions_info ul.commitYear li button.active{background:rgb(35, 154, 59);color:#fff}
         #chUser input{width:80%;border:1px solid rgb(35, 154, 59);height:60px;border-right: 0;}
         #chUser button{background: rgb(35, 154, 59);height:60px;width:20%;color:#fff}
         .userInfo{margin-bottom:20px}
-        .userInfo div{margin: 2px 0}
+        .userInfo div{margin: 2px 0;padding:5px 0}
         .userInfo div:after{content:"";clear:both;display: block;}
         .userInfo div span{float:right}
+
+        #contributions_info ul.commitBox li:nth-child(21n + 1){clear: both;}
         @media only screen and (max-width: 580px) {
             #contributions_info ul.commitBox li:nth-child(7n + 1){margin-left:60px}
             #contributions_info ul.commitBox li .weekTitle{position: absolute;left: -50px;}
-            /*#contributions_info ul.commitBox li:nth-child(14n + 1){clear: both;}*/
+            
         }
         @media only screen and (max-width: 480px) {
                 #contributions_info ul.commitBox li:nth-child(7n + 1){margin-left:20%}/*
                 #contributions_info ul.commitBox li .weekTitle{position: absolute;left: -50px;}*/
              #contributions_info ul.commitBox li:nth-child(14n + 1){clear: both;}
+             #contributions_info ul.commitBox li:nth-child(21n + 1){clear: none;}
              #chUser input, #chUser button{height:50px}
         }
     </style>
@@ -57,9 +61,9 @@
                     <div>검색대상: <span>{{setName}}</span></div>
                     <div>오늘 : <span>{{today}}</span> </div>
                     <div>사용년도 데이터 : <span>{{setYear}} </span></div>
-                    <div>오늘 커밋여부 : <span>삐까?</span></div>
+                    <div>오늘 커밋여부 : <span>{{todayComit ? "인증함" : "안증안함"}}</span></div>
                 </div>
-                <ul class="commitYear T_ly_3  T_mg_btm20 T_ft_ct ">
+                <ul class="commitYear T_ly_3   T_ft_ct ">
                     <li v-for="(data, index) in years" :key="index"><button type="button" v-bind:class="{active: years[index].year == setYear ? true : false}" v-on:click="chageData(years[index].year)">{{years[index].year}} ({{years[index].total}})</button></li>
                 </ul>
 
@@ -100,6 +104,21 @@
         return '' + yy + '-' +  mm  + '-' + dd;
     }
 
+
+    function dateDiff(_date1, _date2) {
+        var diffDate_1 = _date1 instanceof Date ? _date1 :new Date(_date1);
+        var diffDate_2 = _date2 instanceof Date ? _date2 :new Date(_date2);
+    
+        diffDate_1 =new Date(diffDate_1.getFullYear(), diffDate_1.getMonth()+1, diffDate_1.getDate());
+        diffDate_2 =new Date(diffDate_2.getFullYear(), diffDate_2.getMonth()+1, diffDate_2.getDate());
+    
+        var diff = Math.abs(diffDate_2.getTime() - diffDate_1.getTime());
+        diff = Math.ceil(diff / (1000 * 3600 * 24));
+    
+        return diff;
+    }
+
+
     const today = new Date();
 	const app = new Vue({
 		mode: 'production',
@@ -110,17 +129,19 @@
             userName: 'dogcolley',
             setName : '',
             setYear:'',
-            today: today.getFullYear()+'.'+today.getMonth()+'.'+today.getDate(),
+            today: today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
             historyName : [],
             years : [],
             contributions : [],
             showContributions : [],
+            todayComit: false,
 		},
 		methods:{
             removeData(e){
                 this.showContributions = [];
                 this.contributions = [];
                 this.years =[];
+                this.todayComit = false;
             },
             chageData(e){
                 this.setYear = e;
@@ -143,6 +164,7 @@
                     this.contributions = [];
                     this.years =[];
                     this.showContributions =[];
+                    this.todayComit = false;
                 }
 
                 axios.get(`https://github-contributions-api.now.sh/v1/${this.userName}`).then(res=>{
@@ -156,6 +178,12 @@
                         this.contributions.forEach(element => {
                             const yy = parseInt(element.date.substr(0, 4), 10);
                             if( yy == this.setYear ){
+                                if(dateDiff(element.date,this.today) == 0 && element.count > 0){
+                                    console.log(dateDiff(element.date,this.today) == 0 );
+                                    console.log(element.count );
+                                    this.todayComit = true;
+                                    console.log("인증");
+                                };
                                 this.showContributions.unshift(element);
                             }
                         });

@@ -12,8 +12,11 @@
 
     <style>
         #app{width:600px;margin:0 auto;}
-        #contributions_info ul.commitBox li{/*width:20px;height:20px*/;background:#000;margin: 2px 2px 0 0;border:1px solid red;color:#fff}
+        #contributions_info ul.commitBox li{width:10px;height:10px;background:none;margin: 2px 2px 0 0;position: relative;float:left}
+        #contributions_info ul.commitBox li:nth-last-child(7n + 7){clear: both;}
+        #contributions_info ul.commitBox li div{position: absolute;left: 0;top:0;color:#333;width:200px;height:100px;display:none}
         #contributions_info ul.commitYear li{}
+        #chUser input{width:}
     </style>
 </head>
 <body class="T_ds_table T_ht_p100 U_mg_ct">
@@ -21,21 +24,25 @@
     <div id="app" class="T_ds_cell T_vt_md">
         <div class="T_wd_sz600 U_mg_ct">
             <h1 class="U_ft_fm05 T_ft_ct T_ft_sz40 U_ft_c000">인증데이터 체크</h1> 
-            <div id="contributions_info">
-                
+            <div id="contributions_info" v-if="showContributions.length !== 0">
+                <div>검색대상: {{setName}}</div>
                 <div>오늘 :{{today}} </div>
                 <div>사용년도 데이터 : </div>
                 
                 <ul>
-                    <li v-for="(data, index) in years" :key="index"><button type="button">{{Object.values(years[index])[0]}} ({{Object.values(years[index])[1]}})</button></li>
+                    <li v-for="(data, index) in years" :key="index"><button type="button">{{years[index].year}} ({{years[index].total}})</button></li>
                 </ul>
 
-                <ul class="commitBox" >
-                    <li v-for="(data, index) in showContributions" :key="index">{{data}}</li>
+                <ul class="commitBox clear" >
+                    <li v-for="(data, index) in showContributions" :key="index" v-bind:style="{background:data.color}"> 
+                        <div v-if="data">
+                            {{data}}
+                        </div>                    
+                    </li>
                 </ul>
-            <form action="" v-on:submit="onSubmitForm">
+            </div>
+            <form action="" v-on:submit="onSubmitForm" id="chUser">
                 <input type="text" name="" id="" v-model="userName">
-                {{userName}}
                 <button>정보확인하기</button>
             </form>       
         </div> 
@@ -81,32 +88,64 @@
             showContributions : [],
 		},
 		methods:{
+            removeData(e){
+                this.showContributions = [];
+                this.contributions = [];
+                this.years =[];
+            },
+            chageData(e){
+                
+            },
 			onSubmitForm(e){
 				e.preventDefault();
+                /*
+                if(this.showContributions.length !== 0){
+                    this.contributions = [];
+                    this.years =[];
+                    const setLength = this.showContributions.length;
+                    console.log(setLength)
+                    for(let i ; i < setLength; i++){
+                        console.log(i);
+                        this.showContributions.remove(0);
+                    }
+                }
+                */
+                
+
                 axios.get(`https://github-contributions-api.now.sh/v1/${this.userName}`).then(res=>{
                     if(res.data.contributions.length == 0){
                         alert("유저정보가 없습니다.");
+                    }else{
+                        this.setName = this.userName;
+                        this.years = res.data.years;
+                        this.contributions = res.data.contributions;
+                        this.contributions.forEach(element => {
+                            const yy = parseInt(element.date.substr(0, 4), 10);
+                            if( yy == this.years[0].year ){
+                                this.showContributions.push(element);
+                            }
+                        });
+                        //this.years[0].year
+                        const ckeckData = new Date(2020+'-'+1+'-'+1);
+                        for(let i =0; i< ckeckData.getDay(); i++){
+                            this.showContributions.push('');
+                        }
+                        //console.log(ckeckData);
+                        //console.log(ckeckData.getFullYear());
+                        //console.log(ckeckData.getMonth());
+                        //console.log(ckeckData.getDate());
+                        //console.log(ckeckData.getDay());
+                        //console.log(res.data);
+                        //console.log(res.data.years);
+                        //console.log(res.data.contributions);
+                        //console.log(element.date); 
+                        //console.log(Object.values(this.years[0])[0]);
+                        //console.log(yy);
+                        //console.log(this.showContributions);
+
                     }
-                    console.log(res.data);
-                    console.log(res.data.years);
-                    console.log(res.data.contributions);
-                    this.years = res.data.years;
-                    this.contributions = res.data.contributions;
-                    this.contributions.forEach(element => {
-                       //console.log(element.date); 
-                       const yy = parseInt(element.date.substr(0, 4), 10);
-                       //console.log(Object.values(this.years[0])[0]);
-                       //console.log(yy);
-                       if( yy == Object.values(this.years[0])[0] )this.showContributions.push(element);
-                       //if(yy == parseint(Object.values(this.years[0])[0]))
-                    });
-                    console.log(this.showContributions);
                 });
 		    },
-            chageYear(e){
-
-
-            }
         }
 	});
         

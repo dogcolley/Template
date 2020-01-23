@@ -11,40 +11,68 @@
     <link rel="stylesheet" href="./sass2/jmodule.css">
 
     <style>
-        #app{width:600px;margin:0 auto;}
-        #contributions_info ul.commitBox li{width:10px;height:10px;background:none;margin: 2px 2px 0 0;position: relative;float:left}
-        #contributions_info ul.commitBox li:nth-last-child(7n + 7){clear: both;}
-        #contributions_info ul.commitBox li div{position: absolute;left: 0;top:0;color:#333;width:200px;height:100px;display:none}
-        #contributions_info ul.commitYear li{}
-        #chUser input{width:}
+        #app{margin:0 auto;padding:50px 0;width: 100%;}
+        #app div{max-width:600px;width:100%;overflow: hidden;box-sizing: border-box;padding:0 2%;}
+        #contributions_info ul.commitBox li{width:9.5px;height:9.5px;background:none;margin: 5px 2px 0 0;position: relative;float:left}
+        #contributions_info ul.commitBox li:nth-child(7n + 1){margin-left:90px}
+        #contributions_info ul.commitBox li div{position: absolute;left: 0;top:0;color:#333;width:150px;padding:10px 20px;display:none;}
+        #contributions_info ul.commitBox li:hover div{display: block;z-index: 90;background: rgba(255,255,255,0.7);}
+        #contributions_info ul.commitBox li .weekTitle{position: absolute;left: -60px;;}
+        #contributions_info ul.commitYear li{padding:0 10px}
+        #contributions_info ul.commitYear li button{border:1px solid rgb(35, 154, 59);width:100%;padding:5px 0;color:rgb(35, 154, 59);border-radius: 55px;max-width: 130px;}
+        #contributions_info ul.commitYear li button.active{background:rgb(35, 154, 59);color:#fff}
+        #chUser input{width:80%;border:1px solid rgb(35, 154, 59);height:60px;border-right: 0;}
+        #chUser button{background: rgb(35, 154, 59);height:60px;width:20%;color:#fff}
+        .userInfo{margin-bottom:20px}
+        .userInfo div{margin: 2px 0}
+        .userInfo div:after{content:"";clear:both;display: block;}
+        .userInfo div span{float:right}
+        @media only screen and (max-width: 580px) {
+            #contributions_info ul.commitBox li:nth-child(7n + 1){margin-left:60px}
+            #contributions_info ul.commitBox li .weekTitle{position: absolute;left: -50px;}
+            /*#contributions_info ul.commitBox li:nth-child(14n + 1){clear: both;}*/
+        }
+        @media only screen and (max-width: 480px) {
+                #contributions_info ul.commitBox li:nth-child(7n + 1){margin-left:20%}/*
+                #contributions_info ul.commitBox li .weekTitle{position: absolute;left: -50px;}*/
+             #contributions_info ul.commitBox li:nth-child(14n + 1){clear: both;}
+             #chUser input, #chUser button{height:50px}
+        }
     </style>
 </head>
-<body class="T_ds_table T_ht_p100 U_mg_ct">
+<body class="T_ds_table T_ht_p100 U_mg_ct T_wd_full">
     
     <div id="app" class="T_ds_cell T_vt_md">
-        <div class="T_wd_sz600 U_mg_ct">
-            <h1 class="U_ft_fm05 T_ft_ct T_ft_sz40 U_ft_c000">인증데이터 체크</h1> 
-            <div id="contributions_info" v-if="showContributions.length !== 0">
-                <div>검색대상: {{setName}}</div>
-                <div>오늘 :{{today}} </div>
-                <div>사용년도 데이터 : </div>
-                
-                <ul>
-                    <li v-for="(data, index) in years" :key="index"><button type="button">{{years[index].year}} ({{years[index].total}})</button></li>
+        <div class="U_mg_ct">
+            <h1 class="U_ft_fm05 T_ft_ct T_ft_rem30 U_ft_c000 T_mg_btm10">개밥의 인증감시기</h1> 
+            <p class="T_ft_ct T_mg_btm20 T_ft_rem12">죽기싫으면 인증하세요.</p>
+
+            <form action="" v-on:submit="onSubmitForm" id="chUser" class="clear T_fl_Clt T_mg_top20 T_ft_rem15">
+                <input type="text" name="" id="" v-model="userName">
+                <button>검색</button>
+            </form>     
+              
+            <div id="contributions_info" v-if="showContributions.length !== 0" class="T_ps_rl T_mg_top20">
+                <div class="userInfo T_ft_rem12 U_ft_c333">
+                    <div>검색대상: <span>{{setName}}</span></div>
+                    <div>오늘 : <span>{{today}}</span> </div>
+                    <div>사용년도 데이터 : <span>{{setYear}} </span></div>
+                    <div>오늘 커밋여부 : <span>삐까?</span></div>
+                </div>
+                <ul class="commitYear T_ly_3  T_mg_btm20 T_ft_ct ">
+                    <li v-for="(data, index) in years" :key="index"><button type="button" v-bind:class="{active: years[index].year == setYear ? true : false}" v-on:click="chageData(years[index].year)">{{years[index].year}} ({{years[index].total}})</button></li>
                 </ul>
 
-                <ul class="commitBox clear" >
+                <ul class="commitBox clear  " >
                     <li v-for="(data, index) in showContributions" :key="index" v-bind:style="{background:data.color}"> 
+                        <span class="weekTitle" style="font-size:10px" v-if=" (index+7) % 7 ==0">{{ (index+7) / 7 }} week</span>
                         <div v-if="data">
-                            {{data}}
-                        </div>                    
+                            {{data.date}}({{data.intensity}})
+                        </div>                   
                     </li>
                 </ul>
             </div>
-            <form action="" v-on:submit="onSubmitForm" id="chUser">
-                <input type="text" name="" id="" v-model="userName">
-                <button>정보확인하기</button>
-            </form>       
+
         </div> 
     </div>
 
@@ -81,6 +109,7 @@
 			pass : 0,
             userName: 'dogcolley',
             setName : '',
+            setYear:'',
             today: today.getFullYear()+'.'+today.getMonth()+'.'+today.getDate(),
             historyName : [],
             years : [],
@@ -94,23 +123,27 @@
                 this.years =[];
             },
             chageData(e){
-                
+                this.setYear = e;
+                this.showContributions =[];
+                this.contributions.forEach(element => {
+                    const yy = parseInt(element.date.substr(0, 4), 10);
+                    if( yy == e){
+                        this.showContributions.unshift(element);
+                    }
+                });
+                const ckeckData = new Date(e+'-'+1+'-'+1);
+                        for(let i =1; i< ckeckData.getDay(); i++){
+                            this.showContributions.unshift('');
+                }
             },
 			onSubmitForm(e){
 				e.preventDefault();
-                /*
+
                 if(this.showContributions.length !== 0){
                     this.contributions = [];
                     this.years =[];
-                    const setLength = this.showContributions.length;
-                    console.log(setLength)
-                    for(let i ; i < setLength; i++){
-                        console.log(i);
-                        this.showContributions.remove(0);
-                    }
+                    this.showContributions =[];
                 }
-                */
-                
 
                 axios.get(`https://github-contributions-api.now.sh/v1/${this.userName}`).then(res=>{
                     if(res.data.contributions.length == 0){
@@ -118,17 +151,17 @@
                     }else{
                         this.setName = this.userName;
                         this.years = res.data.years;
+                        this.setYear = this.years[0].year;
                         this.contributions = res.data.contributions;
                         this.contributions.forEach(element => {
                             const yy = parseInt(element.date.substr(0, 4), 10);
-                            if( yy == this.years[0].year ){
-                                this.showContributions.push(element);
+                            if( yy == this.setYear ){
+                                this.showContributions.unshift(element);
                             }
                         });
-                        //this.years[0].year
-                        const ckeckData = new Date(2020+'-'+1+'-'+1);
-                        for(let i =0; i< ckeckData.getDay(); i++){
-                            this.showContributions.push('');
+                        const ckeckData = new Date(this.setYear+'-'+1+'-'+1);
+                        for(let i =1; i< ckeckData.getDay(); i++){
+                            this.showContributions.unshift('');
                         }
                         //console.log(ckeckData);
                         //console.log(ckeckData.getFullYear());

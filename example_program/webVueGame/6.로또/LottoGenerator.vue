@@ -52,6 +52,15 @@
         this.winBalls = [];
         this.bonus = null;
         this.redo = false;
+          for(let i =0; i < this.winNumbers.length-1;i++){
+            timeouts[i] = setTimeout(()=>{
+              this.winBalls.push(this.winNumbers[i]);
+            },(i+1) * 1000);
+          }
+          timeouts[6] = setTimeout(()=>{
+            this.bonus = this.winNumbers[6];
+            this.redo = true
+          },7000); 
       },
       showBalls(){
          for(let i =0; i < this.winNumbers.length-1;i++){
@@ -73,6 +82,7 @@
         clearTimeout(t);
       })
     },
+    /*
     watch:{
       // 단점 계속 오류가나옴
       bonus(val,oldval){
@@ -82,6 +92,7 @@
         }
       }
     }
+    */
   };
 </script>
 

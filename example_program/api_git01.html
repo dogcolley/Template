@@ -61,7 +61,7 @@
                     <div>검색대상: <span>{{setName}}</span></div>
                     <div>오늘 : <span>{{today}}</span> </div>
                     <div>사용년도 데이터 : <span>{{setYear}} </span></div>
-                    <div>오늘 커밋여부 : <span>{{todayComit ? "인증함" : "안증안함"}}</span></div>
+                    <div>오늘 커밋여부 : <span>{{todayComit ? "인증함" : "인증안함"}}</span></div>
                 </div>
                 <ul class="commitYear T_ly_3   T_ft_ct ">
                     <li v-for="(data, index) in years" :key="index"><button type="button" v-bind:class="{active: years[index].year == setYear ? true : false}" v-on:click="chageData(years[index].year)">{{years[index].year}} ({{years[index].total}})</button></li>
@@ -126,7 +126,7 @@
 		data:{
 			mode2: '',
 			pass : 0,
-            userName: 'dogcolley',
+            userName: '',
             setName : '',
             setYear:'',
             today: today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),

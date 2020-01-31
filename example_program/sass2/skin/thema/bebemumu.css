@@ -1089,6 +1089,68 @@ input[type="radio"]:checked + .sir_label_ck2 {
   opacity: 1;
 }
 
+.sir_view_btns button img {
+  border: 1px solid #d9d9d9;
+  -webkit-transition: 1s float;
+  transition: 1s float;
+}
+
+.sir_view_btns button:hover img {
+  border: 0;
+}
+
+.sir_view_btns button span, .sir_view_btns button strong {
+  display: none;
+}
+
+.sir_view_btns button:hover {
+  border: 1px solid #298cd5;
+  position: relative;
+  z-index: 70;
+}
+
+.sir_view_btns button:hover span, .sir_view_btns button:hover strong {
+  display: block;
+  height: 100%;
+  line-height: 65px;
+  margin: 0 10px;
+}
+
+.sir_view_btns button:hover strong, .sir_view_btns button:hover span {
+  color: #298cd5;
+  font-size: 14px;
+}
+
+.sir_view_btns button:hover span {
+  max-width: 250px;
+}
+
+.sir_btns_next01 span {
+  text-align: right;
+}
+
+.sir_btns_prev01 span {
+  text-align: left;
+}
+
+.sir_btns_next01 img {
+  float: left;
+  position: relative;
+  left: -1px;
+}
+
+.sir_btns_prev01 img {
+  float: right;
+}
+
+.sir_btns_next01:hover img {
+  float: right;
+}
+
+.sir_btns_prev01:hover img {
+  float: left;
+}
+
 /*
 
 

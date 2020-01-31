@@ -313,6 +313,10 @@ body, html {
   background: #f09dc3;
 }
 
+.sir_bg07 {
+  background: #26b1e5;
+}
+
 .sir_ft01 {
   color: #4785cf;
 }
@@ -335,6 +339,10 @@ body, html {
 
 .sir_ft06 {
   color: #f09dc3;
+}
+
+.sir_ft07 {
+  color: #26b1e5;
 }
 
 #sir_hd {
@@ -801,6 +809,58 @@ body, html {
 
 #cnt09 {
   background: url("/img/web/cnt10_bg01.png") no-repeat center;
+}
+
+#cnt10 {
+  background-color: #e7f1fd;
+  background-image: url("/img/web/cnt10_bg02.jpg"), url("/img/web/cnt10_bg03.jpg");
+  background-repeat: no-repeat ,no-repeat;
+  background-position: center top , center bottom;
+}
+
+.sir_latest_list:before {
+  right: -20px;
+  top: -40px;
+}
+
+.sir_latest_list ul:before, .sir_latest_list:before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1px;
+  width: 260px;
+  background: #26b1e5;
+}
+
+.sir_latest_list li {
+  margin-left: 40px;
+}
+
+.sir_latest_list li:nth-child(4n+1) {
+  margin-left: 0;
+}
+
+.sir_latest_list ul {
+  min-height: 518px;
+}
+
+.sir_latest_list ul:before {
+  left: -20px;
+  bottom: 00px;
+}
+
+.sir_latest_list li a {
+  border: 1px solid #fff;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+  -webkit-transition: 0.7s all;
+  transition: 0.7s all;
+}
+
+.sir_latest_list li a:hover {
+  border-color: #26b1e5;
+  -webkit-box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.1);
 }
 
 .sir_faq {

@@ -849,7 +849,7 @@ body, html {
   bottom: 00px;
 }
 
-.sir_latest_list li a {
+.sir_latest_list li button {
   border: 1px solid #fff;
   -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
@@ -857,7 +857,7 @@ body, html {
   transition: 0.7s all;
 }
 
-.sir_latest_list li a:hover {
+.sir_latest_list li button:hover {
   border-color: #26b1e5;
   -webkit-box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 5px 5px 7px 0px rgba(0, 0, 0, 0.1);
@@ -1152,8 +1152,6 @@ input[type="radio"]:checked + .sir_label_ck2 {
 }
 
 /*
-
-
 .cs_benner{position: relative;top: 1px;background:url("/img/pc/cs_benner0.jpg") #000 no-repeat center;
     &.cs_notice{background: url("/img/pc/cs_benner1.jpg") #000 no-repeat center;}
     &.cs_qna{background: url("/img/pc/cs_benner2.jpg") #000 no-repeat center;}

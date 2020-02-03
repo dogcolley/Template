@@ -346,12 +346,9 @@ body,html{min-width:1200px;font-family: "Jua";}
     li:nth-child(4n+1){margin-left:0}
     ul {min-height:518px;}
     ul:before{left:-20px;bottom:00px;}
-    li a{border:1px solid #fff;box-shadow: 0 0 0 rgba(0,0,0,0.1);transition: 0.7s all;}
-    li a:hover{border-color: $set_color07;box-shadow:5px 5px 7px 0px rgba(0, 0, 0, 0.1)}
-
-
-
-}
+    li button{border:1px solid #fff;box-shadow: 0 0 0 rgba(0,0,0,0.1);transition: 0.7s all;}
+    li button:hover{border-color: $set_color07;box-shadow:5px 5px 7px 0px rgba(0, 0, 0, 0.1)}
+} 
 
 .sir_faq{height:600px;border:1px solid $set_color04;background: rgba(255,255,255,0.8);}
 .sir_faq .J_tg_btn01 {background:url("/img/web/cnt10_icon02.png")no-repeat calc(100% - 60px) center}
@@ -437,9 +434,8 @@ input[type="radio"]:checked + .sir_label_ck2{background-image: url("/img/web/ico
 .sir_btns_next01:hover img{float:right}
 .sir_btns_prev01:hover img{float:left}
 
+
 /*
-
-
 .cs_benner{position: relative;top: 1px;background:url("/img/pc/cs_benner0.jpg") #000 no-repeat center;
     &.cs_notice{background: url("/img/pc/cs_benner1.jpg") #000 no-repeat center;}
     &.cs_qna{background: url("/img/pc/cs_benner2.jpg") #000 no-repeat center;}

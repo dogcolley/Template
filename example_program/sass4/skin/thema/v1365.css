@@ -1,146 +1,239 @@
+@charset "UTF-8";
 /*sass 변수 모음*/
-//$j_device : ('.T_','.TAB_','.M_','.TM_','.PC_','.PM_','.PT_'); 
-$S_M: 640px; 
-$S_T: 1024px;
-$S_W: 1200;
 /*mixin and function 모음*/
-@mixin clear {content:'';clear:both;display:block}
-@mixin area {margin-left:auto;margin-right:auto}
-@mixin ps_center($size) {left:0;margin-left:auto;margin-right:auto;right:0;width: $size;}
-@mixin bg_base01($url) {background:url($url)no-repeat center}
-@mixin bg_ch_url($url){background-image: url($url);}
-@mixin r_img($mode,$max){
-	$mode: '가로'!default;
-	$max: 100% !default;
-	@if($mode='가로'){width:100%;max-width: $max;}
-	@if($mode='세로'){height:100%;max-height:$max;}
-}
-
-
 /*SCSS*/
- 
-$breakpoints: (
-        'small': (max-width: 640px),
-        'medium': (max-width: 1024px),
-        'large': (max-width: 1200px),
-) !default;
+#sir_hd {
+  border-bottom: 1px solid #d9d9d9;
+}
 
-@mixin respond-to($breakpoint) {
-    // If the key exists in the map
-    @if map-has-key($breakpoints, $breakpoint) {
-        // Prints a media query based on the value
-        @media #{inspect(map-get($breakpoints, $breakpoint))} {
-            @content;
-        }
-    }
-    // If the key doesn't exist in the map
-    @else {
-        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($breakpoints)}.";
-    }
-} 
+#sir_hd:after {
+  content: "";
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 101px;
+  left: 0;
+  z-index: 80;
+  -webkit-transition: 1s height;
+  transition: 1s height;
+}
 
-@mixin respond-to($media) {
-  @if $media == handhelds {
-    @media only screen and (max-width: $S_M) { @content; }
+#sir_hd.nav:after {
+  height: 367px;
+  background: url("/img/nav_bg01.jpg") no-repeat center top;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.sir_nav {
+  position: relative;
+}
+
+@media only screen and (min-width: 1024px) {
+  .sir_nav ul:after {
+    content: "";
+    clear: both;
+    display: block;
   }
-  @else if $media == medium-screens {
-    @media only screen and (min-width: $S_M + 1) and (max-width: $S_T - 1) { @content; }
+  .sir_nav .J_gnb > ul > li > a {
+    padding: 40px 40px;
+    display: block;
+    font-size: 20px;
+    color: #000;
+    font-weight: 500;
   }
-  @else if $media == wide-screens {
-    @media only screen and (min-width: $S_T) { @content; }
+  .sir_nav .J_gnb > ul > li > a.on, .sir_nav .J_gnb > ul > li > a :hover, .sir_nav .J_gnb > ul > li > a :focus {
+    color: #f26522;
+  }
+  .sir_nav .J_gnb > ul > li {
+    float: left;
+  }
+  .sir_nav .J_gnb > ul > li > ul {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    background: #fff;
+    padding: 50px 0 50px 290px;
+    z-index: 90;
+    min-height: 366px;
+    top: 101px;
+    display: none;
+  }
+  .sir_nav .J_gnb > ul > li > ul > li {
+    float: left;
+    width: 33.333%;
+    padding-left: 30px;
+  }
+  .sir_nav .J_gnb .dep1 > a {
+    display: block;
+    display: block;
+    width: 100%;
+    height: 55px;
+    line-height: 53px;
+    border: 1px solid #d9d9d9;
+    font-size: 17px;
+    color: #000;
+    padding-left: 30px;
+  }
+  .sir_nav .J_gnb .dep1 > a:hover, .sir_nav .J_gnb .dep1 > a:focus {
+    color: #f26522;
+    border: 2px solid #f26522;
+    line-height: 51px;
+  }
+  .sir_nav .J_gnb .dep1 > a.icon_aw01 {
+    background: url("/img/icon_aw01.jpg") no-repeat calc(100% - 30px) center;
+  }
+  .sir_nav .J_gnb .dep1 > a.icon_aw01:hover, .sir_nav .J_gnb .dep1 > a:focus {
+    background-image: url("/img/icon_aw01On.jpg");
+  }
+  .sir_nav .J_gnb .dep1 > ul {
+    padding: 20px 0 30px;
+  }
+  .sir_nav .J_gnb .dep1 > ul > li {
+    padding-top: 15px;
+    font-size: 15px;
+    color: #999;
+  }
+  .sir_nav .J_gnb .dep1 > ul > li > a {
+    display: block;
+    padding-left: 6px;
+    position: relative;
+  }
+  .sir_nav .J_gnb .dep1 > ul > li > a:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 3px;
+    height: 1px;
+    top: 50%;
+    margin-top: -0.5px;
+    background: #999;
+  }
+  .sir_nav .J_gnb .dep1 > ul > li > a:hover {
+    color: #000;
+  }
+  .sir_nav .J_gnb .dep1 > ul > li > a:hover:before {
+    background: #000;
+  }
+  .sir_nav .J_gnb .dep1 > ul > li:first-child {
+    padding-top: 0;
+  }
+  .sir_nav .J_gnb > ul > li > ul > li:nth-child(-n+3) {
+    min-height: 210px;
+  }
+  .sir_nav .J_gnb > ul > li > ul:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 260px;
+    padding-top: 50px;
+    font-size: 30px;
+    color: #000;
+    font-weight: 700;
+    background: #f5f5f5;
+  }
+  .sir_nav .J_gnb > ul > li:nth-child(1) > ul:before {
+    content: "센터소개";
+  }
+  .sir_nav .J_gnb > ul > li:nth-child(2) > ul:before {
+    content: "센터소식";
+  }
+  .sir_nav .J_gnb > ul > li:nth-child(3) > ul:before {
+    content: "알림마당";
+  }
+  .sir_nav .J_gnb > ul > li:nth-child(4) > ul:before {
+    content: "정보공개";
+  }
+  .sir_nav .J_gnb > ul > li > ul > li:nth-child(1)::before {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 95px;
+    font-size: 16px;
+    color: #999;
+    font-weight: 700;
+  }
+  .sir_nav .J_gnb > ul > li:nth-child(1) > ul > li:nth-child(1):before {
+    content: "Center Introduction";
+  }
+  .sir_nav .J_gnb > ul > li:nth-child(2) > ul > li:nth-child(1):before {
+    content: "Center News";
+  }
+  .sir_nav .J_gnb > ul > li:nth-child(3) > ul > li:nth-child(1):before {
+    content: "Notification";
+  }
+  .sir_nav .J_gnb > ul > li:nth-child(4) > ul > li:nth-child(1):before {
+    content: "Information disclosure";
   }
 }
 
-
-$t_cl01 : #f26522;
-$t_cl02 : #000;
-$t_cl03 : #767676;
-$t_cl04 : #ccc;
-$t_cl05 : #6c6c6c;
-$t_cl06 : #efefef;
-$t_cl07 : #298cd5;
-$t_cl11 : #1c5eb5;
-$t_cl12 : #567f36;
-$cl_red : #e10000;   
-$cl_red2 : #d60c00;
-$cl_black : #000;   
-$cl_gray : #767676;   
-$t_cl10	: #000;
-$t_cl11 : #ddd;
-
-body{
-    @include respond-to(wide-screens) {}
-    @include respond-to(medium-screens) {}
-    @include respond-to(handhelds) {}
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
+  .sir_nav {
+    display: none;
+  }
 }
 
-#sir_hd{border-bottom: 1px solid #d9d9d9;
-&:after{content:"";display:block;width:100%;position: absolute;top:101px;left:0;z-index:80;transition: 1s height;}
-&.nav:after{height:367px;background:url("/img/nav_bg01.jpg")no-repeat center top;border-bottom: 1px solid #d9d9d9;}
-}
-.sir_nav{
-    position:relative;
-    @include respond-to(wide-screens) {
-        ul:after{content:"";clear:both;display:block}
-        .J_gnb > ul > li > a{padding:40px 40px;display:block;font-size:20px;color:#000;font-weight:500;}
-        .J_gnb > ul > li > a{
-            &.on,:hover,:focus{color:$t_cl01}
-        }
-        .J_gnb > ul > li {float:left}
-        .J_gnb > ul > li > ul{position: absolute;width:100%;left:0;background:#fff;padding:50px 0 50px 290px;z-index:90;min-height:366px;top:101px;display:none}
-        .J_gnb > ul > li > ul > li {float:left;width:33.333%;padding-left:30px}
-        .J_gnb .dep1 > a{display:block;display:block;width:100%;height:55px;line-height:53px;border:1px solid #d9d9d9;font-size:17px;color:#000;padding-left:30px;
-            &:hover,&:focus{color:$t_cl01;border:2px solid $t_cl01;line-height:51px;}
-            &.icon_aw01{background:url("/img/icon_aw01.jpg")no-repeat calc(100% - 30px) center;}
-            &.icon_aw01:hover,&:focus{background-image:url("/img/icon_aw01On.jpg")}
-        }
-        .J_gnb .dep1 > ul {padding:20px 0 30px}
-        .J_gnb .dep1 > ul > li{padding-top:15px;font-size:15px;color:#999}
-        .J_gnb .dep1 > ul > li > a{display:block;padding-left:6px;position:relative;
-            &:before{content:"";display:block;position: absolute;left:0;top:50px;width:3px;height:1px;top:50%;margin-top:-0.5px;background:#999;}
-            &:hover{color:#000}
-            &:hover:before{background:#000;}
-        }
-        .J_gnb .dep1 > ul > li:first-child{padding-top:0}
-        .J_gnb > ul > li > ul > li:nth-child(-n+3){min-height:210px}
-        .J_gnb > ul > li > ul:before{content:"";display:block;position: absolute;left: 0;top:0;height:100%;width:260px;padding-top:50px;font-size:30px;color:#000;font-weight:700;background:#f5f5f5;}
-        .J_gnb > ul > li:nth-child(1) > ul:before{content:"센터소개"}
-        .J_gnb > ul > li:nth-child(2) > ul:before{content:"센터소식"}
-        .J_gnb > ul > li:nth-child(3) > ul:before{content:"알림마당"}
-        .J_gnb > ul > li:nth-child(4) > ul:before{content:"정보공개"}
-        .J_gnb > ul > li > ul > li:nth-child(1)::before{display: block;position: absolute;left:0;top:95px;font-size:16px;color:#999;font-weight:700}
-        .J_gnb > ul > li:nth-child(1) > ul > li:nth-child(1):before{content: "Center Introduction";}
-        .J_gnb > ul > li:nth-child(2) > ul > li:nth-child(1):before{content: "Center News";}
-        .J_gnb > ul > li:nth-child(3) > ul > li:nth-child(1):before{content: "Notification";}
-        .J_gnb > ul > li:nth-child(4) > ul > li:nth-child(1):before{content: "Information disclosure";}
-
-
-     
-    }
-    
-     
-    @include respond-to(medium-screens) {display:none}
-    @include respond-to(handhelds) {display:none}
-}
-#J_op_sm{text-align:right;
-    .icon{height:2px;display:inline-block;background: #000;height:2px;display:inline-block;background: #000;}
-    .icon01{width:100%}
-    .icon02{width:68%}
-    .icon03{width:48%}
-
-    @include respond-to(wide-screens) {
-        margin-top:32px;width:35px;height:35px;margin-left:40px;
-        .icon{margin-top:9px;vertical-align: top;float:right}
-    }
-    @include respond-to(medium-screens) {}
-    @include respond-to(handhelds) {}
+@media only screen and (max-width: 640px) {
+  .sir_nav {
+    display: none;
+  }
 }
 
-#J_sm_wrap{position: absolute;top:0;width:100%;left: 0;background: #fff;z-index:95;
-    .sm_con{background:#fff;padding-bottom:60px}
-        .J_close02{}
-        
+#J_op_sm {
+  text-align: right;
+}
+
+#J_op_sm .icon {
+  height: 2px;
+  display: inline-block;
+  background: #000;
+  height: 2px;
+  display: inline-block;
+  background: #000;
+}
+
+#J_op_sm .icon01 {
+  width: 100%;
+}
+
+#J_op_sm .icon02 {
+  width: 68%;
+}
+
+#J_op_sm .icon03 {
+  width: 48%;
+}
+
+@media only screen and (min-width: 1024px) {
+  #J_op_sm {
+    margin-top: 32px;
+    width: 35px;
+    height: 35px;
+    margin-left: 40px;
+  }
+  #J_op_sm .icon {
+    margin-top: 9px;
+    vertical-align: top;
+    float: right;
+  }
+}
+
+#J_sm_wrap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  background: #fff;
+  z-index: 95;
+}
+
+#J_sm_wrap .sm_con {
+  background: #fff;
+  padding-bottom: 60px;
 }
 
 /*
@@ -439,3 +532,4 @@ a:hover + .mb_info{display:block}
 #captcha.m_captcha #captcha_info{clear:both;display:block}
 #captcha.m_captcha{display:block} 
 */
+/*# sourceMappingURL=v1365.css.map */

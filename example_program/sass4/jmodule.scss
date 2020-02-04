@@ -187,16 +187,15 @@ $t_cl01 : #333;
 
 /*teg-reset*/
 html, body{
-	@include respond-to(medium-screens) {font-size:16px} 
-	@include respond-to(wide-screens) {font-size:16px;min-width:1250px}
     @media only screen and (min-width: 320px) {font-size:12px}
 	@media only screen and (min-width: 360px) {font-size:13px}
 	@media only screen and (min-width: 768px) {font-size:14px} 
+	@media only screen and (min-width: 1250px) {font-size:16px} 
 }
 html {overflow-y:auto} 
 body {margin:0;padding:0;font-family:'Noto Sans KR', 'Spoqa Han Sans', sans-serif;background:#fff;font-weight:400;letter-spacing :-0.5px;line-height: 1;color:#777;word-break:keep-all;line-height:1}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
-h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Jua', sans-serif;font-weight:inherit}
+h1, h2, h3, h4, h5, h6 {font-size:inherit;font-family:'Noto Sans KR', sans-serif;font-weight:inherit}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
 em{font-style:normal} 
 strong{font-weight:600}
@@ -212,7 +211,7 @@ img {-ms-interpolation-mode:bicubic;}
 table{border-spacing:0px;border-collapse:collapse} 
 input{border-radius:0}
 input::-webkit-input-placeholder {color:#c1c1c1}
-input:-ms-input-placeholder {color:#c1c1c1} 
+input:-ms-input-placeholder {color:#c1c1c1}  
 input:focus{color:#333}
 textarea, select {font-family:inherit;font-size:inherit;border-color:#ddd;height:40px;background-color:#fff;padding:0 10px}
 select {margin:0}
@@ -291,25 +290,25 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 				&_p#{$i}, &_p#{$i}_cd > * {width: $i+%}
             }
             @for $i from 1 through 200{
-				&_sz#{$i*5},&_sz#{$i*5}_cd > * {width: $i*5+px}
+				&_sz#{$i*5},&_Csz#{$i*5} > * {width: $i*5+px}
 			}
 		}
 		
 		&ht{
             &_full {height:100%}       
             @for $i from 1 through 100{
-				&_p#{$i*1} ,  &_p#{$i*1}_cd > * {height: $i+%}
+				&_p#{$i*1} ,  &_Cp#{$i*1} > * {height: $i+%}
             }
             @for $i from 1 through 200{
-				&_sz#{$i*5}, &_sz#{$i*5}_cd > * {height: $i*5+px}
+				&_sz#{$i*5}, &_Csz#{$i*5} > * {height: $i*5+px}
 			}    
 		}
 		
 		&ps_{
-			&rl{position:relative}
-			&ab{position:absolute} 
-			&st{position:static}
-			&fx{position:fixed}
+			&rl, &Crl >*{position:relative}
+			&ab, &Cab >*{position:absolute} 
+			&st, &Cst >*{position:static}
+			&fx, &Cfx >*{position:fixed}
 		}
 
 		&sound_only, &blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
@@ -355,10 +354,10 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&vt_md{vertical-align:middle} &vt_top{vertical-align:top} &vt_btm{vertical-align:bottom}&vt_us{vertical-align: unset;}&vt_sp{vertical-align: super;}&vt_bs{vertical-align: baseline;}&vt_tp{vertical-align: text-top;}
 			
 		&lh{
-            @for $i from 0 through 20{
+            @for $i from 0 through 30{
 				&_#{$i}{line-height:(0.1*$i)}
 			}
-			@for $i from 0 through 50{
+			@for $i from 0 through 50{ 
 				&_px#{$i+10}{line-height:(10+$i)+px}
 			}
 		}
@@ -372,7 +371,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 				&wd#{$i*5}{padding-left:5px * $i;padding-right:5px * $i}
 				&ht#{$i*5}{padding-top:5px * $i;padding-bottom:5px * $i}
 				&all#{$i*5}{padding:5px * $i}
-				
+				  
 				&Clt#{$i*5} > *{padding-left:5px * $i}
 				&Crt#{$i*5} > *{padding-right:5px * $i}
 				&Ctop#{$i*5} > *{padding-top:5px * $i}
@@ -467,6 +466,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&c777{background:#777}
 		&c000{background:#000}
 		&cf0{background: #f0f0f0;}
+		&cf3{background: #f3f3f3;}
 	}
 
 	&ft_{
@@ -477,6 +477,7 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 		&c666{color:#666}
 		&c777{color:#777}
 		&c999{color:#999}
+		&caaa{color:#aaa}
 		&c6c6c6c{color:#6c6c6c}
 		&c6a6a6a{color:#6a6a6a}
 		&c767676{color:#767676}
@@ -536,6 +537,8 @@ $j_make : ('_div div', '_span span', '_strong strong', '_a a', '_button button',
 	&bd_all01{border:1px solid #d9d9d9}
 	&bd_all02{border:1px dashed #d9d9d9}
 
+	&bd_c000{border-color: #000;} 
+ 
 	&bd_cbd {border-color:#bdbdbd}
 	@for $i from 1 through 100{
 		&op_#{$i}{opacity: ($i * 0.01)}

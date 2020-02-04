@@ -1337,6 +1337,10 @@ input[type="text"], input[type=password] {
           transition-delay: 1s;
 }
 
+.U_hv_Cft000 a:hover, .U_hv_Cft000 button:hover {
+  color: #000;
+}
+
 .IM_bd_top0 {
   border-top: 0 !important;
 }

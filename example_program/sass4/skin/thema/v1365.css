@@ -2,6 +2,40 @@
 /*sass 변수 모음*/
 /*mixin and function 모음*/
 /*SCSS*/
+@media only screen and (min-width: 1024px) {
+  body.sm_wraps:after {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    content: "";
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 90;
+  }
+}
+
+.sir_cl01 {
+  color: #f26522;
+}
+
+.sir_bg01 {
+  background: #f26522;
+}
+
+.sir_hv_Cft01 a:hover, .sir_hv_Cft01 button:hover, .sir_hv_Cft01.on {
+  color: #f26522;
+}
+
+.sir_icon_aw01 {
+  background: url("/img/icon_aw02.png") no-repeat calc(100% - 30px) center;
+}
+
+.sir_icon_aw01:hover, .sir_icon_aw01:focus {
+  background-image: url("/img/icon_aw02On.png");
+}
+
 #sir_hd {
   border-bottom: 1px solid #d9d9d9;
 }
@@ -82,7 +116,7 @@
   .sir_nav .J_gnb .dep1 > a.icon_aw01 {
     background: url("/img/icon_aw01.jpg") no-repeat calc(100% - 30px) center;
   }
-  .sir_nav .J_gnb .dep1 > a.icon_aw01:hover, .sir_nav .J_gnb .dep1 > a:focus {
+  .sir_nav .J_gnb .dep1 > a.icon_aw01:hover, .sir_nav .J_gnb .dep1 > a.icon_aw01:focus {
     background-image: url("/img/icon_aw01On.jpg");
   }
   .sir_nav .J_gnb .dep1 > ul {
@@ -185,15 +219,19 @@
 
 #J_op_sm {
   text-align: right;
+  width: 40px;
+  height: 40px;
+  margin-top: 24px;
 }
 
 #J_op_sm .icon {
   height: 2px;
-  display: inline-block;
   background: #000;
   height: 2px;
   display: inline-block;
   background: #000;
+  vertical-align: top;
+  float: right;
 }
 
 #J_op_sm .icon01 {
@@ -208,6 +246,10 @@
   width: 48%;
 }
 
+#J_op_sm .icon {
+  margin-top: 9px;
+}
+
 @media only screen and (min-width: 1024px) {
   #J_op_sm {
     margin-top: 32px;
@@ -215,10 +257,15 @@
     height: 35px;
     margin-left: 40px;
   }
+}
+
+@media only screen and (max-width: 640px) {
+  #J_op_sm {
+    width: 6.5104166666667vw;
+    height: 6.5104166666667vw;
+  }
   #J_op_sm .icon {
-    margin-top: 9px;
-    vertical-align: top;
-    float: right;
+    margin-top: calc( (100% - 8px) / 3);
   }
 }
 
@@ -227,13 +274,187 @@
   top: 0;
   width: 100%;
   left: 0;
-  background: #fff;
   z-index: 95;
+  overflow: auto;
+  max-height: 100%;
 }
 
 #J_sm_wrap .sm_con {
-  background: #fff;
   padding-bottom: 60px;
+}
+
+#J_sm_wrap .sm_con .J_close {
+  background: #fff;
+  position: relative;
+  z-index: 92;
+}
+
+#J_sm_wrap .J_sm > ul > li > a {
+  display: block;
+  color: #000;
+  font-weight: 500;
+}
+
+#J_sm_wrap .J_sm > ul:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+#J_sm_wrap .J_sm > ul > li {
+  float: left;
+}
+
+#J_sm_wrap .dep1 > a {
+  display: block;
+  border: 1px solid #d9d9d9;
+  color: #000;
+}
+
+#J_sm_wrap .dep1 > ul > li > a {
+  display: block;
+  padding-left: 6px;
+  position: relative;
+}
+
+#J_sm_wrap .dep1 > ul > li > a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 3px;
+  height: 1px;
+  top: 50%;
+  margin-top: -0.5px;
+  background: #999;
+}
+
+#J_sm_wrap .dep1 > ul > li > a:hover {
+  color: #000;
+}
+
+#J_sm_wrap .dep1 > ul > li > a:hover:before {
+  background: #000;
+}
+
+#J_sm_wrap .dep1 > ul {
+  padding: 5px 7.4% 10px;
+}
+
+#J_sm_wrap .dep1 > ul li {
+  padding-top: 15px;
+}
+
+#J_sm_wrap .dep1 > a:hover, #J_sm_wrap .dep1 > afocus {
+  border: 2px solid #f26522;
+  color: #f26522;
+}
+
+#J_sm_wrap .dep1 > a.icon_aw01 {
+  background: url("/img/icon_aw01.jpg") no-repeat calc(100% - 30px) center;
+}
+
+#J_sm_wrap .dep1 > a.icon_aw01:hover, #J_sm_wrap .dep1 > a.icon_aw01:focus {
+  background-image: url("/img/icon_aw01On.jpg");
+}
+
+#J_sm_wrap .dep1 > a.icon_aw01_1 {
+  background: url("/img/icon_aw012.jpg") no-repeat calc(100% - 30px) center;
+}
+
+#J_sm_wrap .dep1 > a.icon_aw01_1:hover, #J_sm_wrap .dep1 > a.icon_aw01_1:focus {
+  background: url("/img/icon_aw01On2.jpg") no-repeat calc(100% - 30px) center;
+}
+
+#J_sm_wrap .J_close02 {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  #J_sm_wrap {
+    background: #fff;
+  }
+  #J_sm_wrap .J_sm > ul > li {
+    width: 270px;
+    margin-left: 50px;
+  }
+  #J_sm_wrap .J_sm > ul > li:first-child {
+    margin-left: 0;
+  }
+  #J_sm_wrap .J_sm > ul > li > a {
+    font-size: 20px;
+    margin-top: 40px;
+  }
+  #J_sm_wrap .J_sm > ul {
+    padding: 0 10px;
+  }
+  #J_sm_wrap .dep1 > a {
+    margin-top: 20px;
+    font-size: 17px;
+    padding: 0 30px;
+    height: 55px;
+    line-height: 53px;
+  }
+  #J_sm_wrap .dep1 > a:hover, #J_sm_wrap .dep1 > a:focus {
+    line-height: 51px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  #J_sm_wrap {
+    height: 100%;
+    position: fixed;
+  }
+  #J_sm_wrap .sm_con {
+    height: 100%;
+  }
+  #J_sm_wrap .J_close02 {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    top: 0;
+  }
+  #J_sm_wrap .sm_con > div {
+    float: right;
+    max-width: 520px;
+    width: 86%;
+    background: #fff;
+    height: 96%;
+    position: relative;
+    z-index: 91;
+    overflow: auto;
+  }
+  #J_sm_wrap .J_sm {
+    padding: 10% 0;
+  }
+  #J_sm_wrap .J_sm > ul > li {
+    float: none;
+  }
+  #J_sm_wrap .J_sm > ul > li ul {
+    display: none;
+  }
+  #J_sm_wrap .J_sm > ul > li:first-child ul {
+    display: block;
+  }
+  #J_sm_wrap .J_sm > ul > li > a {
+    font-size: 2rem;
+    margin-top: 10%;
+  }
+  #J_sm_wrap .J_sm > ul > li:first-child > a {
+    margin-top: 0;
+  }
+  #J_sm_wrap .dep1 > ul {
+    padding: 0 2%;
+    font-size: 1.2rem;
+  }
+  #J_sm_wrap .dep1 > a {
+    margin-top: 20px;
+    font-size: 1.4rem;
+    padding: 15px 3%;
+  }
 }
 
 /*

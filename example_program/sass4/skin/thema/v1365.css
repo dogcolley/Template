@@ -4,7 +4,7 @@
 /*SCSS*/
 @media only screen and (min-width: 1024px) {
   body {
-    min-wdith: 1250px;
+    min-width: 1250px;
   }
   body.sm_wraps:after {
     position: absolute;
@@ -567,6 +567,42 @@
   width: 30px;
   height: 30px;
   background: #000;
+}
+
+.late_gallery .swiper-pagination-bullet {
+  opacity: 0.2;
+  width: 10px;
+  height: 10px;
+  vertical-align: top;
+}
+
+.late_gallery .swiper-pagination-bullet-active {
+  background: #f7931d;
+  width: 40px;
+  height: 3px;
+  border-radius: 0;
+  opacity: 1;
+  margin-top: 3.5px;
+}
+
+.late_gallery .sw_auto_btn {
+  width: 10px;
+  height: 10px;
+  background: url("/img/icon_stop02.png") no-repeat center;
+}
+
+.late_gallery .sw_auto_btn.on {
+  background-image: url("/img/icon_start02.png");
+}
+
+.mainMap .mapCon li button {
+  opacity: 0;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+}
+
+.mainMap .mapCon li button:hover, .mainMap .mapCon li button:focus, .mainMap .mapCon li button.on {
+  opacity: 1;
 }
 
 /*

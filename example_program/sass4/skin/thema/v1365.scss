@@ -75,7 +75,7 @@ $t_cl11 : #ddd;
 
 body{ 
     @include respond-to(wide-screens) {
-        min-wdith:1250px;
+        min-width:1250px;
         &.sm_wraps:after{position: absolute;height: 100%;top:0;left:0;width:100%;display:block;content: "";background: rgba(0,0,0,0.2);z-index: 90;}
     }
     @include respond-to(medium-screens) {}
@@ -234,6 +234,19 @@ body{
  .sw_auto_tg{width:30px;height:30px;background: #000;}
 }
 
+.late_gallery {
+    .swiper-pagination-bullet{opacity: 0.2;width:10px;height:10px;vertical-align: top;}
+    .swiper-pagination-bullet-active{background: $t_cl02;width:40px;height:3px;border-radius: 0;opacity: 1;margin-top: 3.5px;}
+    .sw_auto_btn{width:10px;height:10px;background: url("/img/icon_stop02.png")no-repeat center;}
+    .sw_auto_btn.on{background-image: url("/img/icon_start02.png")}
+}
+
+.mainMap{
+    .mapCon li button{opacity: 0;transition: 0.5s all;}
+    .mapCon li button{
+        &:hover,&:focus,&.on{opacity: 1;}
+    }
+}
 /*
 
 #ft,#hd{background:#fff}

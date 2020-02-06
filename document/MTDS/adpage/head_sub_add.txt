@@ -1,0 +1,41 @@
+<!-- molto jsh add module start -->
+
+<?if(!defined('G5_IS_ADMIN')){?>
+<!-- react And Babel JS ES6 -->
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+<?}?>
+
+
+<?if(!defined('G5_IS_ADMIN')) {?>
+<script src="<?php echo G5_JS_URL ?>/extend.js?ver=<?php echo G5_JS_VER; ?>"></script>
+<?}?>
+
+
+<?if(!defined('G5_IS_ADMIN')) {?>
+<link rel="stylesheet" href="<?=G5_CSS_URL?>/scss/jmodule.css?ver='1.0.0"> 
+<link rel="stylesheet" href="<?=G5_CSS_URL?>/design.css?ver='1.0.0"> 
+<?}?>
+
+<!-- molto jsh add module end-->
+
+
+
+
+<?php
+$add_css = "";
+if(substr($PHP_SELF,0,8) == "/adpage/"){
+$add_css = "adpage_";
+echo '<link rel="stylesheet" href="'.G5_ADMIN_URL.'/css/'.$add_css.'scss.css">'.PHP_EOL;
+}
+
+if (defined('G5_IS_ADMIN')) {
+    if(!defined('_THEME_PREVIEW_'))
+        echo '<link rel="stylesheet" href="'.G5_ADMIN_URL.'/css/'.$add_css.'admin.css">'.PHP_EOL;
+} else {
+    $shop_css = '';
+    if (defined('_SHOP_')) $shop_css = '_shop';
+    echo '<link rel="stylesheet" href="'.G5_CSS_URL.'/'.(G5_IS_MOBILE?'mobile':'default').$shop_css.'.css?ver='.G5_CSS_VER.'">'.PHP_EOL;
+}
+?>

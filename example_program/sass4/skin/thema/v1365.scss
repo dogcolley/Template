@@ -222,7 +222,7 @@ body{
         .J_sm{padding:10% 0}
         .J_sm > ul > li{float:none}
         .J_sm > ul > li ul{display: none;}
-        .J_sm > ul > li:first-child ul{display: block;}
+        .J_sm > ul > li ul.on{display: block;}
         .J_sm > ul > li > a{font-size:2rem;margin-top:10%}
         .J_sm > ul > li:first-child >a{margin-top:0}
 
@@ -251,7 +251,7 @@ body{
 
 
 #main_sw,.late_gallery {
-    .swiper-pagination-bullet{opacity: 0.2;width:10px;height:10px;vertical-align: top;background: #767676;opacity: 1;;}
+    .swiper-pagination-bullet{opacity: 0.2;width:10px;height:10px;vertical-align: top;background: #c8c8c8;opacity: 1;;}
     .swiper-pagination-bullet-active{background: $t_cl02;width:40px;height:3px;border-radius: 0;opacity: 1;margin-top: 3.5px;}
     .sw_auto_btn{width:10px;height:10px;background: url("/img/icon_stop02.png")no-repeat center;}
     .sw_auto_btn.on{background-image: url("/img/icon_start02.png")}
@@ -301,7 +301,9 @@ body{
         &_prev, &_end, &_next, &_start{&:hover{background-color: $t_cl04;color:#fff;}}
         &_next ,&_end{margin-left:10px}
         &_next + .pg_end{margin-left:0;border-left:0}
-        &_start + .pg_prev{border-left:0}
+        &_start + .pg_prev{border-left-width:0;
+            @include respond-to(handhelds) {border-left-width:1px}
+        }
     }
     .pg_wrap{float:none;}
 }

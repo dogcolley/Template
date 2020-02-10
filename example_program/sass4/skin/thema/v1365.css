@@ -557,7 +557,7 @@
   #J_sm_wrap .J_sm > ul > li ul {
     display: none;
   }
-  #J_sm_wrap .J_sm > ul > li:first-child ul {
+  #J_sm_wrap .J_sm > ul > li ul.on {
     display: block;
   }
   #J_sm_wrap .J_sm > ul > li > a {
@@ -667,7 +667,7 @@
   width: 10px;
   height: 10px;
   vertical-align: top;
-  background: #767676;
+  background: #c8c8c8;
   opacity: 1;
 }
 
@@ -862,7 +862,13 @@
 }
 
 .sir_page_wrap .pg_start + .pg_prev {
-  border-left: 0;
+  border-left-width: 0;
+}
+
+@media only screen and (max-width: 640px) {
+  .sir_page_wrap .pg_start + .pg_prev {
+    border-left-width: 1px;
+  }
 }
 
 .sir_page_wrap .pg_wrap {

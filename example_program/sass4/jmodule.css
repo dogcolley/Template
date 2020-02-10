@@ -238,7 +238,7 @@ input[type=submit] {
 textarea, input[type=text], input[type=password] {
   -webkit-appearance: none;
   /* 그림자 */
-  border-color: #bdbdbd;
+  border-color: #d9d9d9;
 }
 
 img {
@@ -323,7 +323,7 @@ select {
   background: #fff url("/img/icon_aw_btm01.gif") no-repeat calc(100% - 15px) center;
   background-size: 15px auto;
   padding-right: 35px;
-  border: 1px solid #bdbdbd;
+  border: 1px solid #d9d9d9;
   color: #333;
 }
 
@@ -464,7 +464,7 @@ input[type="text"], input[type=password] {
 
 .pg_page, .pg_current {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   background-color: #f3f3f3;
   border: 1px solid #bbbcc3;
 }

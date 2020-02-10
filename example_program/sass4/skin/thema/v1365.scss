@@ -65,18 +65,7 @@ $breakpoints: (
 $t_cl01 : #f26522;
 $t_cl02 : #f7931d;
 $t_cl03 : #ff7800;
-$t_cl04 : #ccc;
-$t_cl05 : #6c6c6c;
-$t_cl06 : #efefef;
-$t_cl07 : #298cd5;
-$t_cl11 : #1c5eb5;
-$t_cl12 : #567f36;
-$cl_red : #e10000;   
-$cl_red2 : #d60c00;
-$cl_black : #000;   
-$cl_gray : #767676;   
-$t_cl10	: #000;
-$t_cl11 : #ddd;
+$t_cl04 : #f8931d;
 
 
 body{ 
@@ -97,6 +86,11 @@ body{
 
 .sir_cl03{color:$t_cl03}
 .sir_bg03{background:$t_cl03}
+.sir_bd03{border-color: $t_cl03;}
+
+.sir_cl04{color:$t_cl04}
+.sir_bg04{background:$t_cl04}
+.sir_bd04{border-color: $t_cl04;}
 
 .sir_hv_Cft01{
     & a:hover,& button:hover,&.on{color:$t_cl01}
@@ -293,6 +287,25 @@ body{
     }
 
 }
+
+
+.sir_page_wrap{
+    .pg{font-size:0;
+        &_page, &_current {border-radius: 0;font-size:13px;position:relative;border-color:#d9d9d9}
+        &_current {display:inline-block;background-color:$t_cl04;border-color:$t_cl04;color:#fff;font-weight:bold;height:35px;line-height:33px;min-width:35px;border-radius:0px;box-shadow: inset 0px 0px 0px #222542;}
+        &_current{z-index:90}
+        &_page:hover{background-color:$t_cl04;border-color: $t_cl04;color:#fff} 
+        .list_page{border-left-width:0}
+        .use{border-left-width:1px;margin-left:10px}
+        &_prev, &_end, &_next, &_start {text-indent:0;overflow:hidden;background:none;padding:0;border:1px solid #d9d9d9;width:70px;background: #f9f9f9;}
+        &_prev, &_end, &_next, &_start{&:hover{background-color: $t_cl04;color:#fff;}}
+        &_next ,&_end{margin-left:10px}
+        &_next + .pg_end{margin-left:0;border-left:0}
+        &_start + .pg_prev{border-left:0}
+    }
+    .pg_wrap{float:none;}
+}
+
 
 
 /*

@@ -325,12 +325,12 @@
   position: absolute;
   content: "";
   display: block;
-  width: 17px;
-  height: 2px;
+  width: 14px;
+  height: 1px;
   background: #999;
   right: 20px;
   top: 50%;
-  margin-top: -1px;
+  margin-top: -0.5px;
 }
 
 .J_gnb .dep1 > a:not(.icon_aw01):hover:after, #J_sm_wrap .dep1 > a:not(.icon_aw01):hover:after {

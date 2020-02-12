@@ -49,12 +49,22 @@
   background: #f26522;
 }
 
+.sir_hv01:hover, .sir_hv01focus {
+  background: #f26522;
+  color: #fff;
+}
+
 .sir_cl02 {
   color: #f7931d;
 }
 
 .sir_bg02 {
   background: #f7931d;
+}
+
+.sir_hv02:hover, .sir_hv02focus {
+  background: #f7931d;
+  color: #fff;
 }
 
 .sir_cl03 {
@@ -69,6 +79,11 @@
   border-color: #ff7800;
 }
 
+.sir_hv03:hover, .sir_hv03focus {
+  background: #ff7800;
+  color: #fff;
+}
+
 .sir_cl04 {
   color: #f8931d;
 }
@@ -79,6 +94,11 @@
 
 .sir_bd04 {
   border-color: #f8931d;
+}
+
+.sir_hv04:hover, .sir_hv04focus {
+  background: #f8931d;
+  color: #fff;
 }
 
 .sir_hv_Cft01 a:hover, .sir_hv_Cft01 button:hover, .sir_hv_Cft01.on {
@@ -94,11 +114,11 @@
 }
 
 .sir_icon_aw01 {
-  background: url("/img/icon_aw02.png") no-repeat calc(100% - 30px) center;
+  background: url("/img/icon_aw02On.png") no-repeat calc(100% - 30px) center;
 }
 
-.sir_icon_aw01.on, .sir_icon_aw01:hover, .sir_icon_aw01:focus {
-  background-image: url("/img/icon_aw02On.png");
+.sir_icon_aw01.on {
+  background-image: url("/img/icon_aw02.png");
 }
 
 .sir_icon02 {
@@ -121,7 +141,7 @@
   border-top: 60px solid #f7931d;
   border-left: 60px solid transparent;
   z-index: 99;
-  right: 0;
+  right: -1px;
   top: -1px;
 }
 
@@ -134,6 +154,29 @@
 .set_sir_icon04:hover .sir_icon04 img {
   -webkit-animation: mymove 1s infinite linear;
           animation: mymove 1s infinite linear;
+}
+
+.sir_icon05 {
+  background: url("/img/sir_icon04.png") no-repeat left center;
+  background-size: auto 100%;
+}
+
+.sir_lat01 {
+  padding: left 15px;
+  position: relative;
+}
+
+.sir_lat01:before {
+  width: 4px;
+  height: 4px;
+  background: #000;
+  content: "";
+  clear: both;
+  display: block;
+  left: 0;
+  top: 50%;
+  margin-top: -2px;
+  position: absolute;
 }
 
 #sir_hd {
@@ -220,7 +263,7 @@
     background-image: url("/img/icon_aw01On.jpg");
   }
   .sir_nav .J_gnb .dep1 > ul {
-    padding: 20px 0 30px;
+    padding: 20px 0 00px;
   }
   .sir_nav .J_gnb .dep1 > ul > li {
     padding-top: 15px;
@@ -253,8 +296,8 @@
   .sir_nav .J_gnb .dep1 > ul > li:first-child {
     padding-top: 0;
   }
-  .sir_nav .J_gnb > ul > li > ul > li:nth-child(-n+3) {
-    min-height: 210px;
+  .sir_nav .J_gnb > ul > li > ul > li:nth-child(n+4):nth-child(-n+6) {
+    margin-top: 30px;
   }
   .sir_nav .J_gnb > ul > li > ul:before {
     content: "";
@@ -584,6 +627,10 @@
 
 #cnt1 .list2 {
   background: url("/img/pc/main_visual02.jpg") no-repeat center;
+}
+
+#cnt1 .list3 {
+  background: url("/img/pc/main_visual03.jpg") no-repeat center;
 }
 
 @media only screen and (min-width: 1024px) {

@@ -17,6 +17,20 @@ $S_W: 1200;
 }
 
 
+// range selector mixin
+@mixin select-range($start, $end){
+    &:nth-child(n+#{$start}):nth-child(-n+#{$end}){
+     @content;
+     }
+  }
+// mod query mixin
+@mixin mod-list($mod, $remainder){
+&:nth-last-child(#{$mod}n+#{$remainder}):first-child,
+&:nth-last-child(#{$mod}n+#{$remainder}):first-child ~ li {
+    @content;
+    }
+}
+
 /*SCSS*/
  
 $breakpoints: (
@@ -80,17 +94,21 @@ body{
 
 .sir_cl01{color:$t_cl01}
 .sir_bg01{background:$t_cl01}
+.sir_hv01{&:hover,&focus{background: $t_cl01;color:#fff}}
 
 .sir_cl02{color:$t_cl02}
 .sir_bg02{background:$t_cl02}
+.sir_hv02{&:hover,&focus{background: $t_cl02;color:#fff}}
 
 .sir_cl03{color:$t_cl03}
 .sir_bg03{background:$t_cl03}
 .sir_bd03{border-color: $t_cl03;}
+.sir_hv03{&:hover,&focus{background: $t_cl03;color:#fff}}
 
 .sir_cl04{color:$t_cl04}
 .sir_bg04{background:$t_cl04}
 .sir_bd04{border-color: $t_cl04;}
+.sir_hv04{&:hover,&focus{background: $t_cl04;color:#fff}}
 
 .sir_hv_Cft01{
     & a:hover,& button:hover,&.on{color:$t_cl01}
@@ -99,18 +117,23 @@ body{
 .sir_bd_all02{border:1px solid $t_cl02}
 .sir_hv_bg02{&:hover,&:focus{background: $t_cl02;}}
 .sir_icon_aw01{
-    background: url("/img/icon_aw02.png") no-repeat calc(100% - 30px) center ;
-    &.on,&:hover,&:focus{background-image: url("/img/icon_aw02On.png");}
+    background: url("/img/icon_aw02On.png") no-repeat calc(100% - 30px) center ;
+    &.on{background-image: url("/img/icon_aw02.png");}
 }
 
 .sir_icon02{width:18px;height:18px;position: absolute;background: url('/img/icon_more02.png')no-repeat center}
 .J_tab_btn + .sir_icon02{display:none}
 .J_tab_btn.U_ft_c000 + .sir_icon02{display:block;}
 .sir_icon04{
-    position:absolute;;border-top:60px solid $t_cl02;border-left:60px solid transparent;z-index:99;right:0;top:-1px;
+    position:absolute;;border-top:60px solid $t_cl02;border-left:60px solid transparent;z-index:99;right:-1px;top:-1px;
     img{position:absolute;left:-25px;top:-45px}
 }
 .set_sir_icon04:hover .sir_icon04 img{animation: mymove 1s infinite linear;}
+.sir_icon05{
+    background:url("/img/sir_icon04.png")no-repeat left center;background-size:auto 100%;
+ }
+.sir_lat01{padding: left 15px;position:relative}
+.sir_lat01:before{width:4px;height:4px;background: #000;content:"";clear:both;display:block;;left:0;top:50%;margin-top:-2px;position:absolute;}
 
 #sir_hd{border-bottom: 1px solid #d9d9d9;
 &:after{content:"";display:block;width:100%;position: absolute;top:101px;left:0;z-index:80;transition: 1s height;}
@@ -132,7 +155,7 @@ body{
             &.icon_aw01{background:url("/img/icon_aw01.jpg")no-repeat calc(100% - 30px) center;}
             &.icon_aw01:hover,&.icon_aw01:focus{background-image:url("/img/icon_aw01On.jpg")}
         }
-        .J_gnb .dep1 > ul {padding:20px 0 30px}
+        .J_gnb .dep1 > ul {padding:20px 0 00px}
         .J_gnb .dep1 > ul > li{padding-top:15px;font-size:15px;color:#999}
         .J_gnb .dep1 > ul > li > a{display:block;padding-left:6px;position:relative;
             &:before{content:"";display:block;position: absolute;left:0;top:50px;width:3px;height:1px;top:50%;margin-top:-0.5px;background:#999;}
@@ -140,7 +163,7 @@ body{
             &:hover:before{background:#000;}
         }
         .J_gnb .dep1 > ul > li:first-child{padding-top:0}
-        .J_gnb > ul > li > ul > li:nth-child(-n+3){min-height:210px}
+        .J_gnb > ul > li > ul > li{@include select-range(4,6){margin-top:30px}}
         .J_gnb > ul > li > ul:before{content:"";display:block;position: absolute;left: 0;top:0;height:100%;width:260px;padding-top:50px;font-size:30px;color:#000;font-weight:700;background:#f5f5f5;}
         .J_gnb > ul > li:nth-child(1) > ul:before{content:"센터소개"}
         .J_gnb > ul > li:nth-child(2) > ul:before{content:"센터소식"}
@@ -235,6 +258,7 @@ body{
 #cnt1 {
  .list1{background: url("/img/pc/main_visual01.jpg")no-repeat center;}
  .list2{background: url("/img/pc/main_visual02.jpg")no-repeat center;}
+ .list3{background: url("/img/pc/main_visual03.jpg")no-repeat center;}
  .swiper-container{@include respond-to(wide-screens) {height:700px}}
  .swiper_btns {position:absolute;bottom:10%;font-size:30px;color:#000}
  .swiper-pagination-bullet span{width:0px;max-width: 100px;display: inline-block;height: 100%;vertical-align: top;position: relative;color:transparent}

@@ -161,6 +161,42 @@
   background-size: auto 100%;
 }
 
+.sir_icon06 {
+  position: relative;
+}
+
+.sir_icon06 > span:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 105%;
+  left: -2.5%;
+  height: 60%;
+  bottom: -10%;
+  background: #ffea00;
+}
+
+.sir_icon06 span {
+  position: relative;
+}
+
+.sir_icon07 {
+  padding-left: 20px;
+  position: relative;
+}
+
+.sir_icon07:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -1px;
+  left: 0;
+  width: 10px;
+  height: 1px;
+  background: #ff7800;
+}
+
 .sir_lat01 li {
   padding-left: 15px;
   position: relative;
@@ -952,10 +988,15 @@
   color: #000;
 }
 
+.sir_table td {
+  color: #666;
+}
+
 .sir_table td, .sir_table th {
   border-left: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
-  padding: 15px 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .sir_table tr > *:first-child {
@@ -964,5 +1005,9 @@
 
 .sir_table tr:last-child > * {
   border-bottom: 0;
+}
+
+.U_ft_c000_span span {
+  color: #000;
 }
 /*# sourceMappingURL=v1365.css.map */

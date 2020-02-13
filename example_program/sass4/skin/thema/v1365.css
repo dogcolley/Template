@@ -114,7 +114,7 @@
 }
 
 .sir_icon_aw01 {
-  background: url("/img/icon_aw02On.png") no-repeat calc(100% - 30px) center;
+  background: url("/img/icon_aw02On.png") no-repeat calc(100% - 20px) center;
 }
 
 .sir_icon_aw01.on {
@@ -302,6 +302,7 @@
     background-image: url("/img/icon_aw01On.jpg");
     border: 2px solid #f26522;
     color: #f26522;
+    line-height: 53px;
   }
   .sir_nav .J_gnb .dep1 > ul {
     padding: 20px 0 0 30px;
@@ -575,6 +576,7 @@
   background-image: url("/img/icon_aw01On.jpg");
   border: 2px solid #f26522;
   color: #f26522;
+  line-height: 53px;
 }
 
 #J_sm_wrap .J_close02 {
@@ -858,6 +860,7 @@
   border-bottom: 0;
   padding: 12.5px 0;
   display: none;
+  font-size: 14px;
 }
 
 #sir_snb_list .dep1 > a.on + ul {
@@ -883,7 +886,7 @@
   background: #777;
 }
 
-#sir_snb_list .dep1 > ul a:hover:after {
+#sir_snb_list .dep1 > ul a:hover:after, #sir_snb_list .dep1 > ul a.on:after {
   background-color: #ff7800;
 }
 

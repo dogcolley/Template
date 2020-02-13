@@ -117,7 +117,7 @@ body{
 .sir_bd_all02{border:1px solid $t_cl02}
 .sir_hv_bg02{&:hover,&:focus{background: $t_cl02;}}
 .sir_icon_aw01{
-    background: url("/img/icon_aw02On.png") no-repeat calc(100% - 30px) center ;
+    background: url("/img/icon_aw02On.png") no-repeat calc(100% - 20px) center ;
     &.on{background-image: url("/img/icon_aw02.png");}
 }
 
@@ -171,7 +171,7 @@ body{
             &.icon_aw01{background:url("/img/icon_aw01.jpg")no-repeat calc(100% - 30px) center;}
             &.icon_aw01:hover,&.icon_aw01:focus{background-image:url("/img/icon_aw01On.jpg")}
         }
-        .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01}
+        .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01;line-height:53px}
         .J_gnb .dep1 > ul {padding:20px 0 0 30px}
         .J_gnb .dep1 > ul > li{padding-top:15px;font-size:15px;color:#999}
         .J_gnb .dep1 > ul > li > a{display:block;padding-left:6px;position:relative;
@@ -242,7 +242,7 @@ body{
         &.icon_aw01_1{background:url("/img/icon_aw012.jpg")no-repeat calc(100% - 30px) center}
         &.icon_aw01_1:hover,&.icon_aw01_1:focus{background:url("/img/icon_aw01On2.jpg")no-repeat calc(100% - 30px) center}
     }
-    .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01}
+    .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01;line-height:53px}
     
 
     .J_close02{width:100%;}
@@ -322,11 +322,11 @@ body{
         &.icon_aw01:hover{background-image: url("/img/icon_snb03.png");}
         &.icon_aw01.on,&.icon_aw01.on:hover{background-image: url("/img/icon_snb01.png");}
     }
-    .dep1 > ul{border:1px solid #d9d9d9;border-bottom:0;padding: 12.5px 0;display:none}
+    .dep1 > ul{border:1px solid #d9d9d9;border-bottom:0;padding: 12.5px 0;display:none;font-size:14px}
     .dep1 > a.on + ul{display: block;border-top:0}
     .dep1 > ul a{padding:7.5px 0 7.5px 40px;position: relative;color:#777;
         &:after{content:"";display: block;position: absolute;width: 3px;height: 3px;left:25px;top:50%;margin-top: -1.5px;background: #777;}
-        &:hover:after{background-color: $t_cl03;}
+        &:hover:after,&.on:after{background-color: $t_cl03;}
         &:hover,&.on{color:$t_cl03}
     }
 

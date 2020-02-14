@@ -320,8 +320,8 @@ em {
 }
 
 select {
-  background: #fff url("/img/icon_aw_btm01.gif") no-repeat calc(100% - 15px) center;
-  background-size: 15px auto;
+  background: #fff url("/img/icon_aw_btm01.gif") no-repeat;
+  background-position: calc(100% - 15px) center;
   padding-right: 35px;
   border: 1px solid #d9d9d9;
   color: #333;
@@ -330,6 +330,8 @@ select {
 select:focus {
   background-image: url("/img/icon_aw_top01.gif");
   color: #333;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 15px) center;
 }
 
 button {

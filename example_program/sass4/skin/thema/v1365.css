@@ -114,11 +114,14 @@
 }
 
 .sir_icon_aw01 {
-  background: url("/img/icon_aw02On.png") no-repeat calc(100% - 20px) center;
+  background: url("/img/icon_aw02On.png") no-repeat;
+  background-position: calc(100% - 20px);
 }
 
 .sir_icon_aw01.on {
   background-image: url("/img/icon_aw02.png");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 20px) center;
 }
 
 .sir_icon02 {
@@ -293,13 +296,18 @@
     line-height: 51px;
   }
   .sir_nav .J_gnb .dep1 > a.icon_aw01 {
-    background: url("/img/icon_aw01.jpg") no-repeat calc(100% - 30px) center;
+    background: url("/img/icon_aw01.jpg") no-repeat;
+    background-position: calc(100% - 30px);
   }
   .sir_nav .J_gnb .dep1 > a.icon_aw01:hover, .sir_nav .J_gnb .dep1 > a.icon_aw01:focus {
     background-image: url("/img/icon_aw01On.jpg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 30px) center;
   }
   .sir_nav .dep1:hover > a.icon_aw01 {
     background-image: url("/img/icon_aw01On.jpg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 30px) center;
     border: 2px solid #f26522;
     color: #f26522;
     line-height: 53px;
@@ -562,6 +570,8 @@
 
 #J_sm_wrap .dep1 > a.icon_aw01:hover, #J_sm_wrap .dep1 > a.icon_aw01:focus {
   background-image: url("/img/icon_aw01On.jpg");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 30px) center;
 }
 
 #J_sm_wrap .dep1 > a.icon_aw01_1 {
@@ -577,6 +587,8 @@
   border: 2px solid #f26522;
   color: #f26522;
   line-height: 53px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 30px) center;
 }
 
 #J_sm_wrap .J_close02 {

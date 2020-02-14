@@ -117,8 +117,8 @@ body{
 .sir_bd_all02{border:1px solid $t_cl02}
 .sir_hv_bg02{&:hover,&:focus{background: $t_cl02;}}
 .sir_icon_aw01{
-    background: url("/img/icon_aw02On.png") no-repeat calc(100% - 20px) center ;
-    &.on{background-image: url("/img/icon_aw02.png");}
+    background: url("/img/icon_aw02On.png") no-repeat ;background-position:calc(100% - 20px);
+    &.on{background-image: url("/img/icon_aw02.png");background-repeat: no-repeat;background-position:  calc(100% - 20px) center}
 }
 
 .sir_icon02{width:18px;height:18px;position: absolute;background: url('/img/icon_more02.png')no-repeat center}
@@ -168,10 +168,10 @@ body{
         .J_gnb > ul > li > ul > li {float:left;width:33.333%;padding-left:30px}
         .J_gnb .dep1 > a{display:block;display:block;width:100%;height:55px;line-height:53px;border:1px solid #d9d9d9;font-size:17px;color:#000;padding-left:30px;
             &:hover,&:focus{color:$t_cl01;border:2px solid $t_cl01;line-height:51px;}
-            &.icon_aw01{background:url("/img/icon_aw01.jpg")no-repeat calc(100% - 30px) center;}
-            &.icon_aw01:hover,&.icon_aw01:focus{background-image:url("/img/icon_aw01On.jpg")}
+            &.icon_aw01{background:url("/img/icon_aw01.jpg")no-repeat ;background-position:calc(100% - 30px);}
+            &.icon_aw01:hover,&.icon_aw01:focus{background-image:url("/img/icon_aw01On.jpg");background-repeat: no-repeat;background-position:  calc(100% - 30px) center}
         }
-        .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01;line-height:53px}
+        .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");background-repeat: no-repeat;background-position:  calc(100% - 30px) center;border:2px solid $t_cl01;color:$t_cl01;line-height:53px}
         .J_gnb .dep1 > ul {padding:20px 0 0 30px}
         .J_gnb .dep1 > ul > li{padding-top:15px;font-size:15px;color:#999}
         .J_gnb .dep1 > ul > li > a{display:block;padding-left:6px;position:relative;
@@ -238,11 +238,11 @@ body{
     .dep1 > a{
         &:hover,&focus{border:2px solid $t_cl01;color:$t_cl01}
         &.icon_aw01{background:url("/img/icon_aw01.jpg")no-repeat calc(100% - 30px) center;}
-        &.icon_aw01:hover,&.icon_aw01:focus{background-image:url("/img/icon_aw01On.jpg")}
+        &.icon_aw01:hover,&.icon_aw01:focus{background-image:url("/img/icon_aw01On.jpg");background-repeat: no-repeat;background-position:  calc(100% - 30px) center }
         &.icon_aw01_1{background:url("/img/icon_aw012.jpg")no-repeat calc(100% - 30px) center}
         &.icon_aw01_1:hover,&.icon_aw01_1:focus{background:url("/img/icon_aw01On2.jpg")no-repeat calc(100% - 30px) center}
     }
-    .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01;line-height:53px}
+    .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01;line-height:53px;background-repeat: no-repeat;background-position:  calc(100% - 30px) center }
     
 
     .J_close02{width:100%;}
@@ -359,5 +359,5 @@ body{
 .sir_table td, .sir_table th{border-left:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding-top:15px;padding-bottom:15px}
 .sir_table tr > *:first-child{border-left:0}
 .sir_table tr:last-child > * {border-bottom:0}
-
 .U_ft_c000_span span{color:#000}
+

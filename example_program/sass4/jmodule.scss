@@ -222,8 +222,8 @@ a {color:inherit;text-decoration:none;font-size:inherit}
 select { border-radius:0; /* 아이폰 사파리 보더 없애기 */ -webkit-appearance:none; /* 화살표 없애기 for chrome*/ -moz-appearance:none; /* 화살표 없애기 for firefox*/ appearance:none /* 화살표 없애기 공통*/ } 
 select::-ms-expand{ display:none /* 화살표 없애기 for IE10, 11*/ }
 em{font-weight:500}
-select {background:#fff url("/img/icon_aw_btm01.gif")no-repeat calc(100% - 15px) center ;background-size:15px auto;padding-right: 35px;border:1px solid #d9d9d9;color:#333}
-select:focus{background-image:url("/img/icon_aw_top01.gif");color:#333}
+select {background:#fff url("/img/icon_aw_btm01.gif")no-repeat;background-position:calc(100% - 15px) center;padding-right: 35px;border:1px solid #d9d9d9;color:#333}
+select:focus{background-image:url("/img/icon_aw_top01.gif");color:#333;background-repeat: no-repeat;background-position:  calc(100% - 15px) center}
 button{border:0;background:none}
 /*box-sizing-style*/ 
 *, :after, :before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}

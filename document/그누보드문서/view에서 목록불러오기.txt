@@ -1,0 +1,69 @@
+<?/*
+		$mt_pvc ;
+		$mt_nvc ;
+		$mt_nw = $view['wr_num'];
+		$k = 0;
+		$mt_list = array();
+			
+		for($i =0	; $i < -$view['wr_num']  % 4 - 1; $i++){
+			$mt_pvc++;					
+		}
+		if( -$view['wr_num']  % 4 == 0)$mt_pvc =3;
+
+
+		for($i =0 ; (-$view['wr_num']+$i) % 4 !== 0; $i++){
+			 $mt_nvc++;
+		}
+
+
+		if($mt_pvc > 0){
+			// 윗글을 얻음 
+			$sql = " select wr_id, wr_file, wr_subject from {$write_table} where wr_is_comment = 0 and wr_num > '{$write['wr_num']}' {$sql_search} order by wr_num desc, wr_reply desc limit ".$mt_pvc." ";
+			$mt_prev = sql_query($sql);
+			while ($row = sql_fetch_array($mt_prev)){
+				$mt_list[$k] = get_list($row, $board, $board_skin_url, G5_IS_MOBILE ? $board['bo_mobile_subject_len'] : $board['bo_subject_len']);
+				$k ++;
+			}
+		}
+
+		$mt_list[$k]['wr_id'] = $view['wr_id'];
+		$mt_list[$k]['wr_file'] = $view['file']['count'];
+		$mt_list[$k]['wr_subject'] = $view['wr_subject'];
+		$mt_list[$k]['file'] = $view['file'];
+		$k++;
+		
+
+		if($mt_nvc > 0){
+			$sql = " select wr_id, wr_file , wr_subject from {$write_table} where wr_is_comment = 0 and wr_num < '{$write['wr_num']}' {$sql_search} order by wr_num, wr_reply limit ".$mt_nvc." ";
+			$mt_next = sql_query($sql);
+			while ($row = sql_fetch_array($mt_next)){
+				$mt_list[$k] = get_list($row, $board, $board_skin_url, G5_IS_MOBILE ? $board['bo_mobile_subject_len'] : $board['bo_subject_len']);
+				$k ++;
+			}
+		}
+	?>
+
+
+	<ul>
+	<?
+		for($i = 0 ; $i < count($mt_list); $i++){
+		
+	?>
+		<li class="T_fl_lt T_mg_lt10">
+			<a href="<?=get_pretty_url($bo_table, $mt_list[$i]['wr_id'], $qstr);?>">
+					<?echo $i.'입니다';
+					for ($j=0; $j<=count($mt_list[$i]['file']); $j++) {
+						$mt_img =get_view_thumbnail2($mt_list[$i]['file'][$j]);
+						//echo 
+						//print_r2($mt_img);
+						?>
+						<img src="<?=$mt_img[path].'/'.$mt_img[file]?>" alt="" width="200">
+					<?}?>
+
+			</a>
+		</li>
+	<?
+		}
+	?>
+	</ul>
+*/?>

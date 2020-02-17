@@ -1,0 +1,41 @@
+    <?php if(defined('_INDEX_') && !$_COOKIE['mtAddPop']) { ?>
+		<div class="mt_add_pop" id="mtAddPop01">
+			<div>
+				<img src="<?=G5_IMG_URL?>/pop01.jpg" alt="" />
+			</div>
+			<div class="mt_add_btns">
+				<button id="mt_add_24">24시간동안 열람하지 않습니다.</button>
+				<button id="mt_add_close">닫기</button>
+			</div>
+		</div>
+		
+		<style type="text/css">
+			#mtAddPop01{position:fixed;width:80%;left:10%;z-index:999;top:5%;background:#fff;border:1px solid #d9d9d9}
+			#mtAddPop01 img{width:100%;height:auto}
+			#mtAddPop01 button{background:#fff;padding:10px}
+			#mtAddPop01 button:last-child{float:right}
+			#mtAddPop01 .mt_add_btns{border-top:1px solid #d9d9d9;}
+		</style>
+
+		<script >
+			$(function(){
+				$('#mt_add_close').on('click',function(){
+					$('#mtAddPop01').remove();
+				});
+				$('#mt_add_24').on('click',function(){
+					setCookie('mtAddPop',true,1)
+					$('#mtAddPop01').remove();
+				});
+				function setCookie(name, value, days) {
+						if (days) {
+								var date = new Date();
+								date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+								var expires = "; expires=" + date.toGMTString();
+						} else {
+							   var expires = "";
+						}
+						document.cookie = name + "=" + value + expires + "; path=/";
+				}
+			});
+		</script>
+	<?}?>

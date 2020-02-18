@@ -1,0 +1,21 @@
+<?php
+require 'cla_directzip.php';
+$zip = new DirectZip();
+$zip->open('브라우저로 보낼 압축파일 이름.zip');
+$zip->addFile('/tmp/추가할 파일.jpg', '압축파일 내 파일 이름.jpg');
+$zip->addEmptyDir('압축파일 내 폴더 이름'); // 안 해도 상관없음.
+$zip->addFile('/tmp/추가할 파일2.png', '압축파일 내 폴더 이름/압축파일 내 파일 이름.png');
+$zip->addFile('/tmp/추가할 파일3.jpg'); // 압축파일에 파일을 '추가할 파일3.jpg'로 추가
+$zip->addFromString('바로 글쓰기.txt', '파일 내용'); // 압축파일에 '파일 내용'을 '바로 글쓰기.txt'로 추가
+$zip->close();
+
+/*
+브라우저로 보낼 압축파일 이름.zip
+│  바로 글쓰기.txt
+│  압축파일 내 파일 이름.jpg
+│  추가할 파일3.jpg
+│
+└─압축파일 내 폴더 이름
+        압축파일 내 파일 이름.png
+*/
+?>

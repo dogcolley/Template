@@ -236,13 +236,16 @@ body{
     }
     
     .dep1 > a{
+        @include respond-to(handhelds2) {padding:20px 15px}
         &:hover,&focus{border:2px solid $t_cl01;color:$t_cl01}
         &.icon_aw01{background:url("/img/icon_aw01.jpg")no-repeat calc(100% - 30px) center;}
         &.icon_aw01:hover,&.icon_aw01:focus{background-image:url("/img/icon_aw01On.jpg");background-repeat: no-repeat;background-position:  calc(100% - 30px) center }
         &.icon_aw01_1{background:url("/img/icon_aw012.jpg")no-repeat calc(100% - 30px) center}
         &.icon_aw01_1:hover,&.icon_aw01_1:focus{background:url("/img/icon_aw01On2.jpg")no-repeat calc(100% - 30px) center}
     }
-    .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01;line-height:53px;background-repeat: no-repeat;background-position:  calc(100% - 30px) center }
+    .dep1:hover > a.icon_aw01{background-image:url("/img/icon_aw01On.jpg");border:2px solid $t_cl01;color:$t_cl01;background-repeat: no-repeat;background-position:  calc(100% - 30px) center;
+        @include respond-to(wide-screens) {line-height:53px;}
+    }
     
 
     .J_close02{width:100%;}

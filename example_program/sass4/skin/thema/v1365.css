@@ -41,6 +41,18 @@
   }
 }
 
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
+  body {
+    padding-top: 91px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  body {
+    padding-top: 15vw;
+  }
+}
+
 .sir_cl01 {
   color: #f26522;
 }
@@ -254,6 +266,17 @@
   height: 367px;
   background: url("/img/nav_bg01.jpg") no-repeat center top;
   border-bottom: 1px solid #d9d9d9;
+}
+
+@media only screen and (max-width: 1024px) {
+  #sir_hd {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 150;
+    background: #fff;
+  }
 }
 
 .sir_nav {
@@ -674,7 +697,7 @@
     max-width: 520px;
     width: 86%;
     background: #fff;
-    height: 96%;
+    height: 100%;
     position: relative;
     z-index: 91;
     overflow: auto;

@@ -87,8 +87,8 @@ body{
         min-width:1250px;    overflow-x: hidden;
         &.sm_wraps:after{position: absolute;height: 100%;top:0;left:0;width:100%;display:block;content: "";background: rgba(0,0,0,0.2);z-index: 90;}
     }
-    @include respond-to(medium-screens) {}
-    @include respond-to(handhelds) {}
+    @include respond-to(medium-screens) {padding-top:91px}
+    @include respond-to(handhelds) {padding-top:15vw}
 }
 
 
@@ -155,6 +155,10 @@ body{
 #sir_hd{border-bottom: 1px solid #d9d9d9;
 &:after{content:"";display:block;width:100%;position: absolute;top:101px;left:0;z-index:80;transition: 1s height;}
 &.nav:after{height:367px;background:url("/img/nav_bg01.jpg")no-repeat center top;border-bottom: 1px solid #d9d9d9;}
+
+@include respond-to(handhelds2) {
+    position:fixed;width:100%;top:0;left:0;z-index:150;background:#fff;
+    }
 }
 .sir_nav{
     position:relative;
@@ -264,7 +268,7 @@ body{
         height: 100%;position: fixed;
         .sm_con {height:100%}
         .J_close02{height:100%;position: absolute;left:0;width: 100%;background: rgba(0,0,0,0.2);top:0}
-        .sm_con > div{float:right;max-width: 520px;width:86%;background: #fff;height: 96%;position: relative;z-index: 91;overflow: auto;}
+        .sm_con > div{float:right;max-width: 520px;width:86%;background: #fff;height: 100%;position: relative;z-index: 91;overflow: auto;}
         .J_sm{padding:10% 0}
         .J_sm > ul > li{float:none}
         .J_sm > ul > li ul{display: none;}

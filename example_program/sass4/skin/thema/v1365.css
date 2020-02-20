@@ -200,6 +200,22 @@
   background: #ff7800;
 }
 
+.sir_icon08 {
+  position: relative;
+}
+
+.sir_icon08:after {
+  content: "";
+  position: absolute;
+  left: -7.5px;
+  top: 50%;
+  margin-top: -7.5px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #ff7800;
+  border-radius: 50%;
+}
+
 .sir_lat01 li {
   padding-left: 15px;
   position: relative;

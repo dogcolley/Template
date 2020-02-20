@@ -526,8 +526,16 @@ input[type="text"], input[type=password] {
   background: #f7f7f7;
 }
 
+.U_bg_ca7 {
+  background: #a7a7a7;
+}
+
 .U_bg_cd9 {
   background: #ddd;
+}
+
+.U_bg_cccc {
+  background: #ccc;
 }
 
 .U_bg_ceb {
@@ -552,6 +560,10 @@ input[type="text"], input[type=password] {
 
 .U_bg_cf3 {
   background: #f3f3f3;
+}
+
+.U_ft_ctsp {
+  color: transparent;
 }
 
 .U_ft_cfff {
@@ -584,6 +596,14 @@ input[type="text"], input[type=password] {
 
 .U_ft_caaa {
   color: #aaa;
+}
+
+.U_ft_cccc {
+  color: #ccc;
+}
+
+.U_ft_ca7a7a7 {
+  color: #a7a7a7;
 }
 
 .U_ft_c6c6c6c {

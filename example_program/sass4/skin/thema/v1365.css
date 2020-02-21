@@ -128,12 +128,14 @@
 .sir_icon_aw01 {
   background: url("/img/icon_aw02On.png") no-repeat;
   background-position: calc(100% - 20px);
+  background-size: 17px auto;
 }
 
 .sir_icon_aw01.on {
   background-image: url("/img/icon_aw02.png");
   background-repeat: no-repeat;
   background-position: calc(100% - 20px) center;
+  background-size: 17px auto;
 }
 
 .sir_icon02 {
@@ -335,18 +337,20 @@
     line-height: 51px;
   }
   .sir_nav .J_gnb .dep1 > a.icon_aw01 {
-    background: url("/img/icon_aw01.jpg") no-repeat;
-    background-position: calc(100% - 30px);
+    background: url("/img/icon_aw01.png") no-repeat;
+    background-position: calc(100% - 20px);
+    background-size: 17px auto;
   }
   .sir_nav .J_gnb .dep1 > a.icon_aw01:hover, .sir_nav .J_gnb .dep1 > a.icon_aw01:focus {
-    background-image: url("/img/icon_aw01On.jpg");
+    background-image: url("/img/icon_aw01On.png");
     background-repeat: no-repeat;
-    background-position: calc(100% - 30px) center;
+    background-position: calc(100% - 20px) center;
   }
   .sir_nav .dep1:hover > a.icon_aw01 {
-    background-image: url("/img/icon_aw01On.jpg");
+    background-image: url("/img/icon_aw01On.png");
+    background-size: 17px auto;
     background-repeat: no-repeat;
-    background-position: calc(100% - 30px) center;
+    background-position: calc(100% - 20px) center;
     border: 2px solid #f26522;
     color: #f26522;
     line-height: 53px;
@@ -474,6 +478,7 @@
   width: 40px;
   height: 40px;
   margin-top: 24px;
+  position: relative;
 }
 
 #J_op_sm .icon {
@@ -500,6 +505,32 @@
 
 #J_op_sm .icon {
   margin-top: 9px;
+}
+
+#J_op_sm.on .icon {
+  margin: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+}
+
+#J_op_sm.on .icon01 {
+  display: none;
+}
+
+#J_op_sm.on .icon02 {
+  width: 100%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+#J_op_sm.on .icon03 {
+  width: 100%;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 @media only screen and (min-width: 1024px) {
@@ -610,29 +641,34 @@
 }
 
 #J_sm_wrap .dep1 > a.icon_aw01 {
-  background: url("/img/icon_aw01.jpg") no-repeat calc(100% - 30px) center;
+  background: url("/img/icon_aw01.png") no-repeat calc(100% - 20px) center;
+  background-size: 17px auto;
 }
 
 #J_sm_wrap .dep1 > a.icon_aw01:hover, #J_sm_wrap .dep1 > a.icon_aw01:focus {
-  background-image: url("/img/icon_aw01On.jpg");
+  background-image: url("/img/icon_aw01On.png");
+  background-size: 17px auto;
   background-repeat: no-repeat;
-  background-position: calc(100% - 30px) center;
+  background-position: calc(100% - 20px) center;
 }
 
 #J_sm_wrap .dep1 > a.icon_aw01_1 {
-  background: url("/img/icon_aw012.jpg") no-repeat calc(100% - 30px) center;
+  background: url("/img/icon_aw012.jpg") no-repeat calc(100% - 20px) center;
+  background-size: 17px auto;
 }
 
 #J_sm_wrap .dep1 > a.icon_aw01_1:hover, #J_sm_wrap .dep1 > a.icon_aw01_1:focus {
-  background: url("/img/icon_aw01On2.jpg") no-repeat calc(100% - 30px) center;
+  background: url("/img/icon_aw01On2.jpg") no-repeat calc(100% - 20px) center;
+  background-size: 17px auto;
 }
 
 #J_sm_wrap .dep1:hover > a.icon_aw01 {
-  background-image: url("/img/icon_aw01On.jpg");
+  background-image: url("/img/icon_aw01On.png");
+  background-size: 17px auto;
   border: 2px solid #f26522;
   color: #f26522;
   background-repeat: no-repeat;
-  background-position: calc(100% - 30px) center;
+  background-position: calc(100% - 20px) center;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -753,7 +789,6 @@
 #cnt1 .swiper_btns {
   position: absolute;
   bottom: 10%;
-  font-size: 30px;
   color: #000;
 }
 

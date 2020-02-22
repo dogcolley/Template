@@ -1,0 +1,21 @@
+ mobile web (반응형 제외)
+ 
+ 1.용량 작은 사진 (구버전기기)
+ 2.2배큰 용량을 가진 사진 (이전기기)
+ 3.3배큰 용량을 가진 사진 (최신기기)
+
+ viewport: mobile 사용자가 보는 screen의 size
+
+ mobile os: AD=DP , IOS=PT : 320 * 480 , 320 * 568 
+
+ <meta name="viewport" content="width=device-width , maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+ 
+ device-width  ○유저의 사이즈
+ maximum-scale = 1.0  ○확대사이즈
+ minimum-scale = 1.0  ○축소사이즈
+ user-scalable=no ○확대기능
+ 
+ -바로가기 아이콘 적용시키기-
+ <link rel="apple-touch-icon" href="">  ○IOS
+ <link rel="shocut icon" href=""> ○AD
+ <link rel="apple-touch-icon-precomposed" href=""> ○ALL

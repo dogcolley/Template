@@ -292,30 +292,27 @@ input[type="text"],input[type=password]{padding-left:5%;padding-right:5%;
 */
 
 /*==== jsh bt-style -start ====*/
-$set_tag : 'span', 'p', 'div','a','em','string','table','td','th';
+$set_tag : 'span', 'p', 'div','a','em','strong';
 
 @mixin responde-pk01($device) {
 	    &wd{
             &_full {width:100%}
             @for $i from 1 through 100{
-				&_p#{$i}, &_pc#{$i} > * {width: $i+%}
+				&_P#{$i}, &_CP#{$i} > * {width: $i+%}
 				@each $tag in $set_tag{
-					&_p#{$i}_#{$tag} #{$tag} {width: $i +%}				
+					&_P#{$i}_#{$tag} #{$tag} {width: $i +%}				
 				} 
             }
-            @for $i from 1 through 200{
-				&_sz#{$i*5},&_csz#{$i*5} > * {width: $i*5+px}
-			}
 		}
 		
 		&ht{
             &_full {height:100%}       
             @for $i from 1 through 100{
-				&_p#{$i*1} ,  &_cp#{$i*1} > * {height: $i+%}
+				&_P#{$i*1} ,  &_CP#{$i*1} > * {height: $i+%}
+				@each $tag in $set_tag{
+					&_P#{$i}_#{$tag} #{$tag} {width: $i +%}				
+				}
             }
-            @for $i from 1 through 200{
-				&_sz#{$i*5}, &_csz#{$i*5} > * {height: $i*5+px}
-			}    
 		}
 		
 		&ps_{
@@ -328,12 +325,12 @@ $set_tag : 'span', 'p', 'div','a','em','string','table','td','th';
 		&sound_only, &blind{position:absolute;left:-9999px;width:0;height:0;overflow:hidden;text-indent:-9999px;font-size:0}
 	
 		&ds_{
-			&block,&Cblock > *,&block_a a,&block_span span , &block_div, &block_strong strong, &block_em em,&block_p p{display: block}
-			&inbl,&Cinbl > *,&inbl_a a,&inbl_span span , &inbl_div, &inbl_strong strong, &inbl_em em,&inbl_p p{display: inline-block} 
-			&in,&Cin > *,&in_a a,&in_span span , &in_div, &in_strong strong, &in_em em,&in_p p{display: inline}
-			&table,&Ctable > *,&table_a,&table_span span , &table_div, &table_strong table, &table_em em,&table_p p{display: table}
-            &cell,&Ccell > *,&cell_a a,&cell_span span , &cell_div, &cell_strong table, &cell_em em,&cell_p p{display: table-cell}
-			&non,&Cnon > *,&non_a a,&non_span span , &non_div, &non_strong table, &non_em em,&non_p p{display:none}
+			&block,&Cblock > *{display: block}
+			&inbl,&Cinbl > *{display: inline-block} 
+			&in,&Cin > *{display: inline}
+			&table,&Ctable > *{display: table}
+            &cell,&Ccell > *{display: table-cell}
+			&non,&Cnon > *{display:none}
 		} 
 	
 		&fl_{
@@ -346,13 +343,13 @@ $set_tag : 'span', 'p', 'div','a','em','string','table','td','th';
 	
 		&ft_{
 			@for $i from 10 through 50{
-				&sz#{$i}, &sz#{$i}_span span, &sz#{$i}_a a,&sz#{$i}_strong strong,&sz#{$i}_em em,&sz#{$i}_p p,&sz#{$i}_li li{font-size:$i+px}
+				&sz#{$i} {font-size:$i+px}
 			}  
 		
 		
 			@for $i from 1 through 30{
-				&rem#{$i},&rem#{$i}_span span,&rem#{$i}_a a,&rem#{$i}_strong strong ,&rem#{$i}_em em ,&rem#{$i}_p p , &rem#{$i}_div div, &rem#{$i}_em em{font-size:($i*0.1)+rem}
-				&rem#{$i}hf, &rem#{$i}hf_span span , &rem#{$i}hf_a a ,&rem#{$i}hf_strong strong, &rem#{$i}hf_em em, &rem#{$i}hf_p p, &rem#{$i}hf_div div, &rem#{$i}hf_div em{font-size:(($i*0.1)+0.05)+rem}
+				&rem#{$i}{font-size:($i*0.1)+rem}
+				&rem#{$i}.hd_pops_footer{font-size:(($i*0.1)+0.05)+rem}
 			}  
 
 			&ct{text-align:center}

@@ -179,7 +179,7 @@ $breakpoints: (
     @media only screen and (min-width: $S_M + 1) and (max-width: $S_T - 1) { @content; }
   }
   @else if $media == wide-screens {
-    @media only screen and (min-width: $S_T) { @content; }
+    @media only screen and (min-width: $S_T - 1 ) { @content; }
   }
 }
  

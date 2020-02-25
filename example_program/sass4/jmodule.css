@@ -355,7 +355,7 @@ input[type="text"], input[type=password] {
   padding-right: 5%;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1023px) {
   input[type="text"], input[type=password] {
     padding-left: 30px;
     padding-right: 30px;
@@ -28812,7 +28812,7 @@ input[type="text"], input[type=password] {
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1023px) {
   .PC_wd_full, .PT_wd_full {
     width: 100%;
   }

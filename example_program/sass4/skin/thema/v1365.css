@@ -270,7 +270,7 @@
   border-bottom: 1px solid #d9d9d9;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   #sir_hd {
     position: fixed;
     width: 100%;
@@ -557,7 +557,7 @@
   top: 0;
   width: 100%;
   left: 0;
-  z-index: 95;
+  z-index: 99;
   overflow: auto;
   max-height: 100%;
 }
@@ -629,7 +629,7 @@
   padding-top: 15px;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   #J_sm_wrap .dep1 > a {
     padding: 20px 15px;
   }
@@ -712,7 +712,7 @@
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   #J_sm_wrap {
     height: 100%;
     position: fixed;

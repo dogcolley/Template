@@ -280,11 +280,11 @@ body{
         .J_sm > ul > li{float:none}
         .J_sm > ul > li ul{display: none;}
         .J_sm > ul > li ul.on{display: block;}
-        .J_sm > ul > li > a{font-size:2rem;margin-top:10%}
+        .J_sm > ul > li > a{font-size:1.8rem;margin-top:10%}
         .J_sm > ul > li:first-child >a{margin-top:0}
 
-        .dep1 > ul{padding: 0 2%;font-size:1.15rem}
-        .dep1 > a{margin-top:20px;font-size:1.25rem;padding:15px 3%}
+        .dep1 > ul{padding: 0 2%;font-size:1rem}
+        .dep1 > a{margin-top:20px;font-size:1.125rem;padding:15px 3%}
     }
 }
 
@@ -355,13 +355,13 @@ body{
 
 .sir_page_wrap{
     .pg{font-size:0;
-        &_page, &_current {border-radius: 0;font-size:13px;position:relative;border-color:#d9d9d9}
+        &_page, &_current {border-radius: 0;font-size:13px;position:relative;border-color:#d9d9d9;background-color: #fff;}
         &_current {display:inline-block;background-color:$t_cl04;border-color:$t_cl04;color:#fff;font-weight:bold;height:35px;line-height:33px;min-width:35px;border-radius:0px;box-shadow: inset 0px 0px 0px #222542;}
         &_current{z-index:90}
         &_page:hover{background-color:$t_cl04;border-color: $t_cl04;color:#fff} 
         .list_page{border-left-width:0}
         .use{border-left-width:1px;margin-left:10px}
-        &_prev, &_end, &_next, &_start {text-indent:0;overflow:hidden;background:none;padding:0;border:1px solid #d9d9d9;width:70px;background: #f9f9f9;}
+        &_prev, &_end, &_next, &_start {text-indent:0;overflow:hidden;background:none;padding:0;border:1px solid #d9d9d9;width:70px;background: #fff;}
         &_prev, &_end, &_next, &_start{&:hover{background-color: $t_cl04;color:#fff;}}
         &_next ,&_end{margin-left:10px}
         &_next + .pg_end{margin-left:0;border-left:0}

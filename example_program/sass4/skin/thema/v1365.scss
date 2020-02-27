@@ -231,7 +231,7 @@ body{
     }
 }
 
-#J_sm_wrap{position: absolute;top:0;width:100%;left: 0;z-index:99;overflow:auto;max-height:100%;
+#J_sm_wrap{position: absolute;top:0;width:100%;left: 0;z-index:100;overflow:auto;max-height:100%;
     .sm_con{padding-bottom:60px}
     .sm_con .J_close{background:#fff;position: relative;z-index: 92;}
     .J_sm > ul > li > a{display:block;color:#000;font-weight:500;}
@@ -275,7 +275,7 @@ body{
         height: 100%;position: fixed;
         .sm_con {height:100%}
         .J_close02{height:100%;position: absolute;left:0;width: 100%;background: rgba(0,0,0,0.2);top:0}
-        .sm_con > div{float:right;max-width: 520px;width:86%;background: #fff;height: 100%;position: relative;z-index: 91;overflow: auto;}
+        .sm_con > div{float:right;max-width: 520px;width:86%;background: #fff;height: 100%;position: relative;z-index: 99;overflow: auto;}
         .J_sm{padding:10% 0}
         .J_sm > ul > li{float:none}
         .J_sm > ul > li ul{display: none;}

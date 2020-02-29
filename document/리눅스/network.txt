@@ -1,0 +1,41 @@
+※ 네트워크 설정하기
+
+정보 가져오기 :sudo lshw -C Network
+
+나의 랜카드 네임 : enp2s0 , enp3s0f3u3 
+
+무선랜카드 가동 : sudo ifconfig '무선카드네임' up
+
+검색방법 : sudo iwlist '인터페이스 이름' scan | more
+
+설정파일 수정하기 : sudo vi /etc/network/interfaces
+
+※ VI 사용하기
+
+열기 : vi newfilename
+명령어 모드 : <ESC>2번
+:w	현재 변경사항 저장
+:wq	현재 변경사항 저장 후 나가기
+:q!	저장하지 않고 나가기
+:q	나가기 (변경사항이 있다면 오류가 발생하고 나가지지 않음)
+:!bash	(편집 상태를 그대로 두고 bash 쉘 실행. 재 진입하려면 exit 후 엔터)
+(대문자) ZZ	현재 변경사항 저장 후 나가기
+
+커서이동 모드 :<ESC>1번 누르면
+h	왼쪽으로 1 space 이동
+l	오른쪽으로 1 space 이동
+j	아래줄로 이동
+k	윗줄로 이동
+←	왼쪽으로 1 space 이동
+→	오른쪽으로 1 space 이동
+↓	아래줄로 이동
+↑	윗줄로 이동
+
+입력되돌리기 :u
+
+글지우기 : x 5x X
+
+단어지우기 : 
+
+
+

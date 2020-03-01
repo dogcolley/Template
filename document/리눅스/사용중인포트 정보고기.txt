@@ -1,2 +1,0 @@
-netstat -a
-netstat

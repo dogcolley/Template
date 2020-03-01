@@ -36,3 +36,17 @@ $ git status
 $ git add '파일명'
 :버전관리 시작
 
+
+
+
+//여기부터는 나의 야매공략법
+
+git init :생성
+git clone : 복사
+git pull : 받기
+git fetch : 패치
+git add . or /경로 : 추가하기
+git commit -m '메시지등록' :커밋하여 레포에 등록하기
+git push origin master : 마스터 권한으로 등록하기 깃허브 계정을 물어봄
+git push --set -upstrean orign master : 이게 아마 뭐보는걸꺼임
+

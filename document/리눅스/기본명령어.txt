@@ -1,0 +1,9 @@
+
+//사용중인포트 정보보기
+netstat -a
+netstat
+
+//.파일 보기
+GUI에서: Ctrl + h
+콘솔에서: is-a
+

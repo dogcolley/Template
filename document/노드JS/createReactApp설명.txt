@@ -1,0 +1,8 @@
+현재 -g create react app 이 지원이 안된다고 하네요 /20200302
+
+-g create-react-app and cashe remove;
+npm uninstall -g create-react-app
+npm cache clean --force
+npm cache verify
+yarn create react-app my-app
+

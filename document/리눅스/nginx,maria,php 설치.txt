@@ -1,0 +1,66 @@
+nginx 설치□□□□□□□□□□□
+
+설치 : apt install nginx
+테스트 : ufw allow 'Nginx Full'
+시작 : sysyemctl start nginx
+정지 : systemctl stop nginx
+재시작 : systemctl restart nginx
+리로드 : reload nginx
+자동시작해제 : systemctl disable nginx
+자동시작설정 : systemctl enable nginx
+
+php 설치□□□□□□□□□□□
+설치 : apt install php-fpm
+기본설정 : /etc/nginx/sites-available/default (이동)
+
+변경할코드
+#location ~ \.php$ {
+#	include snippets/fastcgi-php.conf;
+#
+#	# With php-fpm (or other unix sockets):
+#	fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+#	# With php-cgi (or other tcp sockets):
+#	fastcgi_pass 127.0.0.1:9000;
+#}
+
+변경한코드 (php 버전이 바뀜)
+location ~ \.php$ {
+  include snippets/fastcgi-php.conf;
+#
+#	# With php-fpm (or other unix sockets):
+  fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+#	# With php-cgi (or other tcp sockets):
+#	fastcgi_pass 127.0.0.1:9000;
+}
+
+index.php 자동인식 설정 : 
+01. 해당구문을 : index index.html index.htm index.nginx-debian.html;
+02. 으로 변경 : index index.html index.htm index.nginx-debian.html index.php;
+03. 후 서버리로드 : service nginx reload
+
+확인방법
+01. /var/www/html/ 디렉토리에 phpinfo.php를 만들고 다음 코드를 입력하고 저장합니다.
+02. <?php phpinfo()?>
+
+MariaDB 설피□□□□□□□□□□□
+
+설치 : apt install mariadb-server php-mysql
+설정 : mysql_secure_installation
+웹접근 : mysql -uroot -p
+입력문구 :
+use mysql;
+update user set plugin='' where user='root';
+flush privileges;
+quit;
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,118 @@
+간단하게 Json Web Token(JWT)을 구현했습니다
+
+ 
+
+처음 공부할 때 인터넷에 검색하면 OAuth, RESTAPI 등이
+
+같이 소개 되어있어서 헷갈리지만 JWT 자체는 간단합니다
+
+ 
+
+JWT는 데이터 무결성을 위해 사용하는 모든 곳에 사용 가능합니다
+
+ 
+
+어떤 정보를 전달하는지 알아내는 것은 쉽지만 
+
+크래커가 토큰을 탈취해서 잘못된 데이터를 전달하려면
+
+JWT의 signature 부분을 알아내서 header, payload 와 같이 정보를 바꿔야 하는데
+
+대상의 서버가 signature를 어떻게 만들었는지 해석해내야 합니다
+
+ 
+
+그러므로 데이터 변조에 강력한 것으로 생각됩니다
+
+class jwt
+{
+        protected $alg;
+        function __construct()
+        {
+               //사용할 알고리즘
+               $this->alg = ‘sha256’;
+        }
+
+        function hashing(array $data)
+        {
+               // 토큰의 헤더
+               $header = json_encode(array(
+                      ‘alg’=>$this->alg,
+                      ‘typ’=>’JWT’
+               ));
+
+               // 전달할 데이터
+               $payload = json_encode($data);
+
+               // 시그니처 토큰 확인에서 제일 중요
+               // 충분히 복잡하게 구현해야함
+               $signature = hash($this->alg, $header.$payload);
+
+               return base64_encode($header.’.’.$payload.’.’.$signature);
+        }
+
+        function dehashing($token)
+        {
+               // 토큰 만들때의 구분자 . 으로 나누기
+               $parted = explode(‘.’, base64_decode($token));
+
+               $signature = $parted[2];
+
+               // 위에서 토큰 만들때와 같은 방식으로 시그니처 만들고 비교
+               if(hash($this->alg, $parted[0].$parted[1]) == $signature)
+                      echo “\n\ngood\n\n”;
+               else
+                      exit(‘잘못된 signature 입니다’);
+
+               /*
+
+                      만료 확인 등 값 검사
+
+               */
+
+               $payload = json_decode($parted[1],true);
+               return $payload;
+        }
+}
+
+$jwt = new jwt();
+
+$token = $jwt->hashing(array(
+        ‘sub’=>’1234567890’,
+        ‘name’=>’smileserv’,
+        ‘iat’=>time()
+));
+var_dump($token);
+
+/*
+
+토큰 값
+
+string(200) “eyJhbGciOiJzaGEyNTYiLCJ0eXAiOiJKV1QifS57InN1YiI6IjEyMzQ1Njc4OTAiLCJuY
+
+W1lIjoic21pbGVzZXJ2IiwiaWF0IjoxNTY5Mzk0MTY1fS4xNGQ4N2U4NGJhMzE2YjBh
+
+YWMwYzNhMjRmZmRiYTE3NjIyNzlhM2UzZTViNjkzMDI0NzA3ODY2MDdjYTY5N
+
+TEw”
+
+*/
+
+/*
+데이터 이동 …
+*/
+
+$data = $jwt->dehashing($token);
+var_dump($data);
+
+/*
+
+토큰 해석 후 데이터
+
+array(3) {
+        [“sub”]=>string(10) “1234567890”
+        [“name”]=>string(9) “smileserv”
+        [“iat”]=>int(1569394165)
+}
+
+*/

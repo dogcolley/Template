@@ -1,0 +1,868 @@
+<?php
+if (!defined('_GNUBOARD_')) exit; //개별 페이지 접근 불가
+
+//$wset add front 
+
+/*js*/
+add_javascript('<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>',0); //promise.auto.js 
+add_javascript('<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>',0); //bable
+
+/* use Vue js  */
+add_javascript('<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>',0);
+add_javascript('<script src="https://unpkg.com/vuex@3.1.3/dist/vuex.js"></script>',0);
+
+/*use vue vuetify.js */
+add_stylesheet('<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">',0);
+add_stylesheet('<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">',0);
+add_javascript('<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>',0); 
+
+/*use vue color picker type vue guide cdn*/
+add_stylesheet('<link href="https://unpkg.com/@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css" rel="stylesheet">',0);
+add_javascript('<script src="https://unpkg.com/@radial-color-picker/vue-color-picker@2.1.0/dist/vue-color-picker.min.js"></script>',0); 
+
+/*use */
+//add_stylesheet('<link href="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.css" rel="stylesheet">',0);
+//add_javascript('src="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.js""></script>',0); 
+
+/* ather js */
+add_javascript('<script src="https://unpkg.com/axios/dist/axios.min.js"></script>',0); //ajax 대신 axios
+
+?>
+
+
+
+
+<div class="<?=$widget_id ?>" id="<?=$widget_id ?>">
+    <?//print_r2($wset)
+      //이걸응용하면 widget 설정 UI를 더 좋게 만들지 않을까?
+    ?>
+    <div id="<?=$widget_id ?>Vue">
+        <v-app id="inspire">
+            <v-container fluid>
+                <v-row>
+                    <v-col cols="12">
+                        <h3  class="headline">Privew</h3>
+                    </v-col>
+                    <v-col cols="12">
+                        <div :style="PrivewStyle">{{text}}</div>
+                        <br>
+                        <a :style="PrivewStyle">{{text}}</a>
+                        <br>
+                        <button :style="PrivewStyle">{{text}}</button>
+                        <?/*
+                        <div>변경되고있는 값:{{PrivewStyle}}</div>
+                        */?>
+                    </v-col>
+                </v-row>
+                   
+                <v-row>
+                    <v-col cols="12">
+                        <h3  class="headline">Setting</h3>
+                        <v-radio-group v-model="type" row>
+                            <v-radio label="font" value="font"></v-radio>
+                            <v-radio label="Display && Positoin" value="display"></v-radio>
+                            <v-radio label="tagType" value="tagType"></v-radio>
+                            <v-radio label="blank" value="blank"></v-radio>
+                            <v-radio label="Decoraction" value="decoraction"></v-radio>
+                        </v-radio-group>
+                        <v-textarea
+                            outlinedoutlined
+                            v-model="text"
+                            type="text"
+                            label="여기에 텍스트를 입력해주세요"
+                        ></v-textarea>
+                    </v-col>
+                </v-row>
+                    
+                <v-row v-if="type == 'display'">
+                    <v-col cols="12">
+                        <h3  class="headline">Display && Position</h3>
+                    </v-col>
+                    <v-col cols="12">
+                        <v-select
+                                :items="displayOptions"
+                                label="displayOption"
+                                v-model="displayOption"
+                                v-on:change='ChangeOption'
+                        ></v-select>
+                    </v-col>
+
+                    <v-col cols="12">
+                        <v-select
+                                :items="positionOptions"
+                                label="positionOption"
+                                v-model="positionOption"
+                                v-on:change='ChangeOption'
+                        ></v-select>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="type == 'blank'">
+                    <v-col cols="12">
+                        <h3  class="headline">Blank (margin && padding)</h3>
+                        <v-select
+                                :items="blankOptions"
+                                label="blank Option"
+                                v-model="blankOption"
+                        ></v-select>
+
+                        <v-radio-group v-model="unitPd" row v-if="blankOption == 'padding'">
+                            <v-radio label="px" value="px"></v-radio>
+                            <v-radio label="%" value="%"></v-radio>
+                        </v-radio-group>
+
+                        <v-radio-group v-model="typeMg" row v-if="blankOption == 'margin'">
+                            <v-radio label="px" value="px"></v-radio>
+                            <v-radio label="%" value="%"></v-radio>
+                        </v-radio-group>
+                        
+                    </v-col>
+
+                    <v-col cols="12" v-if="blankOption == 'padding'">
+                        <v-slider
+                            v-model="paddingTop"
+                            min="1"
+                            max="100"
+                            label="paddingTop"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="paddingBottom"
+                            min="1"
+                            max="100"
+                            label="paddingBottom"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="paddingLeft"
+                            min="1"
+                            max="100"
+                            label="paddingLeft"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="paddingRight"
+                            min="1"
+                            max="100"
+                            label="paddingRight"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                    </v-col>
+
+                    <v-col cols="12" v-if="blankOption == 'margin'">
+                        <v-slider
+                            v-model="marginTop"
+                            min="1"
+                            max="100"
+                            label="marginTop"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="marginBottom"
+                            min="1"
+                            max="100"
+                            label="marginBottom"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="marginLeft"
+                            min="1"
+                            max="100"
+                            label="marginLeft"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="marginRight"
+                            min="1"
+                            max="100"
+                            label="marginRight"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                    </v-col>
+                </v-row>
+                
+                <v-row v-if="type == 'decoraction'">
+                    <v-col cols="12">
+                        <h3 class="headline">option</h3>
+                        <v-radio-group v-model="decoractionOption" v-on:change='ChangeCate(decoractionOption)' row>
+                            <v-radio label="Background" value="background"></v-radio>
+                            <v-radio label="Border" value="border"></v-radio>
+                        </v-radio-group>
+                    </v-col>
+                   
+                    <v-col cols="12" v-if="decoractionOption == 'background'">
+                        <h3 class="headline">Background</h3>
+                    </v-col>
+
+                    <v-col cols="12" v-if="decoractionOption == 'border'">
+                        <h3 class="headline">Border</h3>
+                        <v-switch
+                        v-model="borderBoth"
+                        class="ma-2"
+                        label="Both"
+                        ></v-switch>
+                        
+                        <v-row v-if="!borderBoth">
+                            <v-col>
+                                <v-radio-group v-model="borderPosition" row >
+                                    <v-radio label="top" value="top"></v-radio>
+                                    <v-radio label="bottom" value="bottom"></v-radio>
+                                    <v-radio label="left" value="left"></v-radio>
+                                    <v-radio label="right" value="right"></v-radio>
+                                </v-radio-group>
+                            </v-col>
+
+                            <v-col cols="12" v-if="borderPosition == 'top'">
+                                <strong class="">TOP</strong>
+                                <v-select 
+                                    thumb-label
+                                    row
+                                    lable="borderStyle"
+                                    v-model="borderStyle01"
+                                    :items="borderStyles"
+                                >
+                                </v-select>
+                                <v-slider 
+                                    thumb-label
+                                    row
+                                    label="borderSize"
+                                    v-model="borderSize01"
+                                >
+                                </v-slider>
+                            </v-col>
+
+                            <v-col cols="12" v-if="borderPosition == 'right'">
+                                <strong class="">RIGHT</strong>
+                                <v-select 
+                                    thumb-label
+                                    row
+                                    lable="borderStyle"
+                                    v-model="borderStyle02"
+                                    :items="borderStyles"
+                                >
+                                </v-select>
+                                <v-slider 
+                                    thumb-label
+                                    row
+                                    label="borderSize"
+                                    v-model="borderSize02"
+                                >
+                                </v-slider>
+                            </v-col>
+
+                            <v-col cols="12" v-if="borderPosition == 'bottom'">
+                                <strong class="">BOTTOM</strong>
+                                <v-select 
+                                    thumb-label
+                                    row
+                                    lable="borderStyle"
+                                    v-model="borderStyle03"
+                                    :items="borderStyles"
+                                >
+                                </v-select>
+                                <v-slider 
+                                    thumb-label
+                                    row
+                                    label="borderSize"
+                                    v-model="borderSize03"
+                                >
+                                </v-slider>
+                            </v-col>
+
+                            <v-col cols="12" v-if="borderPosition == 'left'">
+                                <strong class="">LEFT</strong>
+                                <v-select 
+                                    thumb-label
+                                    row
+                                    lable="borderStyle"
+                                    v-model="borderStyle04"
+                                    :items="borderStyles"
+                                >
+                                </v-select>
+                                <v-slider 
+                                    thumb-label
+                                    row
+                                    label="borderSize"
+                                    v-model="borderSize04"
+                                >
+                                </v-slider>
+                            </v-col>
+                        </v-row>
+               
+                        <v-row v-if="borderBoth">
+                            <v-col cols="12">
+                                <strong class="">LEFT</strong>
+                                <v-select 
+                                    thumb-label
+                                    row
+                                    lable="borderStyle"
+                                    v-model="borderStyle"
+                                    :items="borderStyles"
+                                >
+                                </v-select>
+                                <v-slider 
+                                    thumb-label
+                                    row
+                                    label="borderSize"
+                                    v-model="borderSize"
+                                >
+                                </v-slider>
+                            </v-col>
+                        </v-row>
+
+                    </v-col>
+                </v-row>
+                
+                <v-row v-if="type == 'tagType'">
+                    <v-col cols="12">
+                        <v-select
+                                :items="tagTypes"
+                                label="tagType"
+                                v-model="tagType"
+                        ></v-select>
+                    </v-col>
+                    <v-col cols="12" v-if="tagType=='a'">
+                        <v-text-field
+                            label="Link"
+                        ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" v-if="tagType=='a'">
+                        <v-select
+                                :items="targets"
+                                label="tagType"
+                                v-model="target"
+                        ></v-select>
+                    </v-col>
+                </v-row>
+
+                <v-row v-if="type == 'font'">
+                    <v-col cols="12">
+                        <h3 class="headline">Options</h3>
+                
+                        <v-select
+                            :items="fontOptions"
+                            label="fontOptions"
+                            v-model="fontOption"
+                            v-on:change='ChangeCate(fontOption)'
+                        ></v-select>
+                    </v-col>
+
+                    <v-col cols="12" v-if="fontOption=='기본'"> 
+                        <v-slider
+                            v-model="fontSize"
+                            min="1"
+                            max="100"
+                            label="fontSize"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+
+                        
+                        <v-select
+                            :items="fontUnits"
+                            label="fontUnit"
+                            v-model="fontUnit"
+                            menu-props="auto, overflowY"
+                            v-on:change='ChangeOption'
+                        ></v-select>
+
+                        <v-select
+                            :items="fontWeights"
+                            label="fontWeights"
+                            v-model="fontWeight"
+                            menu-props="auto, overflowY"
+                            v-on:change='ChangeOption'
+                        ></v-select>
+                        <v-select
+                            :items="textAligns"
+                            label="textAlign"
+                            v-model="textAlign"
+                            menu-props="auto, overflowY"
+                            v-on:change='ChangeOption'
+                        ></v-select>
+                        <v-select
+                            :items="textDecos"
+                            label="textDeco"
+                            v-model="textDeco"
+                            menu-props="auto, overflowY"
+                            v-on:change='ChangeOption'
+                        ></v-select>
+                    </v-col>
+
+                    <v-col cols="12" v-if="fontOption=='그림자'"> 
+                        <v-slider
+                            v-model="fontShdowX"
+                            min="-50"
+                            max="100"
+                            label="그림자 - x축"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="fontShdowY"
+                            min="-50"
+                            max="100"
+                            label="그림자 - Y축"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="fontShdowBlur"
+                            min="-50"
+                            max="100"
+                            label="그림자 굵기 축"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                    </v-col>
+
+
+                    <v-col cols="12" v-if="fontOption=='자간,행간'"> 
+                        <v-slider
+                            v-model="letterSpacing"
+                            min="-50"
+                            max="100"
+                            label="자간"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                        <v-slider
+                            v-model="lineHeight"
+                            min="-50"
+                            max="100"
+                            label="행간"
+                            thumb-label
+                            v-on:change='ChangeOption'
+                        ></v-slider>
+                    </v-col>
+                    
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                </v-row>
+
+            
+                <v-row v-if="colorSetting">
+                    <v-col cols="12" >
+                        <h3  class="headline">Color Setting</h3>
+                    </v-col>
+                    <v-col cols="6" >
+                        <v-btn
+                            v-for="t in CLtypes"
+                            :key="t"
+                            class="my-4"
+                            block
+                            @click="CLtype = t"
+                        >
+                            {{ t }}
+                        </v-btn>
+                    </v-col>
+                    <v-col cols="6" class="d-flex justify-center">
+                        <v-color-picker v-model="CLcolor"></v-color-picker>
+                    </v-col>
+                </v-row>
+
+                <v-col cols="12" >
+                    <form action="<?=G5_URL?>" method="get">
+                    <input type="hidden" v-model="setWidget" name="wdiget">
+                    <v-btn
+                        type="submit"
+                        block
+                        color="primary"
+                    >
+                        SAVE
+                    </v-btn>
+                    </form>
+                </v-col>
+
+            </v-container>
+        </v-app>
+    </div>
+    <?/*
+    <div id="<?=$widget_id ?>Vue">
+        <button type="button" id="testBtn">제이쿼리 연동확인 이벤트</button>
+        <button type="button" @Click ="test01">Vue 연동확인 이벤트</button>
+        <button type="button" @Click ="getAPI">Vuex 연동확인 이벤트(mutations)</button>
+        <div  ref='setDom01' id="DomDiv">
+            여기엔 돔에 대한 직접제어가 들어가는부분입니다.
+        </div>
+        {{getWidget.test}}
+    </div>
+    */?>
+</div>
+
+
+<script type="text/babel">
+//jsh, dogcolley,장석환 2020-03-13 Test Vue(Dom,Compoment) + Vuex(data) + Vuetify(style,motion) + phpData(DB : mysql)
+//php 에서 데이터처리 vue 프론트 처리
+
+/*
+    -셋팅방법 상단에 addscript로 Vue와 ES6의 셋팅을 직접 해줬습니다!
+    -참고 : 비동기 통신[악시오스], 데이터관리[Vuex], 돔관리[Vue] //저는 프레임워크의 Vue기능은 쓰지않고 라이브러리의 기능을 사용했습니다.
+
+    -목차
+    1.const,let으로 php의 데이터들을 셋팅하여 나열해줍니다.
+    2.vuex로 스토어를 만들어 데이터와 함수를 지정해줍니다.
+    3.vue로 Dom처리를 해줍니다.
+    4.vuetify.js로 구현하기힘든 UI를 간편하게 만들어줍니다.
+*/
+
+
+const setApi = "<?=$wset['sld_aixos_link']?>";
+const setId = "#<?=$widget_id ?>Vue";
+const setMethod = <?=$sld_aixos_method ? $sld_aixos_method : 'false' ?>;
+const setCrowing = <?echo $sld_aixos_crawing == 0 ? 'false' : 'true' ?>;
+//const setData = <?echo $sld_aixos_data01 ? $sld_aixos_data01 : 'NODATA'?>;
+
+/*
+const easings = {
+  linear: '',
+  easeInQuad: '',
+  easeOutQuad: '',
+  easeInOutQuad: '',
+  easeInCubic: '',
+  easeOutCubic: '',
+  easeInOutCubic: '',
+  easeInQuart: '',
+  easeOutQuart: '',
+  easeInOutQuart: '',
+  easeInQuint: '',
+  easeOutQuint: '',
+  easeInOutQuint: ''
+}
+*/
+
+/*
+const store = new Vuex.Store({
+    //확장성을 위한 vuex 중앙 데이터 처리장치
+    strict: true,
+    state : { // like data();
+        getWidget: {
+            test: 0,
+            setApi : "<?=$wset['sld_aixos_link']?>",
+            setId : "<?=$widget_id ?>",
+            setMethod : <?=$sld_aixos_method ? $sld_aixos_method : 'false' ?>,
+            setCrowing : <?echo $sld_aixos_crawing == 0 ? 'false' : 'true' ?>
+        },
+        gestData : new Object(),
+    },
+    computed : { // event change created 
+        
+    },
+    components: {
+    },
+    getters:{ // double 방지해주기 data의 중복 겹침 방지
+        doneTodosCount: (state, getters) => {
+            return getters.getWidget.test.length
+        }
+    },
+    mutations:{ //methods
+        API(state,n){
+            this.state.getWidget.test ++;
+            console.log('ok');
+            console.log(this.state.getWidget.test);
+        },
+        functionB(state,n){},
+        functionC(state,n){},
+        functionD(state,n){},
+    },
+    action:{ //function async and complete function
+
+    },
+    modules:{ // 여러개의 store 정보들을 불러올때
+    }
+});
+*/
+
+
+const app = new Vue({
+    mode: 'production',
+    el:setId,
+    name: 'LayoutsDemosBaselineFlipped',
+    vuetify: new Vuetify(),
+    props: {
+    },
+    data: () => ({
+            setWidget:'SendData',
+            PrivewStyle:'',
+            type: 'font',
+            text: '여기에 텍스트를 입력해주세요.',
+            fontSize:16,
+            fontUnit:'px',
+            fontOption:'기본',
+            fontColor: "#000",
+            fontWeight:'400',
+            textAlign:'left',
+            textDeco:'unset',
+            fontShdowX:0,
+            fontShdowY:0,
+            fontShdowBlur:0,
+            fontShdowColor:'#000',
+            letterSpacing:0, 
+            lineHeight:1,
+            colorSetting:true,
+            colorSettingMode:'컬러',
+            fontOptions:[
+                {text:'기본'},
+                {text:'그림자'},
+                {text:'자간,행간'},
+                {text:'컬러'},
+                {text:'효과'},
+            ],
+            fontWeights:[
+                {text:'300'},
+                {text:'400'},
+                {text:'500'},
+                {text:'600'},
+                {text:'700'},
+                {text:'800'},
+                {text:'900'},
+            ],
+            textDecos:[
+                {text:'none'},
+                {text:'overline'},
+                {text:'line-through'},
+                {text:'underline'},
+            ],
+            textAligns:[
+                {text:'center'},
+                {text:'left'},
+                {text:'right'},
+            ],
+            fontUnits:[
+                {text:'px'},
+                {text:'rem'},
+            ],
+            CLtypes: ['hex', 'hexa', 'rgba', 'hsla', 'hsva'],
+            CLtype: 'hex',
+            hex: '#000',
+            hexa: '#000',
+            rgba: { r: 255, g: 255, b: 255, a: 1 },
+            hsla: { h: 300, s: 1, l: 0.5, a: 1 },
+            hsva: { h: 300, s: 1, v: 1, a: 1 },
+            displayOptions:[
+                {text:'block'},
+                {text:'inline-block'},
+                {text:'inline'},
+                {text:'table'},
+                {text:'table-Cell'}
+            ],
+            displayOption:'block',
+            tagType:'normal',
+            tagTypes: [
+                {text:'normal'},
+                {text:'button'},
+                {text:'a'},
+            ],
+            Link:'',
+            target:'새창열기',
+            targets:[
+                {text:'바로이동'},
+                {text:'새창열기'},
+            ],
+            positionOption:'',
+            positionOptions:[
+                {text:'static'},
+                {text:'absolute'},
+                {text:'fixed'},
+                {text:'relative'}
+            ],
+            blankOption:'padding',
+            blankOptions:[
+                {text:'padding'},
+                {text:'margin'}
+            ],
+            unitPd:'px',
+            unitMg:'px',
+            paddingTop:0,
+            paddingBottom:0,
+            paddingLeft:0,
+            paddingRight:0,
+            marginTop:0,
+            marginBottom:0,
+            marginLeft:0,
+            marginRight:0,
+            decoractionOption:'background',
+            borderBoth : true,
+            borderPosition:'top',
+            borderColor:'',
+            borderColor01:'',
+            borderColor02:'',
+            borderColor03:'',
+            borderColor04:'',
+            borderSize:0,
+            borderSize01:0,
+            borderSize02:0,
+            borderSize03:0,
+            borderSize04:0,
+            borderStyle:'solid',
+            borderStyle01:'solid',
+            borderStyle02:'solid',
+            borderStyle03:'solid',
+            borderStyle04:'solid',
+            borderStyles:[
+                {text:'solid'},
+                {text:'dashed'},
+                {text:'dotted'}
+            ],
+            backgroundColor:'',
+    }),
+    computed: {
+        /*
+        getWidget () {
+            return store.state.getWidget 
+        },
+        */
+        CLcolor: {
+            get () {
+                this.ColorSet(this[this.CLtype]);
+                this.ChangeOption();
+                return this[this.CLtype]
+            },
+            set (v) {
+                this.ColorSet(this[this.CLtype]);
+                this.ChangeOption();
+                this[this.CLtype] = v
+            },
+        },
+        showColor () {
+            if (typeof this.color === 'string') return this.CLcolor
+            return JSON.stringify(Object.keys(this.CLcolor).reduce((color, key) => {
+                CLcolor[key] = Number(this.CLcolor[key].toFixed(2));
+                return color
+            }, {}), null, 2);
+        },
+    },
+    created:function(){
+        this.ChangeOption();
+        //이런식으로 직접 호출하는 방식은 vue에서 돔구조에 접근이 불가능하기 떄문에 vue 선언한 다음 외부에서 접근하도록한다.
+        //동적생성자들은 on을 이용한제어로 컨트롤하면 충분히 제어가능하다.
+    },
+    mounted:function(){
+        //console.log('여기에 이벤트가 끝나고 나오는 마운트가실행')
+    },
+    methods: {
+        /*
+        getAPI () {
+            store.commit('API','SET');
+            axios.get(`${setApi}`).then(res=>{
+                console.log(res.data);
+            });
+        },
+        */
+        ChangeOption(option,data){
+            let CssTxt = '';
+            if(this.fontUnit == 'rem')CssTxt += `fontSize:${this.fontSize / 10}${this.fontUnit};`;
+            else CssTxt += `fontSize:${this.fontSize}${this.fontUnit};`;
+            CssTxt += `fontWeight:${this.fontWeight};`;
+            CssTxt += `textAlign:${this.textAlign};`;
+            CssTxt += `textShadow:${this.fontShdowX}px ${this.fontShdowY}px ${this.fontShdowBlur}px ${this.fontShdowColor} ;`;
+            CssTxt += `letterSpacing:${this.letterSpacing / 10}px;`;
+            CssTxt += `lineHeight:${this.lineHeight};`;
+            CssTxt += `color:${this.fontColor};`;
+            CssTxt += `display:${this.displayOption};`;
+            CssTxt += `textDecoration:${this.textDeco};`;
+            CssTxt += `padding:${this.paddingTop}${this.unitPd} ${this.paddingRight}${this.unitPd} ${this.paddingBottom}${this.unitPd} ${this.paddingLeft}${this.unitPd};      `;
+            CssTxt += `margin:${this.marginTop}${this.unitPd} ${this.marginRight}${this.unitPd} ${this.marginBottom}${this.unitPd} ${this.marginLeft}${this.unitPd};      `;
+            CssTxt += `border:1px solid ${this.borderColor};`;
+            CssTxt += `background:${this.backgroundColor};`;
+            console.log(CssTxt);
+            this.PrivewStyle = CssTxt;
+        },
+        ChangeSetting(){
+            
+        },
+        ChangeCate(cate){
+            console.log(cate);
+            if(cate == '그림자' || cate == "컬러" || cate =="효과" || cate == "background"|| cate == 'border')this.colorSetting = true;
+            else this.colorSetting = false;
+            if(cate)this.colorSettingMode = cate;
+        },
+        ColorSet(colorData){
+            if(this.colorSettingMode == '그림자'){
+                this.fontShdowColor = colorData;
+            }
+            else if(this.colorSettingMode == '컬러'){
+                this.fontColor = colorData;
+            }
+            else if(this.colorSettingMode == 'background'){
+                this.backgroundColor = colorData;
+            }
+            else if(this.colorSettingMode == 'border'){
+                this.borderColor = colorData;
+            }
+            console.log(colorData);
+        }
+    },
+    watch:{
+        PrivewStyle: function (newQuestion) {
+        },
+        type: function(state){
+            if(state == 'decoraction'){
+                this.ChangeCate(this.decoractionOption);
+            }else if(state == 'font'){
+                this.ChangeCate('컬러');
+            }else{
+                this.ChangeCate();
+            }
+        }
+    }
+});
+      
+
+$(function(){
+    //제이쿼리가 vue를 조작할수있는 간단한 방법 
+    //제어 대상 v-select 에서 사용하는 v-menu의 positon이 제어가 되지 않음 그걸 제조정해주는 제어문
+    $(window).on('load',function(){
+        $(document).on('click','.v-select__slot',function(){
+            const testSet = $(this).find("label").attr('for');
+            const setTop = $(this).offset().top - $(setId).offset().top + 'px';
+            const setLeft = $(this).offset().left - $(setId).offset().left + 'px';
+            $('.v-select__slot').each(function(e1,tag){
+                if(testSet == $(this).find("label").attr('for')){
+                    setTimeout(() => {
+                        const setTag = $('#list'+testSet.substr(5)).parent();
+                        setTag.css({top:setTop,left:setLeft});
+                    }, 50);
+                }
+            });
+        });
+    });
+});
+
+/*
+const res = async queryString => { //사이트 크롤링을 위한 예제문
+    try {
+        const res = await axios({
+        url: `https://www.google.com/search?q=${qs.escape(queryString)}&tbm=isch`,
+        method: 'GET',
+        headers: {
+            'User-Agent':
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
+        },
+        })
+        const body = res
+        console.log(body)
+    } catch (err) {
+        console.log(err)
+    }
+}
+*/
+
+</script>
+
+
+

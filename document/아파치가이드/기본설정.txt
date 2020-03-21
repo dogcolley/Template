@@ -1,3 +1,6 @@
+
+for window install
+
 https://www.apachelounge.com/download / 아파치 최신버전
 https://secure.php.net/downloads.php / php 최신버전
 
@@ -7,6 +10,37 @@ https://jimnong.tistory.com/612
 
 php 연동 부분
 https://huistorage.tistory.com/5
+
+for linix install
+
+https://webnautes.tistory.com/1185
+
+아파치 기본설치
+$ sudo apt install apache2
+
+소유자 지정가능
+<Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+</Directory>
+
+방화벽 활성화 
+$ sudo ufw enable
+
+ssh 설정허용
+sudo ufw allow ssh
+
+아파치 설정
+http
+sudo ufw app info "Apache"
+
+https
+sudo ufw app info "Apache Secure"
+
+all
+sudo ufw app info "Apache Full"
+
 
 
 

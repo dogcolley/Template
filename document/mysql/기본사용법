@@ -1,0 +1,16 @@
+설정시 이것저것 물어보는데 사용권한 접속권한 계정설정 등의 내용이 있으니 보고 알아서 해석하도록한다.
+
+mysql , mariaDB 다 같은 계열로 거의 차이가 없으니 나중에 utf8 set 같은거만 알아보자
+
+유저테이블 셋
+create database db DEFAULT CHARACTER SET utf8;
+
+유저생성하기
+create user test01 identified !Fmusknst7477
+
+
+유저 패스워드 설정확인하기
+SHOW VARIABLES LIKE 'validate_password%';
+
+권한 부여 
+GRANT ALL PRIVILEGES ON db.* TO '사용자이름'@'localhost' identified by '패스워드';

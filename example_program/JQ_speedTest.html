@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span id="counter" style="font-size: 24px">0</span>
+
+    <div id="selectbox">
+      <span id="title">이건 셀렉트박스</span>
+      <div id="popup">
+        <ul id="list"></ul>
+      </div>
+    </div>
+    
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script>
+
+        var changeQueue = (function() {
+            var list = [];
+
+            return {
+                enqueue: function(c) {
+                list.push(c);
+                },
+
+                dequeue: function() {
+                return list.shift();
+                },
+
+                isEmpty: function() {
+                return list.length === 0;
+                }
+            }
+        })();
+
+        $(function() {
+            // 매 초마다 카운터 갱신
+            console.time();
+
+            // 데이터 생성
+            var data = [];
+
+            for (var i = 0; i < 10000; i++) {
+                data.push('아이템' + i);
+            }
+
+            // 클릭 이벤트 핸들러
+            $('#title').click(function(e) {
+                $('#popup').toggle();
+            });
+
+            // 데이터로 셀렉트박스 항목 만들기
+            for (let i = 0; i < data.length; i++) {
+                changeQueue.enqueue({
+                    execute: function() {
+                    const elem = createItem(data[i]);
+                    $('#list').append(elem);
+                    }
+                });
+            }
+
+            // 반복적으로 큐를 체크하여 30개씩 실행
+            setInterval(function() {
+                for (var i = 0; i < 30 && !changeQueue.isEmpty(); i++) {
+                    var c = changeQueue.dequeue();
+
+                    if (c)
+                    c.execute();
+
+                    if (changeQueue.isEmpty())
+                    console.timeEnd();
+                }
+            }, 0);
+
+            function createItem(d) {
+            var elem = $('<li>' + d + '</li>');
+            elem.addClass('item');
+
+            // 아이템 클릭 시 선택되도록 함
+            elem.click(function() {
+                $('#title').html(d);
+                $('#popup').hide();
+            });
+
+            return elem;
+            }
+        });
+
+    </script>
+</body>
+</html>

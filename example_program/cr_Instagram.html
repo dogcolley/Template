@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <div id="instagram"></div>
+
+    <script>
+        const wrapper = document.getElementById("instagram");
+        fetch("https://www.instagram.com/twicetagram/")
+        .then(a => {
+            return a.text();
+        }).then(a => {
+            console.log(a);
+            const media = JSON.parse(a.slice(a.indexOf("edge_owner_to_timeline_media") + 30, a.indexOf("edge_saved_media") - 2));
+            console.log(media.edges);
+            media.edges.forEach(m => {
+                const node = m.node,
+                    a = document.createElement("a"),
+                    img = document.createElement("img");
+                
+                a.target="_blank",
+                a.href = `https://www.instagram.com/p/${node.shortcode}/`,
+                img.src = node.display_url,
+                a.append(img),
+                wrapper.append(a)
+            })
+        })
+
+    </script>
+</body>
+</html>

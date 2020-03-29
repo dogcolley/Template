@@ -6,11 +6,11 @@
 1하드웨어 
 2커널 : 하드웨어 <=> 사용자 (여기까지가 엄격한의미 리눅스)
 3셀 : 명령어를 커널에서 하드로 하드에서 커널을 지나 셀로 text형식으로 송수신
-4으용프로그램 : window,linux,ubunt 등등등
+4응용프로그램 : window,linux,ubunt 등등등
 
 ※gnu 프로젝트 
 1985 리차드 소틀만의 open project 로 서로 공유
-GPL(general public license) : 무료, 베포, 응용, 단 오픈소스
+GPL(general public license) : 무료/유료, 상업적목적사용가능, 베포, 응용, 단 오픈소스
 
 ※커널 
 -자동차의 엔진같은 부분 (www.kernel.org 에서 최신버전을 베포합니다.)

@@ -10,6 +10,9 @@ sudo su - root
 etc/lightdm/lightdm.conf
 root/.prefile  하단메세지 주석처리
 
+wget http://download.hanbit.co.kr/ubuntu/16.04/sources.list
+apat-get update
+
 
 02.server2
 03.client

@@ -1,0 +1,16 @@
+4개의 가상컴퓨터에 os, 스냅숏 설정 및 네트워크 설정
+
+01.server
+-다운시 체험하기로 해상도 변경후 다운로드편의를 위해
+-스왑영역 4기가 부
+-NTN 4 주영역 경로는 루트
+
+gedit
+sudo su - root
+etc/lightdm/lightdm.conf
+root/.prefile  하단메세지 주석처리
+
+
+02.server2
+03.client
+04.winClient 

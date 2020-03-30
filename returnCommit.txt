@@ -1,3 +1,3 @@
 git filter-branch -f --env-filter \ 'if [ $GIT_COMMIT = {Commit 2e029abfaa5bc5bfe399e497b9884e7aa31f1b69} ] then export GIT_AUTHOR_DATE="Tue Mar 31 2020 08:59:59 GMT+0900" export GIT_COMMITTER_DATE="Tue Mar 31 2020 08:59:59 GMT+0900" fi'
 
-git commit - m " 빈자리 채우기" --date "Mar31"  이렇게 해도 되나?
+git commit - m "빈자리 채우기" --date "Tue Mar 31 2020 08:59:59 GMT+0900"  이렇게 해도 되나?

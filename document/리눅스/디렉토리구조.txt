@@ -135,8 +135,4 @@ atd 즉, 예약작업에 관한 파일들이 저장되는 디렉토리.
 
 
 
-출처: https://webdir.tistory.com/101 [WEBDIR]
-
-출처: https://webdir.tistory.com/101 [WEBDIR]
-
-출처: https://webdir.tistory.com/101 [WEBDIR]
+출처: https://webdir.tistory.com/101

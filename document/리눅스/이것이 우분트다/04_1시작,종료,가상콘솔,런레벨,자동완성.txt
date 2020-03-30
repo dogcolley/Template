@@ -1,0 +1,58 @@
+※시작 및 종료
+
+시작
+-boot를 이용해서 자동으로 시작됩니다.
+
+[터니멀로 조작하기]
+종료
+shutdown -P now, init 0, halt -p
+
+재시작 
+shutdown -r now, init 6, reboot
+shutdown -h 시간 (시간후종료)
+shutdonw -c (이전종료명령어취소)
+shutdonw -k (가짜로 꺼진다)
+
+로그아웃
+logout, exit
+
+※가상 콘솔
+가상모니터를 7개를 제공해준다. ctrl + alt + F1~6 접속 가능 , 기본은 F7이다.
+
+※런 레벨(Runtlevel)
+init 뒤에 붙는 숫자를 런레벨(RunLevel)이라고 부른다.
+
+init 6 : 재부팅
+init 5 : 멀티유저 모드 (x Window)
+init 4 : 안씀 (일반Txt 모드)
+init 3 : 멀티유저 모드
+init 2 : 안씀 (일반Txt 모드)
+init 1 : 시스템 복구모드
+init 0 : 끄기
+
+※자동완성기능
+-자동완성기능: Tab키를 누르면 자동으로 현재 있는 파일을 자동완성시킨다.
+-도스키 : 화살표를 이용해서
+
+※이것도 모르면 기본
+모른 Man 명령어  : [탈출은 :q]
+
+cd '경로병결'
+ls -l '리스트'
+ls -a 'swp 파일'
+ln -sf '링크만들기'
+rm -f filename '삭제'
+history '썻던 명령어들을 모두나옴'
+history -c '썻던 명령어 기록 삭제'
+clear '현재모니터 화면 삭제'
+pwd '자기 위치 파악'
+cat '이쪽 파일을 캐치하다.'
+gedit '윈도우메모장'
+vim,vi '에디터모드'
+mount '장치 확인'
+umount '연결끊기'
+
+ex) 파일경로 바꾸기
+ln -sf
+/lib/systemd/system/graphical.target 
+/lib/systhmd/system/default.target

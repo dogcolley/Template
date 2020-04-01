@@ -39,7 +39,8 @@ init 0 : 끄기
 
 cd '경로병결'
 ls -l '리스트'
-ls -a 'swp 파일'
+ls -a 'swp 파일 <- 숨김파일도 보기'
+ls -il '링크 까지 표시해준다.'
 ln -sf '링크만들기'
 rm -f filename '삭제'
 history '썻던 명령어들을 모두나옴'
@@ -51,7 +52,8 @@ gedit '윈도우메모장'
 vim,vi '에디터모드'
 mount '장치 확인'
 umount '연결끊기'
-
+head -5 경로 '위치에 txt보기'
+mv 파일이동
 ex) 파일경로 바꾸기
 ln -sf
 /lib/systemd/system/graphical.target 

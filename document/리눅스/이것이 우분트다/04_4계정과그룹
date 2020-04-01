@@ -1,0 +1,41 @@
+※사용자와 그룹
+-리눅스는 다중 사용자 시스템 (multi-User Systhem)
+-기본적으로 root라는 super 계정이있음
+-모든 사용자를 하나 이상 그룹에 속해 있음
+-사용자는 /etc/passwd 파일에 정의되어 있다.
+-그룹은 /etc/group 
+-패스워드 /etc/shadow
+-항상 기본적으로 유저만들때 생성하는 파일 /etc/skel
+
+
+※각행의 의미
+:사용자 이름:암호:사용자 ID:사용자가 소속된 그룹 ID: 추가 정보:홈 디렉토리:기본 셀
+
++/bin/bash 모든사용들은 여기에씀 cil
+
+※사용자와 그룹 관련 명령어(1)
+-adduser
+:새로운 사용자 추가 ex) adduser newuser1
+-passwd
+:사용자의 비밀번호 지정하거나 변경하기 ex)passwd newuser1
+-usermod
+:사용자의 속성변경 ex)usermod --groups ubunt newuser1
+-userdel
+:사용자를 삭제 userdel newuser2
+-chage
+:사용자들의 암호르 주기적으로 바꾼다 ex) chage -m 2 newuser1
+-groups 
+:현재 사용자가 속한 그룹의 목록을 보여준다 groups (메인그룹하다 + 서브그룹)
+-groupadd 
+:새로운 그룹생성 groupadd newgroup1
+-groupdel
+:그룹삭제 groupdel 
+-gpassed 
+:그룹패스워드
+
+
+
+
+
+
+

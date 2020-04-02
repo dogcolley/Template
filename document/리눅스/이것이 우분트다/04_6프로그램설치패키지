@@ -1,0 +1,20 @@
+※dpkg (데비안 패키지)
+-dpkg(debian package) .exe 와 비슷함 확장명은 deb
+ex) 패키지명_2.1.4_amd64.deb (패키지명, 버전, 비트)
+-dpkg -i (설치), dpkg -r or -P (삭제 패키치이름/설정파일까지삭제), dpkg -I or dpkg -P ()
+-단점 : 의존성이네요? : nodejs? 이런이런..
+
+※apt-get()
+-dpkg의 단점을 보안하기 위해서 등장하였다.
+-인터넷을 통하여 필요한 파일을 저장소 (Repository)에서 자동으로 모두 다운로드해서 설치하는 방식입니다. : nodejs??
+-etc/apt/sources/list 에서 
+ex) apt-get -y(이거하면 무조건 설치) 패키지이름
+-업데이트: apt-get update
+-삭제 : apt-get remove/purge
+-사용하지 않는패키지 제거: apt-get autoremove
+-내려받은 파일 제거 : apt-get clean / apt-get autoclean
+-패키지에 대한 정보 : apt-cache  show (정보보기), apt-cache depends(의존성확인), apt-get rdepends(역의존성확인)
+-패키지저장소 종류 : main(공식무료),universe(비공식무료),restricted(공식유료), multiverse(유료비공식)
+ex) /etc/apt/sources.list 파일에 있다.  : 강의파일에선 update가 빠져있음 왜냐면 초기버전으로 오류없이 강의하기 위해서다.
+ex) 몇가지의 저장소들 https://launchpad.net/ubuntu/+cdmirrors 
+ex) xenial + -updates 붙이면 

@@ -1,0 +1,47 @@
+파일의 압축과 묶기
+※파일압축
+- xz,bz2,gz,zip,Z (xz,bz2가 효율이 좋음)
+- xz: 파일자체가 압축이 되어 버림  (ex: xz 파일명, xz -d 파일명.xz)
+- bzip2: 파일자체가 압축이 되어 버림  (ex: bz2 파일명, bz2 -d 파일명.bz2)
+- gzip: 파일자체가 압축이 되어 버림  (ex: gz 파일명, gz -d 파일명.gz)
+- zip/unzip: 파일자체가 압축이 되어 버림  (ex: zip 파일명, unzip 파일명.zip)
+
+※tar 로 파일을 묶어 줘야한다.
+
+c(묶기),x(풀기),t(경로확인)
+f(파일),v(포이기과정),J(tar+xz),z(tar+gizp),j(tar+bzip2)
+
+※검색기능
+-find [경로][옵션][조건][aciton] : 기본파일찾기
+-옵션 : -name, -user(소유자), -newer(전,후), -perm(허가권), -size(크기)
+-acion : -print(디폴트) , -exec (외부명령어실행)
+ex) find /etc -name "*.config"
+ex) find /bin -size +10k -size - 100k
+ex) find /home -name "*.swp" -exec rm {} \;
+
+-which : path에 설정된 디렉토리만 검색
+-whereis : 실행 파일, 소스,man 페이지 파일 까지 검색
+-locate : 파일 목록 데이터베이스에서 검색
+
+※다양한 시스템환겨설정
+기타시스템설정 : unity-control-center
+네트워크 설정 : umtui
+방화벽 설정 : ufw, gufw (서버구축에 필수)
+서비스 설정 : rcconf
+
+※CRON과 AT
+-cron 
+주기적으로 반복되는 일을 자동적으로 실행될 수 있도록 설정
+관련된 데몬은 (crond) , 관련파일은 "/ec/crontab"
+:분 시 일 월 요일 사용자 실행명령어
+: ex) 00 05 1 * * root cp -r /home /backup
+
+-at 
+:일회설 작업을 예약
+사용 예
+at 3:00 am tomorrow -> 내일 새벽
+at now + 1 hours -> 1시간 후
+at > 프롬프트에 예약 명령어 입력 후 엔터
+완료되면: Ctrl + d
+획인: at -l
+취소: atrm 일련번호

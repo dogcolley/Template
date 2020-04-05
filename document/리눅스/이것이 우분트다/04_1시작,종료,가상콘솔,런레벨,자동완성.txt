@@ -43,6 +43,8 @@ ls -a 'swp 파일 <- 숨김파일도 보기'
 ls -il '링크 까지 표시해준다.'
 ln -sf '링크만들기'
 rm -f filename '삭제'
+rm -rf folderName '폴더삭제'
+rm -f file* '파일이라고 이름되어있는 모든것을 삭제한다.'
 history '썻던 명령어들을 모두나옴'
 history -c '썻던 명령어 기록 삭제'
 clear '현재모니터 화면 삭제'
@@ -53,8 +55,12 @@ vim,vi '에디터모드'
 mount '장치 확인'
 umount '연결끊기'
 head -5 경로 '위치에 txt보기'
-mv 파일이동
-ex) 파일경로 바꾸기
+mv 이름 경로 '파일이동'
+cp  대상 저장이름 '카피하기'
 ln -sf
+touch filename '파일 생성하기'
+systemctl status cron
+systemctl restart
+
 /lib/systemd/system/graphical.target 
 /lib/systhmd/system/default.target

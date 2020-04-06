@@ -32,7 +32,7 @@ ex) find /home -name "*.swp" -exec rm {} \;
 ※CRON과 AT
 -cron 
 주기적으로 반복되는 일을 자동적으로 실행될 수 있도록 설정
-관련된 데몬은 (crond) , 관련파일은 "/ec/crontab"
+관련된 데몬은 (crond) , 관련파일은 "/etc/crontab"
 :분 시 일 월 요일 사용자 실행명령어
 : ex) 00 05 1 * * root cp -r /home /backup
 

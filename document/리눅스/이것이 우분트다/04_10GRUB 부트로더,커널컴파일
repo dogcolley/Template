@@ -1,0 +1,39 @@
+GRUB 부트로더
+※GRUB 부트로더의 특징
+:부트 정보를 사용자가 임의로 변경해 부팅할 수가 있다. 즉, 부트정보가 올바르지 않더라도 수정하여 부팅할수  있다.
+:다른 여러 가지 운영체제와 멀티부팅을 할 수 있다.
+:대화형 설정을 제공해줘서, 커널의 경로와 파일 이름만 알면 부팅이 가능하다.
+
+※GRUB2의 장점
+:셀 스크립트를 지원함으로써 조건식과 함수를 사용할 수이싿.
+:동적 모듈을 로드할 수 있다.
+:그래픽 부트 몌뉴를 지원하며, 부트 스플래시(boot splash)성능이 개선되었다.
+:ISO 이미지를 이용해서 바로 부팅할 수 있다.
+
+※GRUB2의 설정 방법
+: /botto/grub/grub.cfg 설정
+: /etc/default/grub 파일과 /etc/grub.d/ 디렉토리의 파일을 수정한 후에 'grub-mkconfig' // "update-grub"명령어를 실행해 설정함
+: /etc/default/grub 설정파일들
+1 GRUB_DEFAULT=0
+2 #GRUB_HIDDEN_TIMEOUT=0
+3 GRUB_HIDDEN_TIMEOUT_QUIET=true
+4 GRUB_TIMEOUT=2
+5 GRUB_DISTRIBUTOR='lsb_release -i -s 2> /dev/null || echo Debian'
+6 GRUB_CMDLINE_LINUX_DEFAULT = ""
+7 GRUB_CMDLINE_LINUX = ""
+
+:/etc/grub.d/00_header
+
+모듈의 개념과 커널 컴파일의 중요성
+※모듈이란 필요할 때마다 호출하여 사용되는 코드
+:하드 < 커널,메모리영역 + 모듈 < 셀 < 응용프로그램
+:모듈 /lib/modules/커널버전
+:메모리 영역 /boot/vmlinuz - 커널버전 파일이 부팅시 메모리에 로딩 부팅시 꼭필요한 부분포함하는걸 권장
+※커널컴파일
+: 현 커널버전 확인 > 커널 소스 다운로드 > 커널 소스 압축풀기 > 커널 설정 초기화 > 커널 환경설정 > 이전 정보삭제 > 커널 컴파일 및 설치 > 부트 로더 확인
+
+
+
+
+
+

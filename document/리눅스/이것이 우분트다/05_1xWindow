@@ -1,0 +1,24 @@
+일반 사용자들은 GUI를 편하게 사용함으로 많은 사람이 사용하고 전파는 것
+
+01. 그놈 데스크탑 환경 설정
+gnome-tweek-tool
+
+02. 직접 깔아서 적용하기
+
+tar xfj 파일
+sudo mv firefox /usr/local/firefox
+sudo chown -R root.root /user/local/firefox
+cd /usr/local/bin
+sudo ln -sf /usr/local/firefox/firefox . 
+
+03. 메일 및 메신저 기능 아이디가 있으면 충분히 사용이 가능합니다.
+
+04. FTP 클라이언트 - gftp
+apt-get install gftp 
+
+05. 기타 음성, 미디어, 문서 ,어도비 등은 그냥 대충 설치해서 하셈 ^^7
+
+06. 게스트 윈도우를 vmbox로 사용해본다.
+vitural-box 인가 로 깔면 깔림
+
+07. kubuntu-desktop 하면 그냥 깔림

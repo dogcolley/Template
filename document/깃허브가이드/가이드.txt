@@ -1,13 +1,32 @@
 기본 깃 설치 / 소스트리 설치
 
+
+//기본 셋팅
 git config --global user.name
 git config --global user.mail
 
+//초기 저장소 셋팅
+remote add origin 'url'
+
+
+//기본 패치 및 풀
 git pull
 git fecth 
 
+//기본 업데이트
 git add . 
 git commit m "내용"
 git push origin master
 
+//로고
 git log
+
+
+
+//브런치 병합
+git branch
+git branch 'setting'
+git checkout 'setting'
+
+Merge branch 'setting'
+

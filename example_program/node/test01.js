@@ -12,5 +12,10 @@ console.log(moduleB);
 moduleB.console3('test2');
 moduleB.console3(moduleB.sum3(1,2));
 
+
+const test = new moduleC();
 console.log(moduleC);
-moduleC.a.console4('test3');
+console.log(test);
+test.console4('??');
+test.console4(test.sum4(1,1));
+//moduleC.a.console4('test3');

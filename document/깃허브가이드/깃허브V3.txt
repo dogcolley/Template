@@ -1,0 +1,11 @@
+https://developer.github.com/v3/search/
+https://developer.github.com/v4/query/
+https://developer.github.com/v3/repos/commits/
+
+
+https://api.github.com/
+https://api.github.com/users/dogcolley
+https://api.github.com/repos/dogcolley/Template
+https://api.github.com/repos/dogcolley/Template/commits
+https://api.github.com/repos/dogcolley/Template/git/trees/58a8e697748deeaed8f843abcb26408574c719ae
+https://api.github.com/repos/dogcolley/Template/git/trees/1525e46ab36013887cc7cb334e0827c97022910c

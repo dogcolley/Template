@@ -1,0 +1,16 @@
+remote 를 사용하여 여러개의 브런치를 효율적으로 관리하기위한방법
+
+
+//remote 갱신
+git remote update
+
+
+// 체크아웃용 생성기
+git init
+git remote add origin $url_of_clone_source
+git fetch origin
+git checkout -b master --track origin/master # origin/master is clone's default
+
+
+//로컬 서버와 회사 origin server의 branch 가 다르게 분기로 나눠져있으니 이걸
+같이 추적해서 

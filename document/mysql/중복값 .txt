@@ -1,0 +1,41 @@
+#중복 업체조회
+#SELECT * FROM u_company  WHERE com_name IN (
+#	SELECT com_name
+#	FROM u_company
+#	GROUP BY com_name 
+#	HAVING COUNT(*) > 1
+#) ORDER BY com_name
+
+#조회
+	SELECT * from u_company group BY mb_id_salers, com_name,mb_id
+
+#중복업체삭제
+#DELETE FROM u_company WHERE com_idx NOT IN (
+#	SELECT MIN(com_idx) from u_company group BY mb_id_salers, com_name
+#)
+
+#업체조회
+#SELECT * FROM u_company  ORDER BY mb_id
+
+
+#중복값 멤버 조회 
+#SELECT * FROM u_company_member  WHERE mb_id IN (
+#	SELECT mb_id
+#	FROM u_company_member
+#	GROUP BY mb_id 
+#	HAVING COUNT(*) > 1
+#) order BY mb_id
+
+#중복 멤버 삭제문
+#DELETE FROM u_company_member WHERE cmm_idx NOT IN (
+#	SELECT MIN(cmm_idx) from u_company_member group BY mb_id
+#)
+
+#조회
+#SELECT * FROM u_company_member ORDER BY mb_id 
+
+#1개는 남아있는지 조회
+#SELECT * FROM u_company_member where mb_id ="01089909545" ORDER BY mb_id
+
+#기존 백업조회
+#SELECT * FROM u_company_member_bak ORDER BY mb_id 

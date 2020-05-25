@@ -1,0 +1,44 @@
+
+////////////////MySQL의 주요 저장 엔진
+
+////////////////저장 엔진 
+
+////////////////특징 
+
+ MyISAM 
+
+ MySQL 5.1까지의 기본 엔진. 트랜잭션을 지원하지 않는다. 
+
+ InnoDB 
+
+ MySQL 5.5 이후의 기본 엔진. 트랜잭션을 지원한다. 
+
+ ISAM 
+
+ MySQL의 기본이 되는 저장 엔진. 예전 형식으로, MySQL 5.0부터는 설치되지 않는다. 
+
+ MEMORY 
+
+ 데이터를 모두 메모리상에 보관하며, 동작이 빠르다.
+
+ MERGE 
+
+ MyISAM의 여러 개의 테이블을 하나의 테이블처럼 다룬다. 
+
+///////////////////
+
+SHOW CREATE TABLE tb;
+
+ALTER TABLE 테이블_이름 ENGIN=MyISAM;
+
+//////////////////
+START TRANSACTION;
+
+ROLLBACK;
+
+COMMIT;
+
+//자동커밋막기
+SET AUTOCOMMIT=0;
+
+

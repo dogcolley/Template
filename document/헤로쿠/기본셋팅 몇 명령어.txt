@@ -1,0 +1,13 @@
+heroku create // 기본생성 명렁어
+
+git remote -v // 소스 리무트
+
+heroku git:remote -a thawing-inlet-61413 // 해당 헤로쿠를 깃허브에 리무트 시키는과정
+
+git remote rename heroku heroku-staging // 만약 이름을 변경할경우 
+
+git push heroku master // 이런식으로 헤로쿠에 깃허브를 넣어준다.
+
+git push heroku testbranch:master // 브런치제어를 할경우 아래와같이 제어한다.
+
+heroku ps:scale web=1

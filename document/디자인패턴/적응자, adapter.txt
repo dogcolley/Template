@@ -1,0 +1,41 @@
+적응자
+
+var senateSystem = new SenateSystem(currentAdapter); // 현재 시스템
+var senateSystem = new SenateSystem(rufusAdapter); // 신규 시스템
+
+var SenateSystem = (function() {
+  function SenateSystem(adapter) {
+    this.adapter = adapter;
+  }
+  SenateSystem.prototype.vote = function() {
+    this.adapter.vote();
+  };
+  return SenateSystem;
+})();
+
+
+var currentAdapter = {
+  vote: function() {
+    console.log('현 황제를 계속 지지합니다');
+  }
+};
+
+var rufusAdapter = {
+  vote: function() {
+    console.log('루푸스를 황제로 추대합시다');
+ }
+
+
+senateSystem = new SenateSystem(currentAdapter);
+senateSystem.vote(); // 현 황제를 계속 지지합니다.
+senateSystem = new SenateSystem(rufusAdapter);
+senateSystem.vote(); // 루푸스를 황제로 추대합시다.
+
+
+var galbaAdapter = {
+  vote: function() {
+    console.log('갈바를 황제로 추대합시다');
+  }
+};
+senateSystem = new SenateSystem(galbaAdapter);
+senateSystem.vote(); // 갈바를 황제로 추대합시다.

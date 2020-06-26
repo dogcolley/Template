@@ -1,0 +1,57 @@
+﻿** 테스트 적용 사이트
+
+79번서버 ymedifor (메디포맨남성의원)
+
+테스트 서버URL : http://ymedifor.79.ypage.kr/
+실서버 URL : http://www.cwmediforman.com/
+
+★ 스팸 로그 확인 URL : http://ymedifor.79.ypage.kr/_spam_check_page.php
+
+스팸 로그 확인 DB테이블 : spam_log (자동 세팅 됩니다)
+
+
+
+**** 필터링 내용 ****
+-> 사용하지 않는(기초 단위나 ㅁ한자 몇개 등 간혹 사용되는것들 제외) 모든 특수문자를 체크 하여 스팸으로 분류
+-> a 태그 4개 이상 사용 시 스팸으로 분류 (write_update.head.skin.php 파일에서 설정 가능)
+-> video 태그 스팸으로 분류
+-> embed 태그 스팸으로 분류
+-> img 태그에 src, style, alt, title, width, height 를 제외한 다른 속성이 1개라도 포함되었으면 스팸으로 분류 (write_update.head.skin.php 파일에서 설정 가능)
+-> a 태그에서 target, href, alt, title 를 제외한 다른 속성이 1개라도 포함되어있으면 스팸으로 분류 (write_update.head.skin.php 파일에서 설정 가능)
+
+
+
+**** 설정 파일 ****
+적용스킨 : /_counsel , /_default, /_reserve, /_counsel_test(테스트)
+
+▶ /테마/스킨/write_update.head.skin.php 파일 설명 (스킨에서 이미 사용중이면 스팸 필터하는 부분만 잘라서 넣어주세요)
+-> wr_content 필터링하여 스팸인지 구분
+
+-----▷ 스팸으로 분류 되었다면 글 작성이 실패되고 해당 아이피 config 접근차단IP에 추가
+-----▷ 작성자의 mb_id가 있을 경우 회원인지 판단한 뒤 회원이라면 메모등록 후 회원 삭제&로그아웃 처리
+
+
+▶ /테마/스킨/write_update.tail.skin.php 파일 설명 (스킨에서 이미 사용중이면 스팸 필터하는 부분만 잘라서 넣어주세요)
+-> 스팸 글이 통과되었더라도 spam_log 테이블에 등록
+-> captcha check 값을 확인하여 스팸인지 확인
+
+-----▷ 일단 스팸이어도 글 작성은 완료
+-----▷ 스팸으로 분류 되었다면 해당 아이피 config 접근차단IP에 추가
+-----▷ 작성자의 mb_id가 있을 경우 회원인지 판단한 뒤 회원이라면 메모등록 후 회원 삭제&로그아웃 처리
+
+
+▶ /테마/스킨/write.skin.php 파일 설명 (<form> 선언 한 부분 조금 아래에 input hidden 태그와 아래 스크립트 부분만 잘라서 넣어주세요)
+-> 실제 write 페이지에서 사용되는 모든 키보드 입력과 마우스 클릭을 감지하여 데이터로 저장 (22 ~ 42번째 줄)
+
+
+▶ /extend/spam_chk_extend.php 파일 설명
+--> 최초 접속할때의 접속 경로와 ip를 세션 설정. 디바이스, OS, PC/MOBILE 체크 함수 설정
+--> spam_log  DB테이블 자동 세팅
+
+
+▶ /_spam_check_page.php 파일 설명
+--> 스팸 로그를 확인하는 페이지
+
+
+
+

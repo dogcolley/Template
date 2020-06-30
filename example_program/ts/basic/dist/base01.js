@@ -1,3 +1,4 @@
+"use strict";
 //변수선언
 //블리언
 var isTypeScriptAwesome = true;

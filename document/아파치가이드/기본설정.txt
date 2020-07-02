@@ -4,6 +4,12 @@ for window install
 https://www.apachelounge.com/download / 아파치 최신버전
 https://secure.php.net/downloads.php / php 최신버전
 
+설치 주석 
+:기본적으로 path 설정안할 경우에 .exe 파일경로에서 해당 파일 호출 및 해당 명령어를 사용하면 된다.
+:httpd -k install,start,restart,stop 이렇게만 알아도 반은간다.
+:conf 파일에 php 연동 설정과 path 설정만 하면된다. : mysql , 그래프sql 등등 연결설정도 잘찾아보자, 항상 경로만 잘보면됨
+:php의 경우 사용 lib를 잘 보자 
+
 아파치 셋팅
 https://jimnong.tistory.com/612 
 - 이미 여러번 업데이트로 초기 설정은 따로 필요없고 윈도우에서 사용시에 고급설정에 장치경로를 설정해줘야한다.

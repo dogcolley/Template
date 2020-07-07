@@ -30,3 +30,6 @@ git checkout 'setting'
 
 Merge branch 'setting'
 
+//코드뭉치 버리기
+git stash
+

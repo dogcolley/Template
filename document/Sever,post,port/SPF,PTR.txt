@@ -1,0 +1,15 @@
+[국내]SRF (sende Policy Framework) 레코드 등록
+
+도메인에 설정  :  (메일 발송 서버 == 도메인) 일치하는 비교
+
+
+[해외]PTR (Reverse DNS) 
+
+IP 지의하여 도메인을 체크
+
+
+체크 방법
+
+nslookup
+> set q=ptr 
+> xxx.xx.xxx.xxx

@@ -1,0 +1,32 @@
+root / fmusknst7477
+
+#network 확인
+ping 8.8.8.8
+
+#net연결
+ip addr
+ifup '적어진 연결가능 네트워크
+
+#git 셋팅 (1.yum 셋팅, 2.git 설치 : 이렇게 설치하면 1.~대가아닌 2.~로 받을수 있다.)
+rpm -Uvh http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
+yum install git
+
+#apm 설치를 위한 의존성 패키지 설치확인
+rpm -qa libjpeg* libpng* freetype* gd-* gcc gcc-c++ gdbm-devel libtermcap-devel
+
+#apm 설치를 위한 의존성 패키지 설치
+yum install libjpeg* libpng* freetype* gd-* gcc gcc-c++ gdbm-devel libtermcap-devel
+
+#apache , mariadb , php 설치
+yum install httpd
+yum install mariadb mariadb-server
+yum install php php-mysql php-mbstring php-pdo php-gd 
+
+#설치확인
+rpm -pq httpd mariadb php
+
+#서비스 실행
+systemctl start httpd
+systemctl enable httpd.service
+systemctl status httpd
+ps -ef | grep http

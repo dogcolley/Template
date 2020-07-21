@@ -1,0 +1,55 @@
+<body>
+<script
+  src="https://code.jquery.com/jquery-2.2.2.js"
+  integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="
+  crossorigin="anonymous"></script>
+
+	<div>
+		<table id="J_table_data">
+			<thead>
+				<tr>
+					<th>이름</th>
+					<th>나이</th>
+					<th>소속</th>
+					<th>직급</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>김철수</td>
+					<td>5</td>
+					<td>팡팡유치원</td>
+					<td>대리</td>
+				</tr>
+				<tr>
+					<td>훈이</td>
+					<td>5</td>
+					<td>팡팡유치원</td>
+					<td>인턴</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<script>
+		
+		$(function(){
+			var Arr = new Array();
+			var cnt = 0;
+			$('#J_table_data tbody tr').each(function(num,e){
+				var oj = new Object();
+
+				oj.name = $(e).find('td').eq(0).text();
+				oj.year = $(e).find('td').eq(1).text();
+				oj.group = $(e).find('td').eq(2).text();
+				oj.level = $(e).find('td').eq(3).text();
+
+				Arr[cnt] = oj;
+				cnt++;
+			})
+
+			console.log(Arr);
+		});
+	</script>
+
+</body>

@@ -1,0 +1,7 @@
+ show processlist => 프로세스 확인
+
+https://idea-sketch.tistory.com/45 => rock 기능 기초 셋팅에 대한 설명
+
+https://www.popit.kr/mysql-lock-%EC%83%81%ED%99%A9-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0/ => ROCK 헤제법
+
+kill 184601385 => rock 걸려있는걸 헤제 

@@ -11,3 +11,5 @@ git push heroku master // 이런식으로 헤로쿠에 깃허브를 넣어준다
 git push heroku testbranch:master // 브런치제어를 할경우 아래와같이 제어한다.
 
 heroku ps:scale web=1
+
+이후 헤로쿠 셀명령어로 관리

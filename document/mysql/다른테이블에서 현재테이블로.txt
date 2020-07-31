@@ -1,0 +1,3 @@
+UPDATE g5_write_yp_board03 , g5_write_yp_board03_2 
+SET g5_write_yp_board03_2.wr_12 = g5_write_yp_board03.wr_4 
+WHERE g5_write_yp_board03.wr_id =  g5_write_yp_board03_2.wr_id

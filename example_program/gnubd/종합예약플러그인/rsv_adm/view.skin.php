@@ -44,6 +44,7 @@ if($change_wr7){
     <section id="bo_v_info">
         <h2>페이지 정보</h2>
         <span class="bo_v_info_tit">작성자</span> <strong><?php echo $view['name'] ?><?php if ($is_ip_view) { echo "&nbsp;($ip)"; } ?></strong>
+        <span class="bo_v_info_tit">노출순위</span> <strong><?=($view['wr_12'])?></strong>
         <div class="right">
             <span class="bo_v_info_tit">작성일</span><strong><?php echo date("y-m-d H:i", strtotime($view['wr_datetime'])) ?></strong>
 			<?/*
@@ -229,6 +230,52 @@ if($change_wr7){
 						</td>
 					</tr>
 				<?}?>
+
+				<?	
+					if($view['wr_13'] &&  $view['wr_11']==1){
+					$wr_13 = $view['wr_13'];
+					$wr_13_oj = json_decode($wr_13, true);
+					$wr_13_arr =  (array) $wr_13_oj;				
+				?>
+					<tr>
+						<td>옵션</td>
+						<td>
+							<ul class="U_op_wrap" id="J_op_data">
+							<?
+								for($i=0;$i < count($wr_13_arr['opName']);$i++){
+									$setNum = $i+1;										
+							?>
+								
+								<li class="U_input02_wrap">
+									<div class="wr_13_tit">
+										<span class="wr_13_delect">#<?=$setNum?> 옵션 <?= $wr_13_arr['use'][$i] !== '0'? '[활성]' : '[비활성]'?></span>
+										
+									</div>
+									<?if($wr_13_arr['opName'][$i]){?>
+									<div class="U_input02_box">
+										<label for="wr_13_name<?=$setNum?>">옵션명</label>
+										<input name="wr_13_name<?=$setNum?>" id="wr_13_name<?=$setNum?>" readonly value="<?=$wr_13_arr['opName'][$i];?>" type="text" class="U_input02 wr_13_name"/>
+									</div>
+									<?}?>
+									<?if($wr_13_arr['opPrice'][$i]){?>
+									<div class="U_input02_box">
+										<label for="wr_13_price<?=$setNum?>">가격</label>
+										<input name="wr_13_price<?=$setNum?>" id="wr_13_price<?=$setNum?>" readonly  value="<?=number_format($wr_13_arr['opPrice'][$i], 0).'원';?>" type="text" class="U_input02 wr_13_price" min="0"  />
+									</div>
+									<?}?>
+									<?if($wr_13_arr['opNum'][$i]){?>
+									<div class="U_input02_box">
+										<label for="wr_13_num<?=$setNum?>">수량</label>
+										<input name="wr_13_num<?=$setNum?>" id="wr_13_num<?=$setNum?>" readonly   value="<?=$wr_13_arr['opNum'][$i];?>" type="text" class="U_input02 wr_13_num" min="0" />
+									</div>
+									<?}?>
+								</li>
+							<?}?>
+							</ul>
+						</td>
+					</tr>
+				<?}?>
+
 			</tbody>	
 		</table>
 	</section>

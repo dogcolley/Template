@@ -11,6 +11,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		ch_li($value,$link_list_arr[$cnt],$set_day);
 		$ch_lt = ch_lt($link_list_arr[$cnt]['wr_id'],$set_day,$link_list_arr[$cnt]);
 		if($ch_lt['rv-state'] == 'false')alert('예약가능 인원이 마감되었습니다.');
+		hd_check($set_day,$link_list_arr[$cnt]['wr_id']);
 		$cnt++;
 	}
 
@@ -22,5 +23,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	if(ch_limo() == 'false'){
 		alert('예약가능한 날이 아닙니다.','./board.php?bo_table='.$bo_table);
 	}
+
+	
 
 ?>

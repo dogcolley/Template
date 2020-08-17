@@ -90,6 +90,7 @@ if($is_admin2 && $action){
 						$sql = "update  ".$set_table." set 
 							bo_write_level = '".$_POST['bo_write_level']."' , 
 							bo_use_secret = '".$_POST['bo_use_secret']."' , 
+							bo_content_head = '".$_POST['bo_content_head']."' , 
 							bo_9 = '".$_POST['bo_9']."' , 
 							bo_8 = '".$_POST['use_people']."' , 
 							bo_7 = '".$_POST['use_price']."' , 
@@ -181,8 +182,13 @@ if($is_admin2 && $action){
 
 					<div class="TM_ds_inbl">
 						<label for="lm_moth" class="U_tit" >예약가능범위</label>
-						<input type="text" id="lm_moth" name="lm_moth" value="<?=$board['bo_2'] ? $board['bo_2'] : 0?>" class="frm_input frm_input2" placeholder="오늘부터 입력한 날짜만큼만 예약을 받습니다."/>
 						<?/*
+						//해당솔루션은 예약한 일자의 넘버에따라 정해짐
+						<input type="text" id="lm_moth" name="lm_moth" value="<?=$board['bo_2'] ? $board['bo_2'] : 0?>" class="frm_input frm_input2" placeholder="오늘부터 입력한 날짜만큼만 예약을 받습니다."/>
+						*/?>
+						<?/*
+						//해당솔루션은 예약의 모드를 정해짐
+						*/?>
 						<select name="lm_moth" id="lm_moth" class="frm_input frm_input2" >
 							<option value="">제한없음</option>
 							<option value="1" <? if($board['bo_2'] == '1')echo 'selected' ?>>이번달만</option>
@@ -191,7 +197,6 @@ if($is_admin2 && $action){
 							<option value="6" <? if($board['bo_2'] == '6')echo 'selected' ?>>반년 (6개월단위)</option>
 							<option value="12" <? if($board['bo_2'] == '12')echo 'selected' ?>>1년 (12개월단위)</option>
 						</select>
-						*/?>
 						<p style="margin-top:5px">오늘부터 입력한 일수 만큼만 예약을 받습니다.</p>
 					</div>
 
@@ -252,9 +257,9 @@ if($is_admin2 && $action){
 					<div class="TM_ds_inbl">
 						<label for="bo_use_secret" class="U_tit" >비밀글설정</label>
 						<select name="bo_use_secret" id="bo_use_secret" class="frm_input frm_input2" >
-							<option value="" <? if($board['bo_use_secret'] == '0')echo 'selected' ?>>사용하지 않음</option>
+							<option value="" >사용하지 않음</option>
 							<option value="1" <? if($board['bo_use_secret'] == '1')echo 'selected' ?>>체크박스</option>
-							<option value="1" <? if($board['bo_use_secret'] == '2')echo 'selected' ?>>무조건</option>
+							<option value="2" <? if($board['bo_use_secret'] == '2' || !$board['bo_use_secret'] )echo 'selected' ?>>무조건</option>
 						</select>
 						<p style="margin-top:5px">설정시 글은 작성자와 관리자만 볼수있습니다.</p>
 					</div>
@@ -267,9 +272,9 @@ if($is_admin2 && $action){
 						<label for="bo_use_secret" class="U_tit" >기본메세지</label>
 						<?php 
 							include_once(G5_EDITOR_LIB);
-							echo editor_html("bo_9", $board['bo_9']); ?>
+							echo editor_html("bo_content_head", $board['bo_content_head']); ?>
 						<?php// echo $editor_html; // 에디터 사용시는 에디터로, 아니면 textarea 로 노출 ?>
-						<p style="margin-top:5px">예약페이지에 항상 노출되는 글입니다.</p>
+						<p style="margin-top:5px">예약페이지에 상단에 노출되는 글입니다.</p>
 					</div>
 				</li>
 
@@ -482,12 +487,7 @@ if($is_admin2 && $action){
 
 <script>
 	function check01 (f){
-
-		<?php  
-		echo get_editor_js('bo_9');
-		echo chk_editor_js('bo_9s');
-		?>
-		return true;
+		<?php  echo get_editor_js('bo_content_head');?>
 	}
 
 	$('.U_tab_btn button').on('click',function(){

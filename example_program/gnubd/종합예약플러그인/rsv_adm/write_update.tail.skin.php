@@ -4,6 +4,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 //print_r2($_POST);
  
 //-- 필드명 추출 wr_ 와 같은 앞자리 3자 추출 --//
+/*
 $r = sql_query(" desc {$write_table} ");
 while ( $d = sql_fetch_array($r) ) {$db_fields[] = $d['Field'];}
 $db_prefix = substr($db_fields[0],0,3);
@@ -25,7 +26,11 @@ foreach($_REQUEST as $key => $value ) {
 		meta_update(array("mta_db_table"=>"board/".$bo_table,"mta_db_id"=>$wr_id,"mta_key"=>$key,"mta_value"=>$value));
 	}
 }
+*/
 //exit;
- 
- 
+
+$set_table = $g5['write_prefix'].$bo_table;
+$wr_13 = str_replace('\"','"',$wr_13);
+sql_query(" UPDATE  {$set_table} SET wr_11 = '$wr_11' , wr_12 = '$wr_12', wr_13 = '$wr_13' where wr_id = $wr_id ");
+
 ?>

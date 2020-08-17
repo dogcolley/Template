@@ -131,7 +131,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 				<tr>
 					<td>휴일</td>
 					<td>
-						<?=$view['wr_1']?>
+						<?=$view['wr_1']?>  ~ <?=$view['wr_3']?>
 					</td>
 				</tr>
 				<tr>

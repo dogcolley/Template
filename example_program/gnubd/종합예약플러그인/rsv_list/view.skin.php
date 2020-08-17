@@ -15,14 +15,16 @@ if($member['mb_level'] >7 && $action){
 		echo $sql;
 		sql_query($sql);
 		alert('예약완료로 변경했습니다.',G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$view['wr_id']);
-	}else if($action == 'ps_cl'){
-		$sql = "update  ".$write_table." set wr_4 = '예약취소' where wr_id = '".$view['wr_id']."'";
-		echo $sql;
-		sql_query($sql);
-		alert('예약취소로 변경했습니다.',G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$view['wr_id']);
 	}
 }
 
+if($action == 'ps_cl' && ($member['mb_level'] >7  || $delete_href)){
+	$sql = "update  ".$write_table." set wr_11 = NOW(), wr_4 = '예약취소' where wr_id = '".$view['wr_id']."'";
+	echo $sql;
+	sql_query($sql);
+	alert('예약취소로 변경했습니다.',G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$view['wr_id']);
+}
+/*
 if($delete_href){
 	if($action == 'ps_cl2'){
 		$sql = "update  ".$write_table." set wr_4 = '취소신청' where wr_id = '".$view['wr_id']."'";
@@ -31,6 +33,7 @@ if($delete_href){
 		alert('취소신청으로 변경했습니다.',G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$view['wr_id']);
 	}
 }
+*/
 
 ?>
 
@@ -52,7 +55,10 @@ if($delete_href){
         <h2>페이지 정보</h2>
         <span class="bo_v_info_tit">작성자</span> <strong><?php echo $view['name'] ?><?php if ($is_ip_view) { echo "&nbsp;($ip)"; } ?></strong>
         <div class="right">
-            <span class="bo_v_info_tit">신청일</span><strong><?php echo date("y-m-d H:i", strtotime($view['wr_datetime'])) ?></strong>
+			<?if($view['wr_4'] =='예약취소'){?>
+            <span class="bo_v_info_tit">취소날짜</span><strong><?php echo date("y-m-d H:i", strtotime($view['wr_11'])) ?></strong>
+            <?}?>
+			<span class="bo_v_info_tit">신청일</span><strong><?php echo date("y-m-d H:i", strtotime($view['wr_datetime'])) ?></strong>
             <span class="bo_v_info_tit hit">연락처</span><strong><?php echo $view['wr_3'] ?></strong>
 			<?/*
             <span class="bo_v_info_tit comment">댓글</span><strong><?php echo number_format($view['wr_comment']) ?>건</strong>
@@ -140,7 +146,10 @@ if($delete_href){
 		*/?>
         <ul class="bo_v_com">
 			<?if($delete_href && $view['wr_4'] !== '예약완료' && $view['wr_4'] !== '예약취소' && $view['wr_4'] !== '취소신청' ){?>
+			<li><a id="ajax_cencel"  href="<?php echo $list_href ?>" class="btn_b01">예약취소</a></li>
+			<?/*
 			<li><a id="ajax_userCl" href="<?php echo $list_href ?>"class="btn_b01">취소신청</a></li>
+			*/?>
 			<?}?>
             <?php if (/*$update_href */ $member['mb_level'] > 7 ) { ?><li><a href="<?php echo $update_href ?>" class="btn_admin">수정</a></li><?php } ?>
             
@@ -153,7 +162,9 @@ if($delete_href){
 			<li><a href="<?php echo $list_href ?>" class="btn_b01">목록</a></li>
 			<?if($member['mb_level'] > 7){?>
             <li><a id="ajax_pass" href="<?php echo $list_href ?>" class="btn_b01">예약승인</a></li>
+			<?/*
             <li><a id="ajax_cencel"  href="<?php echo $list_href ?>" class="btn_b01">예약취소</a></li>
+			*/?>
 			<?}?>
 
 			<?/*
@@ -331,6 +342,13 @@ function board_move(href)
 <script>
 $(function() {
 
+	$('a#ajax_cencel').on('click',function(){
+		if(confirm('예약을 취소하시겠습니까? \n 신청시 변경불가능합니다.')){
+			location.href= g5_bbs_url+'/board.php?bo_table='+g5_bo_table+'&action=ps_cl&wr_id=<?=$view["wr_id"]?>';
+		}
+		return false;
+	});	
+
 	<?if($delete_href){?>
 	$('a#ajax_userCl').on('click',function(){
 		if(confirm('취소신청 하시겠습니까?\n신청시 변경불가능합니다.')){
@@ -350,13 +368,7 @@ $(function() {
 		return false;
 	});	
 
-	$('a#ajax_cencel').on('click',function(){
 
-		if(confirm('변경하시겠습니까?')){
-			location.href= g5_bbs_url+'/board.php?bo_table='+g5_bo_table+'&action=ps_cl&wr_id=<?=$view["wr_id"]?>';
-		}
-		return false;
-	});	
 	<?}?>
 
 	//이미지보기

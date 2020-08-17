@@ -5,6 +5,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
 
 /*
+wr_1 //뭔지모르지만 혹시몰라 비워두는친구
 wr_2 //인원
 wr_3 //예약기간유형
 wr_4 //단일,기간 ~부터, 요일
@@ -14,8 +15,32 @@ wr_7 //예약불가여부
 wr_8 //노출순서
 wr_9 //가격
 wr_10 //인원
+wr_11 //옵션기능활성
+wr_12 //노출순위생성
+wr_13 //옵션생성 : json ?
 
 */
+$set_table = $g5['write_prefix'].$bo_table;
+
+if(!sql_query(" select wr_11 from {$set_table} limit 1 ")) {
+	sql_query(" ALTER TABLE {$set_table} ADD `wr_11` INT NOT NULL DEFAULT 0 AFTER `wr_10` ");
+}
+
+if(!sql_query(" select wr_12 from {$set_table} limit 1 ")) {
+	sql_query(" ALTER TABLE {$set_table} ADD `wr_12` INT NOT NULL DEFAULT 50  AFTER `wr_11` ");
+}
+
+
+if(!sql_query(" select wr_13 from {$set_table} limit 1 ")) {
+	sql_query(" ALTER TABLE {$set_table} ADD `wr_13` text NOT NULL DEFAULT ''  AFTER `wr_12` ");
+}
+
+
+
+$wr_11 = $write['wr_11'];
+$wr_12 = $write['wr_12'];
+$wr_13 = $write['wr_13'];
+
 ?>
 
 <section id="bo_w">
@@ -33,6 +58,7 @@ wr_10 //인원
     <input type="hidden" name="sod" value="<?php echo $sod ?>">
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="wr_7" value="<?php echo $wr_7 ?>">
+    <input type="hidden" name="wr_13" value="<?php echo $wr_13 ?>">
     <?php
     $option = '';
     $option_hidden = '';
@@ -90,7 +116,8 @@ wr_10 //인원
             </td>
         </tr>
         <?php } ?>
-
+		
+		<?/*
         <?php if ($is_name) { ?>
         <tr>
             <th scope="row"><label for="wr_name">신청자<strong class="sound_only">필수</strong></label></th>
@@ -118,7 +145,7 @@ wr_10 //인원
             <td><input type="url" name="wr_homepage" value="<?php echo $homepage ?>" id="wr_homepage" class="frm_input"></td>
         </tr>
         <?php } ?>
-
+		*/?>
 		<?/*
 		<tr>
             <th scope="row"><label for="wr_1">연락처<strong class="sound_only">필수</strong></label></th>
@@ -129,6 +156,14 @@ wr_10 //인원
 		*/?>
 
 		<tr>
+            <th scope="row"><label for="wr_subject">노출순위<strong class="sound_only">필수</strong></label></th>
+            <td>
+				<input type="text" name="wr_12" value="<?php echo $wr_12 ? $wr_12 : 50 ?>" id="wr_12" required class="frm_input required">
+				<p class="U_info01">노출되는 예약 및 상품명입니다.</p>
+			</td>
+        </tr>
+
+		<tr>
             <th scope="row"><label for="wr_subject">예약명<strong class="sound_only">필수</strong></label></th>
             <td>
 				<input type="text" name="wr_subject" value="<?php echo $subject ?>" id="wr_2" required class="frm_input required">
@@ -137,18 +172,18 @@ wr_10 //인원
         </tr>
 
 		<tr>
-            <th scope="row"><label for="wr_2">인원제한<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="wr_2">인원(수량)<strong class="sound_only">필수</strong></label></th>
             <td>
 				<input type="text" name="wr_2" value="<?php echo $wr_2 ?>" id="wr_2"  class="frm_input ">
-				<p class="U_info01">인원제한이 있을경우 입력시 예약의 횟수가 제한이 됩니다.(미입력가능)</p>
+				<p class="U_info01">인원(수량)제한이 있을경우 입력시 예약의 횟수가 제한이 됩니다.(미입력가능)</p>
 			</td>
         </tr>
 
 		<tr>
-            <th scope="row"><label for="wr_10">예약(인원,수량)<strong class="sound_only">필수</strong></label></th>
+            <th scope="row"><label for="wr_10">동시예약<br/>(인원,수량)<strong class="sound_only">필수</strong></label></th>
             <td>
 				<input type="text" name="wr_10" value="<?php echo $wr_10 ?>" id="wr_10"  class="frm_input ">
-				<p class="U_info01">예약시 (인원,수량)을 입력할수 있습니다. (미입력가능)</p>
+				<p class="U_info01">예약시 한명의 예약자가 동시에 (인원,수량)을 입력할수 있습니다. (미입력가능)</p>
 			</td>
         </tr>
 
@@ -156,10 +191,9 @@ wr_10 //인원
             <th scope="row"><label for="wr_9">가격<strong class="sound_only">필수</strong></label></th>
             <td>
 				<input type="text" name="wr_9" value="<?php echo $wr_9 ?>" id="wr_9"  class="frm_input ">
-				<p class="U_info01">인원제한이 있을경우 입력시 예약의 횟수가 제한이 됩니다.(미입력가능)</p>
+				<p class="U_info01">등록시 [가격기능]이 활성화 되어있다면 가격이 노출 됩니다.(미입력가능)</p>
 			</td>
         </tr>
-
 
 		<tr>
             <th scope="row"><span>일정설정</span><strong class="sound_only">필수</strong></th>
@@ -226,25 +260,82 @@ wr_10 //인원
         </tr>
 
 		<tr>
-			<th scope="row"><label for="wr_6">시간 설정<strong class="sound_only">필수</strong></label></th>
-            <td>	
+            <th scope="row">옵션설정<strong class="sound_only">필수</strong></th>
+            <td>
 				<?
-				/*
-				<select name="wr_6" id="wr_6" class="frm_input ">
-				<?
-					for($i=0; $i <24; $i++){?>
-					<?
-						$time = $i;
-						$time2 = $i+1;
-						if($time <10) $time = '0'.$time;
-						if($time2 <10) $time2 = '0'.$time2;
-					?>	
-					<option value="<?=$time?>:00 ~ <?=$time2?>:30" <?if($time.':00 ~ '.$time2.':30' == $wr_6)echo 'selected'?> ><?=$time?>:00 ~ <?=$time2?>:30</option>
-					<option value="<?=$time?>:30 ~ <?=$i+1 == 24 ? '00' : $time2?>:00"  <?if($time.':30 ~ '.($i+1 == 24 ? '00' : $time2).':00' == $wr_6)echo 'selected'?> ><?=$time?>:30 ~ <?=$i+1 == 24 ? '00' : $time2?>:00</option>
-				<?}?>
-				</select>
-				*/
+					$wr_13_oj = json_decode($wr_13, true);
+					$wr_13_arr =  (array) $wr_13_oj;				
 				?>
+				<p class="U_info01">옵션이 있을경우 입력해주세요. 가격과 수량은 필수값이 아닙니다. <br/>
+					저장후에는 옵션을 삭제할수 없습니다. 비활성화를 눌러서 옵션을 가려주세요!
+				</p>
+				<input type="radio" value="1" name="wr_11" id="wr_11_0"/ <?=$wr_11 !== '0' ? 'checked' : ''?>>
+				<label for="wr_11_0">활성</label>
+				<input type="radio" value="0" name="wr_11" id="wr_11_1" <?=$wr_11 == '0' ? 'checked' : ''?>/>
+				<label for="wr_11_1">비활성</label>
+				<br>
+				<div id="J_op_wrap" <?//= $wr_13 == '' ? 'style="display:none"' : '' ?>>
+					<ul class="U_op_wrap" id="J_op_data">
+						<?
+							for($i=0;$i < count($wr_13_arr['opName']);$i++){
+								$setNum = $i+1;										
+						?>
+						<li class="U_input02_wrap">
+							<div class="wr_13_tit">
+								<span class="wr_13_delect">#<?=$setNum?> 옵션 </span>
+								<input type="radio" value="1" name="wr_13_use<?=$setNum?>" <?=$wr_13_arr['use'][$i] !== 0 ? "checked" : ''?> class="wr_13_use" id="wr_13_use<?=$setNum?>_1"/>
+								<label for="wr_13_use<?=$setNum?>_1">활성</label>
+								<input type="radio" value="0" name="wr_13_use<?=$setNum?>" <?=$wr_13_arr['use'][$i] == 0 ? "checked" : ''?> class="wr_13_use" id="wr_13_use<?=$setNum?>_0" />
+								<label for="wr_13_use<?=$setNum?>_0">비활성</label>
+							</div>
+							<div class="U_input02_box">
+								<label for="wr_13_name<?=$setNum?>">옵션명</label>
+								<input name="wr_13_name<?=$setNum?>" id="wr_13_name<?=$setNum?>" value="<?=$wr_13_arr['opName'][$i];?>" type="text" class="U_input02 wr_13_name"/>
+							</div>
+							<div class="U_input02_box">
+								<label for="wr_13_price<?=$setNum?>">가격</label>
+								<input name="wr_13_price<?=$setNum?>" id="wr_13_price<?=$setNum?>" value="<?=$wr_13_arr['opPrice'][$i];?>" type="number" class="U_input02 wr_13_price" min="0"  />
+							</div>
+							<div class="U_input02_box">
+								<label for="wr_13_num<?=$setNum?>">수량</label>
+								<input name="wr_13_num<?=$setNum?>" id="wr_13_num<?=$setNum?>"  value="<?=$wr_13_arr['opNum'][$i];?>" type="number" class="U_input02 wr_13_num" min="0" />
+							</div>
+						</li>
+						<?}
+							if($i==0){
+						?>
+							<li class="U_input02_wrap">
+								<div class="wr_13_tit">
+									<span class="wr_13_delect">#1 옵션 </span>
+									<input type="radio" value="1" name="wr_13_use1" class="wr_13_use" id="wr_13_use1_1"/>
+									<label for="wr_13_use1_1">활성</label>
+									<input type="radio" value="0" name="wr_13_use1" class="wr_13_use" id="wr_13_use1_0" />
+									<label for="wr_13_use1_0">비활성</label>
+								</div>
+								<div class="U_input02_box">
+									<label for="wr_13_name1">옵션명</label>
+									<input name="wr_13_name1" id="wr_13_name1" type="text" class="U_input02 wr_13_name"/>
+								</div>
+								<div class="U_input02_box">
+									<label for="wr_13_price1">가격</label>
+									<input name="wr_13_price1" id="wr_13_price1" type="number" class="U_input02 wr_13_price" min="0"  />
+								</div>
+								<div class="U_input02_box">
+									<label for="wr_13_num1">수량</label>
+									<input name="wr_13_num1" id="wr_13_num1" type="number" class="U_input02 wr_13_num" min="0" />
+								</div>
+							</li>
+						<?}?>
+					</ul>
+					<button type="button" class="wr_13_add U_btn01 TM_ds_inbl" id="wr_13_add" style="margin-top:10px">추가</button>
+				</div>
+			</td>
+        </tr>
+
+
+		<tr>
+			<th scope="row"><label for="wr_6">시간 설정<strong class="sound_only">필수</strong></label></th>
+            <td>
 				<?php 
 					if($wr_6 !== ''){
 						$arr1 = explode('~',$wr_6);
@@ -299,7 +390,6 @@ wr_10 //인원
 			</td>
         </tr>
 
-	
         <tr>
             <th scope="row"><label for="wr_content">설명 [부가설명있을경우]<strong class="sound_only">필수</strong></label></th>
             <td class="wr_content">
@@ -314,6 +404,7 @@ wr_10 //인원
                 <?php } ?>
             </td>
         </tr>
+
 		<?/*
         <?php for ($i=1; $is_link && $i<=G5_LINK_COUNT; $i++) { ?>
         <tr>
@@ -355,7 +446,6 @@ wr_10 //인원
             </td>
         </tr>
         <?php } ?>
-
         </tbody>
         </table>
     </div>
@@ -366,6 +456,8 @@ wr_10 //인원
     </div>
     </form>
 </section>
+
+
 
 <script>
 <?php if($write_min || $write_max) { ?>
@@ -383,8 +475,84 @@ $(function() {
 <?php } ?>
 
 $(function(){
+
+	function maker_op_tag (mode) {
+		var new_U_input02_wrap = $('.new_U_input02_wrap').length;
+		var save_new_name = new Array();
+		var save_new_price = new Array();
+		var save_new_num = new Array();
+		var save_new_checked = new Array();
+
+		$('.new_U_input02_wrap .wr_13_name').each(function(){
+			save_new_name.push($(this).val());
+		});
+		$('.new_U_input02_wrap .wr_13_price').each(function(){
+			save_new_price.push($(this).val());
+		});
+		$('.new_U_input02_wrap .wr_13_num').each(function(){
+			save_new_num.push($(this).val());
+		});
+		$('.new_U_input02_wrap .wr_13_use:checked').each(function(){
+			save_new_checked.push($(this).val());
+		});
+
+		$('.new_U_input02_wrap').remove();
+
+		var op_data_lg = $('#J_op_data li').length;
+		var op_data_add = op_data_lg+1;
+		var make_tag = '';
+		var cunter = mode == 'del'? new_U_input02_wrap : new_U_input02_wrap+1
+		for(var i =0; i < cunter; i++){
+			make_tag += '<li class="U_input02_wrap new_U_input02_wrap">';
+			make_tag += '<div class="wr_13_tit">';
+			make_tag += '<button type="button" class="wr_13_delect">#'+op_data_add+' 옵션 <span>삭제</span></button>';
+			make_tag += '<input type="radio" '+(save_new_checked[i] !== '0' ? 'checked' : '')+' value="1" name="wr_13_use'+op_data_add+'" class="wr_13_use" id="wr_13_use'+op_data_add+'_1"/>';
+			make_tag += '<label for="wr_13_use'+op_data_add+'_1">활성</label>';
+			make_tag += '<input type="radio" '+(save_new_checked[i] == '0' ? 'checked' : '')+' value="0" name="wr_13_use'+op_data_add+'" class="wr_13_use" id="wr_13_use'+op_data_add+'_0" />';
+			make_tag += '<label for="wr_13_use'+op_data_add+'_0">비활성</label>';
+			make_tag += '</div>';
+			make_tag += '<div class="U_input02_box">';
+			make_tag += '<label for="wr_13_name'+op_data_add+'">옵션명</label>';
+			make_tag += '<input name="wr_13_name'+op_data_add+'" value = "'+(save_new_name[i] ? save_new_name[i] : '')+'" id="wr_13_name'+op_data_add+'" type="text" class="U_input02 wr_13_name"/>';
+			make_tag += '</div>';
+			make_tag += '<div class="U_input02_box">';
+			make_tag += '<label for="wr_13_price'+op_data_add+'">가격</label>';
+			make_tag += '<input name="wr_13_price'+op_data_add+'" value = "'+(save_new_price[i] ? save_new_price[i] : '')+'" id="wr_13_price'+op_data_add+'" type="number" class="U_input02 wr_13_price" min="0"  />';
+			make_tag += '</div>';
+			make_tag += '<div class="U_input02_box">';
+			make_tag += '<label for="wr_13_num'+op_data_add+'">수량</label>';
+			make_tag += '<input name="wr_13_num'+op_data_add+'" value = "'+(save_new_num[i] ? save_new_num[i] : '')+'" id="wr_13_num'+op_data_add+'" type="number" class="U_input02 wr_13_num" min="0" />';
+			make_tag += '</div>';
+			make_tag += '</li>';
+			op_data_add+=1;
+		}
+		$('#J_op_data').append(make_tag);
+	}
+
 	if($('#wr_content').text() == '')$('#wr_content').text('부가설명이 있을경우 입력해주세요');
+	
+	$('#wr_11_0').on('click',function(){
+		$('#J_op_wrap').show();
+	});
+
+	$('#wr_11_1').on('click',function(){
+		$('#J_op_wrap').hide();
+	});
+
+	$(document).on('click','button.wr_13_delect',function(){
+		$(this).parents('.U_input02_wrap').remove();
+		maker_op_tag('del');
+	});
+
+	$('#wr_13_add').on('click',function(){
+		maker_op_tag('add');
+	});
+
+
 });
+
+
+
 
 function html_auto_br(obj)
 {
@@ -402,6 +570,30 @@ function html_auto_br(obj)
 function fwrite_submit(f)
 {
 
+
+	var wr_13 = new Object()
+	var save_name = new Array();
+	var save_price = new Array();
+	var save_num = new Array();
+	var save_checked = new Array();
+
+	$('.U_input02_wrap .wr_13_name').each(function(){
+		save_name.push($(this).val());
+	});
+	$('.U_input02_wrap .wr_13_price').each(function(){
+		save_price.push($(this).val());
+	});
+	$('.U_input02_wrap .wr_13_num').each(function(){
+		save_num.push($(this).val());
+	});
+	$('.U_input02_wrap .wr_13_use:checked').each(function(){
+		save_checked.push($(this).val());
+	});
+	wr_13.opName = save_name;
+	wr_13.opPrice = save_price;
+	wr_13.opNum = save_num;
+	wr_13.use = save_checked;
+	f.wr_13.value =  JSON.stringify(wr_13);
 
 	var check_times = false;
 	var wr_6_value = '';

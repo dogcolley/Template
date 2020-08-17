@@ -238,11 +238,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <?php } ?>
             <?php if ($is_checkbox) { ?>
             <li><input type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"></li>
-            <?/*
+			<?if($member['mb_level'] == 10){?>
 			<li><input type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value"></li>
 			<li><input type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value"></li>
-            */?>
-			<?php } ?>
+			<?php }} ?>
         </ul>
     </div>
     <?php } ?>

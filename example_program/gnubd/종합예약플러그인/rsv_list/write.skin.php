@@ -248,6 +248,49 @@ ch_myrv($link_list_wrs, $set_day); //이미 신청한 예약인지 확인하는 
 							</td>
 						</tr>
 						<?}?>
+
+						<?
+							if($value['wr_13'] !== '' && $value['wr_11'] == 1){
+								$wr_13 = $value['wr_13'];
+								$wr_13_oj = json_decode($wr_13, true);
+								$wr_13_arr =  (array) $wr_13_oj;
+						?>
+						<tr>
+							<td>옵션</td>
+							<td>
+								<ul class="U_op_wrap" id="J_op_data">
+									<?
+										for($i=0;$i < count($wr_13_arr['opName']);$i++){
+											$setNum = $i+1;	
+											echo $wr_13_arr['use'][$i];
+											if($wr_13_arr['use'][$i] !== 0){
+									?>
+									<li class="U_input02_wrap">
+										<div class="wr_13_tit">
+											<span class="wr_13_delect">#<?=$setNum?> 옵션 </span>
+											<input type="radio" value="1" name="wr_13_use<?=$setNum?>" <?=$wr_13_arr['use'][$i] !== 0 ? "checked" : ''?> class="wr_13_use" id="wr_13_use<?=$setNum?>_1"/>
+											<label for="wr_13_use<?=$setNum?>_1">활성</label>
+											<input type="radio" value="0" name="wr_13_use<?=$setNum?>" <?=$wr_13_arr['use'][$i] == 0 ? "checked" : ''?> class="wr_13_use" id="wr_13_use<?=$setNum?>_0" />
+											<label for="wr_13_use<?=$setNum?>_0">비활성</label>
+										</div>
+										<div class="U_input02_box">
+											<label for="wr_13_name<?=$setNum?>">옵션명</label>
+											<input name="wr_13_name<?=$setNum?>" id="wr_13_name<?=$setNum?>" value="<?=$wr_13_arr['opName'][$i];?>" type="text" class="U_input02 wr_13_name"/>
+										</div>
+										<div class="U_input02_box">
+											<label for="wr_13_price<?=$setNum?>">가격</label>
+											<input name="wr_13_price<?=$setNum?>" id="wr_13_price<?=$setNum?>" value="<?=$wr_13_arr['opPrice'][$i];?>" type="number" class="U_input02 wr_13_price" min="0"  />
+										</div>
+										<div class="U_input02_box">
+											<label for="wr_13_num<?=$setNum?>">수량</label>
+											<input name="wr_13_num<?=$setNum?>" id="wr_13_num<?=$setNum?>"  value="<?=$wr_13_arr['opNum'][$i];?>" type="number" class="U_input02 wr_13_num" min="0" />
+										</div>
+									</li>
+									<?} }?>
+								</ul>
+							</td>
+						</tr>
+						<?}?>
 					</table>
 				</td>
 			</tr>

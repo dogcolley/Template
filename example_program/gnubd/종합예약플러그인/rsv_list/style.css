@@ -10,11 +10,11 @@ body {overflow-x:visible !important;}
  
 
 /* 예약관리 플러그인 커스텀 아이징 */
-.U_input01{border:1px solid #ccc;height:15px;padding:0 10px;width:auto}
+.U_input01{border:1px solid #ccc;height:auto;padding:5px 10px;width:auto}
 
 .U_wrap02 .wrap_calendar td{position:relative;width:calc(100% / 7);padding:0}
 .hd_txt{display:block;color:#000;pading:3px 0;text-overflow:ellipsis;overflow:hidden;  width:100%;max-width:120px}
-.U_wrap02 .wrap_calendar td a{padding:25px 5px;position:relative;display:block}
+.U_wrap02 .wrap_calendar td a{padding:25px 5px 10px 5px;position:relative;display:block}
 .ch_days {position:absolute;left:0;top:0;width:100%;background:#ffc000;text-align:center;color:#fff}
 
 .U_btns01:after{clear:both;display:block;content:""}
@@ -116,6 +116,9 @@ body {overflow-x:visible !important;}
 	.U_table02 tbody tr td .U_btn01{font-size:10px;padding:0 5px}
 	.sb:before{width:auto;border-radius:0}
 }
+.U_wrap02 .wrap_calendar .U_month_rsv_list{padding: 0 5px 25px 5px}
+.U_wrap02 .wrap_calendar .U_month_rsv_list a{padding:5px;margin:0}
+
 /* 예약관리 플러그인 커스텀 아이징 끝*/
 
 /* 게시판 버튼 */

@@ -30,16 +30,13 @@ include_once($board_skin_path."/list.adm.skin.php");
 
 <h2 id="container_title" style="font-size:30px;color:#000"><?php echo ($board['bo_mobile_subject'] ? $board['bo_mobile_subject'] : $board['bo_subject']) ?><span class="sound_only"> 목록</span></h2>
 
-
-
-<div style="padding:30px 0;border-bottom:1px dashed #d9d9d9">
-	<?php echo get_view_thumbnail($board['bo_9']); ?>
-</div>
-
 <?
 if($board['bo_1']){
 //add_calendar (캘린더 추가하는부분)
-$hd_day = hd_lists('month');
+
+				$hd_arr = hd_lists('month','');
+				echo '??';
+				print_r2($hd_arr);
 ?>
 <div class="U_wrap02">
 	<div class="tbl_head01 tbl_wrap">
@@ -56,6 +53,7 @@ $hd_day = hd_lists('month');
 				<select id="sch_year" name="sch_year"  title="검색 옵션 선택">
 				<?php
 				$curr_year = 2020;
+
 				for($i=$curr_year ; $i<=(substr(G5_TIME_YMD, 0, 4)+1) ; $i++) {
 					if($i==$year) {	
 						echo '<option value="'.$i.'" selected>'.$i.'</option>';	
@@ -116,7 +114,6 @@ $hd_day = hd_lists('month');
 			<?php
 			if($year)$sch_year = $year;
 			if($month)$sch_month = $month;
-			//print_r2($hd_day);
 			$total_day = date('t', strtotime($sch_year.'-'.$sch_month.'-01'));
 			$first_day      = date('w', mktime(0, 0, 0, $sch_month, 1, $sch_year));
 			$count          = 0;
@@ -137,15 +134,7 @@ $hd_day = hd_lists('month');
 				$now = strtotime( date( 'Y-m-d' ) );
 				echo '<td style="vertical-align: top;" data-date="'.$vDate.'">'.PHP_EOL;
 				echo '<a href="'.G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&year='.$sch_year.'&month='.$sch_month.'&day='.$dayTxt.'">'.PHP_EOL;
-				
-				if($hd_day[$days < 10 ? '0'.$days : $days]){
-					$echoDays = $days;
-					$echoDays .= '<span>'.$hd_day[$days < 10 ? '0'.$days : $days]['ca_name'].'</span>';
-					$echoDays .= '<span class="hd_txt">'.$hd_day[$days < 10 ? '0'.$days : $days]['wr_subject'].'</span>';
-					$hd_color = true;
-				}else{
-					$echoDays = $days;
-				}
+				$echoDays = $days;
 				
 				if ( $hd_color) {
 					$setColor = 'style="color: #ff9900"';
@@ -161,6 +150,22 @@ $hd_day = hd_lists('month');
 
 				echo '</span>'.PHP_EOL; 
 				echo '</a>'.PHP_EOL;
+				
+				$date_ins = ['','월','화','수','목','금','토','일'];
+				$arr_ins = ch_lists('', $date_ins[$count]);
+				//echo $vDate;	
+				for($i=0;$i < count($arr_ins);$i++){
+					$arr_ins_rsv[$i] = hd_check2($hd_arr,$arr_ins[$i],$vDate);
+				}
+?>
+				<div class="U_month_rsv_list">
+					<ul>
+						<?for($i=0;$i<count($arr_ins_rsv);$i++){?>
+						<li <?= $i!== 0 ?'style="border-top:1px dashed #d9d9d9"' :''?>><?=$arr_ins_rsv[$i]?></li>
+						<?}?>
+					</ul>
+				</div>
+<?
 				echo '</td>'.PHP_EOL;
 				if($count==7) { // 토요일이 되면 줄바꾸기 위한 <tr>태그 삽입을 위한 식
 					echo '</tr>'.PHP_EOL;
@@ -226,6 +231,7 @@ $hd_day = hd_lists('month');
     });
 </script>
 
+
 <?
 //add_today_rg_list (선택한 날짜 예약 리스트)
 ?>
@@ -260,21 +266,23 @@ $hd_day = hd_lists('month');
 						<strong class="U_title02">금일 안내</strong>
 						<ul class="U_info" style="padding-bottom:30px">
 						<?
-						for($i=0;$i < count($hd_day['allTit']);$i++){
+							for($i=0;$i < count($hd_day['allTit']);$i++){
 						?>
-							<strong><?=$hd_day['allTit'][$i]?></strong>
-							<div class="U_info_conbox"><?=$hd_day['allMage'][$i]?></div>
+							<li>	
+								<strong><?=$hd_day['allTit'][$i]?></strong>
+								<div class="U_info_conbox"><?=$hd_day['allMage'][$i]?></div>
+							</li>
 						<?
 						}
 						?>
 						</ul>
 					</td>
 				</tr>
-			<?	}?>
+			<?	}else{?>
 				<tr >
-					<th>선택</th>
+					<?/*<th>선택</th>*/?>
 					<th>에약명</th>
-					<th>예약시간</th>
+					<?/*<th>예약시간</th>*/?>
 					<th>예약자</th>
 					<th>예약인원</th>
 					<th>예약하기</th>
@@ -287,8 +295,9 @@ $hd_day = hd_lists('month');
 		?>
 			<tr>
 				<? if($hd_day_arr &&  $hd_day_arr[$link_list_arr[$i]['wr_id']] && $hd_day_arr[$link_list_arr[$i]['wr_id']][0]['ca_name'] !=='공지'){?>
-					<td colspan="6"><?=$link_list_arr[$i]['wr_subject']?> 강의는 휴강입니다.</td>
+					<td colspan="6"><?=$link_list_arr[$i]['wr_subject']?>는 예약이 불가능합니다.</td>
 				<?}else{?>
+				<?/*
 				<td>
 					<?if($ch_rv['rv-state'] !== 'false' && ch_limo() !== 'false'){?>
 						<input type="checkbox" value="<?=$link_list_arr[$i]['wr_id']?>" name="link_wr_id[]" />
@@ -297,6 +306,7 @@ $hd_day = hd_lists('month');
 					}
 					?>
 				</td>
+				*/?>
 				<td style="text-align:left"><?=$link_list_arr[$i]['wr_subject']?>
 					<?
 					if($board['bo_7'] == '1' && $link_list_arr[$i]['wr_9']){
@@ -304,35 +314,31 @@ $hd_day = hd_lists('month');
 					<div style="margin-top:10px;font-size:12px;text-align:left">가격 : <?=display_price($link_list_arr[$i]['wr_9'],0)?></div>
 					<?}?>
 				</td>	
-				<td><?=$link_list_arr[$i]['wr_6'] ? $link_list_arr[$i]['wr_6'] : '제한없음' ?></td>	
+				<?/*
+					<td><?=$link_list_arr[$i]['wr_6'] ? $link_list_arr[$i]['wr_6'] : '제한없음' ?></td>
+				*/?>	
 				<td>
 					<?
 						$booker = ch_member($link_list_arr[$i]['wr_id']);
 						$set_counter = 0;
 						for($j=0;$j < count($booker);$j++){							
 							$set_counter += (int)$booker[$j]['wr_6'];
-							if($booker[$j]['mb_id'] == $member['mb_id'] || $member['mb_level'] > 7){
-								echo '<a href= "'.G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$booker[$j]['wr_id'].'" >';
-							}
-
+							echo '<a href= "'.G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$booker[$j]['wr_id'].'" >';
 							$set_txt = $member['mb_level'] > 7 ? $booker[$j]['wr_name'] :  preg_replace('/.(?=.$)/u','*',$booker[$j]['wr_name']);
-							
 							$color ='';
 							if($booker[$j]['wr_4'] == '예약완료')$color = 'type01';
 							if($booker[$j]['wr_4'] == '예약취소')$color = 'type02';
 							if($booker[$j]['wr_4'] == '취소신청')$color = 'type02';
-							
 							echo '<div class="user_ft '.$color.'" style="padding:5px 0">'.$set_txt.'</div>';
-							if($booker[$j]['wr_id'] == $member['mb_id'] || $member['mb_level'] > 7){
-								echo '</a>';
-							}
+							echo '</a>';
 						}
 						if(count($booker) == 0){
 							echo '예약자없음';
 						}
 					?>
 				</td>	
-				<td><?= $link_list_arr[$i]['wr_2']? ($set_counter.'명/'.$link_list_arr[$i]['wr_2'].'명') : $set_counter.'명/'.'인원제한없음' ?></td>
+				<td>
+				<?= $link_list_arr[$i]['wr_2']? ($set_counter.'명/'.$link_list_arr[$i]['wr_2'].'명') : $set_counter.'명/'.'인원제한없음' ?></td>
 				<td>
 					<?
 					//print_r2($ch_rv);
@@ -366,21 +372,25 @@ $hd_day = hd_lists('month');
 						</ul>
 				</td>
 			</tr>
-			<?}?>
+			<?
+					}
+				}
+			?>
 		<?}
 			if(count($link_list_arr) <= 0){
 		?>
 			<tr style="border-bottom:1px solid #d9d9d9">
 				<td colspan="6"> <?if($hd_day['state'] == 'true'){
 				?>
-
 					<strong class="U_title02">금일은 휴일입니다.</strong>
 					<ul class="U_info">
 					<?
 					for($i=0;$i < count($hd_day['allTit']);$i++){
 					?>
-						<strong><?=$hd_day['allTit'][$i]?></strong>
-						<p><?=$hd_day['allMage'][$i]?></p>
+						<li>
+							<strong><?=$hd_day['allTit'][$i]?></strong>
+							<p><?=$hd_day['allMage'][$i]?></p>
+						</li>
 					<?
 					}
 					?>
@@ -391,9 +401,11 @@ $hd_day = hd_lists('month');
 				</td>
 			</tr>
 		<?}else{?>
+		<?/*
 			<tr >
 				<td colspan="6"><button type="submit" class="U_btn01" style="float:right;">선택예약</button></td>
 			</tr>
+		*/?>
 		<?}
 		?>
 			</tbody>

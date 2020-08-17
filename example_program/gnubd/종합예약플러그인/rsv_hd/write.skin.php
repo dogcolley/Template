@@ -119,7 +119,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
 		<tr>
             <th scope="row"><label for="wr_1">날짜지정<strong class="sound_only">필수</strong></label></th>
-            <td><input type="text" name="wr_1" value="<?php echo $wr_1 ?>" id="wr_1" required readonly class="frm_input required"></td>
+            <td>
+				<input type="text" name="wr_1" value="<?php echo $wr_1 ?>" id="wr_1" required readonly class="frm_input required">
+				<input type="text" name="wr_3" value="<?php echo $wr_3 ?>" id="wr_3" required readonly class="frm_input required">
+			</td>
         </tr>
 
 		<tr>
@@ -225,6 +228,22 @@ $("#wr_content").text('휴일 안내');
 $('#ca_name').find('option').last().remove();
 
 $( "#wr_1" ).datepicker({
+	minDate: 0,
+	changeMonth: true,
+	changeYear: true,
+	dateFormat: "yy-mm-dd",
+	yearRange: 'c-99:c+99',
+	constrainInput: true,
+	prevText: '이전 달',
+	nextText: '다음 달',
+	monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+});
+
+$( "#wr_3" ).datepicker({
 	minDate: 0,
 	changeMonth: true,
 	changeYear: true,

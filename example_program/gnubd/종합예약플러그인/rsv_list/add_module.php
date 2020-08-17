@@ -12,14 +12,17 @@ bo_2 예약가능기간 설정
 bo_3 충복 기능 활/비 기능
 bo_4 공휴일설정
 
+write_table
 wr_1 wr_id
 wr_2 예약일시
 wr_3 연락처
 wr_4 예약상태
 
+wr_11 취소시간
 */
 
 
+//날짜제어
 $week = array("일" , "월"  , "화" , "수" , "목" , "금" ,"토") ;
 if($set_day){
 	$info_arr = explode('-',$set_day);
@@ -34,7 +37,6 @@ $set_day = $year.'-'.$month.'-'.$day;
 $today = date("Y-m-d");
 if(!$date)$date = $week[ date('w'  , strtotime($set_day)  )];  // 0을 포함하지 않는 월
 
-
 $nextDay = date('Y-m-d', strtotime('+1 day', strtotime($set_day)));
 $nextDayArr = explode("-", $nextDay);
 $prevDay = date('Y-m-d', strtotime('-1 day', strtotime($set_day)));
@@ -42,6 +44,7 @@ $prevDayArr = explode("-", $prevDay);
 $prev_month = $month - 1;
 $next_month = $month + 1;
 $prev_year = $next_year = $year;
+
 if ($month == 1) {
     $prev_month = 12;
     $prev_year = $year - 1;
@@ -55,6 +58,7 @@ $next_month = $next_month < 10? '0'.$next_month: $next_month;
 $preyear = $year - 1;
 $nextyear = $year + 1;
 
+//연동게시판 설정 (휴일,설정된 예약일자)
 $link_table = $board['bo_1'];
 $link_table_list = $g5['write_prefix'].$link_table;
 $link_table_info = sql_fetch('select * from '.$g5['board_table'].' where bo_table = "'.$link_table.' "');
@@ -69,22 +73,34 @@ $link_hd_list = $g5['write_prefix'].$board['bo_4'];
 $link_hd_info = sql_fetch('select * from '.$g5['board_table'].' where bo_table = "'.$link_hd_list.'	"');
 }
 
-if ($is_admin == "super" || $is_admin == "group" || $member['mb_id'] == 'admin' || $member['mb_id'] == $board['bo_admin']) {
+if ($is_admin == "super" || $is_admin == "group" || ($is_member && ($member['mb_id'] == 'admin' || $member['mb_id'] == $board['bo_admin'] ))) {
 	$is_admin2 = true;
 }
+
+//컬럼추가
+$check_cul = sql_query("SHOW COLUMNS FROM `${write_table}` LIKE 'wr_11'");
+if($check_cul -> num_rows == 0) {
+	$sql =" ALTER TABLE `{$write_table}`
+	ADD `wr_11` DATETIME NOT NULL AFTER `wr_10`";
+	sql_query($sql);
+}
+
+
 
 //예약리스트 가져오기
 function ch_lists($set_day, $date){
 	global $link_table_list;
+
 	$sql = "select * from ".$link_table_list." WHERE
 	 wr_7 != '1' AND (
 	 (wr_3 = 'week' AND wr_4 like '%".$date."%' ) ||
 	  (wr_3 = 'oneday' AND wr_4 = '".$set_day."') ||
 	   (wr_3 = 'term' AND wr_5 >= str_to_date('".$set_day."', '%Y-%m-%d') AND wr_4 <= str_to_date('".$set_day."', '%Y-%m-%d') )
 	   )
-		order by wr_id
+		order by wr_12 
 	";
 
+	echo $sql;
 	$qry = sql_query($sql);
 	for($i=0; $row=sql_fetch_array($qry); $i++){
 		$arr[$i] = $row;
@@ -93,34 +109,29 @@ function ch_lists($set_day, $date){
 }
 
 //휴일리스트 가져오기
-function hd_lists($mode='all'){
 
+function hd_lists($mode='all',$SETINGDAY = ''){
 	global $link_hd_list;
 	global $year;
 	global $month;
 	global $day;
 	global $set_day;
-	
+	if(!$SETINGDAY)$SETINGDAY = $set_day;
+
 	if($mode == 'month')
-		$sql_ch = "wr_1 like '%".$year."-".$month."%' AND wr_2 = '' ";
+		$sql_ch = "wr_1 like '%".$year."-".$month."%' OR wr_3 like '%".$year."-".$month."%' AND wr_2 = '' ";
 	else if($mode == 'day')
-		$sql_ch = "wr_1 = '".$set_day."'";
+		$sql_ch = "(( DATE_FORMAT(wr_1,'%Y-%m-%d') <= DATE_FORMAT('".$SETINGDAY."','%Y-%m-%d')) AND ( DATE_FORMAT(wr_3,'%Y-%m-%d') >= DATE_FORMAT('".$SETINGDAY."','%Y-%m-%d')))";
 	else
 		$sql_ch = "wr_2 != ''";
 
 
-	$sql = "select ca_name,wr_subject,wr_1,wr_2,wr_content from ".$link_hd_list." WHERE ".$sql_ch;
+	$sql = "select ca_name,wr_subject,wr_1,wr_2,wr_3,wr_content from ".$link_hd_list." WHERE ".$sql_ch;
 	$qry = sql_query($sql);
 
 	$day_all = false;
 	for($i=0; $row=sql_fetch_array($qry); $i++){
-		if($mode == 'month'){
-			$day_arr = explode('-',$row['wr_1']);
-			$set_arr = $day_arr[2];
-		}else{
-			$set_arr = $i;
-		}
-		$arr[$set_arr] = $row;
+		$arr[$i] = $row;
 		$day_hd = 'false';
 		if(!$row['wr_2'] && $mode == 'day'){
 			$day_all = true;
@@ -137,21 +148,64 @@ function hd_lists($mode='all'){
 		$arr['allMage'] = $arr2;
 		$arr['allTit'] = $arr3;
 	}
-	
-
-
 	return $arr;
 }
+//휴일체크
+function hd_check($DAY,$LINK_TABLE_WR_ID){
+	GLOBAL $link_hd_list;
+	$sql = "SELECT * FROM ".$link_hd_list." WHERE (( DATE_FORMAT(wr_1,'%Y-%m-%d') <= DATE_FORMAT('".$DAY."','%Y-%m-%d')) AND ( DATE_FORMAT(wr_3,'%Y-%m-%d') >= DATE_FORMAT('".$DAY."','%Y-%m-%d'))) AND (wr_2 ='' OR wr_2 ='".$LINK_TABLE_WR_ID."') AND ca_name != '공지'LIMIT 1" ;
+	$qry = sql_fetch($sql);
+	if($qry){
+		alert('예약 불가일에 예약을 할수 없습니다!',$err_url);
+	}
+}
 
+function hd_check2($ch_arr,$check_data,$set_day){
+	global $bo_table;
+	global $link_table;
+	global $member;
+	$data .= '<span style="display:block;padding:5px">'.$check_data['wr_subject'].'</span>';
+	$str_ch = true;
+	$str_txt = '';
 
-//인원 예약인원 노출 (누가누가 예약했을까요?)
+	for($i=0;$i < count($ch_arr); $i++){
+		$str_now = strtotime($set_day);
+		$str_max = strtotime($ch_arr[$i]['wr_3']);
+		$str_min = strtotime($ch_arr[$i]['wr_1']);
+
+		if($str_now > $str_min && $str_max > $str_now) {
+			if($ch_arr[$i]['wr_2'] == '' || $ch_arr[$i]['wr_2'] == $check_data['wr_id']){
+				$data = '<a href="#">[예약불가]'.$check_data['wr_subject'].'</a>';
+				$str_ch = false;
+				continue;
+			}
+		}else if($str_ch){
+			//$link = G5_BBS_URL.'/wirte.php?bo_table='.$bo_table;
+			$check_lt =  ch_lt($check_data['wr_id'],$set_day,$check_data);
+			if($check_lt['rv-state'] == 'false'){
+				for($j=0;$j < count($check_lt['rsv_wr_id']);$j++){//rsv_wr_state
+
+					$set_txt = $member['mb_level'] > 7 ? $check_lt['rsv_wr_name'][$j] :  preg_replace('/.(?=.$)/u','*',$check_lt['rsv_wr_name'][$j]);
+					$data .= '<a href="'.G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$check_lt['rsv_wr_id'][$j].'" style="float:none;clear:both;display:block;width:100%" class="sb_3 sb"  >'.$set_txt.'</a>';
+				}
+			}else{
+				$set_url = G5_BBS_URL.'/write.php?bo_table='.$bo_table.'&link_wr_id='.$check_data['wr_id'].'&set_day='.$set_day;
+				$data = '<a href="'.$set_url.'">[예약가능]'.$check_data['wr_subject'].'</a>';
+			}
+		}
+	}
+	
+	return $data;
+}
+
+//인원 예약인원 노출
 function ch_member($wr_id){
 	global $link_table_list;
 	global $write_table;
 	global $set_day;
 	global $g5;
 
-	$sql = "select wr_name,wr_id,wr_1,wr_6 from ".$write_table." where wr_1 like '%".$wr_id."%' AND wr_2 = '".$set_day."' AND wr_4 != '예약취소' ";
+	$sql = "select wr_name,wr_id,wr_1,wr_6,wr_4 from ".$write_table." where wr_1 like '%".$wr_id."%' AND wr_2 = '".$set_day."' AND wr_4 != '예약취소' ";
 	$qry = sql_query($sql);
 	
 
@@ -199,20 +253,22 @@ function ch_lt($wr_id,$date,$item){
 	global $g5;
 	global $today;
 
-	$sql = "select wr_name,wr_id,wr_1,wr_6 from ".$write_table." where wr_1 like '%".$wr_id."%' AND wr_4 != '예약취소' AND wr_2 = '".$set_day."'";
+	$sql = "select wr_name,wr_id,wr_1,wr_6,wr_4 from ".$write_table." where wr_1 = '".$wr_id."' AND wr_4 != '예약취소' AND wr_2 = '".$date."'";
 	$qry = sql_query($sql);
 	$cnt = 0;
 
+	//$arr['sql'] =$sql; 
 	for($i=0; $row=sql_fetch_array($qry); $i++){
 		$arr =  explode('|',$row['wr_1']);
+		$wr_ids[] = $row['wr_id'];
+		$wr_names[] = $row['wr_name'];
+		$wr_status[] = $row['wr_4'];
 		if($row['wr_6'])$arr2 =  explode('|',$row['wr_6']);
 		for($j=0;$j < count($arr); $j++){
 			if($arr[$j] == $wr_id) {
 				$cnt += $arr2[$j] ? $arr2[$j] : 1 ;
 			}
 		}
-
-		$arr[$i.'test'] = $row;
 	}
 
 	$arr['now-rv'] = $cnt;
@@ -232,7 +288,7 @@ function ch_lt($wr_id,$date,$item){
 	}
 
 	//여기는 사용자들이 적은 시간의 단위나 형태가 다를수있어서 언제든 변경해야하는 부분입니다. 현재 설정 : 30분전 마감
-	if($today == $set_day && $item['wr_2']){ //today일 경우에 마감을 강제로 진행하는 함수문
+	if($today == $set_day && $item['wr_2'] && $item['wr_6']){ //today일 경우에 마감을 강제로 진행하는 함수문
 		$times = preg_replace("/\s+/", "", $item['wr_6']);
 		$times = substr($times,0,'5');
 		$set_tile = strtotime("+30 minutes");
@@ -241,7 +297,9 @@ function ch_lt($wr_id,$date,$item){
 			$arr['rv-state'] = 'false';
 		}
 	}
-	
+	$arr['rsv_wr_id'] = $wr_ids;
+	$arr['rsv_wr_name'] = $wr_names;
+	$arr['rsv_wr_state'] = $wr_status;
 	return $arr;
 }
 
@@ -346,20 +404,17 @@ function ch_limo(){
 	$state = 'true';
 	
 	
-	/*strtotime
-	셋팅날짜
-	기준일 
-	오늘
-
-	셋팅날짜 - 오늘
-	*/
-
+	
+	//이건 입력한 숫자의 날짜만큼만 범위로 예약을 받느 솔루션
+	/*
 	if($board['bo_2'] > 0){
 	$setting_numday = date("Y-m-d", strtotime("+".$board['bo_2']." day", strtotime($today)));
 		if(strtotime($setting_numday) - strtotime($set_day) < 0)
 			$state = 'false';
 	};
-	/*
+	*/
+	
+	//이건 타입에 맞춰서 예약범위를 잡아주는 솔루션
 	if($board['bo_2'] == "1"){ //그달 매칭
 		if($set_year !== $match_year)$state = 'false';
 		if($match_month !== $set_month)$state = 'false';
@@ -392,10 +447,12 @@ function ch_limo(){
 		}
 	}else if($board['bo_2'] == "12"){//올해 매칭
 		if($set_year !== $match_year)$state = 'false';
-	}*/
+	}
 
 
 	return $state;	
 }
+
+
 
 ?>

@@ -367,7 +367,8 @@ if($action == 'add_rv' && $member['mb_level'] >7){
 						 wr_datetime = '".G5_TIME_YMDHIS."',
 						 wr_last = '".G5_TIME_YMDHIS."',
 						 wr_ip = '{$_SERVER['REMOTE_ADDR']}',
-						 wr_1 = '$value[0]'
+						 wr_1 = '$value[0]',
+						 wr_3 = '$value[0]'
 						 ";
 		sql_query($sql);
 		$wr_id = sql_insert_id();

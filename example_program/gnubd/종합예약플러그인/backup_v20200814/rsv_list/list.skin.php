@@ -6,9 +6,6 @@ $colspan = 6;
 
 if ($is_checkbox) $colspan++;
 
-
-
-
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
 	if($board['bo_1'] == 'center'){
@@ -26,6 +23,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 include_once($board_skin_path."/add_module.php");
 include_once($board_skin_path."/list.adm.skin.php");
 
+
 ?>
 
 <h2 id="container_title" style="font-size:30px;color:#000"><?php echo ($board['bo_mobile_subject'] ? $board['bo_mobile_subject'] : $board['bo_subject']) ?><span class="sound_only"> 목록</span></h2>
@@ -34,9 +32,10 @@ include_once($board_skin_path."/list.adm.skin.php");
 if($board['bo_1']){
 //add_calendar (캘린더 추가하는부분)
 
-				$hd_arr = hd_lists('month','');
-				echo '??';
-				print_r2($hd_arr);
+$hd_arr = hd_lists('month','');
+$e_date = date('t', strtotime($year.'-'.$month.'-01'));
+$rsv_arr = rsv_lists('month',$year.'-'.$month.'-01',$year.'-'.$month.'-'.$e_date);
+
 ?>
 <div class="U_wrap02">
 	<div class="tbl_head01 tbl_wrap">
@@ -151,18 +150,72 @@ if($board['bo_1']){
 				echo '</span>'.PHP_EOL; 
 				echo '</a>'.PHP_EOL;
 				
-				$date_ins = ['','월','화','수','목','금','토','일'];
-				$arr_ins = ch_lists('', $date_ins[$count]);
-				//echo $vDate;	
-				for($i=0;$i < count($arr_ins);$i++){
-					$arr_ins_rsv[$i] = hd_check2($hd_arr,$arr_ins[$i],$vDate);
-				}
-?>
+
+?>	
 				<div class="U_month_rsv_list">
 					<ul>
-						<?for($i=0;$i<count($arr_ins_rsv);$i++){?>
-						<li <?= $i!== 0 ?'style="border-top:1px dashed #d9d9d9"' :''?>><?=$arr_ins_rsv[$i]?></li>
-						<?}?>
+						<?
+						//새로운 구분자
+                        $nextmonth = $tomonth;
+						if((int)$nextmonth == 12)$nextmonth = 1;
+						else $nextmonth = (int)$nextmonth + 1;
+						 if(( ((int)$year == (int)$toyear && $tomonth == $month ) || ((int)$year == (int)$toyear && $nextmonth == (int)$month )  || ((int)$year == (int)$toyear+1 && (int)$month == 1)) && strtotime($today) <= strtotime($vDate) || $member['mb_level'] > 7){
+							$date_ins = ['일','월','화','수','목','금','토','일'];
+							$arr_ins = Array();
+							$arr_ins = ch_lists('', $date_ins[$count-1]);
+							$arr_ins_rsv = Array();
+							for($i=0;$i < count($arr_ins);$i++){
+								$arr_ins_rsv[$i] = hd_check2($hd_arr,$arr_ins[$i],$vDate,$rsv_arr);
+							}
+
+                            $cal_ist = false;
+                            $cal_lst2 = true;
+							for($i=0;$i<count($arr_ins_rsv);$i++){
+								$add_class ='';
+								if(!$cal_ist){
+									$add_class = $arr_ins_rsv[$i]['ch_status'] == '예약가능'? "can":"not";
+									if($arr_ins_rsv[$i]['ch_all']){
+										echo '<li style="padding:5px;text-align:center;color:#000;font-size:0.8rem">'.$arr_ins_rsv[$i]['wr_subject'].'</li>';
+										$cal_ist = true;
+									} else if($arr_ins_rsv[$i]['wr_ca'] !=='비노출' && $cal_lst2){
+						?>
+                        <li class="<?=$add_class?>"<?= $i!== 0 ?'style="padding:5px;padding-top:0"' :'style="padding:5px;padding-top:0"'?>>
+                            <?
+                                if(ch_limo($vDate) == 'false'){
+                                    $cal_lst2 = false;
+                                    echo '<li style="padding:5px;text-align:center;color:#red;font-size:0.8rem">예약대기</li>';   
+                                }else{
+
+                                    echo $arr_ins_rsv[$i]['wr_ca'];
+                                    if($arr_ins_rsv[$i]['ch_status'] == '예약가능')
+                                        echo '<a href="'.G5_BBS_URL.'/write.php?bo_table='.$bo_table.'&link_wr_id='.$arr_ins_rsv[$i]['wr_id'].'&set_day='.$vDate.'" style="padding:5px;padding-bottom:0">';
+                                    else 
+                                        echo '<a style="padding:5px;padding-bottom:0">';
+                                    echo $arr_ins_rsv[$i]['wr_subject'];
+                                    echo '</a>';
+                                    
+                                    //print_r2($arr_ins_rsv[$i]['ch_rsv_list']);
+                                    for($j=0;$j < count($arr_ins_rsv[$i]['ch_rsv_list']);$j++){
+                                        echo '<a style="padding:5px;padding-bottom:0" href="'.G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$arr_ins_rsv[$i]['ch_rsv_list'][$j]['wr_id'].'">';
+
+                                        echo $member['mb_level'] > 7 ? $arr_ins_rsv[$i]['ch_rsv_list'][$j]['wr_name']:  preg_replace('/.(?=.$)/u','*', $arr_ins_rsv[$i]['ch_rsv_list'][$j]['wr_name']);
+                                        echo '</a>';
+                                    }
+                                }
+							?></li>
+						<?		}
+							}
+						}
+					}else if( strtotime($today) > strtotime($vDate)){
+                            $date_ins = ['일','월','화','수','목','금','토','일'];
+                            if(count(ch_lists('', $date_ins[$count-1])) > 0)
+                                echo '<li style="padding:5px;text-align:center;color:#000;font-size:0.8rem">예약완료</li>';
+					}else{
+                            $date_ins = ['일','월','화','수','목','금','토','일'];
+                            if(count(ch_lists('', $date_ins[$count-1])) > 0)
+                                echo '<li style="padding:5px;text-align:center;color:#red;font-size:0.8rem">예약대기</li>';
+					}
+					?>
 					</ul>
 				</div>
 <?
@@ -235,16 +288,18 @@ if($board['bo_1']){
 <?
 //add_today_rg_list (선택한 날짜 예약 리스트)
 ?>
-<div class="U_wrap02">
+<div class="U_wrap02" >
 	<form action="<?=G5_BBS_URL.'/write.php'?>" method="post" onsubmit="return ck_submit(this);"">
 		<input type="hidden" value="<?=$bo_table?>" name="bo_table"/>
 		<input type="hidden" value="<?=$set_day ? $set_day : $today?>" name="set_day"/>
 		<table class="U_table02">
 			<caption class="">
 				<span class="caption_tit"><?=$year?>년 <?=$month?>월 <?=$day?>일 예약목록</span>
+				<?/*
 				<span class="sb_1 sb">예약대기</span>
 				<span class="sb_2 sb">취소신청</span>
 				<span class="sb_3 sb">승인완료</span>
+				*/?>
 			</caption>
 			<thead>
 			<? //일일 일정 나오는 부분
@@ -281,7 +336,7 @@ if($board['bo_1']){
 			<?	}else{?>
 				<tr >
 					<?/*<th>선택</th>*/?>
-					<th>에약명</th>
+					<th>예약시간</th>
 					<?/*<th>예약시간</th>*/?>
 					<th>예약자</th>
 					<th>예약인원</th>
@@ -295,7 +350,27 @@ if($board['bo_1']){
 		?>
 			<tr>
 				<? if($hd_day_arr &&  $hd_day_arr[$link_list_arr[$i]['wr_id']] && $hd_day_arr[$link_list_arr[$i]['wr_id']][0]['ca_name'] !=='공지'){?>
-					<td colspan="6"><?=$link_list_arr[$i]['wr_subject']?>는 예약이 불가능합니다.</td>
+						<?=$link_list_arr[$i]['wr_subject']?>는 
+						<?
+							if($hd_day_arr && $hd_day_arr[$link_list_arr[$i]['wr_id']]){
+							$setArr = $hd_day_arr[$link_list_arr[$i]['wr_id']];
+							?>
+								<?
+								for($j=0;$j < count($setArr);$j++){
+								?>
+								<td colspan="6" <?=$setArr[$j]['ca_name'] == '비노출' ? 'style="display:none"' : ''?>>
+								[<?=$setArr[$j]['ca_name']?>]
+									<?/*
+									<strong><i class="fas fa-level-up-alt" style="transform:rotate(90deg);margin-right:10px"></i><?=$setArr[$j]['wr_subject']?></strong>
+									<div class="U_info_conbox"><?=$setArr[$j]['wr_content']?></div>
+									*/?>
+									로 예약이 불가능합니다.
+								</td>
+								<?
+								}
+								?>
+								
+						<?}?>
 				<?}else{?>
 				<?/*
 				<td>
@@ -307,7 +382,7 @@ if($board['bo_1']){
 					?>
 				</td>
 				*/?>
-				<td style="text-align:left"><?=$link_list_arr[$i]['wr_subject']?>
+				<td style="text-align:center"><?=$link_list_arr[$i]['wr_subject']?>
 					<?
 					if($board['bo_7'] == '1' && $link_list_arr[$i]['wr_9']){
 					?>
@@ -329,7 +404,7 @@ if($board['bo_1']){
 							if($booker[$j]['wr_4'] == '예약완료')$color = 'type01';
 							if($booker[$j]['wr_4'] == '예약취소')$color = 'type02';
 							if($booker[$j]['wr_4'] == '취소신청')$color = 'type02';
-							echo '<div class="user_ft '.$color.'" style="padding:5px 0">'.$set_txt.'</div>';
+							echo '<div class=" '.$color.'" style="padding:5px 0">'.$set_txt.'</div>';
 							echo '</a>';
 						}
 						if(count($booker) == 0){
@@ -352,28 +427,7 @@ if($board['bo_1']){
 				</td>
 				<?}?>
 			</tr>
-
-				<?
-					if($hd_day_arr && $hd_day_arr[$link_list_arr[$i]['wr_id']]){
-						$setArr = $hd_day_arr[$link_list_arr[$i]['wr_id']];
-				?>
-			<tr>
-				<td colspan="6" style="padding:0">
-					<?//print_r2($hd_day_arr[$link_list_arr[$i]['wr_id']])?>
-						<ul class="U_info">
-						<?
-						for($j=0;$j < count($setArr);$j++){
-						?>
-							<strong><i class="fas fa-level-up-alt" style="transform:rotate(90deg);margin-right:10px"></i>[<?=$setArr[$j]['ca_name']?>]<?=$setArr[$j]['wr_subject']?></strong>
-							<div class="U_info_conbox"><?=$setArr[$j]['wr_content']?></div>
-						<?
-						}
-						?>
-						</ul>
-				</td>
-			</tr>
 			<?
-					}
 				}
 			?>
 		<?}
@@ -515,7 +569,7 @@ if($board['bo_1']){
                 <option value="wr_name,1"<?php echo get_selected($sfl, 'wr_name,1'); ?>>글쓴이</option>
                 <option value="wr_name,0"<?php echo get_selected($sfl, 'wr_name,0'); ?>>글쓴이(코)</option>
 				*/?>
-				<option value="wr_name,1"<?php echo get_selected($sfl, 'wr_name,1'); ?>>신청자</option>
+				<option value="wr_13,1"<?php echo get_selected($sfl, 'wr_13,1'); ?>>신청자</option>
                 <option value="mb_id,1"<?php echo get_selected($sfl, 'mb_id,1'); ?>>회원아이디</option>
                 <option value="wr_2,1"<?php echo get_selected($sfl, 'wr_2,1'); ?>>날짜</option>
 
@@ -547,18 +601,16 @@ if($board['bo_1']){
                 <input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);">
             </th>
             <?php } ?>
-			<?/*
-			<th scope="col" style="width:50px;">번호</th>
-            <th scope="col" style="width:530px;">제목</th>
-            */?>
-			<th scope="col" style="width:100px;">신청자</th>
-			<!--<th scope="col" style="width:100px;">상태</th>-->
-			<th scope="col"style="width:130px;"><?php echo subject_sort_link('wr_2', $qstr2, 1) ?>전화번호</a></th>
-			<th scope="col"style="width:130px;"><?php echo subject_sort_link('wr_3', $qstr2, 1) ?>예약상태</a></th>
 			<th scope="col"style="width:130px;"><?php echo subject_sort_link('wr_4', $qstr2, 1) ?>예약일</a></th>
+			<th scope="col" style="width:130px;">예약시간/ 예약명</th>
+			<th scope="col" style="width:100px;">신청자</th>
+			<th scope="col"style="width:130px;"><?php echo subject_sort_link('wr_2', $qstr2, 1) ?>전화번호</a></th>
 			<?if($is_admin2){?>
+			<th scope="col" class="M_ds_non"style="width:130px;">취소시간</th>
+			<th scope="col" class="M_ds_non"style="width:130px;">수정시간</th>
 			<th scope="col"style="width:20px;">보기</th>
 			<?}?>
+			<th scope="col"style="width:130px;"><?php echo subject_sort_link('wr_3', $qstr2, 1) ?>예약상태</a></th>
         </tr>
         </thead>
         <tbody>
@@ -567,59 +619,34 @@ if($board['bo_1']){
         <?php
 		for ($i=0; $i<count($list); $i++) {
         ?>
-
+		<?	$arr = explode('|',$list[$i]['wr_1']);
+			foreach($arr as $value){ //이업체의 경우 리스트 th에 노출 시켜달라해서 이부분을 빼서 작업함 원래는 여러개가 존재할수있음 
+			$item = ch_list($value);?>
+		<?}?>
         <tr class="J_list_base <?php if ($list[$i]['is_notice']) echo "bo_notice"; ?>">
             <?php if ($is_checkbox) { ?>
             <td class="td_chk">
                 <label for="chk_wr_id_<?php echo $i ?>" class="sound_only"><?php echo $list[$i]['subject'] ?></label>
                 <input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
             </td><?php } ?>
-			<?/*
-			<td style="text-align: center;"><?=$i+1?></td>
-            <td class="td_subject" style="<?=$align;?> ">
-                <?php
-                if ($is_category && $list[$i]['ca_name']) {
-                ?>                
-				<a href="<?php echo $list[$i]['ca_name_href'] ?>" class="bo_cate_link"><?php echo $list[$i]['ca_name'] ?></a>
-                <?php } ?>
-
-                <a href="<?php echo $list[$i]['href'] ?>">
-				<?echo $list[$i]['icon_reply'];?>
-                    <?php echo $list[$i]['subject'] ?>
-					<?php if ($list[$i]['comment_cnt']) { ?> 댓글 <?php echo $list[$i]['comment_cnt']; ?>개<?php } ?>
-					<?php
-                    // if ($list[$i]['link']['count']) { echo '['.$list[$i]['link']['count']}.']'; }
-                    // if ($list[$i]['file']['count']) { echo '<'.$list[$i]['file']['count'].'>'; }
-
-                    if (isset($list[$i]['icon_new'])) echo $list[$i]['icon_new'];
-                    if (isset($list[$i]['icon_hot'])) echo $list[$i]['icon_hot'];
-                    if (isset($list[$i]['icon_file'])) echo $list[$i]['icon_file'];
-                    if (isset($list[$i]['icon_link'])) echo $list[$i]['icon_link'];
-                    if (isset($list[$i]['icon_secret'])) echo $list[$i]['icon_secret'];
-
-                    ?>
-                </a>
-				*/?>
-				<td style="text-align: center;">
-					<a  href="<?php echo $list[$i]['href'] ?>">
-					<?= $is_member ? $list[$i]['wr_name']: preg_replace('/.(?=.$)/u','*',$list[$i]['wr_name'])?>
-					</a>
-				</td>
-            </td>
-            <td class="td_date">
-				<?= $is_member ? $list[$i]['wr_3']: preg_replace('/.(?!....)/u','*',$list[$i]['wr_3'])?>
-			</td>
-            <td class="td_date"><?php echo $list[$i]['wr_4'] ? $list[$i]['wr_4'] : '예약대기' ?></td>
             <td class="td_date"><?php echo $list[$i]['wr_2']?></td>
+            <td class="td_date"><?php echo $item['wr_subject']?></td>
+            <td class="td_date">
+				<?= $is_admin ? $list[$i]['wr_name']: '******'?>
+			</td>
+			<td class="td_date">
+				<?= $is_admin ? $list[$i]['wr_3']: preg_replace('/.(?!....)/u','*',$list[$i]['wr_3'])?>
+			</td>
 			<?if($is_admin2){?>
-			<td style="padding:0">
-				<button type="button" class="op_info">보기</button>
-			</td> 
+				<td class="td_date M_ds_non"><?php echo $list[$i]['wr_11'] !== '0000-00-00 00:00:00' ? $list[$i]['wr_11'] : '' ?></td>
+				<td class="td_date M_ds_non"><?php echo $list[$i]['wr_14'] !== '0000-00-00 00:00:00' ? $list[$i]['wr_14'] : ''?></td>
+				<td style="padding:0"><button type="button" class="op_info">보기</button></td> 
 			<?}?>
+            <td class="td_date"><?php echo $list[$i]['wr_4'] ? $list[$i]['wr_4'] : '접수완료' ?></td>
         </tr>
 		<?if($is_admin2){?>
 		<tr class="J_list_info">
-			<td style="text-align:center;border-bottom:1px #d9d9d9;padding-bottom:40px" colspan="6">
+			<td style="text-align:center;border-bottom:1px #d9d9d9;padding-bottom:40px" colspan="10">
 				<?
 					$arr = explode('|',$list[$i]['wr_1']);
 					$arr2 = explode('|',$list[$i]['wr_6']);
@@ -630,7 +657,7 @@ if($board['bo_1']){
 					<table class="U_table01" style="margin-bottom:10px">
 						<tbody>
 							<tr>
-								<td>예약명</td>
+								<td>예약시간</td>
 								<td><?=$item['wr_subject']?></td>
 							</tr>
 							<?if($item['wr_6']){?>
@@ -646,6 +673,21 @@ if($board['bo_1']){
 								<td><?echo $arr2[$cnt]; $cnt++;?>명</td>
 							</tr>
 							<?}?>
+
+                            <?php if($list[$i]['wr_11'] !== '0000-00-00 00:00:00'){ ?>
+							<tr>
+								<td>취소시간</td>
+								<td><?php echo $list[$i]['wr_11'] !== '0000-00-00 00:00:00' ? $list[$i]['wr_11'] : '' ?></td>
+							</tr>
+                            <?}?>
+
+                            <?php if($list[$i]['wr_14'] !== '0000-00-00 00:00:00'){ ?>
+							<tr>
+								<td>수정시간</td>
+								<td><?php echo $list[$i]['wr_14'] !== '0000-00-00 00:00:00' ? $list[$i]['wr_14'] : '' ?></td>
+							</tr>
+                            <?}?>
+
 						</tbody>
 					</table>	
 				<?}?>

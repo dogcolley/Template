@@ -85,7 +85,16 @@ if($check_cul -> num_rows == 0) {
 	sql_query($sql);
 }
 
-
+//예약되어있는 리스트 가져오기
+function  rsv_lists($mode='month',$s_date,$e_date){
+	global $write_table;
+	$sql = 'select * from '.$write_table.' where wr_4 != "예약취소" AND wr_2 BETWEEN DATE_FORMAT("'.$s_date.'","%Y-%m-%d") AND DATE_FORMAT("'.$e_date.'","%Y-%m-%d")';			
+	$qry = sql_query($sql);
+	for($i=0; $row=sql_fetch_array($qry); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;
+}
 
 //예약리스트 가져오기
 function ch_lists($set_day, $date){
@@ -100,7 +109,6 @@ function ch_lists($set_day, $date){
 		order by wr_12 
 	";
 
-	echo $sql;
 	$qry = sql_query($sql);
 	for($i=0; $row=sql_fetch_array($qry); $i++){
 		$arr[$i] = $row;
@@ -109,7 +117,6 @@ function ch_lists($set_day, $date){
 }
 
 //휴일리스트 가져오기
-
 function hd_lists($mode='all',$SETINGDAY = ''){
 	global $link_hd_list;
 	global $year;
@@ -150,6 +157,7 @@ function hd_lists($mode='all',$SETINGDAY = ''){
 	}
 	return $arr;
 }
+
 //휴일체크
 function hd_check($DAY,$LINK_TABLE_WR_ID){
 	GLOBAL $link_hd_list;
@@ -160,41 +168,45 @@ function hd_check($DAY,$LINK_TABLE_WR_ID){
 	}
 }
 
-function hd_check2($ch_arr,$check_data,$set_day){
+function hd_check2($ch_arr,$check_data,$set_day,$rsv_arr){
 	global $bo_table;
 	global $link_table;
 	global $member;
-	$data .= '<span style="display:block;padding:5px">'.$check_data['wr_subject'].'</span>';
+	$data = $check_data;
+	$data['ch_status'] = '';
 	$str_ch = true;
 	$str_txt = '';
+	$cnt = $check_data['wr_2'];
+
 
 	for($i=0;$i < count($ch_arr); $i++){
 		$str_now = strtotime($set_day);
 		$str_max = strtotime($ch_arr[$i]['wr_3']);
 		$str_min = strtotime($ch_arr[$i]['wr_1']);
 
-		if($str_now > $str_min && $str_max > $str_now) {
+		if(($str_now > $str_min && $str_max > $str_now) || ch_limo($set_day) == 'false' ) {
 			if($ch_arr[$i]['wr_2'] == '' || $ch_arr[$i]['wr_2'] == $check_data['wr_id']){
-				$data = '<a href="#">[예약불가]'.$check_data['wr_subject'].'</a>';
-				$str_ch = false;
+				$data['ch_status'] = '예약불가';
 				continue;
 			}
 		}else if($str_ch){
-			//$link = G5_BBS_URL.'/wirte.php?bo_table='.$bo_table;
-			$check_lt =  ch_lt($check_data['wr_id'],$set_day,$check_data);
-			if($check_lt['rv-state'] == 'false'){
-				for($j=0;$j < count($check_lt['rsv_wr_id']);$j++){//rsv_wr_state
+			$data['ch_status'] = '예약가능';
+			for($j=0;$j < count($rsv_arr);$j++){//rsv_wr_state
+				//
+				//echo '<br>';
+				//$data['test2'][$j] = $rsv_arr[$j]['wr_2'].',,'.$rsv_arr[$j]['wr_1'].','.$check_data['wr_id'];
 
-					$set_txt = $member['mb_level'] > 7 ? $check_lt['rsv_wr_name'][$j] :  preg_replace('/.(?=.$)/u','*',$check_lt['rsv_wr_name'][$j]);
-					$data .= '<a href="'.G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&wr_id='.$check_lt['rsv_wr_id'][$j].'" style="float:none;clear:both;display:block;width:100%" class="sb_3 sb"  >'.$set_txt.'</a>';
+				if($set_day == $rsv_arr[$j]['wr_2'] && $rsv_arr[$j]['wr_1'] == $check_data['wr_id']){
+					$cnt -= (int)$rsv_arr[$j]['wr_6'];
+					$data['ch_rsv_list'][] = $rsv_arr[$j];
 				}
-			}else{
-				$set_url = G5_BBS_URL.'/write.php?bo_table='.$bo_table.'&link_wr_id='.$check_data['wr_id'].'&set_day='.$set_day;
-				$data = '<a href="'.$set_url.'">[예약가능]'.$check_data['wr_subject'].'</a>';
 			}
 		}
+
+		if($cnt < 1){
+			$data['ch_status'] = '예약불가';
+		}
 	}
-	
 	return $data;
 }
 
@@ -386,25 +398,27 @@ function ch_myrv2($wr_id,$day){
 
 
 //날짜로 설정하는 예약 제한 기능
-function ch_limo(){
+function ch_limo($set_day = null){
 	global $board;
 	global $today;
 	global $year;
 	global $month;
 	global $day;
-	global $set_day;
+	global $set_day_global;
+
+	if(!$set_days)$set_day = $set_day_global;
 	
 	$set_year = (int)$year;
 	$set_month = (int)$month;
 
-	//$today = '2020-01-01';
+	//$today = '2020-06-01';
 	$today_arr = explode('-',$today);
 	$match_year = (int)$today_arr[0];
 	$match_month = (int)$today_arr[1];
 	$state = 'true';
 	
 	
-	
+ 
 	//이건 입력한 숫자의 날짜만큼만 범위로 예약을 받느 솔루션
 	/*
 	if($board['bo_2'] > 0){
@@ -424,7 +438,15 @@ function ch_limo(){
 			$match_month2 = $match_month == 12 ? 1 :  $match_month+1;
 			$match_year = $match_month == 12 ? $match_year+1 :  $match_year;
 			if($match_month2 !== $set_month)$state = 'false';
-			else if($match_year == $set_year)$state = 'true';
+			else if($match_year == $set_year){
+				$state = 'true';
+				$bo_9_now = strtotime(date("H:i:s"));
+				$bo_9_set = strtotime($board['bo_9'].':00');
+
+				if( $bo_9_set > $bo_9_now && (int)$today_arr[2] == 1 ){
+					$state = 'false';
+				}
+			}
 		}
 	}else if($board['bo_2'] == "3"){//그해 분기매칭
 		if($set_year !== $match_year)$state = 'false';

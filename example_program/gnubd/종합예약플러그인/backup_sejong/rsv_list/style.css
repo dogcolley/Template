@@ -12,13 +12,22 @@ body {overflow-x:visible !important;}
 /* 예약관리 플러그인 커스텀 아이징 */
 .U_input01{border:1px solid #ccc;height:auto;padding:5px 10px;width:auto}
 
-.U_wrap02 .wrap_calendar td{position:relative;width:calc(100% / 7);padding:0}
+.U_wrap02 .wrap_calendar td{position:relative;width:calc(100% / 7);padding:0;}
+/*.U_wrap02 .wrap_calendar td .td_wrap{height:100px;overflow:auto}*/
+/*
+.U_wrap02 .wrap_calendar td a{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.U_wrap02 .wrap_calendar td li{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+*/
+
+.bo_v_info_tit.hit,.bo_v_info_tit.comment{padding-left:15px;border-left:1px solid #d9d9d9}
+
+
 .hd_txt{display:block;color:#000;pading:3px 0;text-overflow:ellipsis;overflow:hidden;  width:100%;max-width:120px}
 .U_wrap02 .wrap_calendar td a{padding:25px 5px 10px 5px;position:relative;display:block}
-.ch_days {position:absolute;left:0;top:0;width:100%;background:#ffc000;text-align:center;color:#fff}
+.ch_days {position:absolute;left:0;top:0;width:100%;background:#6d6d6d;text-align:center;color:#fff}
 
 .U_btns01:after{clear:both;display:block;content:""}
-.U_btns01{background:#ffe9a5}
+.U_btns01{background:#cccac3}
 .U_btns01 > li {width:25%;float:left;text-align:center}
 .U_btns01 > li a{display:block;padding: 10px 0}
 
@@ -43,6 +52,8 @@ body {overflow-x:visible !important;}
 
 .U_table02 thead tr th{text-align:center;padding:15px 0;border-bottom:1px solid #d9d9d9;background:#f9f9f9;font-size:15px}
 .U_table02 tbody tr td{padding:15px 5px;text-align:center;word-break: initial;border-bottom:1px dashed #d9d9d9;font-size:14px}
+.U_table02 tbody tr td a{color:inherit}
+.U_table02 tbody tr td a.U_btn01{color:#fff}
 .U_table02 tbody tr:last-child td{border-bottom:0}
 .U_table02 {width:100%;}
 .U_table02 caption{font-size:18px;color:#333;margin-bottom:20px}
@@ -62,20 +73,22 @@ body {overflow-x:visible !important;}
 .U_info .U_info_conbox{line-height:1.4;font-size:14px;text-align:left;padding:10px 2.5%;border-bottom:1px dashed #d9d9d9}
 .TM_ds_inbl{margin: 5px 0;width:50%;float:left;padding-right:1%}
 .frm_input.frm_input2{width:100%}
-.op_info{width:100%;height:100%;background: #ffc000;border:0;color:#fff}
-.U_btn02{width:100%;transition:0.4s all;display:block;line-height:1;padding:12px;border-radius:5px;background:#fff;border:3px solid #ffc000;font-size:15px;font-weight:700;color:#ffc000!important;letter-spacing:1px}
-.U_btn02:hover{background:#ffc000;color:#fff!important}
+.op_info{width:100%;height:100%;background: #6d6d6d;border:0;color:#fff}
+.U_btn02{width:100%;transition:0.4s all;display:block;line-height:1;padding:12px;border-radius:5px;background:#fff;border:3px solid #6d6d6d;font-size:15px;font-weight:700;color:#6d6d6d!important;letter-spacing:1px}
+.U_btn02:hover{background:#6d6d6d;color:#fff!important}
 /*
 .TM_ds_inbl{display:inline-block}
 */
+.U_info01{margin-top: 10px;font-size: 14px;color: #e40000;}
 .J_list_info{display:none}
 
 /* .user_ft {padding-right:20px!important;position:relative;text-align:left} */
 .user_ft{line-height:1.4}
+/*
 .user_ft:before{content:"";border:2px solid #f90;width:10px;height:10px;display:inline-block;right:5px;top:50%;margin-top:-5px;border-radius:50%;margin-right:5px}
 .user_ft.type01:before{border-color:#06f}
 .user_ft.type02:before{border-color:#f00}
-
+*/
 .modal-body:after{content:"";clear:both;display:block}
 .U_tab_con{height:90%}
 .U_tab_con > li {display:none;height:100%;overflow:auto}
@@ -96,8 +109,9 @@ body {overflow-x:visible !important;}
 	.TM_ds_inbl span{display:block;margin-top:5px;}
 }
 
-.date_head{display:block}
+.date_head{display:block;color:#555}
 @media screen and (max-width: 768px) {
+	.M_ds_non{display:none}
 	.date_head span{display:block}
 	.ch_days{font-size:10px;}
 	.caption_tit{display:block}
@@ -116,8 +130,16 @@ body {overflow-x:visible !important;}
 	.U_table02 tbody tr td .U_btn01{font-size:10px;padding:0 5px}
 	.sb:before{width:auto;border-radius:0}
 }
-.U_wrap02 .wrap_calendar .U_month_rsv_list{padding: 0 5px 25px 5px}
-.U_wrap02 .wrap_calendar .U_month_rsv_list a{padding:5px;margin:0}
+.U_wrap02 .wrap_calendar .U_month_rsv_list{padding: 0 0px 25px 0px;font-size:10px;height:100px;overflow-y:auto}
+.U_wrap02 .wrap_calendar .U_month_rsv_list a{padding:0;margin:0;font-size:12px;color:#333;display:inline-block}
+@media screen and (max-width: 768px) {
+.U_wrap02 .wrap_calendar .U_month_rsv_list a{font-size:10px}
+}
+.U_wrap02 .wrap_calendar .U_month_rsv_list .can a{color:#0187ff}
+.U_wrap02 .wrap_calendar .U_month_rsv_list .not a{color:#ff0101}
+
+/*
+*/
 
 /* 예약관리 플러그인 커스텀 아이징 끝*/
 
@@ -621,7 +643,6 @@ body {overflow-x:visible !important;}
         #bo_v {margin-bottom:20px; padding-left:0; padding-right:0;}
         #bo_v_info .hit, #bo_v_info .comment {display:none;}
         #bo_v_info .right {float:none;}
-        #bo_v_info .right span {}
         #bo_v_info .bo_v_info_tit {display:none;}
         #bo_v_info strong {float:left;}
         #bo_v_info .hit + strong, #bo_v_info .comment + strong  {display:none;}
@@ -736,15 +757,17 @@ body {overflow-x:visible !important;}
 	border-right: 1px solid #e9e9e9;
     line-height: 1.5em;
     word-break: break-all;
+	color:#333
 }
 .tbl_head01 thead th {
+	
     padding: 12px 0;
-    border-top: 1px solid #ffc000;
-    border-bottom: 1px solid #ffc000;
-	border-left: 1px solid #ffc000;
-	border-right: 1px solid #ffc000;
-    background: #ffc000;
-    color: #383838;
+    border-top: 1px solid #6d6d6d;
+    border-bottom: 1px solid #6d6d6d;
+	border-left: 1px solid #6d6d6d;
+	border-right: 1px solid #6d6d6d;
+    background: #6d6d6d;
+    color: #fff;
     font-size: 1.1em;
     text-align: center;
 	font-weight:500

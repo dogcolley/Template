@@ -16,7 +16,6 @@ bo_5 댓글기능 / 메모기능
 bo_6 예약시간 사용 안함
 bo_7 가격사용
 bo_8 수량제어
-bo_9 공통 메세지
 
 */
 
@@ -78,6 +77,11 @@ if($is_admin2 && $action){
 				$http_host = $_SERVER['HTTP_HOST'];
 				$request_uri = $_SERVER['REQUEST_URI'];
 				$url = 'http://' . $http_host . $request_uri;
+				
+				if($_POST['bo_9_bun'] && $_POST['bo_9_si']){
+					$bo_9 = $_POST['bo_9_si'].":".$_POST['bo_9_bun'];
+				}
+
 
 				if($_POST['lbo'] == '1'){
 					$set_table = $g5['write_prefix'].$_POST['lbo_table'];
@@ -91,7 +95,7 @@ if($is_admin2 && $action){
 							bo_write_level = '".$_POST['bo_write_level']."' , 
 							bo_use_secret = '".$_POST['bo_use_secret']."' , 
 							bo_content_head = '".$_POST['bo_content_head']."' , 
-							bo_9 = '".$_POST['bo_9']."' , 
+							bo_9 = '".$bo_9."' , 
 							bo_8 = '".$_POST['use_people']."' , 
 							bo_7 = '".$_POST['use_price']."' , 
 							bo_6 = '".$_POST['use_time']."' , 
@@ -263,9 +267,32 @@ if($is_admin2 && $action){
 						</select>
 						<p style="margin-top:5px">설정시 글은 작성자와 관리자만 볼수있습니다.</p>
 					</div>
+
+					<div>
+						<label for="bo_9_si" class="U_tit" style="display:block" >1일 예약시간 오픈 설정</label>
+						<select name="bo_9_si" id="bo_9_si" class="frm_input frm_input2" style="width:49%;float:left">
+							<option value="" >사용안함</option>
+							<?
+								$bo_9_arr = explode(':',$board['bo_9']);
+								for($i=1;$i < 24; $i++){
+							?>
+								<option value="<?=$i?>" <?=(int)$bo_9_arr[0]==$i?'selected':''?> ><?=$i?>시</option>
+							<?}?>
+						</select>
+
+						<select name="bo_9_bun" id="bo_9_bun" class="frm_input frm_input2" style="width:49%;float:left;margin-left:1%">
+							<option value="" >사용안함</option>
+							<?
+								for($i=0;$i < 60; $i++){
+							?>
+								<option value="<?=$i?>" <?=(int)$bo_9_arr[1]==$i?'selected':''?> ><?=$i?>분</option>
+							<?}?>
+						</select>
+						<br/>
+
+						<p style="margin-top:5px">설정시 글은 작성자와 관리자만 볼수있습니다.</p>
+					</div>
 				</li>
-
-
 
 				<li>
 					<div class="TM_ds_inbl" style="width:100%">

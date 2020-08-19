@@ -7,9 +7,14 @@
 - zip/unzip: 파일자체가 압축이 되어 버림  (ex: zip 파일명, unzip 파일명.zip)
 
 ※tar 로 파일을 묶어 줘야한다.
-
 c(묶기),x(풀기),t(경로확인)
 f(파일),v(포이기과정),J(tar+xz),z(tar+gizp),j(tar+bzip2)
+
+-제일많이 사용하는 명령
+cvf -> 묶기
+cvfJ 묶기 + xz 묵기와 압축
+cvf tar 풀기
+xvfJ xz압축 헤제와 tar 
 
 ※검색기능
 -find [경로][옵션][조건][aciton] : 기본파일찾기
@@ -23,7 +28,7 @@ ex) find /home -name "*.swp" -exec rm {} \;
 -whereis : 실행 파일, 소스,man 페이지 파일 까지 검색
 -locate : 파일 목록 데이터베이스에서 검색
 
-※다양한 시스템환겨설정
+※다양한 시스템환경설정
 기타시스템설정 : unity-control-center
 네트워크 설정 : umtui
 방화벽 설정 : ufw, gufw (서버구축에 필수)

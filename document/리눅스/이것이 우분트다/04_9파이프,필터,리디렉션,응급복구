@@ -8,9 +8,11 @@
 :필요한것만 걸러 주는 명령어
 -| grep,bash,tail,wc,sort,grep,awk,sed등
 -주로 파이브와 같이 씀
+:ex) ps -ef | grep bash #bash 인것만 ps 활동운인 프로세스를 확인한다.
 
 ※리디렉션(redirection)
 :입출력 방향을 바꿔줌
+:ex) ls -l -> list.txt #text로 저장한다.
 
 프로세스, 데모(1)
 ※정의

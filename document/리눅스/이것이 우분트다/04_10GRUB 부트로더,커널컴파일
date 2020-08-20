@@ -22,7 +22,15 @@ GRUB 부트로더
 6 GRUB_CMDLINE_LINUX_DEFAULT = ""
 7 GRUB_CMDLINE_LINUX = ""
 
-:/etc/grub.d/00_header
+:/etc/grub.d/00_header #vi로 맨하단에 추가
+``
+cat << EOF
+set superusers="dogcolley"
+password dogcolley fmusknst7477
+EOF
+``
+
+
 
 모듈의 개념과 커널 컴파일의 중요성
 ※모듈이란 필요할 때마다 호출하여 사용되는 코드

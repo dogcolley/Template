@@ -43,6 +43,10 @@ ex) find /home -name "*.swp" -exec rm {} \;
 
 -at 
 :일회설 작업을 예약
+설치방법 : apt-get -y install rdate at 
+
+rdate -s time.bora.net #시간저장
+
 사용 예
 at 3:00 am tomorrow -> 내일 새벽
 at now + 1 hours -> 1시간 후

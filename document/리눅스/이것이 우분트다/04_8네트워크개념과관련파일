@@ -68,6 +68,8 @@
 
 ※/etc/resolv.conf
 :DNS 서버의 정보 및 호스트 이름이 들어 있는 파일
+nameserve 127.0.1.1 #자기자신을 쓰겠다.
+nameserve 168.126.63.1 #kt 한국통신 
 
 ※/etc/hosts
 :현컴퓨터의 호스트이름 및 FQDN이 들어 있는 파일

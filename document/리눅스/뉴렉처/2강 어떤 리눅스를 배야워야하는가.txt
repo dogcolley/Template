@@ -1,0 +1,12 @@
+리눅스의계보(배포는 오래되지 않음)
+
+1. Debian (Ubuntu)
+56% -> 64% -> 상승세
+
+2. Slackware (CensOs)
+20% -> 19% 소폭 하락
+
+3. Red Hat (Oracle,Fedora)
+3.9% -> 2.9% 하락 추세
+
+

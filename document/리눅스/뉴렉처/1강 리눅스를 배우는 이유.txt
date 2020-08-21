@@ -1,0 +1,19 @@
+1강 리눅를 배워야하는 이유
+
+01. OS의 큰분류
+:Unix(Linux)
+:NT(윈도우) 
+
+02. OS를 선택하는 이유 
+:사용하는 소프트웨어에 따라 (목적에 따라)
+
+03. Linux AND Unix를 사용해야하는 이유 
+:superCamputer의 경우엔 점유율 100% : 효율
+
+04: Linux의 예시 (끝에 HTML5)
+Android , 가전제품, 자동차 다양한 분야에서 사용함
+
+05: Unix의 IOS / MAC / JAVA 
+
+
+

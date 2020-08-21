@@ -1,0 +1,20 @@
+4강 유닉스의 탄생, 역사
+
+1969년 Multics Project  (그당시에 컴퓨터는 깡통) Installation team(1972)
+=> 컴퓨터를 여러명이서 사용하는 서비스 => 실패 Bell 연구소 <IT계의 미친놈들>
+
+UNIX 탄생(Uniplexed Information Computing Service)
+=> 하드웨어 => OS(운영체제) => (api : 이떄 B언어 탄생,BCTL) => APP(서비스) 의 체계가 확립
+
+PDP-11/ 20 이용한 C언어의 탄생
+=> 작업한 운영체제에 소프웨들이 동작을 안함 => 하드웨어의 성능향상(8bit -> 16bit -> 32bit) => C언어의 탄생
+C언어로 다시 UNIX 재구축
+
+오늘날의 UNIX
+=> 하나의 큰 서비스 => 여러명의 사람이 여러 프로세스를 관리
+
+
+
+
+
+

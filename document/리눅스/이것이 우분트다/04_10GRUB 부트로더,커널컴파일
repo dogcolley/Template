@@ -40,8 +40,17 @@ EOF
 ※커널컴파일
 : 현 커널버전 확인 > 커널 소스 다운로드 > 커널 소스 압축풀기 > 커널 설정 초기화 > 커널 환경설정 > 이전 정보삭제 > 커널 컴파일 및 설치 > 부트 로더 확인
 
-
-
-
+uname -r #버전확인
+01. kenel.rog 접속 커널 파일 다운로드
+02. mv ${linuxFile} /usr/src
+03. tar xfJ ${linuxFile}
+04. cd ${linuxFile}
+05. (컴파일을 위한 apt-get) apt-get -y install qt5-default libssl-dev
+06. <커널초기화> make mrproper
+07. <커널을환경설정> make xconfig
+08. <커널셋팅닫기> make clean
+09. make > make moddules_install > make install > ls-l /boot
+: make; make modules_install; make install #세미콜론을 달아주면 이어서 작업을하게 됩니다.
+10. <부트로더확인> cat /boot/grub/grub.cfg 
 
 

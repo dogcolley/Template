@@ -1,0 +1,19 @@
+LVM
+:여러개의 하드를 합치고 다시 나눌수있음
+
+-Physical Volume (물리 볼륨)
+-Volume Group (합친 경로)
+-Logical Volume (다시 나눈논리그룹)
+
+실습순서 (apt-get -y install lvm2)
+1.물리장치추가
+2.fdisk추가 타입은 8e로 Linux LVM 으로
+3.pvcreate /dev/sdb1 /dev/sdc1 #선처리작업
+4.vgcreate /dev/sdb1 /dev/sdc1 #볼륨추가작업
+5.vgdisplay #확인
+6.lvcreate --size 1G --name myLg1 mgVG #나누기
+7.lvcreate --extents 100%FREE -name ${name} ${VolumeGroupName}
+8.mkfs.ext4 /경로 #포멧
+9.mount 시키기 
+10.df로 확인하기
+11. /etc/fstab 에서 추가하기 

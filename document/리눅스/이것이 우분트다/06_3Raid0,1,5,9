@@ -1,0 +1,11 @@
+모듈설치 : apt-get install mdadm
+생성 : mdadm --create ${dirName} --level=linear --raid-devices=2 /dev/sdb1 dev/sdc1
+확인 : mdadm --detail --scan
+포맷 : mkfs.ext4
+설정 : gedit /etc/fstab
+확인 : mdadm --detail /dev/md9
+
+우분트 버그로 인한 추가 작업
+:mdadm --detail --scan 한 내용을 복사
+:gedit /etc/mdadm/mdadm.conf 열고 #name=server:x 부분 제거
+:update-initramfs -u 업데이트w

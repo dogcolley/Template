@@ -1,0 +1,36 @@
+VMwarea는 
+총 120 개의 SATA 하드디스크
+총 60 개의  SCSI 하드디스크 사용할수있다.
+※기본적인 os로 하드웨어와 커뮤니케이션 하기위한 단계
+
+:윈도우의 디스크 파티션 관리라고 생각하면 된다. 
+
+:모든 장치는 /dev 폴더안에 고유 이름으로 저장이 되어있다.
+/dev/sda (xxGB)로 할당되어있음
+
+:분할 하거나 여러 장치를 연결하거나
+/dev/sda
+/dev/sda1
+/dev/sda2
+/dev/sdb
+.
+.
+
+:새로운 사타를 확장할경우 (서버 용량확장등)
+마운트를 해야한다. => 폴더를 생성 & 연결
+
+:실습 단계
+물리하드장착=>하드디스크(파티션/dev/sdb1)=>포멧(mlds.ex4)=>moount=>/mydata/reboot/etc/fstab에 마운트 등록
+
+01. fdisk /dev/sdb #파티션 설정 m으로 설정보고 n이생성 p가 주파티션 4개 e가 확장파티션 first sector: 2048 앞부분은 시스템용 
+02. p를 다시 치면 상태 확인가능
+Deivce Boot start end sectors size id type 이렇게 노출이됨
+03. 확인후 w를 누르면 적용이 됩니다.
+04. mkfs.ext4 /dev/sdb1 #포멧
+05. mount /dev/sdb1 /mydata
+06. umount /dev/sdb1
+07. 기본 부팅시 마운트 설정 gedit /etc/fstab
+
+
+08. fdisk의 p 의 상태에서 t를 누를경우에 상태를 바꿀수있음 모를경우엔 L을치면 종류를 알수있음
+09. df를 치면 드라이브를 확인 할 수 있다.

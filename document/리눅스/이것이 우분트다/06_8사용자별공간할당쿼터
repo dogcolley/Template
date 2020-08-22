@@ -1,0 +1,26 @@
+사용자들의 홈 디렉토리를 만들고 용량등의 제한을 걸어줍니다!
+
+1. 하드 생성
+2. fdisk /dev/sdb
+3. mkfs.ext4 /dev/sdb1
+4. mkdir /userHome
+5. mount /dev/sdb1 /userHome
+6. gedit /etc/fstab 설정
+7. adduser --home /userHome/${userNmae} ${userName}
+8. /fstab 에 defaults,usrjquota=aquota.user,jqfmt-vfsv0 로 유저쿼터용으로 설정 추가
+9. mount --options remoount /userHome (리마운트 옵션)
+
+apt-get -y install quota
+
+10. cd /userHome
+11. quotaoff -avug
+12. quotacheck -augmn
+13. rm -f aquota.*
+14. touch aquota.user aquota.group
+15. chmod 600 aquota.*
+16. quotacheck -augmn
+17. quotaon -avug
+18. edquota -u john
+19. repquota /dir #보기
+20. edquota -p ${cpUser} ${setUser}
+blocks / soft hard 제한량/ inodes 갯수 / soft hard 제한량/ 

@@ -1,0 +1,22 @@
+부팅 서비스를 레이드로 만드는 방법입니다.
+
+과정
+1.새로운 VM 설정
+2.하드를 80GB하나를 추가해서 2개의 하드로 생성
+3.쭉쭉 설정하다 OS의 파티션 설정부분에서 스탑
+4.파티션 셋팅쪽 (몌뉴얼로 이동한다)
+
+5.새하드 생성후 복사 구조복사
+:sfdisk -d /dev/sda | sudo sfdisk /dev/sdc
+
+하드 강제로 제거
+
+
+6.mdadm --run /dev/md0 
+  mdadm --run /dev/md1 
+
+7.mdadm --deatil /dev/md0 , /dev/md1 #상태확인
+8.mdadm /dev/md0 --add /dev/sdb1 추가
+  mdadm /dev/md1 --add /dev/sdb2 추가
+
+상태는 적용이 된게 아니라서 mdadm --detail /dev/md0 , md1 의 상태를 상태를 확인하고 리빌딩중이 끝날떄까지 대기한다.

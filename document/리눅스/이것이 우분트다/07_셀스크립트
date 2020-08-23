@@ -1,0 +1,323 @@
+우분트의 bash 셀
+
+: 기본 셀은 bash(Bourne Again SHell : 배시셀)
+: bash 셀의 특징
+-Alias 기능 (명령어 단축기능)
+-history 기능(위아래)
+-연산 기능
+-job control 기능
+-자동 이름 완성
+-프롬프트
+-명령 프로트콜 기능
+
+: 셀의 명령문 처리 방법
+# rm -rf {$file}
+
+:환경변수
+-echo 환경 변수를 설정하면 출력이 됨
+
+:종류
+HOME        현재 사용자의 홈 디렉토리
+LANG        기본지원언어
+TREM        로그인 터미널 타입
+USER        현재 사용자의 이름
+COLUMNS     현재 터미널의 컬럼 수
+PS1         1차 명령 프롬프트 변수
+BASH        bash 셀의 경로
+HISTRILE    히스토리 파일의 경로
+HOSTNAME    호스트의 이름
+LOGNAME     로그인 이름 
+MAIL        메일을 보관하는 경로
+PATH        실행 파일을 찾는 디렉토리 경로
+PWD         사용자의 현재 작업 디렉토라
+SHELL       로그인해서 사용하는 셀
+DISPLAY     디스플레이 이름
+USERNAME    현재 사용자이름
+LS_COLORS   LS 명령의 확장 색상 옵션
+ORTYPE      운영체제 타입
+
+:생성 실습
+01.name.sh 생성
+``
+#!/bin/sh
+프로그램
+exit 0
+``
+02. sh ${fileName} 로 실행
+
+03. chmod +x ${fileName} 을 주면 실행속성이 추가
+
+04. 모든 사용자가 사용하게 하고 싶으면 /usr/local/bin 파일안에 복사하고 chmod 로 755의 권한을 주면 된다.
+
+:변수 실습
+``
+#!/bin/sh
+myvar="HI woo"  #변수설정
+echo $myvar     #변수값이 출력
+echo "$myvar"   #변수값이 출력
+echo '$myvar'   #텍스트로 출력
+echo \$myvar    #텍스트로 출력0
+echo 값 입력:   
+read myvar
+echo '$myvar' = $myvar
+exit 0
+``
+
+:숫자 실습
+``
+#!/bin/sh
+num1=100
+num2=$num1+200
+echo $num2
+num3=`expr num1 + 200`
+echo $num3
+num4 = `expr \( $num1 + 200 \) / 10 \* 2`
+echo num4
+exit4
+``
+
+:조건문
+
+``
+if [조건]
+then
+    echo '참일경우실행'
+else
+    echo '거짓인경우실행'
+fi
+``
+
+:조건문에 들어가는 비교 연산자
+$a -eq $b : 두수식이 같으면 참
+$a -ne $b : 두수식이 같지 않으면 참
+$a -gt $b : $a가 크면 참
+$a -ge $b : $a가 크거나 같으면참
+$a -it $b : $a이 작으면 참
+$a -le $b : $a이 작거나 같으면참
+!$a       : 거짓이면참
+
+``
+#!/bin/sh
+a = 200
+b = 200
+if [ $a -eq $a ]
+then
+ echo "$a과 $b은 같다."
+else
+ echo "$a와 $b는 다르다."
+fi
+exit 0
+``
+
+
+:파일조건문
+-d $fileName : 파일이 디렉토리면참
+-e $fileName : 파일이 존재하면 참
+-f $fileName : 파일이 일반 파일이면 참
+-g $fileName : 파일이 set-group-ki가 설정되면 참
+-r $fileName : 파일이 읽기 기능이면 참
+-s $fileName : 파일 크기가 0이 아니면 참
+-u $fileName : 파일에 set-user-id가 설정되면 참
+-w $fileName : 파일이 쓰기 기능 상태이면 참
+-x $fileName : 파일이 실행 가능 상태이면 참
+
+``
+#!/bin/sh
+fname=/lib/systhemd/system/cron.service
+if [ -f $fname ]
+then  
+    head -5 $fname
+else   
+    echo "cron 서버가 설치되지 않았습니다."
+fi
+exit 0 
+``
+:case-esac문
+
+``
+#!bin/sh
+case "$1" in
+    start)
+        echo "";;
+    stop)
+        echo "중지";;
+    restart)
+        echo "다시시작~~";;
+    *)
+        echo "뭔지모르겠음";;
+esac
+exit 0
+``
+
+
+``
+#!/bin/sh
+echo "would you like linux? (yes/no)"
+read answer
+case $answer in
+    yes | y | Y | Yes | YES )
+        echo 'you like linux! good~';;
+    [nN]*)
+        echo 'No? are you killing me ?';;
+    *)
+        echo 'answer is yes or no , OK?';;
+    exit 1;
+esac
+exit 0 
+``
+
+:AND, OR 연산자
+
+-a , && / -o , ||
+
+:for in 문
+
+``
+#!/bin/sh
+hap=0
+for i in 1 2 3 4 5 6 7 9 10
+do
+ hap=`expr $hap + $i`
+done
+echo '1부터 10까지의 합은은 : '$hap 
+exti 0 
+``
+
+또는
+
+for(($i=1;$i<=10;$i++)) // for i in 'esq i 10' 으로 변경이 가능
+
+``
+#!/bin/sh
+for fname in $(ls * .sh)
+do
+    echo '====$fname====='
+    head -3 $fname
+done
+exit0   
+``
+
+
+:while문
+
+``
+while [1]
+do  
+    echo ''
+done
+exit 0
+``
+
+``
+#!/bin/sh
+hap=0
+i=1
+while [ $i -le 10 ]
+do
+    hap = `expr $hap + $i `
+    i='expr $i +1'
+done
+echo "1부터 10까지의 함은 "$hap
+exit0
+``
+
+``
+#!/bin/sh
+echo "비밀번호를 입력하세요"
+read mypass
+while [ $mypass != "1234" ]
+do
+ echo '틀렸음 다시입력하셈'
+ read mypass
+done
+echo '통과~~' 
+exit 0
+``
+
+:until 참일때까지 반복한다
+
+:break, continue, exit , return
+
+:사용자 정의함수
+
+``
+#!/bin/sh
+myFuntion(){
+    echo ""
+    return
+}
+echo ""
+myFuntion
+echo ""
+exit 0
+``
+
+``
+#!/bin/sh
+hap(){
+    echo `expr $1 + $2 ` #파라메이터로 호출
+}
+echo '10 더하기 20을 더합니다.'
+hap 10 20
+exit 0 
+``
+
+:eval 문자열을 명령문으로 인식하고 실행
+
+``
+#!/bin/sh
+str="ls -l eval.sh"
+echo $str
+eval $str
+exit 0 
+``
+
+:export 외부 변수로 선언해 준다 , 즉 선언한 변수를 다른 프로그램에 서도 사용할수 있도록 해준다.
+
+exp1.sh
+``
+#!/bin/sh 
+echo $var1
+echo $var2
+exit 0
+``
+
+exp2.sh
+``
+#!/bin/sh 
+var1 = "지역변수"
+export var2 = "외부변수"
+sh exp1.sh
+exit 0 
+``
+
+:printf C언어의 printf() 함수와 비슷하게 출력이 됩니다.
+
+
+:set , $명령어 
+
+``
+#!/bin/sh
+echo "오늘 날씨는 ${date} 입니다."
+set ${date}
+echo "오늘은 $4 요일 입니다."
+exit 0 
+``
+
+:shift 피라메이터 변수를 한단계식 아래로 이동시킨다.
+
+
+``
+#!/bin/sh
+myfunc(){
+    str=""
+    while [ "$i" != "" ] ;
+        do
+            str = "$str $1"
+            shift
+        done
+        echo $str
+}
+myfunc A B C D E F G H I J K
+exit 0
+``

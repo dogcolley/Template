@@ -1,15 +1,14 @@
-heroku create // 기본생성 명렁어
+heroku login
 
-git remote -v // 소스 리무트
+heroku create a-mean-blog-hello-world
 
-heroku git:remote -a thawing-inlet-61413 // 해당 헤로쿠를 깃허브에 리무트 시키는과정
+git add .
 
-git remote rename heroku heroku-staging // 만약 이름을 변경할경우 
+git commit -m "heroku ready"
 
-git push heroku master // 이런식으로 헤로쿠에 깃허브를 넣어준다.
+git push heroku master
 
-git push heroku testbranch:master // 브런치제어를 할경우 아래와같이 제어한다.
+이렇게 5개의 단계로 시작한다.
 
-heroku ps:scale web=1
-
-이후 헤로쿠 셀명령어로 관리
+만약에 이상태에서 프로젝트의 이름이나 브런치를 따로 관리할 경우 별도의 명령어가 필요하므로 
+검색을 다시 해야한다.

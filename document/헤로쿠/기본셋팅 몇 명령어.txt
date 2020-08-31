@@ -12,3 +12,16 @@ git push heroku master
 
 만약에 이상태에서 프로젝트의 이름이나 브런치를 따로 관리할 경우 별도의 명령어가 필요하므로 
 검색을 다시 해야한다.
+
+
+재확인
+
+which heroku
+
+이름을 변경시
+
+heroku apps:rename the-new-name
+
+앱 확인 및 베포
+
+heroku ps:scale web=1

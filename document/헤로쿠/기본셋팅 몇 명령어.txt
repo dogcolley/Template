@@ -25,3 +25,6 @@ heroku apps:rename the-new-name
 앱 확인 및 베포
 
 heroku ps:scale web=1
+  
+
+

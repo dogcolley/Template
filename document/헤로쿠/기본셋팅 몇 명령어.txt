@@ -4,7 +4,7 @@ heroku create a-mean-blog-hello-world
 
 git add .
 
-git commit -m "heroku ready"
+git commit -m "heroku rea
 
 git push heroku master
 
@@ -25,3 +25,7 @@ heroku apps:rename the-new-name
 앱 확인 및 베포
 
 heroku ps:scale web=1
+
+https://grassgardenerapi.herokuapp.com/gitlogin
+
+https://github.com/login/oauth/authorize?client_id=fad1f4720d8c241df34f&redirect_uri=http://localhost:3000/gitlogin

@@ -1,0 +1,17 @@
+
+DELIMITER $$
+CREATE PROCEDURE dataInsert2() 
+BEGIN DECLARE i int DEFAULT 5;
+WHILE i<45 DO  
+insert INTO g5_5_meta SET 
+mta_key = 'wr_weekend한글의날',
+mta_db_id = i,
+mta_db_table = 'board/yp_pension02',
+mta_value ='40000',
+mta_reg_dt = NOW(), 
+mta_country = 'ko_KR';       
+set i=i+1;        
+END while;         
+END $$ 
+DELIMITER $$
+CALL dataInsert2(); 

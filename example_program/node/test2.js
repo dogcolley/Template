@@ -1,3 +1,4 @@
+const { time } = require("console");
 const readline = require("readline");
 const INPUT = readline.createInterface({
   input: process.stdin,
@@ -7,6 +8,8 @@ const INPUT = readline.createInterface({
 const Celsius = new Array(2);
 
 let INPUTCOUNT = 0;
+let INPUTACTION = true;
+
 const CONSOLETEXT = new Array(
     '현재 온도를 셋팅해주세요!',
     '끓일 온도를 셋팅해주세요!'
@@ -21,55 +24,90 @@ const CheckNumber = (matchData) => {
     return matchData;
 }
 
-const count = (setNum,maxNum) => {
-    let ResultNum = setNum;
-    for (ResultNum; ResultNum < maxNum; ResultNum += 1) { // 나도 내장함수다.
-        const NowC = ResultNum;
-        setTimeout(()=>{ 
-            switch(NowC){
-                case 20 :
-                    console.log('NOT HOT');
-                break;
-                case 40 :
-                    console.log('NORMAL');
-                break;
-                case 50 :
-                    console.log('SO HOT');
-                break;
-                case 80 :
-                    console.log('HOT');
-                break;
-                                
-            }
-            // 여기 무엇인가 넘버링 만큼의 코드가 시간에 맞춰 실행된다.
-        }, 100);
+const bubblingC = (num)=>{
+    return new Promise(function(resolve, reject){
+        setTimeout( () => {
+            //목표값을 설정하고 계산한다.
+            num++; 
+            console.log(num);
+            resolve(num);
+        }, timeMatch(num));
+    });
+}
+
+const timeMatch = (num) =>{
+    let time = 0;
+    switch(true){
+        case (num < 20) :
+            time = 1000;
+        break
+        case (num < 50) :
+            time = 500;
+        break
+        case (num < 70) :
+            time = 300;
+        break
+        case (num < 100) :
+            time = 100;
+        break
     }
-    //ResultNum 여기엔 for문이 끝난 결과값이 도출이 되므로 그 결과값이 돌출된 코드를 실행할수있다.
-    if(ResultNum > 100){
-        console.log('물이 무조건 끓게될것입니다.')
+    return time;
+}
+
+const excessCheck = (num) =>{
+    if(num > 120){
+        console.log('STOP : Already reached');
+        process.exit();
+    }
+} 
+
+
+async function bubbling  (ResultNum,maxNum){
+    //DATA DISPLAY
+    console.log("NOW C' : ",ResultNum," // GOAL C' : ", maxNum);
+
+    //RESULTE
+    if(maxNum > 100){
+        console.log(' RESULTE : BUBBLE ')
     }else{
-        console.log('물이 끓지 않습니다.')
+        console.log(' RESULTE : DON"T BUBBLE')
     }
+    
+    //CHECK OVER CELSIUS
+    excessCheck(ResultNum);
+
+    //ACTION UP TO CELSIUS
+    for(let i = ResultNum; i < maxNum; i++){
+         await bubblingC(ResultNum).then(data=>{
+            ResultNum = data;
+            excessCheck(ResultNum);
+        });
+    }
+
+    console.log('====END====');
+    process.exit();
+}
+
+function produce (){
+    console.log('작업이 끝나고 실행될 부분');
+}
+
+function count(setNum,maxNum) {
+    let ResultNum = setNum;
+    bubbling(ResultNum,maxNum);
 }
 
 console.log(CONSOLETEXT[INPUTCOUNT]);
 INPUTCOUNT++;
 
 INPUT.on("line", (line) => {
-    
     Celsius[INPUTCOUNT-1] = CheckNumber(line);
-    if(INPUTCOUNT >= Celsius.length){
-        console.log(Celsius);
-        count(Celsius[0],Celsius[1])
-        process.exit();
+    if(INPUTCOUNT >= Celsius.length && INPUTACTION){
+        count(Celsius[0],Celsius[1]);
+        INPUTACTION = false;
     }
     console.log(CONSOLETEXT[INPUTCOUNT]);
     INPUTCOUNT++
 }).on("close", () => {
     process.exit();
 })
-
-
-
-
-

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+        //https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67
+
+        //일반적인 선언 : eyes 와 nose 는 선언할때마다 메모리를 계속 할당하게된다. (딥카피)
+        function Person() { 
+        this.eyes = 2;
+        this.nose = 1;
+        }
+        let kim  = new Person();
+        let park = new Person();
+        console.log(kim.eyes);  // => 2
+        console.log(kim.nose);  // => 1
+        console.log(park.eyes); // => 2
+        console.log(park.nose); // => 1
+
+        //프로토타입을 이용한 선언 
+        //__proto__ 는 카피한 원본 속성을 가르킵니다.  
+        function Person02() {}
+        Person02.prototype.eyes = 2;
+        Person02.prototype.nose = 1;
+        kim  = new Person02();
+        park = new Person02();
+        console.log(kim);
+
+        console.log(kim.eyes);  // => 2
+        console.log(kim.nose);  // => 1
+        console.log(park.eyes); // => 2
+        console.log(park.nose); // => 1
+
+        Person02.prototype.nose = 4;
+        console.log(kim.nose);  // => 1
+        console.log(park.nose); // => 1
+
+        //할당된 변수가 없으면 상위 __proto__ 계속 검색하게 됨
+
+        //프로토타입을 이용한 (Function)로 생성
+        function Person03() {} // => 함수
+        let personObject = new Person03(); // => 함수로 객체를 생성
+        let obj = {}; // var obj = new Objet();
+        //const a = new obj();
+
+        var foo = {name : "foo"}; // foo 라는 객체를 생성.
+        //foo.prototype.a='hello world';
+        //console.log(foo.a);
+        
+
+        //#예제 프로토 타입을 바꾸는것과, 함수를 바꾸는 경위
+        var A = function () {
+            this.x = function () {
+                console.log('hello');
+            };
+        };
+        A.x=function() {
+            console.log('world');
+        };
+        var B = new A();
+        var C = new A();
+        B.x(); // -> hello
+        C.x(); // -> hello
+
+        //#예제 2.
+        var A = function () { };
+        A.x=function() {
+            console.log('hello');
+        };
+        A.prototype.x = function () {
+            console.log('world');
+        };
+        var B = new A();
+        var C = new A();
+        B.x(); // -> world
+        C.x(); // -> world
+        
+        C.x=function() {
+            console.log('test');
+        };
+        C.x(); 
+
+        //예제2 프로토 타입 체이닝
+        console.log( (123).toString() ); // => '123'
+
+        Object.prototype.toTest = function () { return 'test1' }
+        console.log( (123).toTest() ); // => test1
+        
+        //예제3 오브젝트 프로토 타입
+        const obj1 = Object.create(null);
+        console.dir(obj1); // null propoty
+
+        const obj2 = {};
+        console.dir(obj2); //  __proto__: Object
+        
+        Object.setPrototypeOf(obj2, null); 
+        console.dir(obj2); // null propoty
+
+        const obj3 = new Object();
+        console.dir(obj3); //  __proto__: Object
+
+        const FN1 = function () {
+
+        }
+        
+        console.dir(FN1); // FN.prototype.test = 1;
+        FN1.prototype.test = 1; // 이친구는 호이스팅처럼 최상단으로 먼저 실행이됨
+        const FN1_1 = new FN1();
+        console.dir(FN1_1);
+        const FN1_2 = new FN1();
+        console.dir(FN1_2);
+        FN1.prototype.test = 2; // 이친구는 호이스팅처럼 최상단으로 먼저 실행이됨
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

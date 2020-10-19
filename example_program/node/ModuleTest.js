@@ -1,7 +1,6 @@
-
-const moduleA = require('./testModule');
-const moduleB = require('./text2Module');
-const moduleC = require('./test3Module');
+const moduleA = require('./Module01');
+const moduleB = require('./Module02');
+const moduleC = require('./Module03');
 
 console.log(moduleA);
 moduleA.console2('test');

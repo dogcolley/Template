@@ -1,4 +1,4 @@
-//애는 됨
+//모듈선언법
 exports.console2 = function(text){
     console.log(text);
 }

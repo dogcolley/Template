@@ -132,8 +132,30 @@ dataTypes.forEach(function(d){
     console.log(d.constructor.name,"&", d instanceof newConstructor)
 });
 
-//다양한 컨스럭쳐 접근법
+//내가 만드는 컨트럭쳐 바꿔주기
 
+const Constructor01 = function (){}
+Constructor01.prototype.number = 1;
+const ConstructorChange01 = function (){}
+ConstructorChange01.prototype.number = 2;
+const myIns = new Constructor01();
+console.log('생성된 인스턴트의 값은 : ',myIns.constructor)
+console.log('생성된 인스턴트의 값은 : ',myIns.number)
+console.log(myIns);
+
+myIns.__proto__.constructor = ConstructorChange01; // undefined
+console.log('바뀐 인스턴트의 값은 : ',myIns.constructor);
+console.log('바뀐 인스턴트의 값은 : ',myIns.number)
+myIns.__proto__.number = 2;
+console.log('바뀐 인스턴트의 값은 : ',myIns.number)
+console.log(myIns);
+
+//const myIns2 = new myIns(); err
+const myIns2 = new myIns.constructor;
+console.log('생성된 2번째 인스턴트의 값은 : ',myIns2.constructor);
+console.log('생성된 2번째 인스턴트의 값은 : ',myIns2.number)
+
+//다양한 컨스럭쳐 접근법
 const aseConstructor = function(name){
     this.name = name;
 }
@@ -154,16 +176,105 @@ console.log(p4);
 console.log(p5);
 
 
-//자 arr를 찾아 올라가면 obejct를 찾을수있다구!
-arr.push(3); // arr.__proto__.psuh()
-console.log(arr.hasOwnProperty(2)); // arr.__proto__.__proto__.hasOwnProperty()
-console.log(Array.prototype.toString.call(arr));
-console.log(Object.prototype.toString.call(arr));
 
-arr.toString = function(){
+
+
+/*
+자그럼 오브젝트의 프로토타입의 구조를 확인하자!
+배열이 보스인줄 알았는데 그위엔 오브젝트가 있었다...버억
+
+            Object     Object.prototype
+            -----------
+            |       .
+        new |     .
+            |   .
+            | .
+            ▼   (.__proto__)
+            from()
+            inArray()
+            of()
+            arguments
+            length
+            name
+    Array-- prototype --- push
+    :      .
+    :    .
+new :  .
+    :.   (__proto__)
+    ▼
+  [1,2]
+  
+*/
+
+
+const arr3 = [1,2];
+arr.push(3); // arr.__proto__.push
+arr.hasOwnProperty(2); // arr.__proto__.__proto__.hasOwnProperty
+
+Array.prototype.toString.call(arr3) // 1,2
+Object.prototype.toString.call(arr3) // obejct Array
+arr3.toString() // 1,2 
+
+arr3.toString = function(){
     return this.join('_');
 }
-console.log(Array.prototype.toString.call(arr));
-console.log(arr.toString());
+
+console.log(Array.prototype.toString.call(arr3)); //1,2원본프로퍼티를 가져온다.
+console.log(arr3.toString()); // 1_2 재정의한 값을 가져온다.
+
+//자 그럼 이제 그 최상위 보스인 오브젝트 메서드를 알아보자
+
+Object.prototype.getEntries = function (){
+    const res = [];
+    for (let prop in this){
+        if(this.hasOwnProperty(prop)){
+            res.push(prop, this[prop]);
+        }
+    }
+    return res;
+}
+
+const data = [
+    ['obejct',{a:1,b:2,c:3}],
+    ['number',345],
+    ['string','abc'],
+    ['boolean',false],
+    ['func',function(){}],
+    ['arr',[1,2,3]]
+];
+
+data.forEach(function(datum){
+    console.log(datum[1].getEntries())
+})
+// 결론 : 여태 열심히 프로토등으로 접근했지만 우리 최상위 짱짱 object는 직접 찾아가야합니다!
+
+
+//자 직접 프로토 할당해볼까?
+const _proto = Object.create(null);
+
+_proto.getValue = function(key){
+    return this[key];
+}
+
+const obj = Object.create(_proto);
+obj.a = 1;
+console.log(obj.getValue('a')); 
+console.log(obj); 
+
+// 자스의 기본 내장데이터를 사용할경우 1 객체 2 나머지 3나머지의 나머지 등등... 무한이지만
+// 사용자가 만든 내장데이터의 경우엔 특별하게 변경이 가능하다.. 이러면 자스가 자스가 아닌가....?
+
+const Grade = function(){ // arguments 
+    const args = Array.prototype.slice.call(arguments);
+    for(let i = 0 ; i < args.length; i++){
+        this[i] = args[i];
+    }
+    this.length = args.length;
+};
+
+const g = new Grade(100,80);
+console.log(g)
+
+
 
 console.log('===========01. 끝  =====================');

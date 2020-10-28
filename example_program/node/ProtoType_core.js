@@ -4,7 +4,6 @@ ProtoType
 서론 : JS는 프로토 타입 기반언어! 어떤객체를 복사! 클래스 기반의 상속과 비슷함!
 
 이구간을 통과 해야지 진정한 JS를 깨달을수 있다!
-
 */
 
 /*
@@ -12,7 +11,7 @@ ProtoType
 
 서론 : var instance = new Constructor(); 
 
-Constructor * protortype
+Constructor * protortype 여기서 뭔가조작하면 자식은 프로토가 여향을 받는다.
     ㅡㅡㅡㅡ 
     :    .
     :   .
@@ -21,12 +20,12 @@ new :  .
     :.
     ▼
 
-instance.__proto__
+instance.__proto__. xx // 뭔가하게되면 부모인 프로토타입이 영향을 받는다.
 
 ※꿀팁
 : es5에서 __proto__ 가 아니라 [[prototype]] 으로 명칭됨
 __proto__는 원래 브라우저에서 못해야했는데 대부분 브라우저가 사용합니다. ㅠㅠ
-원래는 Object.getPrototypeof(instance) / Refelect.getProtypeOf(instance) 통해 적근해야합니다.
+원래는 Object.getPrototypeof(instance) / Refelect.getProtypeOf(instance) 통해 접근해야합니다.
 Object.getPrototypeOf() / Object.create() 를 권장합니다.
 
 우리는 간단한 학습을 위해 __proto__ 를 사용합니다! 
@@ -72,6 +71,8 @@ console.dir(instance); //이친구의 __proto__는 Constructor가 들어가즁
 const arr = [1,2];
 console.dir(arr); // 나는 Array의 prototype의 값을 __proto__해유!
 console.dir(Array); // 나는 원본이지! 내가 최고야 하하하
+
+console.log(arr.__proto__ === Array) // ?
 Array.isArray(arr);
 arr.forEach((e)=>{console.log(e)})
 //arr.isArray // err!

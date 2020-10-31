@@ -24,7 +24,7 @@ Rectangle.isRectangle = function (instance){
 
 const react1 = new Rectangle(3,4);
 console.log(react1.getArea());
-//console.log(react1.isRectangle(react1)); //err Rectangle에 직접 상속하였으니 __proto__로는 상속되지 않는다.
+//console.log(react1.isRectangle(react1)); //★err Rectangle에 직접 상속하였으니 __proto__로는 상속되지 않는다.
 console.log(Rectangle.isRectangle(react1));
 
 
@@ -45,7 +45,7 @@ console.log(g); // length : 3
 delete g.length;
 console.log(g); // length : x
 g.push(70);
-console.log(g); // length : 1 : 왜 1이 되는지 파악해야함 프로토타입이 빈배열을 가르키고있기 떄문이지
+console.log(g); // length : 1 :★ 왜 1이 되는지 파악해야함 프로토타입이 빈배열을 가르키고있기 떄문이지
 
 //7-2,3 생성후 이인스턴트를 삭제해보자
 Grade.prototype = ['a','b','c','d'];
@@ -55,14 +55,14 @@ console.log(g2); // length : 3
 delete g2.length;
 console.log(g2); // length : x
 g2.push(70);
-console.log(g2); // length : 5 : 5가되는 이유는 프로토 타입을 할당했기 떄문이지
+console.log(g2); // length : 5 : ★ 5가되는 이유는 프로토 타입을 할당했기 떄문이지
 
 //7-6,7 상속을 해볼까?  Square에 Rectangle를 상속해볼까?
 const Square = function (w){
     Rectangle.call(this,w,w);
 }
 
-Square.prototype = new Rectangle();
+Square.prototype = new Rectangle(); // ★ extend의 개념이지 
 delete Square.prototype.height; //이렇게하면 깔끔쓰 => 지나친 데이터 구조를 가진걸 안보이게 할 수 있음
 delete Square.prototype.width; //이렇게하면 깔끔쓰 => 지나친 데이터 구조를 가진걸 안보이게 할 수 있음
 Object.freeze(Square.prototype); // 고정하기!
@@ -100,7 +100,7 @@ console.log(g4.__proto__);
 console.log(g4.__proto__.__proto__);
 console.log(g4.getArea());
 
-//7-6,7 좀더 간단한 소스코드로 봐볼까?
+//7-6,7 좀더 간단한 소스코드로 봐볼까? (상속이란 무언가)
 
 const KoreaName = function(a,b){
     this.firstName = a;
@@ -172,7 +172,7 @@ console.log(g5.getArea());
 
 //7-11 constructor 복구하는 방법
 
-const extendClass1 = function (SuperClass,SubClass,subMethods){
+const extendClass3 = function (SuperClass,SubClass,subMethods){
     SubClass.prototype =  new SuperClass();
     for(let prop in  SubClass.prototype){
         if(SubClass.prototype.hasOwnProperty(prop)){
@@ -240,3 +240,65 @@ const extendClass = function (SuperClass,SubClass,subMethods){ //super를 감미
     Object.freeze(SubClass.prototype);
     return SubClass;
 };
+
+//class 문법을 활용한 object 상속
+const ES5 = function(name){
+    this.name = name;
+}
+
+ES5.staticMethod = function(){
+    return this.name + 'staticMethod';
+}
+
+ES5.prototype.method = function(){
+    return this.name + 'method';
+}
+
+const ES5Instance = new ES5('es5');
+
+console.log(ES5Instance.method());
+console.log(ES5.staticMethod());
+
+const ES6 = class {
+    constructor(name){
+        this.name = name;
+    }
+
+    static staticMethod(){
+        return this.name + 'staticMethod';
+    }
+
+    method(){
+        return this.name + 'method';
+    }
+}
+
+const es6Instance = new ES6('es6');
+es6Instance.test2 = '하하';
+console.log(ES6.staticMethod());
+console.log(es6Instance.method());
+console.log(es6Instance.test2);
+
+//자 이제 마음껏 ES6 CLASS 의 상속을 해볼까?
+const R = class {
+    constructor(w,h){
+        this.width = w;
+        this.height = h
+    }
+    getArea(){
+        return this.width * this.height;
+    }
+}
+
+const S = class extends Rectangle{
+    constructor(w){
+        super(w,w);
+    }
+    getArea(){
+        console.log('size is '+super.getArea())
+    }
+}
+
+const i = new S(5);
+
+i.getArea();

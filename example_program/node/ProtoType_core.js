@@ -28,6 +28,8 @@ __proto__는 원래 브라우저에서 못해야했는데 대부분 브라우저
 원래는 Object.getPrototypeof(instance) / Refelect.getProtypeOf(instance) 통해 접근해야합니다.
 Object.getPrototypeOf() / Object.create() 를 권장합니다.
 
+참조 문서 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/proto
+
 우리는 간단한 학습을 위해 __proto__ 를 사용합니다! 
 */
 

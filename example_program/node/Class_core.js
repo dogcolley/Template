@@ -7,7 +7,6 @@
 
 
 //7-1 스태틱 메서드, 프로토 타입 메서드
-
 const Rectangle = function(w,h){
     this.width = w;
     this.height = h;
@@ -204,7 +203,6 @@ const extendClass2_1 = (function(){
         return SuperClass
     }
 });
-
 
 const extendClass3_1 = function (SuperClass,SubClass,subMethods){
     SubClass.prototype =  Object.create(SubClass.prototype);

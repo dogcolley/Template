@@ -20,7 +20,7 @@ const user = {
 console.log(user.fullName); // John Smith
 console.log(user.name); // John
 console.log(user.surname); // Smith
-user.fullName = '나는 개밥'
+user.fullName = '나는 개밥' //set 
 console.log(user.fullName); // 나는 개밥
 console.log(user.name); // 나는
 console.log(user.surname); // 개밥
@@ -66,3 +66,7 @@ object1.property1 = 77; // throws an error in strict mode
 
 console.log(object1.property1); // expected output: 42
 
+
+
+
+console.log('작업끝');

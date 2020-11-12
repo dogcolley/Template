@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title>제목</title>
+        <meta>
+        <script></script>
+        <style></style>
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1></h1>
+        <div id="mainContent">
+            <strong class="str_text">1번쨰</strong>
+            <p class="str_content" value="?">
+                <span>클레스 첫번째 </span>
+                <span>클레스 마지막 </span>
+            </p>
+            <strong class="str_text">2번째</strong>
+            <p class="str_content">
+                <span>중복클레스</span>
+            </p>
+            <div>
+                <button id="myStart">시작</button>
+                <a href="">a태그</a>
+            </div>
+        </div>
+
+        <div id="propertyDom">
+            <a href="naver.com">안녕나는 링크야</a>
+            <img src="https://www.w3.org/html/logo/badge/html5-badge-h-css3-semantics.png" width="165" height="64" alt="HTML5 Powered with CSS3 / Styling, and Semantics" title="HTML5 Powered with CSS3 / Styling, and Semantics" alt="">
+            <input type="text" value="?">
+        </div>
+
+        <div id="makeTag">
+
+
+        </div>
+
+    </body>
+</html>
+
+<script>
+
+    // 브라우저에 js GLOBAL 객체 WINDOW
+    // window => location, document , history
+    // document => html
+    // html => head, body
+    // head => title , meta, (script, link, style // 주로 헤더에 넣어준다. )
+    // body => h1,div, p ,span, strong, a,
+
+
+    console.log('최상위친구',window);
+    console.log('두번째 삼대장 히스토리',history);
+    console.log('두번째 삼대장 주소',location);
+    console.log('두번째 삼대장 돔',document);
+    
+    //돔 접근 방식 돔.객체.데이터.속성.인자값
+    document.body.style.backgroundColor = 'fuchsia';
+
+    const dom01 = document.getElementById('mainContent');
+    console.log('아이디를 선택함', dom01);
+
+    const dom02 = document.getElementsByClassName('str_text');
+    console.log('클레스를 선택함', dom02); // 모든 인자를 호출
+
+    const dom3 = document.getElementsByTagName ('span');
+    console.log('태그를 선택함', dom3); // 모든 인자를 호출
+
+    const container = document.querySelector('.str_content');
+    console.log('첫 선택자',container);
+
+    const containerAll = document.querySelector('.str_content');
+    console.log('첫 선택자 ',containerAll);
+
+    var myStart = document.getElementById('myStart'); //이벤트 삽입 방법
+    myStart.addEventListener('click', function(event) {console.log('클릭')});
+    myStart.addEventListener('select', function(event) {console.log('선택')});
+    
+    var getContainerChilds = container.childNodes;
+    console.log('자식 노드',getContainerChilds);
+
+    var getFirstChild = container.firstChild;
+    console.log('첫자식 노드 돔 반환',getFirstChild);
+
+    var getName = container.nodeName;
+    console.log('노드 테그 네임 반환',getName);
+
+    var getValue = container.nodeValue; //null
+    console.log('노드의 밸류값 반환',getValue);
+
+    var getValue = container.nodeType;  // 1 노드의 존재
+    console.log('나의 노드유형',getValue);
+
+    var getParent = container.parentNode;
+    console.log('부모 노드 돔으로 반환',getParent);
+
+    getValue = container.firstElementChild;
+    console.log('첫번째요소 찾기',getValue);
+
+    getValue = container.lastElementChild;
+    console.log('마지막 요소찾기',getValue);
+
+    const nextDom = container.nextSibling;
+    console.log('옆 돔 찾기',nextDom);
+
+    const prevDom = container.previousSibling;
+    console.log('이전 돔 찾기',prevDom);
+
+
+    //내부 속성으로 접근 및 변경
+    const propertyDom = document.getElementById('propertyDom');
+    propertyDom.id = 'propertyDomCh'; // id 변경
+    propertyDom.classList.add('ClassAdd'); // class 추가
+    propertyDom.classList.add('ClassAdd2'); // class 추가
+    propertyDom.classList.remove('ClassAdd2'); //class 삭제
+
+    const propertyDom_a = propertyDom.getElementsByTagName('a');
+    console.log(propertyDom_a,'불러온 태그') //배열로가져오구나
+    console.log(propertyDom_a[0].href)  // 해당 테그의 정보를 가져와서 프로포티를 호출해서 정보를 가져올수있다.
+
+    const propertyDom_img = propertyDom.getElementsByTagName('img');
+    console.log(propertyDom_img,'불러온 태그')
+    console.log(propertyDom_img[0].src)
+
+    const propertyDom_input = propertyDom.getElementsByTagName('input');
+    console.log(propertyDom_input,'불러온 태그')
+    console.log(propertyDom_input[0].value)
+
+    //생성도 가능합니다.
+    const makeTag = document.getElementById('makeTag');
+    const makeTag_list = document.createElement('ul');
+
+    while (makeTag_list.firstChild)
+    list.firstChild.remove()
+
+    const listItem1 = document.createElement('li')
+    const listItem2 = document.createElement('li')
+    const listItem3 = document.createElement('li')
+    listItem1.textContent = "foo"
+    listItem2.textContent = "bar"
+    listItem3.textContent = "baz"
+
+    makeTag_list.appendChild(listItem1)
+    makeTag_list.appendChild(listItem2)
+    makeTag_list.appendChild(listItem3)
+
+    makeTag.appendChild(makeTag_list)
+    
+</script>

@@ -1,4 +1,5 @@
 /*
+
 //유즈 셋타임
 function sayHi(){ console.log('Hello');}
 setTimeout(() => {sayHi();}, 1000);

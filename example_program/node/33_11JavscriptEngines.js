@@ -19,6 +19,44 @@ nodejs lib
 nodejs soket/http/ajax
 v8engin/ / /  
 
+//추가 가끔 햇갈리는 블로킹 개념
+: https://nodejs.org/ko/docs/guides/blocking-vs-non-blocking/
+: 논블로킹 비동기 작업
+: 블로킹  동기 작업
+: 안좋은 예제
+
+```
+const fs = require('fs');
+fs.readFile('/file.md', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+fs.unlinkSync('/file.md');
+```
+
+//스텍이 미친듯이 쌓인다면?
+: 저번시간에 배운 스텍이 쌓여 이벤트가 계속 쌓이게 되면 브라우저에선 SesstionStack will help you resolve crashes 에러가 나면서 쌓여있는 스텍 싹 날려버린다.
+
+
+//getting Hot 과 최적화 방식
+Just-in-Time Compilation (JITC) 
+
+: JS Source => Parser & IR generator => IR => Just-in-Time-compiler => Native Code
+: 소스코드를 바이트로 환산후 컴파일해서 네이티브 코드로 반환
+: 단점 1.변수타입이 바뀔수있다. 2. class 대신 object로 상속되는 prototype-based 방식을 사용하게 되어 문제 발생가능
+
+Adaptive Compilation : 적응 형 최적화
+: JS Source = (parser) => ASP = (Full-Codegen-JITC) => nativeCode ◀····(Deopimizer)···· (예외적인 상황발생시 예전코드로 복구)
+                           ▲                     ㄴ => OpimizedNativeCode = () =>  ····:
+                          RuntimeProfiler ◀······················: (함수의 호출 빈도특정)
+                           ▼                       
+                          CrankShaftJITC  
+
+(CrankShaft에서 Type Specialization을 최적화를 적용하기 위한 변수의  실제 타입 정보를 저장)
+
+※혼틈 꺠알팀 array가 중요한데, 하나의 array에는 하나의 type만 넣어주는 것이 최고입니다! 성능에 영향을 미칩니다.
+(ex) const arr = [1,'1',{1,2,3}])
+
 //nodeJS V8 Engin?
 C++/ C 로 구성되어있는 컴파일 엔진
 
@@ -26,7 +64,12 @@ js code => Parser => Abstract Syntax Tree => Interpreter Ignition => Bytecode
                                                     ▽                  △
                                              Compiler TurboFan    => Opiimized Machine Code
 
-
+Parser                 : 코드를 읽어낸다.
+Abstract Syntax Tree   : 쓸데 없는 구성을 버리고 필수적인 요소만 담는 과정
+Interpreter Ignition   : 인터프린트 점화 => 코드를 한줄 한줄 읽기 시작한다.
+Bytecode               : nodeJs의 ByteCode로 환산한다. 0x0000000
+Compiler TurboFan      : 최적화된 기계어 코드(machine code)를 시간들여 생성후 => 최적화 컴파일러를 만들어줍니당 
+Opiimized Machine Code : 컴파일이 완료되어 반환
 
 
 
@@ -48,6 +91,7 @@ req => res 의 싱글 입력후 처리는 blocking io에서 처리하면 된다.
 // nodejs를 사용하면 안될때
 CPU 작업이 많은 어플리케이션에선 적당하지 않음
 : CPU의 구조는 쓰레드,코어 (1코에어 2쓰레드로 구성됨) 쓰레드의 성능은 Hz Clock으로 결정됩니다. 좀더 좋은 성능의 CPU를 요구하게되는구조
+
 
 
 

@@ -1,0 +1,25 @@
+<meta charset='utf-8'>
+<html>
+    <head></head>
+    <body>
+        <button type="button" id="btn01" >시작버튼</button> 
+        <script>
+            let w;
+            const btn01 = document.getElementById('btn01');
+            // 워커 시작					
+            function startWorker() {
+              if(window.Worker) { // 브라우저가 워커 호환되는지 검사
+                  w = new Worker('./worker.js'); // 워커 생성
+                  w.onmessage = function(event) {
+                      console.log(event.data);
+                  };
+              }else {
+                     alert("'Web Worker'를 지원하지 않는 브라우저 입니다");
+              }
+            }
+
+            btn01.addEventListener('click',startWorker());
+        </script>
+
+    </body>
+</html>

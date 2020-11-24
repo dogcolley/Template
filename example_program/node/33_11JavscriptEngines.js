@@ -19,7 +19,6 @@ https://velog.io/@namezin/javascript-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC
 : 논블로킹 비동기 작업
 : 블로킹  동기 작업
 : 안좋은 예제
-
 ```
 const fs = require('fs');
 fs.readFile('/file.md', (err, data) => {
@@ -30,7 +29,9 @@ fs.unlinkSync('/file.md');
 ```
 
 //03.스텍이 미친듯이 쌓인다면?
-: 저번시간에 배운 스텍이 쌓여 이벤트가 계속 쌓이게 되면 브라우저에선 SesstionStack will help you resolve crashes 에러가 나면서 쌓여있는 스텍 싹 날려버린다.
+: 저번시간에 배운 스텍이 쌓여 이벤트가 계속 쌓이게 되면 
+브라우저에선 SesstionStack will help you resolve crashes 
+에러가 나면서 쌓여있는 스텍 싹 날려버린다.
 
 
 //04.getting Hot 과 최적화 방식
@@ -48,7 +49,7 @@ Adaptive Compilation : 적응 형 최적화
 
 (CrankShaft에서 Type Specialization을 최적화를 적용하기 위한 변수의  실제 타입 정보를 저장)
 
-※혼틈 꺠알팀 array가 중요한데, 하나의 array에는 하나의 type만 넣어주는 것이 최고입니다! 성능에 영향을 미칩니다.
+※혼틈 "깨"동란tip array가 중요한데, 하나의 array에는 하나의 type만 넣어주는 것이 최고입니다! 성능에 영향을 미칩니다.
 https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775/#569b
 (ex) const arr = [1,'1',{1,2,3}])
 
@@ -95,7 +96,6 @@ C++/ C 로 구성되어있는 컴파일 엔진
 js code => Parser => Abstract Syntax Tree => Interpreter Ignition => Bytecode 
                                                     ▽                  △
                                              Compiler TurboFan    => Opiimized Machine Code
-
 Parser                 : 코드를 읽어낸다.
 Abstract Syntax Tree   : 쓸데 없는 구성을 버리고 필수적인 요소만 담는 과정
 Interpreter Ignition   : 인터프린트 점화 => 코드를 한줄 한줄 읽기 시작한다.

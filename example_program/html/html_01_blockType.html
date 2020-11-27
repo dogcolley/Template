@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        상세설명링크
+        https://uxgjs.tistory.com/44
+
+        크게 우리는 display: 라는 속성의 타입을 2가지로 나눈다.
+
+        1.블럭타입 
+        2.인라인타입
+
+        간단히 설명하면 
+        1.블럭타입은 한줄을 차지한다. 
+        2.인라인타입의 경우 한줄을 차지하지 않고 자기 영역만 차지한다.
+        3.인라인타입의 경우 상하 길이 영역 구분이 제대로 되지않아 서로 겹치고 뭉개지고 이런다..
+        4.그래서 새로운 속성인 inline-block을 css로 정의내려주면 잘먹는다!
+        아래의 예제를 보자
+    -->
+    <div class="wrap">
+        <div class="block">나는 블럭타입이야!</div>
+        <div class="block">나는 블럭타입이야!</div>
+        <div class="block">나는 블럭타입이야!</div>
+        <div class="block">나는 블럭타입이야!</div>
+        <div class="block">나는 블럭타입이야!</div>
+        <div class="block">나는 블럭타입이야!</div>
+        <div class="block">나는 블럭타입이야!</div>
+        <div class="block">나는 블럭타입이야!</div>
+    </div>
+
+    <div class="wrap">
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+    </div>
+    
+    <div class="wrap">
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+        <span class="inline">나는 인라인이야</span>
+    </div>
+    
+    <div class="wrap">
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+        <span class="inlineBlock">나는 인라인이야</span>
+    </div>
+
+    
+
+
+    <!-- 
+    
+    블럭타입
+
+    <div></div>
+    <ul>
+        <li></li>
+    </ul>
+    <dl>
+        <dt></dt>
+    </dl>
+    <form action=""></form>
+    <a href=""></a>
+    <h1></h1>
+    <h2></h2>
+    <h3></h3>
+    <h4></h4>
+    <h5></h5>
+    <h6></h6>
+    <table></table>
+    -->
+
+    <!-- 인라인타입 
+    <span></span>
+    <strong></strong>
+    <img src="" alt="">
+    <em></em>
+    <i></i>
+    <select name="" id=""></select>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <label for=""></label>
+    <map name=""></map>
+    -->
+
+    <!-- 인라인타입 안에 블럭타입 x 
+    <strong>
+        <div>가능</div>
+    </strong>
+    -->
+
+    <!-- 블럭타입 안에 인라인타입 x 
+    <div>
+        <strong>불가능</strong>
+    </div>
+    -->
+
+    <style>
+        .wrap{border:1px solid blue;padding:20px;margin:20px}
+        .block{background:pink;padding:30px;margin:10px}
+        .inline{padding:10px;background:powderblue}
+        .inlineBlock{display:inline-block;padding:10px;background:powderblue;margin:10px}
+
+    </style>
+
+
+</body>
+</html>
